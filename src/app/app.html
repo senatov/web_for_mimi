@@ -15,68 +15,68 @@
   <main id="top">
     <section class="hero">
       <div class="hero-copy">
+        <a class="linkedin-card" [href]="linkedInProfileUrl" target="_blank" rel="noopener noreferrer" aria-label="Open Iakov Senatov LinkedIn profile" (click)="trackLinkedInClick('hero')">
+          <span class="linkedin-card-label">LinkedIn</span>
+          <span class="linkedin-card-title">Iakov Senatov</span>
+          <span class="linkedin-card-text">Creator of MiMiNavigator · Programmer · Java / DB / Spring / macOS SwiftUI developer</span>
+        </a>
+
         <p class="eyebrow">Dual-panel file manager for macOS</p>
-        <h1>Move faster through files on your Mac.</h1>
+        <h2>MiMiNavigator for macOS, a dual-panel file manager inspired by Total Commander.</h2>
         <p class="hero-text">
-          MiMiNavigator, or simply MiMiNav, is a dual-panel Finder alternative for people who work with files all day.
-          It combines tabs, favorites, history and FTP/SFTP access in a cleaner, more practical macOS workflow.
+          MiMiNavigator, or simply MiMiNav, is a dual-panel file manager for practical work on macOS.
+          It combines tabs, favorites, history and FTP/SFTP access in a clearer and faster workflow than Finder.
         </p>
 
         <div class="hero-actions">
-          <a class="button button-primary" href="#download">Download Signed DMG</a>
-          <a class="button button-secondary" href="#preview">See screenshots</a>
+          <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer" (click)="trackDownloadClick('hero')">Download for macOS</a>
+          <a class="button button-secondary" href="#preview">View screenshots</a>
+          <a class="button button-secondary" href="https://github.com/senatov/MiMiNavigator" target="_blank" rel="noopener noreferrer" (click)="trackGitHubClick('hero')">View on GitHub</a>
         </div>
 
-        <p class="hero-note">Free download · Signed DMG · Dual-panel workflow for Mac users</p>
+        <p class="hero-note">Free download · Signed DMG · Built for macOS {{ minimumMacOSVersion }} and newer</p>
       </div>
 
-      <div class="hero-visual" aria-label="Product preview">
-        <div class="app-window">
-          <div class="window-chrome">
-            <span class="window-dot red"></span>
-            <span class="window-dot yellow"></span>
-            <span class="window-dot green"></span>
+      <div class="hero-visual" aria-label="MiMiNavigator screenshot preview">
+        <a class="hero-preview-link" href="images/Preview3.png" (click)="openPreview('Preview3.png', 'mimiPreviewHero'); $event.preventDefault()" aria-label="Open hero screenshot in dialog">
+          <div class="app-window">
+            <div class="window-chrome">
+              <span class="window-dot red"></span>
+              <span class="window-dot yellow"></span>
+              <span class="window-dot green"></span>
+            </div>
+            <img src="images/Preview3.png" alt="MiMiNavigator main dual-panel window on macOS">
           </div>
+        </a>
+      </div>
+    </section>
 
-          <div class="window-body">
-            <aside class="repo-sidebar">
-              <div class="repo-title">Favorites</div>
-              <div class="repo-item active">Documents</div>
-              <div class="repo-item">Downloads</div>
-              <div class="repo-item">Projects</div>
-            </aside>
+    <section class="pricing" id="download">
+      <div>
+        <p class="eyebrow">Download</p>
+        <h2>Download MiMiNavigator for macOS, a dual-panel file manager for practical work.</h2>
+        <p>
+          Get the current signed DMG build of MiMiNavigator and start with a cleaner dual-panel workflow on your Mac.
+          Installation is direct, simple and focused on fast evaluation.
+        </p>
+        <p>
+          Latest version: <strong>{{ latestVersion }}</strong><br>
+          Minimum system: <strong>{{ minimumMacOSVersion }}</strong><br>
+          Release info: <strong>{{ latestReleaseDate }}</strong> · <strong>{{ latestReleaseAge }}</strong>
+        </p>
+      </div>
 
-            <section class="content-pane">
-              <div class="pane-toolbar">
-                <span class="pill">Local + Remote</span>
-                <span class="pill muted">Dual-panel workflow</span>
-              </div>
-
-              <div class="commit-card">
-                <div>
-                  <strong>Move faster than in Finder</strong>
-                  <p>Browse, compare and manage files in two panels with a cleaner, more practical workflow.</p>
-                </div>
-                <span class="status-dot"></span>
-              </div>
-
-              <div class="diff-card">
-                <div class="diff-column">
-                  <div class="diff-line add">Documents</div>
-                  <div class="diff-line add">Downloads</div>
-                  <div class="diff-line">Applications</div>
-                  <div class="diff-line">Projects</div>
-                </div>
-                <div class="diff-column">
-                  <div class="diff-line add">FTP / SFTP</div>
-                  <div class="diff-line">Tabs and history</div>
-                  <div class="diff-line add">Favorites</div>
-                  <div class="diff-line">Keyboard workflow</div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
+      <div class="price-card">
+        <div class="price">Free download</div>
+        <p class="price-copy">Latest version: <strong>{{ latestVersion }}</strong></p>
+        <p class="price-copy">Release info: <strong>{{ latestReleaseDate }}</strong> · <strong>{{ latestReleaseAge }}</strong></p>
+        <p class="price-copy">Signed DMG for macOS {{ minimumMacOSVersion }} or newer.</p>
+        <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer" (click)="trackDownloadClick('pricing')">
+          Download for macOS
+        </a>
+        <p class="price-copy">
+          <a [href]="releasesPageUrl" target="_blank" rel="noopener noreferrer" (click)="trackReleasesClick('pricing')">Browse all releases</a>
+        </p>
       </div>
     </section>
 
@@ -101,35 +101,53 @@
     <section class="details" id="preview">
       <div class="details-copy">
         <p class="eyebrow">Screenshots</p>
-        <h2>Everything important stays close to the surface.</h2>
+        <h2>See MiMiNavigator in practical file work.</h2>
         <p>
-          MiMiNavigator is designed for practical file work on macOS: two panels, clear navigation,
-          remote access, and a layout that keeps the important actions visible instead of buried.
+          See how MiMiNavigator works in practical file work on macOS: two panels, clear navigation,
+          fast movement between folders and a layout that keeps important actions visible.
+        </p>
+        <p>
+          Click any screenshot to open it larger in an overlay.
         </p>
       </div>
 
-      <ul class="details-list">
-        @for (detail of detailList; track detail) {
-          <li>{{ detail }}</li>
-        }
-      </ul>
+      <div class="preview-grid preview-grid-large">
+        <article class="preview-card">
+          <a href="images/Preview0.png" (click)="openPreview('Preview0.png', 'mimiPreview0'); $event.preventDefault()" aria-label="Open Preview0 screenshot in dialog">
+            <img class="preview-image" src="images/Preview0.png" alt="MiMiNavigator dual-panel workspace screenshot">
+          </a>
+          <h3>Main dual-panel workspace</h3>
+          <p>Browse two locations side by side and keep file operations under control without Finder clutter.</p>
+        </article>
+
+        <article class="preview-card">
+          <a href="images/Preview1.png" (click)="openPreview('Preview1.png', 'mimiPreview1'); $event.preventDefault()" aria-label="Open Preview1 screenshot in dialog">
+            <img class="preview-image" src="images/Preview1.png" alt="MiMiNavigator media and file details screenshot">
+          </a>
+          <h3>Media and file details workflow</h3>
+          <p>Preview content, inspect file information and keep navigation, tabs and tools close at hand.</p>
+        </article>
+      </div>
     </section>
 
-    <section class="pricing" id="download">
-      <div>
-        <p class="eyebrow">Download</p>
-        <h2>Download MiMiNavigator for macOS.</h2>
-        <p>
-          Get the current signed DMG build of MiMiNavigator and try a clearer dual-panel file workflow on your Mac.
-          The page is focused on direct download, simple installation and fast evaluation.
-        </p>
-      </div>
+    <section class="feature-grid" id="faq">
+      <article class="feature-card">
+        <p class="eyebrow">FAQ</p>
+        <h2>What is MiMiNavigator for macOS?</h2>
+        <p>I never really found a file manager I liked enough to keep, except perhaps Total Commander, so I built my own. And yes, I am still improving it.</p>
+      </article>
 
-      <div class="price-card">
-        <div class="price">Free download</div>
-        <p class="price-copy">Current signed DMG build for macOS. Install, open and start working with your files.</p>
-        <a class="button button-primary button-block" href="#top">Download Signed DMG</a>
-      </div>
+      <article class="feature-card">
+        <p class="eyebrow">FAQ</p>
+        <h2>What can it do?</h2>
+        <p>It helps you work with files faster using two panels, tabs, favorites, history and FTP/SFTP access in a cleaner workflow than Finder.</p>
+      </article>
+
+      <article class="feature-card">
+        <p class="eyebrow">FAQ</p>
+        <h2>How do I download it?</h2>
+        <p>Use the signed DMG download on this page, or open GitHub Releases to browse all available MiMiNavigator builds.</p>
+      </article>
     </section>
   </main>
 
@@ -143,6 +161,9 @@
       <a href="#features">Features</a>
       <a href="#preview">Screenshots</a>
       <a href="#download">Download</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/senatov/MiMiNavigator" target="_blank" rel="noopener noreferrer" (click)="trackGitHubClick('footer')">GitHub</a>
+      <a [href]="linkedInProfileUrl" target="_blank" rel="noopener noreferrer" (click)="trackLinkedInClick('footer')">LinkedIn</a>
     </div>
   </footer>
 </div>
