@@ -34,6 +34,8 @@ export class GitHubService {
     Accept: 'application/vnd.github+json'
   };
   private readonly millisecondsPerDay = 1000 * 60 * 60 * 24;
+  private readonly millisecondsPerHour = 1000 * 60 * 60;
+  private readonly millisecondsPerMinute = 1000 * 60;
   private readonly daysPerMonth = 30;
   private readonly monthsPerYear = 12;
 
@@ -104,14 +106,34 @@ export class GitHubService {
     const diffInMilliseconds = currentDate.getTime() - publishedDate.getTime();
 
     if (diffInMilliseconds < 0) {
-      return 'Released today';
+      return 'Released just now';
+    }
+
+    const diffInMinutes = Math.floor(diffInMilliseconds / this.millisecondsPerMinute);
+
+    if (diffInMinutes <= 0) {
+      return 'Released just now';
+    }
+
+    if (diffInMinutes === 1) {
+      return 'Released 1 minute ago';
+    }
+
+    if (diffInMinutes < 60) {
+      return `Released ${diffInMinutes} minutes ago`;
+    }
+
+    const diffInHours = Math.floor(diffInMilliseconds / this.millisecondsPerHour);
+
+    if (diffInHours === 1) {
+      return 'Released 1 hour ago';
+    }
+
+    if (diffInHours < 24) {
+      return `Released ${diffInHours} hours ago`;
     }
 
     const diffInDays = Math.floor(diffInMilliseconds / this.millisecondsPerDay);
-
-    if (diffInDays <= 0) {
-      return 'Released today';
-    }
 
     if (diffInDays === 1) {
       return 'Released 1 day ago';

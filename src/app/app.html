@@ -20,9 +20,34 @@
       <div class="hero-copy">
         <a class="linkedin-card" [href]="linkedInProfileUrl" target="_blank" rel="noopener noreferrer"
            aria-label="Open Iakov Senatov LinkedIn profile" (click)="trackLinkedInClick('hero')">
-          <span class="linkedin-card-label">LinkedIn</span>
-          <span class="linkedin-card-title">Iakov Senatov</span>
-          <span class="linkedin-card-text">Creator of MiMiNavigator · Programmer · Java / DB / Spring / macOS SwiftUI developer</span>
+          <span class="linkedin-card-cover" aria-hidden="true"></span>
+
+          <span class="linkedin-card-body">
+            <span class="linkedin-card-avatar" aria-hidden="true">IS</span>
+
+            <span class="linkedin-card-main">
+              <span class="linkedin-card-name-row">
+                <span class="linkedin-card-title">Iakov Senatov</span>
+                <span class="linkedin-card-pronouns">He/Him</span>
+              </span>
+
+              <span class="linkedin-card-role">
+                IT-Freelance · Senior Java / Integration Consultant · Legacy Modernization · Banking &amp; Public Sector · Spring, REST, SOAP
+              </span>
+
+              <span class="linkedin-card-meta">
+                Heusenstamm, Hesse, Germany · <span class="linkedin-card-link">Contact info</span>
+              </span>
+
+              <span class="linkedin-card-connections">151 connections</span>
+            </span>
+          </span>
+
+          <span class="linkedin-card-actions" aria-hidden="true">
+            <span class="linkedin-card-action linkedin-card-action-primary">Open to</span>
+            <span class="linkedin-card-action">Add section</span>
+            <span class="linkedin-card-action">Resources</span>
+          </span>
         </a>
 
         <p class="eyebrow">Dual-panel file manager for macOS</p>
@@ -91,8 +116,10 @@
         <div class="price-card">
           <div class="price">Free download</div>
           <p class="price-copy">Latest version: <strong>{{ latestVersion }}</strong></p>
-          <p class="price-copy">Release info: <strong>{{ latestReleaseDate }}</strong> ·
-            <strong>{{ latestReleaseAge }}</strong></p>
+          <p class="price-copy price-release-info">
+            <span class="price-release-date">{{ latestReleaseDate }}</span>
+            <span class="price-release-age">( {{ latestReleaseAge }} !)</span>
+          </p>
           <p class="price-copy">Signed DMG for macOS {{ minimumMacOSVersion }} or newer.</p>
           <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
              (click)="trackDownloadClick('pricing')">
