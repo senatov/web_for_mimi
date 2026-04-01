@@ -5,7 +5,7 @@
   background:
     radial-gradient(circle at top, rgba(143, 205, 255, 0.12), transparent 38%),
     linear-gradient(rgba(232, 242, 251, 0.92), rgba(232, 242, 251, 0.70)),
-    url('/images/background_editor.jpeg') left top / 2200px auto repeat;
+    url('../../../public/images/background_editor.jpeg') left top / 2200px auto repeat;
   background-blend-mode: normal, normal, normal;
   font-family: "SF Pro Display", "SF Pro Text", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
