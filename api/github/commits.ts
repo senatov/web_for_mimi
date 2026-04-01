@@ -16,6 +16,10 @@ declare const process: {
     GITHUB_TOKEN?: string;
   };
 };
+// Minimal CommonJS module declaration for Vercel Node runtime.
+declare const module: {
+  exports: unknown;
+};
 
 // Minimal request/response declarations for Vercel Node runtime.
 interface VercelLikeRequest {
@@ -50,7 +54,7 @@ interface CommitViewModel {
 const GITHUB_COMMITS_URL = 'https://api.github.com/repos/senatov/MiMiNavigator/commits?per_page=18';
 const GITHUB_ACCEPT_HEADER = 'application/vnd.github+json';
 
-export default async function handler(req: VercelLikeRequest, res: VercelLikeResponse): Promise<void> {
+async function handler(req: VercelLikeRequest, res: VercelLikeResponse): Promise<void> {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
     res.status(405).json({ error: 'Method not allowed' });
@@ -99,6 +103,8 @@ export default async function handler(req: VercelLikeRequest, res: VercelLikeRes
     res.status(500).json({ error: 'Unable to load commits', details: message });
   }
 }
+
+module.exports = handler;
 
 function mapCommits(commits: GitHubCommitApiItem[]): CommitViewModel[] {
   return commits

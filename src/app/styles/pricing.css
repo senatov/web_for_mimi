@@ -31,6 +31,13 @@
 
 .pricing-card-eyebrow {
   margin: 0;
+  color: #52607a;
+  font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .pricing > div:first-child .commit-feed-header h3 {
@@ -80,6 +87,8 @@
   align-items: baseline;
   gap: 10px;
   color: #0f172a;
+  font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
 }
 
 .price strong {
@@ -96,24 +105,21 @@
 }
 
 .price-copy {
-  color: #152854;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  color: #1f2937;
+  display: block;
+  font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.55;
 }
 
 .price-copy strong {
   color: #111827;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.2;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: inherit;
 }
 
-.price-copy p {
-  color: #52607a;
-  font-size: 14px;
-  line-height: 1.65;
-}
 
 .button-group {
   display: flex;

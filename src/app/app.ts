@@ -9,7 +9,7 @@
 //  Root application component for the MiMiNavigator landing page.
 //
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PreviewDialogComponent, PreviewDialogData } from './preview-dialog.component';
 import { GitHubService, RecentCommitViewModel } from './github.service';
@@ -37,7 +37,7 @@ type AnalyticsEventName =
   styleUrl: './styles/app.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   private readonly dialog = inject(MatDialog);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly gitHubService = inject(GitHubService);
@@ -51,6 +51,8 @@ export class AppComponent implements OnInit {
   protected readonly linkedInProfileUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
   private readonly previewImageBasePath = 'images';
   private readonly previewDialogHint = 'Press Esc or click outside to close';
+  private latestReleaseIsoDate: string | null = null;
+  private releaseAgeTimerId: number | null = null;
 
   protected recentCommits: RecentCommitViewModel[] = [];
 
@@ -84,6 +86,9 @@ export class AppComponent implements OnInit {
     ]);
   }
 
+  ngOnDestroy(): void {
+    this.stopReleaseAgeTimer();
+  }
 
   protected trackDownloadClick(location: 'hero' | 'pricing'): void {
     this.trackEvent('download_click', {
@@ -163,9 +168,13 @@ export class AppComponent implements OnInit {
     this.latestDmgUrl = dmgAsset?.browser_download_url || release.html_url || this.releasesPageUrl;
 
     if (releaseDate) {
+      this.latestReleaseIsoDate = releaseDate;
       this.latestReleaseDate = this.gitHubService.formatReleaseDate(releaseDate);
-      this.latestReleaseAge = this.gitHubService.formatReleaseAge(releaseDate);
+      this.updateReleaseAge();
+      this.startReleaseAgeTimer();
     } else {
+      this.latestReleaseIsoDate = null;
+      this.stopReleaseAgeTimer();
       this.latestReleaseDate = 'Unknown release date';
       this.latestReleaseAge = 'Age unavailable';
     }
@@ -178,7 +187,36 @@ export class AppComponent implements OnInit {
     this.cdr.markForCheck();
   }
 
+  private startReleaseAgeTimer(): void {
+    this.stopReleaseAgeTimer();
+
+    this.releaseAgeTimerId = window.setInterval(() => {
+      this.updateReleaseAge();
+      this.cdr.markForCheck();
+    }, 60_000);
+  }
+
+  private stopReleaseAgeTimer(): void {
+    if (this.releaseAgeTimerId === null) {
+      return;
+    }
+
+    window.clearInterval(this.releaseAgeTimerId);
+    this.releaseAgeTimerId = null;
+  }
+
+  private updateReleaseAge(): void {
+    if (!this.latestReleaseIsoDate) {
+      this.latestReleaseAge = 'Age unavailable';
+      return;
+    }
+
+    this.latestReleaseAge = this.gitHubService.formatReleaseAge(this.latestReleaseIsoDate);
+  }
+
   private applyReleaseFallback(): void {
+    this.latestReleaseIsoDate = null;
+    this.stopReleaseAgeTimer();
     this.latestVersion = 'Latest release';
     this.latestDmgUrl = this.releasesPageUrl;
     this.latestReleaseDate = 'Unknown release date';
