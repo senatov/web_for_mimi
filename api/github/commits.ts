@@ -17,6 +17,17 @@ declare const process: {
   };
 };
 
+// Minimal request/response declarations for Vercel Node runtime.
+interface VercelLikeRequest {
+  method?: string;
+}
+
+interface VercelLikeResponse {
+  setHeader(name: string, value: string): void;
+  status(code: number): VercelLikeResponse;
+  json(body: unknown): void;
+}
+
 interface GitHubCommitApiItem {
   sha: string;
   html_url: string;
@@ -39,11 +50,18 @@ interface CommitViewModel {
 const GITHUB_COMMITS_URL = 'https://api.github.com/repos/senatov/MiMiNavigator/commits?per_page=18';
 const GITHUB_ACCEPT_HEADER = 'application/vnd.github+json';
 
-export async function GET(_request: Request): Promise<Response> {
+export default async function handler(req: VercelLikeRequest, res: VercelLikeResponse): Promise<void> {
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    res.status(405).json({ error: 'Method not allowed' });
+    return;
+  }
+
   const token = process.env.GITHUB_TOKEN;
 
   if (!token) {
-    return Response.json({ error: 'Missing GITHUB_TOKEN environment variable' }, { status: 500 });
+    res.status(500).json({ error: 'Missing GITHUB_TOKEN environment variable' });
+    return;
   }
 
   try {
@@ -57,33 +75,28 @@ export async function GET(_request: Request): Promise<Response> {
 
     if (!response.ok) {
       const responseText = await response.text();
-      return Response.json(
-        {
-          error: 'GitHub commits request failed',
-          status: response.status,
-          details: responseText
-        },
-        { status: response.status }
-      );
+      res.status(response.status).json({
+        error: 'GitHub commits request failed',
+        status: response.status,
+        details: responseText
+      });
+      return;
     }
 
     const payload = (await response.json()) as unknown;
 
     if (!Array.isArray(payload)) {
-      return Response.json({ error: 'Unexpected GitHub commits response format' }, { status: 502 });
+      res.status(502).json({ error: 'Unexpected GitHub commits response format' });
+      return;
     }
 
     const commits = mapCommits(payload as GitHubCommitApiItem[]);
 
-    return Response.json(commits, {
-      status: 200,
-      headers: {
-        'Cache-Control': 's-maxage=300, stale-while-revalidate=600'
-      }
-    });
+    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
+    res.status(200).json(commits);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown server error';
-    return Response.json({ error: 'Unable to load commits', details: message }, { status: 500 });
+    res.status(500).json({ error: 'Unable to load commits', details: message });
   }
 }
 
