@@ -29,6 +29,7 @@ export interface RecentCommitViewModel {
 export class GitHubService {
   private readonly latestReleaseUrl = 'https://api.github.com/repos/senatov/MiMiNavigator/releases/latest';
   private readonly recentCommitsUrl = '/api/github/commits';
+  private readonly localRecentCommitsUrl = 'assets/recent-commits.json';
   private readonly requestHeaders: HeadersInit = {
     Accept: 'application/vnd.github+json'
   };
@@ -53,8 +54,10 @@ export class GitHubService {
   }
 
   async loadRecentCommits(): Promise<RecentCommitViewModel[]> {
+    const commitsUrl = this.resolveRecentCommitsUrl();
+
     try {
-      const response = await fetch(this.recentCommitsUrl);
+      const response = await fetch(commitsUrl);
 
       if (!response.ok) {
         this.logRecentCommitsError(`Commits endpoint failed with status ${response.status}`);
@@ -135,6 +138,15 @@ export class GitHubService {
     }
 
     return `Released ${diffInYears} years ago`;
+  }
+
+  private resolveRecentCommitsUrl(): string {
+    if (typeof window === 'undefined') {
+      return this.recentCommitsUrl;
+    }
+
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    return isLocalhost ? this.localRecentCommitsUrl : this.recentCommitsUrl;
   }
 
   private logRecentCommitsError(message: string): void {
