@@ -1,0 +1,131 @@
+
+
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .details,
+  .pricing,
+  .hero,
+  .site-header,
+  .site-footer {
+    max-width: 100%;
+  }
+
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing > div:first-child {
+    max-width: none;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    padding: 14px 14px 0;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+
+  .hero {
+    padding: 28px 14px 18px;
+    gap: 22px;
+  }
+
+  .hero-copy h1 {
+    max-width: none;
+    font-size: clamp(34px, 12vw, 52px);
+  }
+
+  .linkedin-card {
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .window-body {
+    grid-template-columns: 1fr;
+  }
+
+  .window-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  }
+
+  .file-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .details {
+    padding: 18px 14px 18px;
+  }
+
+  .preview-card {
+    padding: 16px;
+  }
+
+  .preview-card-media img {
+    height: 190px;
+  }
+
+  .pricing {
+    padding: 18px 14px 42px;
+    gap: 20px;
+  }
+
+  .price-card {
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .commit-feed-scroller {
+    max-height: 180px;
+    padding: 8px;
+  }
+
+  .commit-item {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .commit-item::after {
+    left: 8px;
+    right: 8px;
+    font-size: 11px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .site-footer {
+    padding: 0 14px 32px;
+  }
+
+  .footer {
+    padding: 16px;
+    border-radius: 20px;
+  }
+}

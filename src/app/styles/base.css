@@ -1,0 +1,34 @@
+
+
+:host {
+  display: block;
+  min-height: 100vh;
+  color: #101828;
+  background:
+    radial-gradient(circle at top, rgba(143, 205, 255, 0.18), transparent 38%),
+    linear-gradient(180deg, #f5f9ff 0%, #eef3fb 46%, #e7edf7 100%);
+  font-family: "SF Pro Display", "SF Pro Text", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
