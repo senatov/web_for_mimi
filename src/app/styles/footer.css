@@ -24,7 +24,7 @@
  .footer-copy {
    margin: 0;
    color: #52607a;
-   font-size: 13px;
+   font-size: 15px;
    line-height: 1.5;
  }
 
@@ -38,7 +38,7 @@
  .footer-links a {
    color: #1f4f8f;
    font-size: 13px;
-   font-weight: 600;
+   font-weight: 500;
    text-decoration: none;
    transition: color 0.14s ease, opacity 0.14s ease;
  }
