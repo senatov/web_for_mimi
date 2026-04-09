@@ -9,8 +9,7 @@
 //  Standalone preview dialog component for enlarged screenshot display.
 //
 
-import {CommonModule} from '@angular/common';
-import {Component, Inject} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 
 export interface PreviewDialogData {
@@ -23,7 +22,7 @@ export interface PreviewDialogData {
 @Component({
     selector: 'app-preview-dialog',
     standalone: true,
-    imports: [CommonModule, MatDialogModule],
+    imports: [MatDialogModule],
     template: `
         <div class="preview-dialog-shell">
             <button
@@ -47,15 +46,12 @@ export interface PreviewDialogData {
             @if (data.hint) {
                 <div class="preview-dialog-hint">{{ data.hint }}</div>
             }
-        </div>y
+        </div>
     `
 })
 export class PreviewDialogComponent {
-    constructor(
-        @Inject(MAT_DIALOG_DATA) public readonly data: PreviewDialogData,
-        private readonly dialogRef: MatDialogRef<PreviewDialogComponent>
-    ) {
-    }
+    protected readonly data = inject<PreviewDialogData>(MAT_DIALOG_DATA);
+    private readonly dialogRef = inject(MatDialogRef<PreviewDialogComponent>);
 
     protected close(): void {
         this.dialogRef.close();

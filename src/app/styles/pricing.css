@@ -111,6 +111,28 @@
 }
 
 
+.price-release-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.price-release-date {
+    color: #334155;
+}
+
+.price-release-age {
+    color: #64748b;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.button-block {
+    width: 100%;
+    text-align: center;
+}
+
 .button-group {
     display: flex;
     flex-direction: column;

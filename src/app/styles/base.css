@@ -8,20 +8,13 @@
     url('../../../public/images/background_editor.jpeg') left top / 2200px auto repeat;
   background-blend-mode: normal, normal, normal;
   font-family: "SF Pro Display", "SF Pro Text", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
 }
 
 a {

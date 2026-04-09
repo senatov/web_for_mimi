@@ -55,6 +55,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private releaseAgeTimerId: number | null = null;
 
   protected recentCommits: RecentCommitViewModel[] = [];
+  protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   protected readonly featureList = [
     {
@@ -69,13 +70,6 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'FTP and SFTP access',
       text: 'Work with local and remote files in one interface instead of jumping between separate tools and windows.'
     }
-  ];
-
-  protected readonly detailList = [
-    'Dual-panel file browsing designed for practical macOS work',
-    'Tabs, favorites and navigation history kept within easy reach',
-    'FTP and SFTP support for working with remote files',
-    'A cleaner Finder alternative for people who move files all day'
   ];
 
 

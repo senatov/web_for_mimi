@@ -1,4 +1,4 @@
-<div class="page-shell" xmlns="http://www.w3.org/1999/html">
+<div class="page-shell">
     <header class="topbar">
         <a class="brand brand-logo-link" href="#top" aria-label="MiMiNavigator home">
       <span class="brand-logo-shell">
@@ -16,6 +16,15 @@
     </header>
 
     <main id="top">
+        @if (isMobileDevice) {
+            <div class="mobile-banner" role="alert">
+                <span class="mobile-banner-icon" aria-hidden="true">💻</span>
+                <p class="mobile-banner-text">
+                    MiMiNavigator is a <strong>macOS desktop application</strong>.
+                    Visit this page from your Mac to download the signed DMG.
+                </p>
+            </div>
+        }
         <section class="hero">
             <div class="hero-copy">
                 <a class="linkedin-card" [href]="linkedInProfileUrl" target="_blank" rel="noopener noreferrer"
@@ -63,8 +72,10 @@
                 </section>
 
                 <div class="hero-actions">
-                    <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
-                       (click)="trackDownloadClick('hero')">Download for macOS</a>
+                    @if (!isMobileDevice) {
+                        <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
+                           (click)="trackDownloadClick('hero')">Download for macOS</a>
+                    }
                     <a class="button button-secondary" href="#preview">View screenshots</a>
                     <a class="button button-secondary" href="https://github.com/senatov/MiMiNavigator" target="_blank"
                        rel="noopener noreferrer" (click)="trackGitHubClick('hero')">View on GitHub</a>
@@ -127,10 +138,14 @@
                         <span class="price-release-age">( {{ latestReleaseAge }} !)</span>
                     </p>
                     <p class="price-copy">Signed DMG for macOS {{ minimumMacOSVersion }} or newer.</p>
-                    <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
-                       (click)="trackDownloadClick('pricing')">
-                        Download for macOS
-                    </a>
+                    @if (!isMobileDevice) {
+                        <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
+                           (click)="trackDownloadClick('pricing')">
+                            Download for macOS
+                        </a>
+                    } @else {
+                        <p class="mobile-download-hint">Open this page on a Mac to download.</p>
+                    }
                     <p class="price-copy">
                         <a [href]="releasesPageUrl" target="_blank" rel="noopener noreferrer"
                            (click)="trackReleasesClick('pricing')">Browse all releases</a>

@@ -28,7 +28,16 @@
     text-decoration: none;
 }
 
+.brand-logo-gloss {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, transparent 50%);
+    pointer-events: none;
+}
+
 .brand-logo-shell {
+    position: relative;
     display: grid;
     place-items: center;
     width: 48px;
@@ -40,29 +49,18 @@
     0 10px 24px rgb(80 86 98 / 0.16);
 }
 
-.brand-logo-shell img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-}
-
-.brand-copy {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.brand-title {
+.brand-text {
     color: #374f7f;
     font-size: 17px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.2;
+    letter-spacing: -0.01em;
 }
 
-.brand-subtitle {
-    color: #64748b;
-    font-size: 15px;
-    line-height: 1.35;
+.brand-logo-shell img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
 }
 
 .topnav {
