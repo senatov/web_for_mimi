@@ -1,6 +1,7 @@
 :root {
   color-scheme: light;
   font-family: Inter, "SF Pro Text", "Segoe UI", Arial, sans-serif;
+  background: #f4f7fb;
   background:
     radial-gradient(circle at top, rgba(87, 144, 255, 0.16), transparent 38%),
     linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%);

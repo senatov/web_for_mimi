@@ -11,6 +11,24 @@
   box-sizing: border-box;
 }
 
+.page-shell {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Edge / browsers that don't support backdrop-filter inside encapsulated components:
+   bump translucent backgrounds to near-opaque so cards remain readable */
+@supports not (backdrop-filter: blur(1px)) {
+  .topbar,
+  .footer,
+  .price-card,
+  .feature-card,
+  .preview-card,
+  .logo-strip span {
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
 *,
 *::before,
 *::after {
