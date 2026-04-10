@@ -58,32 +58,28 @@
                 </a>
 
                 <section class="price-card" id="features0">
-                    <p class="eyebrow">Dual-panel file manager for macOS</p>
+                    <p class="eyebrow">Finder still can’t do dual-panel. I fixed it.</p>
                     <p class="hero-note">
-                        MiMiNavigator (MiMiNav) is a dual-panel file manager for macOS, built for practical and efficient everyday work
-                        with files.
-                        It combines dual-pane navigation, tabs, favorites, history, and FTP/SFTP access in a workflow that is often
-                        clearer
-                        and faster than Finder. The application also offers broad archive support, including widely used formats such
-                        as
-                        ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, and CPIO.
-                        Archives can be opened and browsed similarly to folders, including nested archives.
-                        MiMiNavigator is already functional, freely available for download, and will continue to be improved.
-                        Feedback, impressions, and testing notes are very welcome.
+                        I never found a file manager on macOS that didn’t make me want to throw the laptop.
+                        Finder has no dual pane. Forklift costs money and still feels like a wrapper. Commander One
+                        wants a subscription for SFTP. So I built my own.
+                        MiMiNavigator gives you two panels, tabs, favorites, history, FTP/SFTP — and opens
+                        ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, CPIO like folders.
+                        Nested archives too. It’s free, it’s signed, and I’m still shipping fixes every week.
                     </p>
                 </section>
 
                 <div class="hero-actions">
                     @if (!isMobileDevice) {
                         <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
-                           (click)="trackDownloadClick('hero')">Download for macOS</a>
+                           (click)="trackDownloadClick('hero')">Grab the DMG</a>
                     }
-                    <a class="button button-secondary" href="#preview">View screenshots</a>
+                    <a class="button button-secondary" href="#preview">See it in action</a>
                     <a class="button button-secondary" href="https://github.com/senatov/MiMiNavigator" target="_blank"
-                       rel="noopener noreferrer" (click)="trackGitHubClick('hero')">View on GitHub</a>
+                       rel="noopener noreferrer" (click)="trackGitHubClick('hero')">Read the code</a>
                 </div>
 
-                <p class="hero-note">Free download · Signed DMG · Built for macOS {{ minimumMacOSVersion }} and newer</p>
+                <p class="hero-note">Free · Signed DMG · No app store, no subscription · macOS {{ minimumMacOSVersion }}+</p>
             </div>
 
             <div class="hero-visual" aria-label="MiMiNavigator screenshot preview">
@@ -143,7 +139,7 @@
                     @if (!isMobileDevice) {
                         <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
                            (click)="trackDownloadClick('pricing')">
-                            Download for macOS
+                            Grab the DMG
                         </a>
                     } @else {
                         <p class="mobile-download-hint">Open this page on a Mac to download.</p>
@@ -157,12 +153,12 @@
         </section>
 
         <section class="logo-strip" aria-label="Capabilities">
-            <span>Dual-panel navigation</span>
-            <span>Signed DMG</span>
-            <span>FTP / SFTP</span>
-            <span>Tabs and history</span>
-            <span>Favorites</span>
-            <span>Keyboard workflow</span>
+            <span>Two panels, finally</span>
+            <span>Signed & notarized</span>
+            <span>SFTP without plugins</span>
+            <span>Tabs that actually work</span>
+            <span>15+ archive formats</span>
+            <span>Keyboard-first</span>
         </section>
 
         <section class="feature-grid" id="features">
@@ -177,11 +173,10 @@
         <section class="details" id="preview">
             <div class="details-copy">
                 <p class="eyebrow">Screenshots</p>
-                <p class="eyebrow">See MiMiNavigator in practical file work</p>
+                <p class="eyebrow">This is what Finder should look like</p>
                 <p class="hero-text">
-                    See how MiMiNavigator works in practical file work on macOS: two panels, clear navigation,
-                    fast movement between folders and a layout that keeps important actions visible.
-                    Click any screenshot to open it larger in an overlay.
+                    Two panels. Tabs. A breadcrumb that doesn’t lie. File sizes you can actually read.
+                    Click any screenshot to zoom in and judge for yourself.
                 </p>
             </div>
 
@@ -192,9 +187,9 @@
                         <img class="preview-image" src="images/Preview0.png" alt="MiMiNavigator dual-panel workspace screenshot">
                     </a>
                     <p class="hero-note">
-                        Main dual-panel workspace
+                        The workspace. Left panel, right panel, no Finder nonsense.
                     </p>
-                    <p>Browse two locations side by side and keep file operations under control without Finder clutter.</p>
+                    <p>Move, copy, compare — without opening six windows and losing your place.</p>
                 </article>
 
                 <article class="preview-card">
@@ -202,29 +197,29 @@
                        aria-label="Open Preview1 screenshot in dialog">
                         <img class="preview-image" src="images/Preview1.png" alt="MiMiNavigator media and file details screenshot">
                     </a>
-                    <h3>Media and file details workflow</h3>
-                    <p>Preview content, inspect file information and keep navigation, tabs and tools close at hand.</p>
+                    <h3>Media preview & file details</h3>
+                    <p>Quick Look is cute. This is better — preview, metadata, and navigation in one view.</p>
                 </article>
             </div>
         </section>
 
         <section class="feature-grid" id="faq">
             <article class="feature-card">
-                <p class="eyebrow">What is MiMiNavigator for macOS?</p>
-                <p>I never really found a file manager I liked enough to keep, except perhaps Total Commander, so I built my
-                    own. And yes, I am still improving it.</p>
+                <p class="eyebrow">Why does this exist?</p>
+                <p>Because after 20 years of macOS, Apple still thinks one panel is enough.
+                    I grew up on Total Commander, moved to Mac, and nothing came close. So I wrote my own.</p>
             </article>
 
             <article class="feature-card">
-                <p class="eyebrow">What can it do?</p>
-                <p>It helps you work with files faster using two panels, tabs, favorites, history and FTP/SFTP access in a
-                    cleaner workflow than Finder.</p>
+                <p class="eyebrow">What’s it actually good at?</p>
+                <p>Moving files without losing your mind. Two panels, tabs, SFTP that just works,
+                    15+ archive formats as folders, and a keyboard workflow that doesn’t fight you.</p>
             </article>
 
             <article class="feature-card">
-                <p class="eyebrow">How do I download it?</p>
-                <p>Use the signed DMG download on this page, or open GitHub Releases to browse all available MiMiNavigator
-                    builds.</p>
+                <p class="eyebrow">How do I get it?</p>
+                <p>Grab the signed DMG above. Mount, drag to Applications, done.
+                    No Gatekeeper drama, no App Store middleman. Source is on GitHub if you’re curious.</p>
             </article>
         </section>
     </main>

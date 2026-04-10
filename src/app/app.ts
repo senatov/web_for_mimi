@@ -59,16 +59,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
   protected readonly featureList = [
     {
-      title: 'Dual-panel workflow',
-      text: 'Browse, compare and manage files in two panels with a clearer, more practical workflow than Finder.'
+      title: 'Two panels or go home',
+      text: 'Finder gives you one panel and calls it a day. MiMiNavigator gives you two, side by side, like every file manager should.'
     },
     {
-      title: 'Tabs, history and favorites',
-      text: 'Keep important locations close, switch between tabs quickly and move through file history without losing context.'
+      title: 'Tabs, history, favorites',
+      text: 'Open ten directories, bookmark the important ones, hit Back like a browser. No more "where the hell was that folder".'
     },
     {
-      title: 'FTP and SFTP access',
-      text: 'Work with local and remote files in one interface instead of jumping between separate tools and windows.'
+      title: 'SFTP that just works',
+      text: 'Managing files over SFTP on macOS is painful. Here\'s a better way — remote and local in the same window, no plugins, no subscription.'
     }
   ];
 
