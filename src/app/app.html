@@ -18,6 +18,7 @@
   </header>
 
     <main id="top">
+        <h1 class="sr-only">MiMiNavigator — Free Dual-Panel File Manager and File Browser for macOS</h1>
         @if (isMobileDevice) {
             <div class="mobile-banner" role="alert">
                 <span class="mobile-banner-icon" aria-hidden="true">💻</span>
@@ -58,7 +59,7 @@
                 </a>
 
                 <section class="price-card" id="features0">
-                    <p class="eyebrow">Finder still can’t do dual-panel. I fixed it.</p>
+                    <p class="eyebrow">The file manager macOS should have shipped. I built it.</p>
                     <p class="hero-note">
                         I never found a file manager on macOS that didn’t make me want to throw the laptop.
                         Finder has no dual pane. Forklift costs money and still feels like a wrapper. Commander One
@@ -79,7 +80,7 @@
                        rel="noopener noreferrer" (click)="trackGitHubClick('hero')">Read the code</a>
                 </div>
 
-                <p class="hero-note">Free · Signed DMG · No app store, no subscription · macOS {{ minimumMacOSVersion }}+</p>
+                <p class="hero-note">Free · Signed DMG · No app store, no subscription · macOS {{ minimumMacOSVersion }}+ · The file browser and file manager for Mac you always wanted</p>
             </div>
 
             <div class="hero-visual" aria-label="MiMiNavigator screenshot preview">
@@ -92,7 +93,7 @@
                             <span class="window-dot yellow"></span>
                             <span class="window-dot green"></span>
                         </div>
-                        <img src="images/Preview3.png" alt="MiMiNavigator main dual-panel window on macOS">
+                        <img src="images/Preview3.png" alt="MiMiNavigator dual-panel file manager for macOS — main window with two file browser panels">
                     </div>
                 </a>
             </div>
@@ -164,6 +165,16 @@
         <section class="feature-grid" id="features">
             @for (feature of featureList; track feature.title) {
                 <article class="feature-card">
+                    @if (feature.image) {
+                        <a class="feature-card-image-link"
+                           [href]="'images/' + feature.image"
+                           (click)="openPreview(feature.image, feature.title); $event.preventDefault()"
+                           [attr.aria-label]="'Enlarge screenshot: ' + feature.title">
+                            <img class="feature-card-image"
+                                 [src]="'images/' + feature.image"
+                                 [alt]="feature.title + ' screenshot'">
+                        </a>
+                    }
                     <h2>{{ feature.title }}</h2>
                     <p>{{ feature.text }}</p>
                 </article>
@@ -172,8 +183,8 @@
 
         <section class="details" id="preview">
             <div class="details-copy">
-                <p class="eyebrow">Screenshots</p>
-                <p class="eyebrow">This is what Finder should look like</p>
+                <p class="eyebrow">macOS File Manager Screenshots</p>
+                <p class="eyebrow">This is what a real file browser for Mac looks like</p>
                 <p class="hero-text">
                     Two panels. Tabs. A breadcrumb that doesn’t lie. File sizes you can actually read.
                     Click any screenshot to zoom in and judge for yourself.
@@ -184,7 +195,7 @@
                 <article class="preview-card">
                     <a href="images/Preview0.png" (click)="openPreview('Preview0.png', 'mimiPreview0'); $event.preventDefault()"
                        aria-label="Open Preview0 screenshot in dialog">
-                        <img class="preview-image" src="images/Preview0.png" alt="MiMiNavigator dual-panel workspace screenshot">
+                        <img class="preview-image" src="images/Preview0.png" alt="MiMiNavigator file manager macOS — dual-panel workspace for file browsing">
                     </a>
                     <p class="hero-note">
                         The workspace. Left panel, right panel, no Finder nonsense.
@@ -195,7 +206,7 @@
                 <article class="preview-card">
                     <a href="images/Preview1.png" (click)="openPreview('Preview1.png', 'mimiPreview1'); $event.preventDefault()"
                        aria-label="Open Preview1 screenshot in dialog">
-                        <img class="preview-image" src="images/Preview1.png" alt="MiMiNavigator media and file details screenshot">
+                        <img class="preview-image" src="images/Preview1.png" alt="MiMiNavigator file browser macOS — media preview and file details panel">
                     </a>
                     <h3>Media preview & file details</h3>
                     <p>Quick Look is cute. This is better — preview, metadata, and navigation in one view.</p>
@@ -205,14 +216,14 @@
 
         <section class="feature-grid" id="faq">
             <article class="feature-card">
-                <p class="eyebrow">Why does this exist?</p>
+                <p class="eyebrow">Why build another file manager for macOS?</p>
                 <p>Because after 20 years of macOS, Apple still thinks one panel is enough.
-                    I grew up on Total Commander, moved to Mac, and nothing came close. So I wrote my own.</p>
+                    I grew up on Total Commander, moved to Mac, and no file browser came close. So I wrote my own dual-panel file manager from scratch.</p>
             </article>
 
             <article class="feature-card">
-                <p class="eyebrow">What’s it actually good at?</p>
-                <p>Moving files without losing your mind. Two panels, tabs, SFTP that just works,
+                <p class="eyebrow">What makes this macOS file manager different?</p>
+                <p>Moving files without losing your mind. This file browser gives you two panels, tabs, SFTP that just works,
                     15+ archive formats as folders, and a keyboard workflow that doesn’t fight you.</p>
             </article>
 
