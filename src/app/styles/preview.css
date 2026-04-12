@@ -253,9 +253,8 @@
 }
 
 .feature-card {
-    max-width: 1200px;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     flex: 1 1 auto;
     flex-direction: column;
     justify-content: flex-start;

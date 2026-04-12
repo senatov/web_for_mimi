@@ -1,3 +1,8 @@
+:root {
+    --mimi-font-display: "SF Pro Display", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mimi-font-text: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .pricing {
     max-width: 1200px;
     margin: 0 auto;
@@ -24,7 +29,7 @@
 .pricing-card-column {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     height: 100%;
     align-self: stretch;
 }
@@ -33,7 +38,7 @@
 .pricing > div:first-child .commit-feed-header h3 {
     margin: 0;
     color: #52607a;
-    font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: var(--mimi-font-text);
     font-size: 11px;
     font-weight: 400;
     line-height: 1.2;
@@ -44,6 +49,7 @@
 .pricing h2 {
     margin: 0;
     color: #0f172a;
+    font-family: var(--mimi-font-display);
     font-size: clamp(30px, 4.4vw, 46px);
     font-weight: 400;
     line-height: 1.04;
@@ -53,6 +59,7 @@
 .pricing p {
     margin: 0;
     color: #52607a;
+    font-family: var(--mimi-font-text);
     font-size: 15px;
     line-height: 1.7;
 }
@@ -62,13 +69,13 @@
     flex: 1 1 auto;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 18px;
-    padding: 24px;
-    border: 1px solid rgb(130 33 162 / 0.2);
+    gap: 14px;
+    padding: 22px;
+    border: 1px solid rgba(112, 137, 173, 0.20);
     border-radius: 24px;
-    background: rgba(255, 255, 255, 0.78);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86),
-    0 24px 46px rgba(15, 23, 42, 0.08);
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 20px 38px rgba(15, 23, 42, 0.07);
     backdrop-filter: blur(18px) saturate(138%);
     -webkit-backdrop-filter: blur(18px) saturate(138%);
 }
@@ -78,8 +85,11 @@
     align-items: baseline;
     gap: 10px;
     color: #0f172a;
-    font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 300;
+    font-family: var(--mimi-font-display);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
 }
 
 .price strong {
@@ -98,10 +108,10 @@
 .price-copy {
     color: #1f2937;
     display: block;
-    font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.55;
+    font-family: var(--mimi-font-text);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 .price-copy strong {
@@ -111,6 +121,29 @@
     line-height: inherit;
 }
 
+.price-label {
+    color: #31527a;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.price-copy-platform {
+    color: #31527a;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.35;
+}
+
+.price-copy-platform span {
+    white-space: nowrap;
+}
+
+.price-file-date {
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 500;
+}
 
 .price-release-info {
     display: flex;
@@ -132,6 +165,7 @@
 .button-block {
     width: 100%;
     text-align: center;
+    margin-top: 2px;
 }
 
 .button-group {
@@ -144,12 +178,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 50px;
-    padding: 0 18px;
+    min-height: 46px;
+    padding: 0 20px;
     border-radius: 16px;
     border: 1px solid transparent;
+    font-family: var(--mimi-font-text);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.2;
     text-decoration: none;
     cursor: pointer;
@@ -170,15 +205,15 @@
 }
 
 .button-primary {
-    background: linear-gradient(180deg, #6d7c84 0%, #0f78bc 100%);
+    background: linear-gradient(180deg, #5f7f99 0%, #0f78bc 100%);
     color: #ffffff;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26),
-    0 16px 28px rgba(35, 157, 226, 0.28);
+    0 14px 24px rgba(35, 157, 226, 0.24);
 }
 
 .button-primary:hover {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.30),
-    0 18px 32px rgba(35, 157, 226, 0.34);
+    0 16px 28px rgba(35, 157, 226, 0.30);
 }
 
 .button-secondary {
@@ -198,10 +233,10 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 14px 16px;
-    border: 1px solid rgb(130 131 152);
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.66);
+    padding: 13px 15px;
+    border: 1px solid rgba(130, 131, 152, 0.34);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.68);
 }
 
 .price-meta-row {
@@ -217,4 +252,19 @@
 .price-meta-row strong {
     color: #0f172a;
     font-weight: 500;
+}
+
+.price-card > .price-copy:last-child {
+    margin-top: auto;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.price-card > .price-copy:last-child a {
+    color: #31527a;
+    text-decoration: none;
+}
+
+.price-card > .price-copy:last-child a:hover {
+    text-decoration: underline;
 }

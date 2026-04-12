@@ -1,24 +1,31 @@
 <div class="page-shell">
-  <header class="site-header">
-    <div class="topbar">
-        <a class="brand brand-logo-link" href="#top" aria-label="MiMiNavigator home">
+    <header class="site-header">
+        <div class="topbar">
+            <a class="brand brand-logo-link" href="#top" aria-label="MiMiNavigator home">
       <span class="brand-logo-shell">
         <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="72" height="72">
         <span class="brand-logo-gloss" aria-hidden="true"></span>
       </span>
-            <span class="brand-text">MiMiNavigator</span>
-        </a>
+                <span class="brand-text">MiMiNavigator</span>
+            </a>
 
-        <nav class="topnav" aria-label="Primary navigation">
-            <a href="#features">Features</a>
-            <a href="#preview">Screenshots</a>
-            <a href="#download">Download</a>
-        </nav>
-    </div>
-  </header>
+            <nav class="topnav" aria-label="Primary navigation">
+                <a href="#features">Features</a>
+                <a href="#preview">Screenshots</a>
+                <a href="#download">Download</a>
+            </nav>
+        </div>
+    </header>
 
     <main id="top">
         <h1 class="sr-only">MiMiNavigator — Free Dual-Panel File Manager and File Browser for macOS</h1>
+        <p class="sr-only">
+            Best Finder alternatives for macOS 26+ in 2026.
+            Best Finder alternatives for Mac in 2026.
+            Best dual-pane Finder alternatives for Mac in 2026.
+            Best Total Commander-style Finder alternatives for Mac in 2026.
+            Best Total Commander-style file managers for Mac in 2026.
+        </p>
         @if (isMobileDevice) {
             <div class="mobile-banner" role="alert">
                 <span class="mobile-banner-icon" aria-hidden="true">💻</span>
@@ -73,14 +80,15 @@
                 <div class="hero-actions">
                     @if (!isMobileDevice) {
                         <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
-                           (click)="trackDownloadClick('hero')">Grab the DMG</a>
+                           (click)="trackDownloadClick('hero')">Download free DMG</a>
                     }
                     <a class="button button-secondary" href="#preview">See it in action</a>
                     <a class="button button-secondary" href="https://github.com/senatov/MiMiNavigator" target="_blank"
                        rel="noopener noreferrer" (click)="trackGitHubClick('hero')">Read the code</a>
                 </div>
 
-                <p class="hero-note">Free · Signed DMG · No app store, no subscription · macOS {{ minimumMacOSVersion }}+ · The file browser and file manager for Mac you always wanted</p>
+                <p class="hero-note">Free · Signed DMG · No app store, no subscription · macOS {{ minimumMacOSVersion }}+ · The file
+                    browser and file manager for Mac you always wanted</p>
             </div>
 
             <div class="hero-visual" aria-label="MiMiNavigator screenshot preview">
@@ -93,7 +101,8 @@
                             <span class="window-dot yellow"></span>
                             <span class="window-dot green"></span>
                         </div>
-                        <img src="images/Preview3.png" alt="MiMiNavigator dual-panel file manager for macOS — main window with two file browser panels">
+                        <img src="images/Preview3.png"
+                             alt="MiMiNavigator dual-panel file manager for macOS — main window with two file browser panels">
                     </div>
                 </a>
             </div>
@@ -131,16 +140,16 @@
                 <p class="eyebrow">Download:</p>
                 <div class="price-card">
                     <div class="price">Free download</div>
-                    <p class="price-copy">Latest version: <strong>{{ latestVersion }}</strong></p>
-                    <p class="price-copy price-release-info">
-                        <span class="price-release-date">{{ latestReleaseDate }}</span>
-                        <span class="price-release-age">( {{ latestReleaseAge }} !)</span>
-                    </p>
-                    <p class="price-copy">Signed DMG for macOS {{ minimumMacOSVersion }} or newer.</p>
+                    <div class="price-meta">
+                        <p class="price-copy"><span class="price-label">Latest version:</span> <strong>{{ latestVersion }}</strong></p>
+                        <p class="price-copy"><span class="price-label">DMG file date:</span> <span
+                                class="price-file-date">{{ latestDmgFileDate }}</span></p>
+                        <p class="price-copy price-copy-platform">Signed DMG for <span>{{ minimumMacOSVersion }} or newer</span>.</p>
+                    </div>
                     @if (!isMobileDevice) {
                         <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
                            (click)="trackDownloadClick('pricing')">
-                            Grab the DMG
+                            Download free DMG
                         </a>
                     } @else {
                         <p class="mobile-download-hint">Open this page on a Mac to download.</p>
@@ -195,7 +204,8 @@
                 <article class="preview-card">
                     <a href="images/Preview0.png" (click)="openPreview('Preview0.png', 'mimiPreview0'); $event.preventDefault()"
                        aria-label="Open Preview0 screenshot in dialog">
-                        <img class="preview-image" src="images/Preview0.png" alt="MiMiNavigator file manager macOS — dual-panel workspace for file browsing">
+                        <img class="preview-image" src="images/Preview0.png"
+                             alt="MiMiNavigator file manager macOS — dual-panel workspace for file browsing">
                     </a>
                     <p class="hero-note">
                         The workspace. Left panel, right panel, no Finder nonsense.
@@ -206,7 +216,8 @@
                 <article class="preview-card">
                     <a href="images/Preview1.png" (click)="openPreview('Preview1.png', 'mimiPreview1'); $event.preventDefault()"
                        aria-label="Open Preview1 screenshot in dialog">
-                        <img class="preview-image" src="images/Preview1.png" alt="MiMiNavigator file browser macOS — media preview and file details panel">
+                        <img class="preview-image" src="images/Preview1.png"
+                             alt="MiMiNavigator file browser macOS — media preview and file details panel">
                     </a>
                     <h3>Media preview & file details</h3>
                     <p>Quick Look is cute. This is better — preview, metadata, and navigation in one view.</p>
@@ -218,7 +229,8 @@
             <article class="feature-card">
                 <p class="eyebrow">Why build another file manager for macOS?</p>
                 <p>Because after 20 years of macOS, Apple still thinks one panel is enough.
-                    I grew up on Total Commander, moved to Mac, and no file browser came close. So I wrote my own dual-panel file manager from scratch.</p>
+                    I grew up on Total Commander, moved to Mac, and no file browser came close. So I wrote my own dual-panel file
+                    manager from scratch.</p>
             </article>
 
             <article class="feature-card">
@@ -229,8 +241,9 @@
 
             <article class="feature-card">
                 <p class="eyebrow">How do I get it?</p>
-                <p>Grab the signed DMG above. Mount, drag to Applications, done.
-                    No Gatekeeper drama, no App Store middleman. Source is on GitHub if you’re curious.</p>
+                <p>Download the signed DMG above, open it, and drag MiMiNavigator to Applications.
+                    Launch it from your Applications folder and start working right away.
+                    No App Store, no subscription, no extra installer. The source code is on GitHub too.</p>
             </article>
         </section>
     </main>

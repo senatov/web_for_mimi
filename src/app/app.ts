@@ -45,6 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
   protected latestVersion = 'Loading...';
   protected latestReleaseDate = 'Loading...';
   protected latestReleaseAge = 'Checking release age...';
+  protected latestDmgFileDate = 'Checking DMG file date...';
   protected latestDmgUrl = 'https://github.com/senatov/MiMiNavigator/releases';
   protected readonly releasesPageUrl = 'https://github.com/senatov/MiMiNavigator/releases';
   protected readonly minimumMacOSVersion = 'macOS 26';
@@ -176,7 +177,25 @@ export class AppComponent implements OnInit, OnDestroy {
       this.latestReleaseAge = 'Age unavailable';
     }
 
+    const dmgAssetDates = dmgAsset as { updated_at?: string | null; created_at?: string | null } | undefined;
+    const dmgUpdatedAt = dmgAssetDates?.updated_at ?? null;
+    const dmgCreatedAt = dmgAssetDates?.created_at ?? null;
+    this.latestDmgFileDate = this.resolveDmgFileDate(releaseDate, dmgUpdatedAt, dmgCreatedAt);
+
     this.cdr.markForCheck();
+  }
+
+  private resolveDmgFileDate(
+    releaseDate?: string | null,
+    dmgUpdatedAt?: string | null,
+    dmgCreatedAt?: string | null
+  ): string {
+    const dmgDate = dmgUpdatedAt || dmgCreatedAt || releaseDate;
+    if (!dmgDate) {
+      return 'Unknown DMG file date';
+    }
+
+    return this.gitHubService.formatReleaseDate(dmgDate);
   }
 
   private async loadRecentCommits(): Promise<void> {
@@ -218,6 +237,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.latestDmgUrl = this.releasesPageUrl;
     this.latestReleaseDate = 'Unknown release date';
     this.latestReleaseAge = 'Age unavailable';
+    this.latestDmgFileDate = 'Unknown DMG file date';
     this.cdr.markForCheck();
   }
 }
