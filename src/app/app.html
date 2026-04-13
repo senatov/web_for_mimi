@@ -93,18 +93,52 @@
 
             <div class="hero-visual" aria-label="MiMiNavigator screenshot preview">
                 <a class="hero-preview-link" href="images/Preview3.png"
-                   (click)="openPreview('Preview3.png', 'mimiPreviewHero'); $event.preventDefault()"
-                   aria-label="Open hero screenshot in dialog">
+                   (click)="openHeroGallery($event)"
+                   aria-label="Open hero screenshot gallery dialog">
                     <div class="app-window">
                         <div class="window-chrome">
                             <span class="window-dot red"></span>
                             <span class="window-dot yellow"></span>
                             <span class="window-dot green"></span>
                         </div>
-                        <img src="images/Preview3.png"
-                             alt="MiMiNavigator dual-panel file manager for macOS — main window with two file browser panels">
+                        <img [src]="heroGalleryImages[heroCarouselIndex].itemImageSrc"
+                             [alt]="heroGalleryImages[heroCarouselIndex].alt"
+                             class="hero-carousel-image">
                     </div>
                 </a>
+
+                <p-galleria
+                        [(visible)]="heroGalleryVisible"
+                        [value]="heroGalleryImages"
+                        [(activeIndex)]="heroGalleryActiveIndex"
+                        (activeIndexChange)="onHeroGalleryActiveIndexChange($event)"
+                        [fullScreen]="true"
+                        [showItemNavigators]="true"
+                        [showItemNavigatorsOnHover]="true"
+                        [showThumbnailNavigators]="true"
+                        [showThumbnails]="true"
+                        [showIndicators]="false"
+                        [circular]="true"
+                        [numVisible]="5"
+                        [containerStyle]="{ 'max-width': '100vw' }">
+                    <ng-template pTemplate="item">
+                        <div class="gallery-popup-frame">
+                            <img [src]="heroGalleryImages[heroGalleryActiveIndex].itemImageSrc"
+                                 [alt]="heroGalleryImages[heroGalleryActiveIndex].alt"
+                                 class="gallery-popup-image">
+                            <div class="gallery-popup-meta">
+                                <span class="gallery-popup-counter">{{ heroGalleryActiveIndex + 1 }}
+                                    / {{ heroGalleryImages.length }}</span>
+                                <span class="gallery-popup-title">{{ heroGalleryImages[heroGalleryActiveIndex].title }}</span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="thumbnail" let-item>
+                        <img [src]="item.thumbnailImageSrc"
+                             [alt]="item.alt"
+                             class="gallery-popup-thumbnail">
+                    </ng-template>
+                </p-galleria>
             </div>
         </section>
 
