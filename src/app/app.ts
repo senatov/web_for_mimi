@@ -62,13 +62,15 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly previewDialogHint = 'Press Esc or click outside to close';
     private readonly heroGalleryFolderPath = 'gallery';
     private readonly heroGalleryFileNames = [
+        'g0.png',
         'g1.png',
         'g2.png',
         'g3.png',
         'g4.png',
         'g5.png',
         'g6.png',
-        'g7.png'
+        'g7.png',
+        'g8.png'
     ];
     private readonly heroCarouselIntervalMs = 2_500;
     private latestReleaseIsoDate: string | null = null;
