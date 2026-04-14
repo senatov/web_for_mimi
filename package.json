@@ -22,6 +22,7 @@
     "ng-lottie": "^0.3.2",
     "primeng": "^21.1.6",
     "rxjs": "^7.8.2",
+    "vercel": "^51.2.1",
     "zone.js": "^0.15.1"
   },
   "devDependencies": {
