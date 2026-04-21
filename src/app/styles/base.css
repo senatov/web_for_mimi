@@ -55,3 +55,31 @@ img {
   display: block;
   max-width: 100%;
 }
+
+/* --- Details/Summary spoiler in feature cards --- */
+
+.feature-card details {
+  margin-top: 8px;
+}
+
+.feature-card details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #0f6aa8;
+  padding: 6px 0;
+  list-style: revert;
+  transition: color 0.15s ease;
+}
+
+.feature-card details summary:hover {
+  color: #0a4d7a;
+}
+
+.feature-card details[open] summary {
+  margin-bottom: 8px;
+}
+
+.feature-card details p {
+  margin: 0 0 8px;
+  line-height: 1.6;
+}
