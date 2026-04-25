@@ -9,7 +9,7 @@
     padding: 20px 24px 56px;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
-    align-items: stretch;
+    align-items: start;
     gap: 28px;
     min-height: 428px;
 }
@@ -29,9 +29,9 @@
 .pricing-card-column {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    height: 100%;
-    align-self: stretch;
+    gap: 12px;
+    height: auto;
+    align-self: start;
 }
 
 
@@ -66,7 +66,7 @@
 
 .price-card {
     display: flex;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     flex-direction: column;
     justify-content: flex-start;
     gap: 14px;
@@ -78,6 +78,31 @@
     0 20px 38px rgba(15, 23, 42, 0.07);
     backdrop-filter: blur(18px) saturate(138%);
     -webkit-backdrop-filter: blur(18px) saturate(138%);
+}
+
+.download-pitch {
+    margin-top: 2px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.download-pitch h2 {
+    margin: 0 0 8px;
+    color: #0f172a;
+    font-family: var(--mimi-font-display);
+    font-size: 16px;
+    font-weight: 650;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.download-pitch p {
+    margin: 0;
+    color: #31527a;
+    font-family: var(--mimi-font-text);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.52;
 }
 
 .price {
@@ -255,7 +280,6 @@
 }
 
 .price-card > .price-copy:last-child {
-    margin-top: auto;
     font-size: 12px;
     line-height: 1.45;
 }
@@ -267,4 +291,48 @@
 
 .price-card > .price-copy:last-child a:hover {
     text-decoration: underline;
+}
+
+.download-side-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid rgba(112, 137, 173, 0.20);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 16px 32px rgba(15, 23, 42, 0.06);
+    backdrop-filter: blur(18px) saturate(138%);
+    -webkit-backdrop-filter: blur(18px) saturate(138%);
+}
+
+.download-side-card .eyebrow {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.25;
+}
+
+.download-side-card details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.download-side-card summary {
+    color: #0f172a;
+    cursor: pointer;
+    font-family: var(--mimi-font-display);
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.35;
+}
+
+.download-side-card p {
+    margin: 10px 0 0;
+    color: #31527a;
+    font-family: var(--mimi-font-text);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.52;
 }

@@ -52,11 +52,6 @@
               </span>
              </span>
           </span>
-                    <span class="linkedin-card-actions" aria-hidden="true">
-            <span class="linkedin-card-action linkedin-card-action-primary">Open to</span>
-            <span class="linkedin-card-action">Add section</span>
-            <span class="linkedin-card-action">Resources</span>
-          </span>
                 </a>
 
                 <section class="price-card" id="features0">
@@ -74,11 +69,8 @@
                 <div class="hero-actions">
                     @if (!isMobileDevice) {
                         <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
-                           (click)="trackDownloadClick('hero')">Download free DMG</a>
+                           (click)="trackDownloadClick('hero')">Download App</a>
                     }
-                    <a class="button button-secondary" href="#preview">See it in action</a>
-                    <a class="button button-secondary" href="https://github.com/senatov/MiMiNavigator" target="_blank"
-                       rel="noopener noreferrer" (click)="trackGitHubClick('hero')">Read the code</a>
                 </div>
 
                 <p class="hero-note">Free · Signed DMG · No app store, no subscription · macOS {{ minimumMacOSVersion }}+ · The file
@@ -95,9 +87,16 @@
                             <span class="window-dot yellow"></span>
                             <span class="window-dot green"></span>
                         </div>
-                        <img [src]="heroGalleryImages[heroCarouselIndex].itemImageSrc"
-                             [alt]="heroGalleryImages[heroCarouselIndex].alt"
-                             class="hero-carousel-image">
+                        <div class="hero-carousel-stage"
+                             [class.hero-carousel-stage-transitioning]="heroCarouselTransitioning">
+                            <img [src]="heroGalleryImages[previousHeroCarouselIndex].itemImageSrc"
+                                 [alt]="heroGalleryImages[previousHeroCarouselIndex].alt"
+                                 class="hero-carousel-image hero-carousel-image-previous"
+                                 aria-hidden="true">
+                            <img [src]="heroGalleryImages[heroCarouselIndex].itemImageSrc"
+                                 [alt]="heroGalleryImages[heroCarouselIndex].alt"
+                                 class="hero-carousel-image hero-carousel-image-current">
+                        </div>
                     </div>
                 </a>
 
@@ -139,25 +138,45 @@
         <section class="pricing" id="download">
             <div>
                 <p class="eyebrow">Latest commits:</p>
-                <section class="commit-feed" aria-labelledby="commit-feed-title">
-                    <div class="commit-feed-scroller" role="list" aria-label="Recent MiMiNavigator commits">
-                        @if (recentCommits.length > 0) {
-                            @for (commit of recentCommits; track commit.hash) {
-                                <a
-                                        class="commit-item"
-                                        [href]="commit.url"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        [attr.aria-label]="'Open commit ' + commit.shortHash + ' on GitHub'"
-                                        [attr.title]="commit.message"
-                                >
-                                    <span class="commit-time">{{ commit.time }}</span>
-                                    <span class="commit-message">{{ commit.message }}</span>
-                                </a>
+                <section class="commit-feed" aria-label="Latest commits and release changes">
+                    <div class="commit-feed-scroller" aria-label="Recent MiMiNavigator commits and latest release changes">
+                        <div class="commit-list" role="list" aria-label="Recent MiMiNavigator commits">
+                            @if (recentCommits.length > 0) {
+                                @for (commit of recentCommits; track commit.hash) {
+                                    <a
+                                            class="commit-item"
+                                            [href]="commit.url"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            [attr.aria-label]="'Open commit ' + commit.shortHash + ' on GitHub'"
+                                            [attr.title]="commit.message"
+                                    >
+                                        <span class="commit-time">{{ commit.time }}</span>
+                                        <span class="commit-message">{{ commit.message }}</span>
+                                    </a>
+                                }
+                            } @else {
+                                <div class="commit-feed-empty">
+                                    Unable to load recent commits.
+                                </div>
                             }
+                        </div>
+                        @if (releaseNoteSections.length > 0) {
+                            <div class="release-notes-inline" aria-label="Latest release changes">
+                                @for (section of releaseNoteSections; track section.title) {
+                                    <section class="release-note-section">
+                                        <h3>{{ section.title }}</h3>
+                                        <ul>
+                                            @for (item of section.items; track item) {
+                                                <li>{{ item }}</li>
+                                            }
+                                        </ul>
+                                    </section>
+                                }
+                            </div>
                         } @else {
                             <div class="commit-feed-empty">
-                                Unable to load recent commits.
+                                Release changes are loading.
                             </div>
                         }
                     </div>
@@ -167,7 +186,7 @@
             <div class="pricing-card-column">
                 <p class="eyebrow">Download:</p>
                 <div class="price-card">
-                    <div class="price">Free download</div>
+                    <div class="price">Download</div>
                     <div class="price-meta">
                         <p class="price-copy"><span class="price-label">Latest version:</span> <strong>{{ latestVersion }}</strong></p>
                         <p class="price-copy"><span class="price-label">DMG file date:</span> <span
@@ -177,46 +196,36 @@
                     @if (!isMobileDevice) {
                         <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
                            (click)="trackDownloadClick('pricing')">
-                            Download free DMG
+                            Download App
                         </a>
                     } @else {
                         <p class="mobile-download-hint">Open this page on a Mac to download.</p>
                     }
+                    <div class="download-pitch">
+                        <h2>Two panels or go home</h2>
+                        <p>{{ downloadPitchText }}</p>
+                    </div>
                     <p class="price-copy">
                         <a [href]="releasesPageUrl" target="_blank" rel="noopener noreferrer"
                            (click)="trackReleasesClick('pricing')">Browse all releases</a>
                     </p>
                 </div>
-            </div>
-        </section>
-
-        <section class="logo-strip" aria-label="Capabilities">
-            <span>Two panels, finally</span>
-            <span>Signed & notarized</span>
-            <span>SFTP without plugins</span>
-            <span>Tabs that actually work</span>
-            <span>15+ archive formats</span>
-            <span>Media converter</span>
-            <span>Keyboard-first</span>
-        </section>
-
-        <section class="feature-grid" id="features">
-            @for (feature of featureList; track feature.title) {
-                <article class="feature-card">
-                    @if (feature.image) {
-                        <a class="feature-card-image-link"
-                           [href]="'images/' + feature.image"
-                           (click)="openPreview(feature.image, feature.title); $event.preventDefault()"
-                           [attr.aria-label]="'Enlarge screenshot: ' + feature.title">
-                            <img class="feature-card-image"
-                                 [src]="'images/' + feature.image"
-                                 [alt]="feature.title + ' screenshot'">
-                        </a>
-                    }
-                    <h2>{{ feature.title }}</h2>
-                    <p>{{ feature.text }}</p>
+                <article class="download-side-card" id="media-converter">
+                    <p class="eyebrow">Built-in Media Format Converter</p>
+                    <details>
+                        <summary>One-click conversion between any media formats — video, audio, images</summary>
+                        <p>MiMiNavigator includes a built-in media converter that transforms any media file
+                           into any other format with a single click. Convert MP4 to AVI, WAV to MP3,
+                           PNG to JPEG, MKV to MOV, FLAC to AAC, WEBM to MP4, TIFF to PNG, OGG to WAV —
+                           and dozens more combinations. No extra software needed, no command-line tools to install.
+                           Right-click any file, pick the target format, done.</p>
+                        <p>Supported conversions include all common video formats (MP4, AVI, MKV, MOV, WEBM, FLV, WMV),
+                           audio formats (MP3, WAV, FLAC, AAC, OGG, WMA, M4A, AIFF),
+                           and image formats (PNG, JPEG, TIFF, BMP, WEBP, GIF, HEIC, SVG).
+                           The best free media file converter built right into your macOS file manager.</p>
+                    </details>
                 </article>
-            }
+            </div>
         </section>
 
         <section class="details" id="preview">
@@ -273,22 +282,6 @@
                 <p>Download the signed DMG above, open it, and drag MiMiNavigator to Applications.
                     Launch it from your Applications folder and start working right away.
                     No App Store, no subscription, no extra installer. The source code is on GitHub too.</p>
-            </article>
-
-            <article class="feature-card" id="media-converter">
-                <p class="eyebrow">Built-in Media Format Converter</p>
-                <details>
-                    <summary>One-click conversion between any media formats — video, audio, images</summary>
-                    <p>MiMiNavigator includes a built-in media converter that transforms any media file
-                       into any other format with a single click. Convert MP4 to AVI, WAV to MP3,
-                       PNG to JPEG, MKV to MOV, FLAC to AAC, WEBM to MP4, TIFF to PNG, OGG to WAV —
-                       and dozens more combinations. No extra software needed, no command-line tools to install.
-                       Right-click any file, pick the target format, done.</p>
-                    <p>Supported conversions include all common video formats (MP4, AVI, MKV, MOV, WEBM, FLV, WMV),
-                       audio formats (MP3, WAV, FLAC, AAC, OGG, WMA, M4A, AIFF),
-                       and image formats (PNG, JPEG, TIFF, BMP, WEBP, GIF, HEIC, SVG).
-                       The best free media file converter built right into your macOS file manager.</p>
-                </details>
             </article>
         </section>
     </main>

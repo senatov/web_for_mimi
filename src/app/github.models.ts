@@ -12,6 +12,8 @@
 export interface GitHubReleaseAsset {
   name: string;
   browser_download_url: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface GitHubLatestRelease {
@@ -20,6 +22,7 @@ export interface GitHubLatestRelease {
   html_url?: string;
   published_at?: string;
   created_at?: string;
+  body?: string;
   assets: GitHubReleaseAsset[];
 }
 

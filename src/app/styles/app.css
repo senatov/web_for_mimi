@@ -7,38 +7,96 @@
 @import "./commit-feed.css";
 @import "./responsive.css";
 
-@keyframes heroCarouselFloat {
+@keyframes heroCarouselCurrent {
     0% {
-        opacity: 0.88;
-        transform: scale(0.985);
-        filter: saturate(0.94);
+        opacity: 0;
+        transform: translate3d(2.2%, 0, 0) scale(1.025);
+        filter: blur(8px) saturate(0.96) contrast(0.98);
     }
-    45% {
+    62% {
         opacity: 1;
-        transform: scale(1);
-        filter: saturate(1);
+        filter: blur(0) saturate(1.02) contrast(1);
     }
     100% {
         opacity: 1;
-        transform: scale(1);
-        filter: saturate(1);
+        transform: translate3d(0, 0, 0) scale(1);
+        filter: blur(0) saturate(1) contrast(1);
     }
 }
 
+@keyframes heroCarouselPrevious {
+    0% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+        filter: blur(0) saturate(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(-1.4%, 0, 0) scale(0.986);
+        filter: blur(5px) saturate(0.9);
+    }
+}
+
+.hero-carousel-stage {
+    position: relative;
+    flex: 1 1 auto;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    min-height: 320px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 14%, rgba(255, 255, 255, 0.95), transparent 34%),
+        linear-gradient(135deg, rgba(244, 249, 255, 0.92), rgba(230, 239, 249, 0.78));
+    isolation: isolate;
+}
+
+.hero-carousel-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background:
+        linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.32) 42%, transparent 63%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(16, 42, 67, 0.06));
+    opacity: 0.42;
+    mix-blend-mode: screen;
+}
+
 .hero-carousel-image {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center;
     transform-origin: center center;
-    animation: heroCarouselFloat 700ms ease;
+    transition: opacity 0.42s ease, transform 0.8s cubic-bezier(0.2, 0.78, 0.18, 1), filter 0.8s ease;
     will-change: opacity, transform, filter;
     backface-visibility: hidden;
 }
 
+.hero-carousel-image-previous {
+    z-index: 1;
+    opacity: 0;
+}
+
+.hero-carousel-image-current {
+    z-index: 2;
+    opacity: 1;
+}
+
+.hero-carousel-stage-transitioning .hero-carousel-image-current {
+    animation: heroCarouselCurrent 920ms cubic-bezier(0.2, 0.78, 0.18, 1) both;
+}
+
+.hero-carousel-stage-transitioning .hero-carousel-image-previous {
+    animation: heroCarouselPrevious 920ms cubic-bezier(0.2, 0.78, 0.18, 1) both;
+}
+
 .hero-preview-link:hover .hero-carousel-image {
-    filter: saturate(1.03);
+    filter: saturate(1.04) contrast(1.01);
 }
 
 .gallery-popup-frame {
@@ -168,6 +226,10 @@
 }
 
 @media (max-width: 900px) {
+    .hero-carousel-stage {
+        min-height: 238px;
+    }
+
     .gallery-popup-frame {
         padding: 14px;
     }

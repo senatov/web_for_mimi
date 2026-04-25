@@ -23,6 +23,11 @@ interface GalleryImageItem {
     title: string;
 }
 
+interface ReleaseNoteSection {
+    title: string;
+    items: string[];
+}
+
 declare global {
     interface Window {
         gtag?: (...args: unknown[]) => void;
@@ -73,34 +78,22 @@ export class AppComponent implements OnInit, OnDestroy {
         'g8.png'
     ];
     private readonly heroCarouselIntervalMs = 2_500;
+    private readonly heroCarouselTransitionMs = 920;
     private latestReleaseIsoDate: string | null = null;
     private releaseAgeTimerId: number | null = null;
     private heroCarouselTimerId: number | null = null;
+    private heroCarouselTransitionTimerId: number | null = null;
 
     protected recentCommits: RecentCommitViewModel[] = [];
+    protected releaseNoteSections: ReleaseNoteSection[] = [];
     protected heroGalleryVisible = false;
     protected heroGalleryActiveIndex = 0;
     protected heroCarouselIndex = 0;
+    protected previousHeroCarouselIndex = 0;
+    protected heroCarouselTransitioning = false;
     protected readonly heroGalleryImages: GalleryImageItem[] = this.buildHeroGalleryImages();
     protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    protected readonly featureList = [
-        {
-            title: 'Two panels or go home',
-            text: 'Finder gives you one panel and calls it a day. MiMiNavigator gives you two, side by side, like every file manager should.',
-            image: null
-        },
-        {
-            title: 'Tabs, history, favorites',
-            text: 'Open ten directories, bookmark the important ones, hit Back like a browser. No more "where the hell was that folder".',
-            image: null
-        },
-        {
-            title: 'Right-click that actually works',
-            text: 'Context menus with real actions — copy, move, rename, compress, open with — no digging through submenus or praying Finder cooperates.',
-            image: 'RMenu01.png'
-        }
-    ];
+    protected readonly downloadPitchText = 'MiMiNavigator is a free dual-pane file manager for macOS built for people who move real files all day. Two panels stay visible, so copy, move, compare, rename, compress, preview, and navigate without the Finder window shuffle. It feels like a modern Mac file browser with the muscle memory of classic commanders: keyboard-first, clear paths, fast context actions, archive folders, SFTP, favorites, history, and tabs when you need them. If you search Google for a free Mac dual pane file manager, dual panel file browser, Total Commander alternative for macOS, Finder replacement, or signed DMG file manager for Mac, this is the product you were trying to find.';
 
 
     ngOnInit(): void {
@@ -166,6 +159,7 @@ export class AppComponent implements OnInit, OnDestroy {
     protected onHeroGalleryActiveIndexChange(index: number): void {
         this.heroGalleryActiveIndex = index;
         this.heroCarouselIndex = index;
+        this.previousHeroCarouselIndex = index;
         this.cdr.markForCheck();
     }
 
@@ -200,18 +194,44 @@ export class AppComponent implements OnInit, OnDestroy {
                 return;
             }
 
-            this.heroCarouselIndex = (this.heroCarouselIndex + 1) % this.heroGalleryImages.length;
-            this.cdr.markForCheck();
+            this.showNextHeroCarouselImage();
         }, this.heroCarouselIntervalMs);
     }
 
     private stopHeroCarousel(): void {
         if (this.heroCarouselTimerId === null) {
+            this.stopHeroCarouselTransition();
             return;
         }
 
         window.clearInterval(this.heroCarouselTimerId);
         this.heroCarouselTimerId = null;
+        this.stopHeroCarouselTransition();
+    }
+
+    private showNextHeroCarouselImage(): void {
+        this.stopHeroCarouselTransition();
+
+        this.previousHeroCarouselIndex = this.heroCarouselIndex;
+        this.heroCarouselIndex = (this.heroCarouselIndex + 1) % this.heroGalleryImages.length;
+        this.heroCarouselTransitioning = true;
+        this.cdr.markForCheck();
+
+        this.heroCarouselTransitionTimerId = window.setTimeout(() => {
+            this.heroCarouselTransitioning = false;
+            this.previousHeroCarouselIndex = this.heroCarouselIndex;
+            this.heroCarouselTransitionTimerId = null;
+            this.cdr.markForCheck();
+        }, this.heroCarouselTransitionMs);
+    }
+
+    private stopHeroCarouselTransition(): void {
+        if (this.heroCarouselTransitionTimerId !== null) {
+            window.clearTimeout(this.heroCarouselTransitionTimerId);
+            this.heroCarouselTransitionTimerId = null;
+        }
+
+        this.heroCarouselTransitioning = false;
     }
 
     private buildHeroGalleryImages(): GalleryImageItem[] {
@@ -253,6 +273,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.latestVersion = release.tag_name || 'Latest release';
         this.latestDmgUrl = dmgAsset?.browser_download_url || release.html_url || this.releasesPageUrl;
+        this.releaseNoteSections = this.extractReleaseNoteSections(release.body);
 
         if (releaseDate) {
             this.latestReleaseIsoDate = releaseDate;
@@ -272,6 +293,46 @@ export class AppComponent implements OnInit, OnDestroy {
         this.latestDmgFileDate = this.resolveDmgFileDate(releaseDate, dmgUpdatedAt, dmgCreatedAt);
 
         this.cdr.markForCheck();
+    }
+
+    private extractReleaseNoteSections(body?: string): ReleaseNoteSection[] {
+        const sectionNames = new Set(['added', 'changed', 'fixed']);
+        const sections: ReleaseNoteSection[] = [];
+        let currentSection: ReleaseNoteSection | null = null;
+
+        for (const rawLine of (body || '').split('\n')) {
+            const headingMatch = rawLine.match(/^##\s+(.+?)\s*$/);
+
+            if (headingMatch) {
+                const title = headingMatch[1].trim();
+                currentSection = sectionNames.has(title.toLowerCase()) ? {title, items: []} : null;
+
+                if (currentSection) {
+                    sections.push(currentSection);
+                }
+
+                continue;
+            }
+
+            if (!currentSection) {
+                continue;
+            }
+
+            const itemMatch = rawLine.match(/^-\s+(.+?)\s*$/);
+            if (itemMatch) {
+                currentSection.items.push(this.cleanReleaseNoteMarkdown(itemMatch[1]));
+            }
+        }
+
+        return sections.filter(section => section.items.length > 0);
+    }
+
+    private cleanReleaseNoteMarkdown(value: string): string {
+        return value
+            .replace(/\*\*(.+?)\*\*/g, '$1')
+            .replace(/`(.+?)`/g, '$1')
+            .replace(/\s+—\s+/g, ' — ')
+            .trim();
     }
 
     private resolveDmgFileDate(
@@ -327,6 +388,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.latestReleaseDate = 'Unknown release date';
         this.latestReleaseAge = 'Age unavailable';
         this.latestDmgFileDate = 'Unknown DMG file date';
+        this.releaseNoteSections = [];
         this.cdr.markForCheck();
     }
 }
