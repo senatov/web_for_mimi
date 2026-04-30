@@ -64,9 +64,9 @@
 
 .preview-card p {
   margin: 0;
-  color: var(--gd-grey-700);
-  font-size: 14px;
-  line-height: 1.65;
+  color: var(--gd-grey-900);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .preview-card-media {
@@ -99,9 +99,9 @@
 
 .preview-card-copy p {
   margin: 0;
-  color: var(--gd-grey-700);
-  font-size: 14px;
-  line-height: 1.65;
+  color: var(--gd-grey-900);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .preview-list {
@@ -212,10 +212,10 @@
 
 .feature-card p {
   margin: 0;
-  color: var(--gd-grey-700);
-  font-size: 14px;
+  color: var(--gd-grey-900);
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 .feature-card details {

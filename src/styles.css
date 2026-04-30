@@ -1,15 +1,15 @@
 :root {
   color-scheme: light;
-  --gd-font-display: "Google Sans", "Noto Sans", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --gd-font-text: "Google Sans Text", "Noto Sans", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --gd-font-display: Roboto, "Helvetica Neue", Arial, sans-serif;
+  --gd-font-text: Roboto, "Helvetica Neue", Arial, sans-serif;
   --gd-blue: #1a73e8;
   --gd-blue-dark: #174ea6;
   --gd-green: #1e8e3e;
   --gd-red: #d93025;
   --gd-yellow: #f9ab00;
   --gd-grey-900: #202124;
-  --gd-grey-700: #5f6368;
-  --gd-grey-500: #80868b;
+  --gd-grey-700: #3c4043;
+  --gd-grey-500: #5f6368;
   --gd-grey-300: #dadce0;
   --gd-grey-100: #f1f3f4;
   --gd-grey-50: #f8f9fa;
@@ -17,8 +17,12 @@
   --gd-max-width: 1380px;
   --gd-gutter: 64px;
   font-family: var(--gd-font-text);
+  font-size: 16px;
+  line-height: 1.5;
   background: var(--gd-surface);
   color: var(--gd-grey-900);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
