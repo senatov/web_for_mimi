@@ -17,11 +17,11 @@
 
 .eyebrow {
   margin: 0;
-  color: var(--gd-grey-500);
+  color: var(--gd-grey-900);
   font-family: var(--gd-font-text);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   background: none;
 }
@@ -59,9 +59,9 @@
 
 .hero-note {
   margin: 0;
-  color: var(--gd-grey-700);
+  color: var(--gd-grey-900);
   font-family: var(--gd-font-text);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
 }
 

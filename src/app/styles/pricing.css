@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding: 32px var(--gd-gutter) 56px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 460px);
   align-items: start;
   gap: 32px;
   min-height: 400px;
@@ -63,10 +63,10 @@
 }
 
 .download-pitch h2 {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   color: var(--gd-grey-900);
   font-family: var(--gd-font-display);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 1.3;
@@ -74,9 +74,9 @@
 
 .download-pitch p {
   margin: 0;
-  color: var(--gd-grey-700);
+  color: var(--gd-grey-900);
   font-family: var(--gd-font-text);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.6;
 }
@@ -105,12 +105,12 @@
 }
 
 .price-copy {
-  color: var(--gd-grey-700);
+  color: var(--gd-grey-900);
   display: block;
   font-family: var(--gd-font-text);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .price-copy strong {
@@ -120,16 +120,16 @@
 }
 
 .price-label {
-  color: var(--gd-grey-500);
-  font-size: 13px;
+  color: var(--gd-grey-700);
+  font-size: 14px;
   font-weight: 500;
 }
 
 .price-copy-platform {
-  color: var(--gd-grey-500);
-  font-size: 12px;
+  color: var(--gd-grey-700);
+  font-size: 14px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .price-copy-platform span {
@@ -226,7 +226,7 @@
 
 .download-side-card .eyebrow {
   margin: 0;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .download-side-card details {
@@ -239,16 +239,16 @@
   color: var(--gd-grey-900);
   cursor: pointer;
   font-family: var(--gd-font-display);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .download-side-card p {
   margin: 10px 0 0;
-  color: var(--gd-grey-700);
+  color: var(--gd-grey-900);
   font-family: var(--gd-font-text);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.6;
 }
