@@ -75,7 +75,8 @@ export class AppComponent implements OnInit, OnDestroy {
         'g5.png',
         'g6.png',
         'g7.png',
-        'g8.png'
+        'g8.png',
+        'g9.png'
     ];
     private readonly heroCarouselIntervalMs = 2_500;
     private readonly heroCarouselTransitionMs = 920;

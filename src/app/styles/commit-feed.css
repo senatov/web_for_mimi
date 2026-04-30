@@ -81,14 +81,16 @@
 }
 
 .commit-message {
-  color: var(--gd-grey-900);
+  color: #000000;
   font-family: var(--gd-font-text);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.45;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .commit-feed-empty {
