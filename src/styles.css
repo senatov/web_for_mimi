@@ -1,11 +1,24 @@
 :root {
   color-scheme: light;
-  font-family: Inter, "SF Pro Text", "Segoe UI", Arial, sans-serif;
-  background: #f4f7fb;
-  background:
-    radial-gradient(circle at top, rgba(87, 144, 255, 0.16), transparent 38%),
-    linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%);
-  color: #172235;
+  --gd-font-display: "Google Sans", "Noto Sans", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --gd-font-text: "Google Sans Text", "Noto Sans", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --gd-blue: #1a73e8;
+  --gd-blue-dark: #174ea6;
+  --gd-green: #1e8e3e;
+  --gd-red: #d93025;
+  --gd-yellow: #f9ab00;
+  --gd-grey-900: #202124;
+  --gd-grey-700: #5f6368;
+  --gd-grey-500: #80868b;
+  --gd-grey-300: #dadce0;
+  --gd-grey-100: #f1f3f4;
+  --gd-grey-50: #f8f9fa;
+  --gd-surface: #ffffff;
+  --gd-max-width: 1380px;
+  --gd-gutter: 64px;
+  font-family: var(--gd-font-text);
+  background: var(--gd-surface);
+  color: var(--gd-grey-900);
 }
 
 html {
@@ -15,10 +28,12 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: transparent;
+  background: var(--gd-surface);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -31,5 +46,5 @@ select {
 }
 
 ::selection {
-  background: rgba(37, 105, 235, 0.18);
+  background: rgba(26, 115, 232, 0.16);
 }

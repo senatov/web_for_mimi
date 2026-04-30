@@ -1,32 +1,15 @@
 :host {
   display: block;
   min-height: 100vh;
-  color: #101828;
-  background:
-    radial-gradient(circle at top, rgba(143, 205, 255, 0.12), transparent 38%),
-    linear-gradient(rgba(232, 242, 251, 0.92), rgba(232, 242, 251, 0.70)),
-    url('../../../public/images/background_editor.jpeg') left top / 2200px auto repeat;
-  background-blend-mode: normal, normal, normal;
-  font-family: "SF Pro Display", "SF Pro Text", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--gd-grey-900);
+  background: var(--gd-surface);
+  font-family: var(--gd-font-text);
   box-sizing: border-box;
 }
 
 .page-shell {
   position: relative;
   min-height: 100vh;
-}
-
-/* Edge / browsers that don't support backdrop-filter inside encapsulated components:
-   bump translucent backgrounds to near-opaque so cards remain readable */
-@supports not (backdrop-filter: blur(1px)) {
-  .topbar,
-  .footer,
-  .price-card,
-  .feature-card,
-  .preview-card,
-  .logo-strip span {
-    background: rgba(255, 255, 255, 0.95);
-  }
 }
 
 *,
@@ -54,32 +37,4 @@ a {
 img {
   display: block;
   max-width: 100%;
-}
-
-/* --- Details/Summary spoiler in feature cards --- */
-
-.feature-card details {
-  margin-top: 8px;
-}
-
-.feature-card details summary {
-  cursor: pointer;
-  font-weight: 600;
-  color: #0f6aa8;
-  padding: 6px 0;
-  list-style: revert;
-  transition: color 0.15s ease;
-}
-
-.feature-card details summary:hover {
-  color: #0a4d7a;
-}
-
-.feature-card details[open] summary {
-  margin-bottom: 8px;
-}
-
-.feature-card details p {
-  margin: 0 0 8px;
-  line-height: 1.6;
 }

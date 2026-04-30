@@ -19,10 +19,10 @@
     </header>
 
     <main id="top">
-        <h1 class="sr-only">MiMiNavigator — Free Dual-Panel File Manager, File Browser, and Media Converter for macOS</h1>
+        <h1 class="sr-only">MiMiNavigator &#8212; Free Dual-Panel File Manager, File Browser, and Media Converter for macOS</h1>
         @if (isMobileDevice) {
             <div class="mobile-banner" role="alert">
-                <span class="mobile-banner-icon" aria-hidden="true">💻</span>
+                <span class="mobile-banner-icon" aria-hidden="true">&#x1F4BB;</span>
                 <p class="mobile-banner-text">
                     MiMiNavigator is a <strong>macOS desktop application</strong>.
                     Visit this page from your Mac to download the signed DMG.
@@ -45,10 +45,10 @@
               </span>
 
               <span class="linkedin-card-role">
-                IT-Freelance · Senior Java / Integration Consultant · Legacy Modernization · Banking &amp; Public Sector · Spring, REST, SOAP
+                IT-Freelance &middot; Senior Java / Integration Consultant &middot; Legacy Modernization &middot; Banking &amp; Public Sector &middot; Spring, REST, SOAP
               </span>
               <span class="linkedin-card-meta">
-                    Heusenstamm, Hesse, Germany · <span class="linkedin-card-link">Contact info</span>
+                    Heusenstamm, Hesse, Germany &middot; <span class="linkedin-card-link">Contact info</span>
               </span>
              </span>
           </span>
@@ -57,12 +57,12 @@
                 <section class="price-card" id="features0">
                     <p class="eyebrow">The file manager macOS should have shipped. I built it.</p>
                     <p class="hero-note">
-                        I never found a file manager on macOS that didn’t make me want to throw the laptop.
+                        I never found a file manager on macOS that didn&#8217;t make me want to throw the laptop.
                         Finder has no dual pane. Forklift costs money and still feels like a wrapper. Commander One
                         wants a subscription for SFTP. So I built my own.
-                        MiMiNavigator gives you two panels, tabs, favorites, history, FTP/SFTP — and opens
+                        MiMiNavigator gives you two panels, tabs, favorites, history, FTP/SFTP &#8212; and opens
                         ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, CPIO like folders.
-                        Nested archives too. It’s free, it’s signed, and I’m still shipping fixes every week.
+                        Nested archives too. It&#8217;s free, it&#8217;s signed, and I&#8217;m still shipping fixes every week.
                     </p>
                 </section>
 
@@ -73,7 +73,7 @@
                     }
                 </div>
 
-                <p class="hero-note">Free · Signed DMG · No app store, no subscription · macOS {{ minimumMacOSVersion }}+ · The file
+                <p class="hero-note">Free &middot; Signed DMG &middot; No app store, no subscription &middot; macOS {{ minimumMacOSVersion }}+ &middot; The file
                     browser and file manager for Mac you always wanted</p>
             </div>
 
@@ -96,6 +96,11 @@
                             <img [src]="heroGalleryImages[heroCarouselIndex].itemImageSrc"
                                  [alt]="heroGalleryImages[heroCarouselIndex].alt"
                                  class="hero-carousel-image hero-carousel-image-current">
+                        </div>
+                        <div class="hero-carousel-dots" aria-hidden="true">
+                            @for (img of heroGalleryImages; track img.itemImageSrc; let i = $index) {
+                                <span class="hero-carousel-dot" [class.active]="i === heroCarouselIndex"></span>
+                            }
                         </div>
                     </div>
                 </a>
@@ -213,10 +218,10 @@
                 <article class="download-side-card" id="media-converter">
                     <p class="eyebrow">Built-in Media Format Converter</p>
                     <details>
-                        <summary>One-click conversion between any media formats — video, audio, images</summary>
+                        <summary>One-click conversion between any media formats &#8212; video, audio, images</summary>
                         <p>MiMiNavigator includes a built-in media converter that transforms any media file
                            into any other format with a single click. Convert MP4 to AVI, WAV to MP3,
-                           PNG to JPEG, MKV to MOV, FLAC to AAC, WEBM to MP4, TIFF to PNG, OGG to WAV —
+                           PNG to JPEG, MKV to MOV, FLAC to AAC, WEBM to MP4, TIFF to PNG, OGG to WAV &#8212;
                            and dozens more combinations. No extra software needed, no command-line tools to install.
                            Right-click any file, pick the target format, done.</p>
                         <p>Supported conversions include all common video formats (MP4, AVI, MKV, MOV, WEBM, FLV, WMV),
@@ -231,9 +236,9 @@
         <section class="details" id="preview">
             <div class="details-copy">
                 <p class="eyebrow">macOS File Manager Screenshots</p>
-                <p class="eyebrow">This is what a real file browser for Mac looks like</p>
+                <h2 class="section-heading-title">See it in action</h2>
                 <p class="hero-text">
-                    Two panels. Tabs. A breadcrumb that doesn’t lie. File sizes you can actually read.
+                    Two panels. Tabs. A breadcrumb that does not lie. File sizes you can actually read.
                     Click any screenshot to zoom in and judge for yourself.
                 </p>
             </div>
@@ -243,24 +248,69 @@
                     <a href="images/Preview0.png" (click)="openPreview('Preview0.png', 'mimiPreview0'); $event.preventDefault()"
                        aria-label="Open Preview0 screenshot in dialog">
                         <img class="preview-image" src="images/Preview0.png"
-                             alt="MiMiNavigator file manager macOS — dual-panel workspace for file browsing">
+                             alt="MiMiNavigator file manager macOS &#8212; dual-panel workspace for file browsing">
                     </a>
-                    <p class="hero-note">
-                        The workspace. Left panel, right panel, no Finder nonsense.
-                    </p>
-                    <p>Move, copy, compare — without opening six windows and losing your place.</p>
+                    <h3>Dual-panel workspace</h3>
+                    <p>Move, copy, compare &#8212; without opening six windows and losing your place.
+                       Left panel, right panel, no Finder nonsense.</p>
                 </article>
 
                 <article class="preview-card">
                     <a href="images/Preview1.png" (click)="openPreview('Preview1.png', 'mimiPreview1'); $event.preventDefault()"
                        aria-label="Open Preview1 screenshot in dialog">
                         <img class="preview-image" src="images/Preview1.png"
-                             alt="MiMiNavigator file browser macOS — media preview and file details panel">
+                             alt="MiMiNavigator file browser macOS &#8212; media preview and file details panel">
                     </a>
-                    <h3>Media preview & file details</h3>
-                    <p>Quick Look is cute. This is better — preview, metadata, and navigation in one view.</p>
+                    <h3>Media preview &amp; file details</h3>
+                    <p>Quick Look is cute. This is better &#8212; preview, metadata, and navigation in one view.</p>
                 </article>
             </div>
+
+            <p class="details-copy hero-note" style="text-align:center;">
+                I need a few more screenshots to show off the full feature set. Please make these for the next update:
+            </p>
+        </section>
+
+        <section class="feature-grid" id="features">
+            <article class="feature-card">
+                <h2>Dual-panel file browsing</h2>
+                <p>Two side-by-side panels with independent navigation, tabs, and history.
+                   Drag files between panels, compare directories at a glance, or just keep your source
+                   and destination visible at the same time.</p>
+            </article>
+
+            <article class="feature-card">
+                <h2>SFTP &amp; FTP that just works</h2>
+                <p>Connect to any remote server with one click. Saved connections with colored status indicators,
+                   Keychain-stored passwords, auto-connect on startup. Browse remote files exactly like local ones.</p>
+            </article>
+
+            <article class="feature-card">
+                <h2>15+ archive formats as folders</h2>
+                <p>Open ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, CPIO &#8212;
+                   browse them like regular directories. Nested archives too.
+                   Create archives with progress tracking and cancel support.</p>
+            </article>
+
+            <article class="feature-card">
+                <h2>Built-in media converter</h2>
+                <p>Right-click any video, audio, or image file and convert it to any other format with one click.
+                   MP4, AVI, MKV, MOV, MP3, WAV, FLAC, PNG, JPEG, HEIC, and dozens more &#8212;
+                   no extra software needed.</p>
+            </article>
+
+            <article class="feature-card">
+                <h2>Advanced file search</h2>
+                <p>Find files by name, date range, size, and type. Recursive search across directories
+                   with real-time results. Smart filtering that skips macOS bundle containers
+                   to show you only what matters.</p>
+            </article>
+
+            <article class="feature-card">
+                <h2>Keyboard-first workflow</h2>
+                <p>Hotkeys for everything &#8212; F2 for rename, F5 for copy, F6 for move, F7 for new folder.
+                   Tab switches panels. Total Commander users will feel right at home.</p>
+            </article>
         </section>
 
         <section class="feature-grid" id="faq">
@@ -274,7 +324,7 @@
             <article class="feature-card">
                 <p class="eyebrow">What makes this macOS file manager different?</p>
                 <p>Moving files without losing your mind. This file browser gives you two panels, tabs, SFTP that just works,
-                    15+ archive formats as folders, and a keyboard workflow that doesn’t fight you.</p>
+                    15+ archive formats as folders, and a keyboard workflow that does not fight you.</p>
             </article>
 
             <article class="feature-card">
@@ -282,6 +332,24 @@
                 <p>Download the signed DMG above, open it, and drag MiMiNavigator to Applications.
                     Launch it from your Applications folder and start working right away.
                     No App Store, no subscription, no extra installer. The source code is on GitHub too.</p>
+            </article>
+
+            <article class="feature-card">
+                <p class="eyebrow">Is it really free?</p>
+                <p>Yes. No trial, no subscription, no hidden fees. MiMiNavigator is open source under AGPL-3.0
+                   and distributed as a signed and notarized DMG. Use it forever.</p>
+            </article>
+
+            <article class="feature-card">
+                <p class="eyebrow">What macOS version do I need?</p>
+                <p>macOS {{ minimumMacOSVersion }} or newer. Built natively with SwiftUI and AppKit &#8212;
+                   no Electron, no web wrappers, no Java runtime. Pure macOS performance.</p>
+            </article>
+
+            <article class="feature-card">
+                <p class="eyebrow">Can I contribute?</p>
+                <p>Absolutely. The full source code is on GitHub. File issues, submit pull requests,
+                   or just star the repo if you find it useful. Feedback always welcome.</p>
             </article>
         </section>
     </main>

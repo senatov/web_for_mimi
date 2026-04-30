@@ -1,18 +1,11 @@
 /*
- *  commit-feed.css
- *  web_for_mimi
- *
- *  Created by Iakov Senatov.
- *  Copyright © 2026 Iakov Senatov. All rights reserved.
- *
- *  Description:
- *  Styles for the GitHub commit activity panel inside the download section.
+ *  commit-feed.css — Google DevSite style
  */
 
 .commit-feed {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
   flex: 1 1 auto;
   min-height: 0;
@@ -21,235 +14,120 @@
 
 .commit-feed-header {
   margin: 0;
-  color: #82888c;
-  font-size: 13px;
+  color: var(--gd-grey-500);
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-
 
 .commit-feed-header h3 {
   margin: 0;
-  color: #52607a;
-  font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
+  color: var(--gd-grey-500);
+  font-family: var(--gd-font-text);
+  font-size: 12px;
   font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
+/* --- Scroller & items --- */
+
 .commit-feed-scroller {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
   flex: 1 1 auto;
-  min-height: 0;
-  height: 100%;
-  max-height: none;
-  padding: 10px;
-  overflow-x: hidden;
   overflow-y: auto;
-  border: 1px solid rgba(113, 122, 136, 0.22);
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(246, 249, 253, 0.98) 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95),
-  inset 0 -1px 0 rgba(148, 163, 184, 0.10),
-  0 10px 20px rgba(15, 23, 42, 0.05);
-  scrollbar-width: thin;
-  scrollbar-color: rgba(120, 136, 160, 0.55) rgba(226, 232, 240, 0.45);
+  overflow-x: hidden;
+  max-height: 640px;
+  padding: 12px;
+  border: 1px solid var(--gd-grey-300);
+  border-radius: 8px;
+  background: var(--gd-grey-50);
 }
 
-.commit-feed-scroller::-webkit-scrollbar {
-  width: 10px;
-}
-
-.commit-feed-scroller::-webkit-scrollbar-track {
-  border-radius: 999px;
-  background: rgba(226, 232, 240, 0.54);
-}
-
-.commit-feed-scroller::-webkit-scrollbar-thumb {
-  border: 2px solid rgba(255, 255, 255, 0.82);
-  border-radius: 999px;
-  background: rgba(120, 136, 160, 0.62);
-}
-
-.commit-feed-scroller::-webkit-scrollbar-thumb:hover {
-  background: rgba(94, 112, 138, 0.82);
-}
-
-.commit-list,
-.release-notes-inline {
+.commit-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-.release-notes-inline {
-  gap: 10px;
-  padding-top: 2px;
+  gap: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .commit-item {
-  position: relative;
   display: grid;
-  grid-template-columns: 86px minmax(0, 1fr);
-  align-items: start;
-  gap: 10px;
-  min-width: 0;
-  padding: 8px 10px;
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.74);
-  color: #334155;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--gd-grey-300);
   text-decoration: none;
-  transition: transform 0.14s ease,
-  border-color 0.14s ease,
-  background-color 0.14s ease,
-  box-shadow 0.14s ease;
+  color: inherit;
+  transition: background 0.12s ease;
+}
+
+.commit-item:last-child {
+  border-bottom: none;
 }
 
 .commit-item:hover {
-  transform: translateY(-1px);
-  border-color: rgba(44, 158, 222, 0.28);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
-}
-
-.commit-item:focus-visible {
-  outline: 2px solid #2c9ede;
-  outline-offset: 2px;
-}
-
-.commit-item::after {
-  content: attr(title);
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: calc(100% + 8px);
-  z-index: 20;
-  display: block;
-  padding: 8px 10px;
-  border: 1px solid rgba(126, 118, 76, 0.34);
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(255, 249, 214, 0.98) 0%, rgba(250, 243, 195, 0.98) 100%);
-  color: #374151;
-  font-size: 12px;
-  line-height: 1.45;
-  box-shadow: 0 10px 22px rgba(90, 76, 20, 0.14);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(4px);
-  transition: opacity 0.12s ease, transform 0.12s ease;
-  white-space: normal;
-}
-
-.commit-item::before {
-  content: "";
-  position: absolute;
-  left: 24px;
-  bottom: calc(100% + 2px);
-  z-index: 19;
-  width: 10px;
-  height: 10px;
-  border-right: 1px solid rgba(126, 118, 76, 0.34);
-  border-bottom: 1px solid rgba(126, 118, 76, 0.34);
-  background: rgba(250, 243, 195, 0.98);
-  opacity: 0;
-  pointer-events: none;
-  transform: rotate(45deg) translateY(4px);
-  transition: opacity 0.12s ease, transform 0.12s ease;
-}
-
-.commit-item:hover::after,
-.commit-item:hover::before,
-.commit-item:focus-visible::after,
-.commit-item:focus-visible::before {
-  opacity: 1;
-  transform: translateY(0);
+  background: rgba(26, 115, 232, 0.04);
 }
 
 .commit-time {
-  display: inline-block;
-  padding-top: 1px;
-  color: #8c1a65;
-  font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--gd-grey-500);
+  font-family: var(--gd-font-text);
   font-size: 12px;
-  font-weight: 400;
-  line-height: 1.25;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .commit-message {
-  min-width: 0;
-  overflow: hidden;
-  color: #111827;
-  font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--gd-grey-900);
+  font-family: var(--gd-font-text);
   font-size: 13px;
   font-weight: 400;
-  line-height: 1.4;
-  white-space: nowrap;
+  line-height: 1.45;
+  overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .commit-feed-empty {
-  padding: 10px 12px;
-  border: 1px dashed rgba(148, 163, 184, 0.38);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.64);
-  color: #6b7280;
+  color: var(--gd-grey-500);
   font-size: 13px;
-  line-height: 1.45;
+  padding: 16px;
+  text-align: center;
+}
+
+/* --- Release notes inline --- */
+
+.release-notes-inline {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gd-grey-300);
 }
 
 .release-note-section {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  padding: 10px 11px;
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.72);
+  margin-bottom: 12px;
 }
 
 .release-note-section h3 {
-  margin: 0;
-  color: #31527a;
-  font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  line-height: 1.25;
-  text-transform: uppercase;
+  margin: 0 0 6px;
+  color: var(--gd-grey-900);
+  font-family: var(--gd-font-display);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .release-note-section ul {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
   margin: 0;
-  padding: 0;
-  list-style: none;
+  padding: 0 0 0 18px;
+  list-style: disc;
 }
 
 .release-note-section li {
-  position: relative;
-  padding-left: 13px;
-  color: #1f2937;
-  font-family: "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.42;
-}
-
-.release-note-section li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.62em;
-  width: 5px;
-  height: 5px;
-  border-radius: 999px;
-  background: #0f78bc;
+  color: var(--gd-grey-700);
+  font-family: var(--gd-font-text);
+  font-size: 13px;
+  line-height: 1.55;
+  margin-bottom: 2px;
 }
