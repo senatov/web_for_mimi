@@ -3,16 +3,21 @@
   margin: 0 auto;
   padding: 40px var(--gd-gutter) 32px;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  grid-template-columns: minmax(330px, 0.66fr) minmax(560px, 1.34fr);
   align-items: stretch;
-  gap: 48px;
+  gap: 36px;
 }
 
 .hero-copy {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  justify-content: space-between;
+  justify-content: stretch;
+  min-height: 100%;
+}
+
+.hero-copy > .price-card {
+  flex: 1 1 auto;
 }
 
 .eyebrow {
@@ -49,12 +54,6 @@
 
 .hero-text p {
   margin: 0;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
 }
 
 .hero-note {

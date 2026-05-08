@@ -18,7 +18,7 @@
         </div>
     </header>
 
-    <main id="top">
+    <main id="top" appSeoKeywordHighlight>
         <h1 class="sr-only">MiMiNavigator &#8212; Free Dual-Panel File Manager, File Browser, and Media Converter for macOS</h1>
         @if (isMobileDevice) {
             <div class="mobile-banner" role="alert">
@@ -66,26 +66,20 @@
                     </p>
                 </section>
 
-                <div class="hero-actions">
-                    @if (!isMobileDevice) {
-                        <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
-                           (click)="trackDownloadClick('hero')">Download App</a>
-                    }
-                </div>
-
-                <p class="hero-note">Free &middot; Signed DMG &middot; No app store, no subscription &middot; macOS {{ minimumMacOSVersion }}+ &middot; The file
-                    browser and file manager for Mac you always wanted</p>
             </div>
 
-            <div class="hero-visual" aria-label="MiMiNavigator screenshot preview">
-                <a class="hero-preview-link" href="images/Preview3.png"
-                   (click)="openHeroGallery($event)"
-                   aria-label="Open hero screenshot gallery dialog">
+            <div class="hero-visual" aria-label="MiMiNavigator screenshot gallery">
+                <div class="hero-preview-link"
+                     role="group"
+                     tabindex="0"
+                     aria-label="MiMiNavigator screenshot gallery. Use left and right arrow keys to change screenshots."
+                     (keydown)="onHeroGalleryKeydown($event)">
                     <div class="app-window">
                         <div class="window-chrome">
                             <span class="window-dot red"></span>
                             <span class="window-dot yellow"></span>
                             <span class="window-dot green"></span>
+                            <span class="hero-gallery-counter">{{ heroGalleryProgressLabel }}</span>
                         </div>
                         <div class="hero-carousel-stage"
                              [class.hero-carousel-stage-transitioning]="heroCarouselTransitioning">
@@ -96,17 +90,39 @@
                             <img [src]="heroGalleryImages[heroCarouselIndex].itemImageSrc"
                                  [alt]="heroGalleryImages[heroCarouselIndex].alt"
                                  class="hero-carousel-image hero-carousel-image-current">
+                            <button type="button"
+                                    class="hero-gallery-nav hero-gallery-nav-previous"
+                                    aria-label="Previous screenshot"
+                                    (click)="showPreviousHeroGalleryImage($event)">‹</button>
+                            <button type="button"
+                                    class="hero-gallery-nav hero-gallery-nav-next"
+                                    aria-label="Next screenshot"
+                                    (click)="showNextHeroGalleryImage($event)">›</button>
+                            <button type="button"
+                                    class="hero-gallery-open"
+                                    aria-label="Open current screenshot in fullscreen gallery"
+                                    (click)="openHeroGallery($event)">⛶</button>
                         </div>
-                        <div class="hero-carousel-dots" aria-hidden="true">
+                        <div class="hero-gallery-thumbnails" aria-label="Choose screenshot">
                             @for (img of heroGalleryImages; track img.itemImageSrc; let i = $index) {
-                                <span class="hero-carousel-dot" [class.active]="i === heroCarouselIndex"></span>
+                                <button type="button"
+                                        class="hero-gallery-thumbnail"
+                                        [class.active]="i === heroCarouselIndex"
+                                        [attr.aria-label]="getHeroGalleryThumbnailLabel(i)"
+                                        [attr.aria-current]="i === heroCarouselIndex ? 'true' : null"
+                                        (click)="selectHeroGalleryImage(i)"
+                                        (dblclick)="openHeroGalleryAt(i, $event)"
+                                        (keydown)="onHeroThumbnailKeydown($event, i)">
+                                    <img [src]="img.thumbnailImageSrc" [alt]="img.alt">
+                                </button>
                             }
                         </div>
                     </div>
-                </a>
+                </div>
 
                 <p-galleria
-                        [(visible)]="heroGalleryVisible"
+                        [visible]="heroGalleryVisible"
+                        (visibleChange)="onHeroGalleryVisibleChange($event)"
                         [value]="heroGalleryImages"
                         [(activeIndex)]="heroGalleryActiveIndex"
                         (activeIndexChange)="onHeroGalleryActiveIndexChange($event)"
@@ -121,13 +137,12 @@
                         [containerStyle]="{ 'max-width': '100vw' }">
                     <ng-template pTemplate="item">
                         <div class="gallery-popup-frame">
-                            <img [src]="heroGalleryImages[heroGalleryActiveIndex].itemImageSrc"
-                                 [alt]="heroGalleryImages[heroGalleryActiveIndex].alt"
+                            <img [src]="heroGalleryDialogItem.itemImageSrc"
+                                 [alt]="heroGalleryDialogItem.alt"
                                  class="gallery-popup-image">
                             <div class="gallery-popup-meta">
-                                <span class="gallery-popup-counter">{{ heroGalleryActiveIndex + 1 }}
-                                    / {{ heroGalleryImages.length }}</span>
-                                <span class="gallery-popup-title">{{ heroGalleryImages[heroGalleryActiveIndex].title }}</span>
+                                <span class="gallery-popup-counter">{{ heroGalleryDialogProgressLabel }}</span>
+                                <span class="gallery-popup-title">{{ heroGalleryDialogItem.title }}</span>
                             </div>
                         </div>
                     </ng-template>
@@ -196,7 +211,7 @@
                         <p class="price-copy"><span class="price-label">Latest version:</span> <strong>{{ latestVersion }}</strong></p>
                         <p class="price-copy"><span class="price-label">DMG file date:</span> <span
                                 class="price-file-date">{{ latestDmgFileDate }}</span></p>
-                        <p class="price-copy price-copy-platform">Signed DMG for <span>{{ minimumMacOSVersion }} or newer</span>.</p>
+                        <p class="price-copy price-copy-platform">Signed DMG for <span>{{ minimumMacOSVersion }}</span> or newer.</p>
                     </div>
                     @if (!isMobileDevice) {
                         <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
@@ -215,21 +230,6 @@
                            (click)="trackReleasesClick('pricing')">Browse all releases</a>
                     </p>
                 </div>
-                <article class="download-side-card" id="media-converter">
-                    <p class="eyebrow">Built-in Media Format Converter</p>
-                    <details>
-                        <summary>One-click conversion between any media formats &#8212; video, audio, images</summary>
-                        <p>MiMiNavigator includes a built-in media converter that transforms any media file
-                           into any other format with a single click. Convert MP4 to AVI, WAV to MP3,
-                           PNG to JPEG, MKV to MOV, FLAC to AAC, WEBM to MP4, TIFF to PNG, OGG to WAV &#8212;
-                           and dozens more combinations. No extra software needed, no command-line tools to install.
-                           Right-click any file, pick the target format, done.</p>
-                        <p>Supported conversions include all common video formats (MP4, AVI, MKV, MOV, WEBM, FLV, WMV),
-                           audio formats (MP3, WAV, FLAC, AAC, OGG, WMA, M4A, AIFF),
-                           and image formats (PNG, JPEG, TIFF, BMP, WEBP, GIF, HEIC, SVG).
-                           The best free media file converter built right into your macOS file manager.</p>
-                    </details>
-                </article>
             </div>
         </section>
 
@@ -293,13 +293,6 @@
             </article>
 
             <article class="feature-card">
-                <h2>Built-in media converter</h2>
-                <p>Right-click any video, audio, or image file and convert it to any other format with one click.
-                   MP4, AVI, MKV, MOV, MP3, WAV, FLAC, PNG, JPEG, HEIC, and dozens more &#8212;
-                   no extra software needed.</p>
-            </article>
-
-            <article class="feature-card">
                 <h2>Advanced file search</h2>
                 <p>Find files by name, date range, size, and type. Recursive search across directories
                    with real-time results. Smart filtering that skips macOS bundle containers
@@ -310,6 +303,21 @@
                 <h2>Keyboard-first workflow</h2>
                 <p>Hotkeys for everything &#8212; F2 for rename, F5 for copy, F6 for move, F7 for new folder.
                    Tab switches panels. Total Commander users will feel right at home.</p>
+            </article>
+
+            <article class="feature-card feature-card-wide" id="media-converter">
+                <p class="eyebrow">Built-in Media Format Converter</p>
+                <h2>Built-in media converter</h2>
+                <p>Right-click any video, audio, or image file, pick a target format, and convert it in one click.
+                   MP4 to AVI, WAV to MP3, PNG to JPEG, MKV to MOV, FLAC to AAC, WEBM to MP4, TIFF to PNG,
+                   OGG to WAV, and dozens more combinations are built into the file manager.</p>
+                <details>
+                    <summary>Supported video, audio, and image formats</summary>
+                    <p>Video: MP4, AVI, MKV, MOV, WEBM, FLV, WMV. Audio: MP3, WAV, FLAC, AAC, OGG, WMA, M4A, AIFF.
+                       Images: PNG, JPEG, TIFF, BMP, WEBP, GIF, HEIC, SVG.</p>
+                    <p>No extra app, no separate command-line setup, and no workflow break: convert files from the same place
+                       where you browse, preview, move, and organize them.</p>
+                </details>
             </article>
         </section>
 
@@ -342,7 +350,7 @@
 
             <article class="feature-card">
                 <p class="eyebrow">What macOS version do I need?</p>
-                <p>macOS {{ minimumMacOSVersion }} or newer. Built natively with SwiftUI and AppKit &#8212;
+                <p>{{ minimumMacOSVersion }} or newer. Built natively with SwiftUI and AppKit &#8212;
                    no Electron, no web wrappers, no Java runtime. Pure macOS performance.</p>
             </article>
 

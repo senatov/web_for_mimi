@@ -198,6 +198,10 @@
   transition: box-shadow 0.2s ease;
 }
 
+.feature-card-wide {
+  grid-column: 1 / -1;
+}
+
 .feature-card:hover {
   box-shadow: 0 1px 3px rgba(60, 64, 67, 0.15), 0 4px 8px rgba(60, 64, 67, 0.1);
 }

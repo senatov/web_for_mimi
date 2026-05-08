@@ -14,6 +14,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {PreviewDialogComponent, PreviewDialogData} from './preview-dialog.component';
 import {GitHubService, RecentCommitViewModel} from './github.service';
 import {GalleriaModule} from 'primeng/galleria';
+import {SeoKeywordHighlightDirective} from './seo-keyword-highlight.directive';
 
 
 interface GalleryImageItem {
@@ -45,7 +46,7 @@ type AnalyticsEventName =
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [MatDialogModule, GalleriaModule],
+    imports: [MatDialogModule, GalleriaModule, SeoKeywordHighlightDirective],
     templateUrl: './app.html',
     styleUrl: './styles/app.css',
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -67,6 +68,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private readonly previewDialogHint = 'Press Esc or click outside to close';
     private readonly heroGalleryFolderPath = 'gallery';
     private readonly heroGalleryFileNames = [
+        'Preview0.png',
+        'Preview1.png',
         'g0.png',
         'g1.png',
         'g2.png',
@@ -78,11 +81,9 @@ export class AppComponent implements OnInit, OnDestroy {
         'g8.png',
         'g9.png'
     ];
-    private readonly heroCarouselIntervalMs = 2_500;
     private readonly heroCarouselTransitionMs = 920;
     private latestReleaseIsoDate: string | null = null;
     private releaseAgeTimerId: number | null = null;
-    private heroCarouselTimerId: number | null = null;
     private heroCarouselTransitionTimerId: number | null = null;
 
     protected recentCommits: RecentCommitViewModel[] = [];
@@ -98,8 +99,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
     ngOnInit(): void {
-        this.startHeroCarousel();
-
         void Promise.all([
             this.loadLatestRelease(),
             this.loadRecentCommits()
@@ -108,7 +107,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.stopReleaseAgeTimer();
-        this.stopHeroCarousel();
+        this.stopHeroCarouselTransition();
     }
 
     protected trackDownloadClick(location: 'hero' | 'pricing'): void {
@@ -144,8 +143,8 @@ export class AppComponent implements OnInit, OnDestroy {
         });
     }
 
-    protected openHeroGallery(event: Event): void {
-        event.preventDefault();
+    protected openHeroGallery(event?: Event): void {
+        event?.preventDefault();
         this.heroGalleryActiveIndex = this.heroCarouselIndex;
         this.heroGalleryVisible = true;
 
@@ -158,9 +157,107 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     protected onHeroGalleryActiveIndexChange(index: number): void {
-        this.heroGalleryActiveIndex = index;
+        this.selectHeroGalleryImage(index);
+    }
+
+    protected selectHeroGalleryImage(index: number): void {
+        if (index < 0 || index >= this.heroGalleryImages.length || index === this.heroCarouselIndex) {
+            return;
+        }
+
+        this.stopHeroCarouselTransition();
+
+        this.previousHeroCarouselIndex = this.heroCarouselIndex;
         this.heroCarouselIndex = index;
-        this.previousHeroCarouselIndex = index;
+        this.heroGalleryActiveIndex = index;
+        this.heroCarouselTransitioning = true;
+        this.cdr.markForCheck();
+
+        this.heroCarouselTransitionTimerId = window.setTimeout(() => {
+            this.heroCarouselTransitioning = false;
+            this.previousHeroCarouselIndex = this.heroCarouselIndex;
+            this.heroCarouselTransitionTimerId = null;
+            this.cdr.markForCheck();
+        }, this.heroCarouselTransitionMs);
+    }
+
+    protected showPreviousHeroGalleryImage(event?: Event): void {
+        event?.preventDefault();
+        event?.stopPropagation();
+
+        const nextIndex = (this.heroCarouselIndex - 1 + this.heroGalleryImages.length) % this.heroGalleryImages.length;
+        this.selectHeroGalleryImage(nextIndex);
+    }
+
+    protected showNextHeroGalleryImage(event?: Event): void {
+        event?.preventDefault();
+        event?.stopPropagation();
+
+        const nextIndex = (this.heroCarouselIndex + 1) % this.heroGalleryImages.length;
+        this.selectHeroGalleryImage(nextIndex);
+    }
+
+    protected onHeroGalleryKeydown(event: KeyboardEvent): void {
+        if (event.key === 'ArrowLeft') {
+            this.showPreviousHeroGalleryImage(event);
+            return;
+        }
+
+        if (event.key === 'ArrowRight') {
+            this.showNextHeroGalleryImage(event);
+            return;
+        }
+
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this.openHeroGallery();
+        }
+    }
+
+    protected openHeroGalleryAt(index: number, event?: Event): void {
+        event?.preventDefault();
+        event?.stopPropagation();
+
+        this.selectHeroGalleryImage(index);
+        this.openHeroGallery();
+    }
+
+    protected getHeroGalleryThumbnailLabel(index: number): string {
+        return `Show screenshot ${index + 1} of ${this.heroGalleryImages.length}`;
+    }
+
+    protected get heroGalleryCurrentItem(): GalleryImageItem {
+        return this.heroGalleryImages[this.heroCarouselIndex];
+    }
+
+    protected get heroGalleryDialogItem(): GalleryImageItem {
+        return this.heroGalleryImages[this.heroGalleryActiveIndex];
+    }
+
+    protected get heroGalleryProgressLabel(): string {
+        return `${this.heroCarouselIndex + 1} / ${this.heroGalleryImages.length}`;
+    }
+
+    protected get heroGalleryDialogProgressLabel(): string {
+        return `${this.heroGalleryActiveIndex + 1} / ${this.heroGalleryImages.length}`;
+    }
+
+    protected onHeroThumbnailKeydown(event: KeyboardEvent, index: number): void {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this.selectHeroGalleryImage(index);
+        }
+    }
+
+    protected onHeroGalleryVisibleChange(visible: boolean): void {
+        this.heroGalleryVisible = visible;
+
+        if (!visible) {
+            this.heroCarouselIndex = this.heroGalleryActiveIndex;
+            this.previousHeroCarouselIndex = this.heroGalleryActiveIndex;
+            this.heroCarouselTransitioning = false;
+        }
+
         this.cdr.markForCheck();
     }
 
@@ -187,45 +284,6 @@ export class AppComponent implements OnInit, OnDestroy {
         });
     }
 
-    private startHeroCarousel(): void {
-        this.stopHeroCarousel();
-
-        this.heroCarouselTimerId = window.setInterval(() => {
-            if (this.heroGalleryVisible || this.heroGalleryImages.length <= 1) {
-                return;
-            }
-
-            this.showNextHeroCarouselImage();
-        }, this.heroCarouselIntervalMs);
-    }
-
-    private stopHeroCarousel(): void {
-        if (this.heroCarouselTimerId === null) {
-            this.stopHeroCarouselTransition();
-            return;
-        }
-
-        window.clearInterval(this.heroCarouselTimerId);
-        this.heroCarouselTimerId = null;
-        this.stopHeroCarouselTransition();
-    }
-
-    private showNextHeroCarouselImage(): void {
-        this.stopHeroCarouselTransition();
-
-        this.previousHeroCarouselIndex = this.heroCarouselIndex;
-        this.heroCarouselIndex = (this.heroCarouselIndex + 1) % this.heroGalleryImages.length;
-        this.heroCarouselTransitioning = true;
-        this.cdr.markForCheck();
-
-        this.heroCarouselTransitionTimerId = window.setTimeout(() => {
-            this.heroCarouselTransitioning = false;
-            this.previousHeroCarouselIndex = this.heroCarouselIndex;
-            this.heroCarouselTransitionTimerId = null;
-            this.cdr.markForCheck();
-        }, this.heroCarouselTransitionMs);
-    }
-
     private stopHeroCarouselTransition(): void {
         if (this.heroCarouselTransitionTimerId !== null) {
             window.clearTimeout(this.heroCarouselTransitionTimerId);
@@ -236,12 +294,14 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     private buildHeroGalleryImages(): GalleryImageItem[] {
-        const heroImage = this.createGalleryImageItem('Preview3.png', 'MiMiNavigator hero preview');
         const galleryImages = this.heroGalleryFileNames.map(fileName => {
-            return this.createGalleryImageItem(`${this.heroGalleryFolderPath}/${fileName}`, `MiMiNavigator gallery preview ${fileName}`);
+            return this.createGalleryImageItem(
+                `${this.heroGalleryFolderPath}/${fileName}`,
+                this.createHeroGalleryImageTitle(fileName)
+            );
         });
 
-        return [heroImage, ...galleryImages];
+        return galleryImages;
     }
 
     private createGalleryImageItem(relativePath: string, alt: string): GalleryImageItem {
@@ -253,6 +313,12 @@ export class AppComponent implements OnInit, OnDestroy {
             alt,
             title: alt
         };
+    }
+
+    private createHeroGalleryImageTitle(fileName: string): string {
+        const title = fileName.replace(/\.[^.]+$/, '').replace(/^g(\d+)$/i, 'Demo $1');
+
+        return `MiMiNavigator ${title}`;
     }
 
 
