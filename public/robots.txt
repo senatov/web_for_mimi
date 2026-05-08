@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://miminavigator.vercel.app/sitemap.xml
+Sitemap: https://miminavi.tech/sitemap.xml
