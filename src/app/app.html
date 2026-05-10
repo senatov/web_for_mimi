@@ -60,9 +60,10 @@
                         I never found a file manager on macOS that didn&#8217;t make me want to throw the laptop.
                         Finder has no dual pane. Forklift costs money and still feels like a wrapper. Commander One
                         wants a subscription for SFTP. So I built my own.
-                        MiMiNavigator gives you two panels, tabs, favorites, history, FTP/SFTP &#8212; and opens
+                        MiMiNavigator gives you two panels, tabs, favorites, history, FTP/SFTP/SMB &#8212; and opens
                         ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, CPIO like folders.
-                        Nested archives too. It&#8217;s free, it&#8217;s signed, and I&#8217;m still shipping fixes every week.
+                        Nested archives too. Photos with GPS get a globe badge. It detects disk ballast.
+                        It&#8217;s free, it&#8217;s signed, and I&#8217;m still shipping fixes every week.
                     </p>
                 </section>
 
@@ -276,8 +277,9 @@
                 <p class="eyebrow">Find MiMiNavigator when you need</p>
                 <h2>A native macOS 26+ file manager for real file work</h2>
                 <p>MiMiNavigator is built for Mac users searching for a Finder replacement, a dual-pane file browser,
-                   a Total Commander style workflow, a signed DMG file manager, an SFTP client, an archive manager,
-                   or a media converter that does not require a separate app.</p>
+                   a Total Commander style workflow, a signed DMG file manager, an SFTP/SMB client, an archive manager,
+                   or a media converter that does not require a separate app. Includes a Finder-style sidebar,
+                   GPS geotag detection on photos, smart copy with conflict resolution, and a disk ballast finder.</p>
             </article>
 
             <article class="feature-card">
@@ -289,10 +291,11 @@
             </article>
 
             <article class="feature-card">
-                <h2>SFTP &amp; FTP client that just works</h2>
-                <p>Connect to any remote server with one click. Saved connections with colored status indicators,
-                   Keychain-stored passwords, auto-connect on startup. Browse remote files exactly like local ones
-                   without switching to a separate FTP app.</p>
+                <h2>SFTP, FTP &amp; SMB &#8212; all built in</h2>
+                <p>Connect to any remote server with one click. SFTP, FTP, and SMB shares mount right inside
+                   the panels &#8212; no separate app needed. Saved connections with colored status indicators,
+                   Keychain-stored passwords, auto-connect on startup, and history-based restore on disconnect.
+                   SMB shares work even without system /Volumes write access.</p>
             </article>
 
             <article class="feature-card">
@@ -304,15 +307,38 @@
 
             <article class="feature-card">
                 <h2>Advanced file search</h2>
-                <p>Find files by name, date range, size, and type. Recursive search across directories
-                   with real-time results. Smart filtering that skips macOS bundle containers
-                   to show you only what matters when Finder search is too broad.</p>
+                <p>Find files by name, date range, age, size, and type. Search by modification or access date,
+                   filter by deletable-only, and use the built-in &#8220;ballast finder&#8221; to locate
+                   old unused files eating your disk. Real-time results with smart pruning that skips
+                   macOS bundle containers and runtime junk.</p>
             </article>
 
             <article class="feature-card">
                 <h2>Keyboard-first workflow</h2>
-                <p>Hotkeys for everything &#8212; F2 for rename, F5 for copy, F6 for move, F7 for new folder.
-                   Tab switches panels. Total Commander users will feel right at home.</p>
+                <p>Hotkeys for everything &#8212; F2 for inline rename, F5 for copy, F6 for move, F7 for new folder.
+                   Tab switches panels. Insert marks files. Multi-selection with Cmd+Click, Shift+Click,
+                   and range select. Total Commander users will feel right at home.</p>
+            </article>
+
+            <article class="feature-card">
+                <h2>GeoTag detection on photos</h2>
+                <p>Photos with GPS coordinates get a small globe badge on their icon &#8212; automatically,
+                   in the background, after every directory scan. Reads EXIF headers from JPEG, HEIC, TIFF,
+                   DNG, and 10+ RAW formats without decoding pixels. See at a glance which shots have location data.</p>
+            </article>
+
+            <article class="feature-card">
+                <h2>Finder-style sidebar</h2>
+                <p>A toggleable source list with favorites, recent history, mounted volumes, cloud storage,
+                   AirDrop, Network, and Trash. Context menus on every item: open, reveal in Finder,
+                   copy path, unmount volumes. Feels like Finder, works like Total Commander.</p>
+            </article>
+
+            <article class="feature-card">
+                <h2>Smart copy &amp; conflict handling</h2>
+                <p>File operations show live byte-level progress. When a conflict hits, a clear side-by-side
+                   dialog shows the existing vs incoming file with size, date, and preview. Skip or replace &#8212;
+                   per file or for all. macOS service metadata (.DS_Store, Spotlight junk) is excluded automatically.</p>
             </article>
 
             <article class="feature-card feature-card-wide" id="media-converter">
@@ -342,15 +368,16 @@
 
             <article class="feature-card">
                 <p class="eyebrow">What makes this macOS file manager different?</p>
-                <p>Moving files without losing your mind. This file browser gives you two panels, tabs, SFTP that just works,
-                    15+ archive formats as folders, and a keyboard workflow that does not fight you.</p>
+                <p>Moving files without losing your mind. This file browser gives you two panels, tabs, a Finder-style sidebar,
+                    SFTP/SMB that just works, 15+ archive formats as folders, smart copy with conflict cards,
+                    GPS geotag detection on photos, a disk ballast finder, and a keyboard workflow that does not fight you.</p>
             </article>
 
             <article class="feature-card">
                 <p class="eyebrow">Can I use it instead of Finder on macOS 26+?</p>
                 <p>Yes. MiMiNavigator is designed as a native Finder alternative for macOS 26 or newer:
-                   dual-pane browsing, tabs, SFTP/FTP, archive folders, search, preview, and file operations
-                   are all available from one signed desktop app.</p>
+                   dual-pane browsing, tabs, Finder-style sidebar, SFTP/FTP/SMB, archive folders, search,
+                   preview, media conversion, and file operations are all available from one signed desktop app.</p>
             </article>
 
             <article class="feature-card">
