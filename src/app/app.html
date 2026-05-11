@@ -3,7 +3,7 @@
         <div class="topbar">
             <a class="brand brand-logo-link" href="#top" aria-label="MiMiNavigator home">
       <span class="brand-logo-shell">
-        <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="72" height="72">
+        <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="1024" height="1024">
         <span class="brand-logo-gloss" aria-hidden="true"></span>
       </span>
                 <span class="brand-text">Finder replacement, File Manager for macOS 26+</span>
@@ -105,18 +105,17 @@
                                     (click)="openHeroGallery($event)">⛶</button>
                         </div>
                         <div class="hero-gallery-thumbnails" aria-label="Choose screenshot">
-                            @for (img of heroGalleryImages; track img.itemImageSrc; let i = $index) {
-                                <button type="button"
-                                        class="hero-gallery-thumbnail"
-                                        [class.active]="i === heroCarouselIndex"
-                                        [attr.aria-label]="getHeroGalleryThumbnailLabel(i)"
-                                        [attr.aria-current]="i === heroCarouselIndex ? 'true' : null"
-                                        (click)="selectHeroGalleryImage(i)"
-                                        (dblclick)="openHeroGalleryAt(i, $event)"
-                                        (keydown)="onHeroThumbnailKeydown($event, i)">
-                                    <img [src]="img.thumbnailImageSrc" [alt]="img.alt">
-                                </button>
-                            }
+                            <button *ngFor="let img of heroGalleryImages; let i = index; trackBy: trackHeroGalleryImage"
+                                    type="button"
+                                    class="hero-gallery-thumbnail"
+                                    [class.active]="i === heroCarouselIndex"
+                                    [attr.aria-label]="getHeroGalleryThumbnailLabel(i)"
+                                    [attr.aria-current]="i === heroCarouselIndex ? 'true' : null"
+                                    (click)="selectHeroGalleryImage(i)"
+                                    (dblclick)="openHeroGalleryAt(i, $event)"
+                                    (keydown)="onHeroThumbnailKeydown($event, i)">
+                                <img [src]="img.thumbnailImageSrc" [alt]="img.alt">
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -163,19 +162,17 @@
                     <div class="commit-feed-scroller" aria-label="Recent MiMiNavigator commits and latest release changes">
                         <div class="commit-list" role="list" aria-label="Recent MiMiNavigator commits">
                             @if (recentCommits.length > 0) {
-                                @for (commit of recentCommits; track commit.hash) {
-                                    <a
-                                            class="commit-item"
-                                            [href]="commit.url"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            [attr.aria-label]="'Open commit ' + commit.shortHash + ' on GitHub'"
-                                            [attr.title]="commit.message"
-                                    >
-                                        <span class="commit-time">{{ commit.time }}</span>
-                                        <span class="commit-message">{{ commit.message }}</span>
-                                    </a>
-                                }
+                                <a *ngFor="let commit of recentCommits; trackBy: trackRecentCommit"
+                                   class="commit-item"
+                                   [href]="commit.url"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   [attr.aria-label]="'Open commit ' + commit.shortHash + ' on GitHub'"
+                                   [attr.title]="commit.message"
+                                >
+                                    <span class="commit-time">{{ commit.time }}</span>
+                                    <span class="commit-message">{{ commit.message }}</span>
+                                </a>
                             } @else {
                                 <div class="commit-feed-empty">
                                     Unable to load recent commits.
@@ -184,16 +181,13 @@
                         </div>
                         @if (releaseNoteSections.length > 0) {
                             <div class="release-notes-inline" aria-label="Latest release changes">
-                                @for (section of releaseNoteSections; track section.title) {
-                                    <section class="release-note-section">
-                                        <h3>{{ section.title }}</h3>
-                                        <ul>
-                                            @for (item of section.items; track item) {
-                                                <li>{{ item }}</li>
-                                            }
-                                        </ul>
-                                    </section>
-                                }
+                                <section *ngFor="let section of releaseNoteSections; trackBy: trackReleaseNoteSection"
+                                         class="release-note-section">
+                                    <h3>{{ section.title }}</h3>
+                                    <ul>
+                                        <li *ngFor="let item of section.items; trackBy: trackReleaseNoteItem">{{ item }}</li>
+                                    </ul>
+                                </section>
                             </div>
                         } @else {
                             <div class="commit-feed-empty">
@@ -246,9 +240,9 @@
 
             <div class="preview-grid preview-grid-large">
                 <article class="preview-card">
-                    <a href="images/Preview0.png" (click)="openPreview('Preview0.png', 'mimiPreview0'); $event.preventDefault()"
+                    <a href="/images/Preview0.png" (click)="openPreview('Preview0.png', 'mimiPreview0'); $event.preventDefault()"
                        aria-label="Open Preview0 screenshot in dialog">
-                        <img class="preview-image" src="images/Preview0.png"
+                        <img class="preview-image" src="/images/Preview0.png"
                              alt="MiMiNavigator file manager macOS &#8212; dual-panel workspace for file browsing">
                     </a>
                     <h3>Dual-panel workspace</h3>
@@ -257,9 +251,9 @@
                 </article>
 
                 <article class="preview-card">
-                    <a href="images/Preview1.png" (click)="openPreview('Preview1.png', 'mimiPreview1'); $event.preventDefault()"
+                    <a href="/images/Preview1.png" (click)="openPreview('Preview1.png', 'mimiPreview1'); $event.preventDefault()"
                        aria-label="Open Preview1 screenshot in dialog">
-                        <img class="preview-image" src="images/Preview1.png"
+                        <img class="preview-image" src="/images/Preview1.png"
                              alt="MiMiNavigator file browser macOS &#8212; media preview and file details panel">
                     </a>
                     <h3>Media preview &amp; file details</h3>
@@ -279,7 +273,8 @@
                 <p>MiMiNavigator is built for Mac users searching for a Finder replacement, a dual-pane file browser,
                    a Total Commander style workflow, a signed DMG file manager, an SFTP/SMB client, an archive manager,
                    or a media converter that does not require a separate app. Includes a Finder-style sidebar,
-                   GPS geotag detection on photos, smart copy with conflict resolution, and a disk ballast finder.</p>
+                   automatic cloud drive detection, GPS geotag detection on photos, smart copy with conflict resolution,
+                   and a disk ballast finder.</p>
             </article>
 
             <article class="feature-card">
@@ -316,7 +311,7 @@
             <article class="feature-card">
                 <h2>Keyboard-first workflow</h2>
                 <p>Hotkeys for everything &#8212; F2 for inline rename, F5 for copy, F6 for move, F7 for new folder.
-                   Tab switches panels. Insert marks files. Multi-selection with Cmd+Click, Shift+Click,
+                   Tab switches panels. Insert marks files. Multi-selection with ⌘-Click, ⇧-Click,
                    and range select. Total Commander users will feel right at home.</p>
             </article>
 
@@ -329,9 +324,13 @@
 
             <article class="feature-card">
                 <h2>Finder-style sidebar</h2>
-                <p>A toggleable source list with favorites, recent history, mounted volumes, cloud storage,
-                   AirDrop, Network, and Trash. Context menus on every item: open, reveal in Finder,
-                   copy path, unmount volumes. Feels like Finder, works like Total Commander.</p>
+                <p>A toggleable source list with favorites, recent history, mounted volumes, AirDrop, Network, Trash,
+                   and a dedicated Cloud Drives group. MiMiNavigator scans every folder in ~/Library/CloudStorage,
+                   not just OneDrive, and auto-detects Google Drive, OneDrive, Dropbox, Proton Drive, iCloud Drive,
+                   Box, and pCloud. New cloud providers are picked up automatically when they create a folder there.</p>
+                <p>Technical folder names are converted into readable labels with cloudDisplayName():
+                   GoogleDrive-senatov&#64;gmail.com becomes Google Drive (senatov&#64;gmail.com), and
+                   ProtonDrive-user&#64;gmail.com-folder becomes Proton Drive (user&#64;gmail.com).</p>
             </article>
 
             <article class="feature-card">
@@ -410,7 +409,7 @@
     <footer class="footer">
         <a class="brand footer-brand brand-logo-link" href="#top" aria-label="MiMiNavigator home">
       <span class="brand-logo-shell brand-logo-shell-footer">
-        <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="56" height="56">
+        <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="1024" height="1024">
         <span class="brand-logo-gloss" aria-hidden="true"></span>
       </span>
             <span class="brand-text">MiMiNavigator</span>

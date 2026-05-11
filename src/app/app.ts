@@ -10,6 +10,7 @@
 //
 
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {PreviewDialogComponent, PreviewDialogData} from './preview-dialog.component';
 import {GitHubService, RecentCommitViewModel} from './github.service';
@@ -46,7 +47,7 @@ type AnalyticsEventName =
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [MatDialogModule, GalleriaModule, SeoKeywordHighlightDirective],
+    imports: [CommonModule, MatDialogModule, GalleriaModule, SeoKeywordHighlightDirective],
     templateUrl: './app.html',
     styleUrl: './styles/app.css',
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -64,7 +65,7 @@ export class AppComponent implements OnInit, OnDestroy {
     protected readonly releasesPageUrl = 'https://github.com/senatov/MiMiNavigator/releases';
     protected readonly minimumMacOSVersion = 'macOS 26';
     protected readonly linkedInProfileUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
-    private readonly previewImageBasePath = 'images';
+    private readonly previewImageBasePath = '/images';
     private readonly previewDialogHint = 'Press Esc or click outside to close';
     private readonly heroGalleryFolderPath = 'gallery';
     private readonly heroGalleryFileNames = [
@@ -226,6 +227,22 @@ export class AppComponent implements OnInit, OnDestroy {
         return `Show screenshot ${index + 1} of ${this.heroGalleryImages.length}`;
     }
 
+    protected trackHeroGalleryImage(_: number, image: GalleryImageItem): string {
+        return image.itemImageSrc;
+    }
+
+    protected trackRecentCommit(_: number, commit: RecentCommitViewModel): string {
+        return commit.hash;
+    }
+
+    protected trackReleaseNoteSection(_: number, section: ReleaseNoteSection): string {
+        return section.title;
+    }
+
+    protected trackReleaseNoteItem(_: number, item: string): string {
+        return item;
+    }
+
     protected get heroGalleryCurrentItem(): GalleryImageItem {
         return this.heroGalleryImages[this.heroCarouselIndex];
     }
@@ -294,14 +311,12 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     private buildHeroGalleryImages(): GalleryImageItem[] {
-        const galleryImages = this.heroGalleryFileNames.map(fileName => {
+        return this.heroGalleryFileNames.map(fileName => {
             return this.createGalleryImageItem(
                 `${this.heroGalleryFolderPath}/${fileName}`,
                 this.createHeroGalleryImageTitle(fileName)
             );
         });
-
-        return galleryImages;
     }
 
     private createGalleryImageItem(relativePath: string, alt: string): GalleryImageItem {
