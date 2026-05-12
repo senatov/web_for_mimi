@@ -204,8 +204,9 @@
                     <div class="price">Download</div>
                     <div class="price-meta">
                         <p class="price-copy"><span class="price-label">Latest version:</span> <strong>{{ latestVersion }}</strong></p>
+                        <p class="price-copy"><span class="price-label">Released:</span> <span class="price-file-date">{{ latestReleaseDate }}</span> <span class="price-release-age">({{ latestReleaseAge }})</span></p>
                         <p class="price-copy"><span class="price-label">DMG file date:</span> <span
-                                class="price-file-date">{{ latestDmgFileDate }}</span></p>
+                                class="price-file-date">{{ latestDmgFileDate }}</span>@if (latestDmgFileAge) { <span class="price-release-age">({{ latestDmgFileAge }})</span>}</p>
                         <p class="price-copy price-copy-platform">Signed DMG for <span>{{ minimumMacOSVersion }}</span> or newer.</p>
                     </div>
                     @if (!isMobileDevice) {
@@ -260,10 +261,6 @@
                     <p>Quick Look is cute. This is better &#8212; preview, metadata, and navigation in one view.</p>
                 </article>
             </div>
-
-            <p class="details-copy hero-note" style="text-align:center;">
-                I need a few more screenshots to show off the full feature set. Please make these for the next update:
-            </p>
         </section>
 
         <section class="feature-grid" id="features">
@@ -325,20 +322,9 @@
             <article class="feature-card">
                 <h2>Finder-style sidebar</h2>
                 <p>A toggleable source list with favorites, recent history, mounted volumes, AirDrop, Network, Trash,
-                   and a dedicated Cloud Drives group. MiMiNavigator scans every folder in ~/Library/CloudStorage,
-                   not just OneDrive, and auto-detects Google Drive, OneDrive, Dropbox, Proton Drive, iCloud Drive,
-                   Box, and pCloud. New cloud providers are picked up automatically when they create a folder there.</p>
-                <p>Google Drive publishing has its own visible destination: uploaded share items land in My Drive/Public,
-                   and the synced folder appears as Google Drive Public in the sidebar.</p>
-            </article>
-
-            <article class="feature-card feature-card-wide">
-                <p class="eyebrow">New: private long links for real sharing</p>
-                <h2>Google Drive share links without manual browser work</h2>
-                <p>Right-click any selected file or folder and choose Copy Share Link. MiMiNavigator uploads it to
-                   Google Drive Public, creates a long external link, and copies it to the clipboard with either View only
-                   or Allow editing access. The first use opens Google OAuth; after that, the refresh token lives in
-                   macOS Keychain and repeated share-link actions run without opening the browser again.</p>
+                   and a dedicated Cloud Drives group. MiMiNavigator scans every folder in ~/Library/CloudStorage
+                   and auto-detects Google Drive, OneDrive, Dropbox, Proton Drive, iCloud Drive,
+                   Box, and pCloud. New cloud providers are picked up automatically.</p>
             </article>
 
             <article class="feature-card">
@@ -354,6 +340,28 @@
                    dialog shows the existing vs incoming file with size, date, and preview. Skip or replace &#8212;
                    per file or for all. macOS service metadata (.DS_Store, Spotlight junk) is excluded automatically,
                    and large Mac app packages are copied as package directories instead of fragile file streams.</p>
+            </article>
+
+            <article class="feature-card feature-card-wide">
+                <p class="eyebrow">Export any file to the cloud in one click</p>
+                <h2>One-click cloud export with public link</h2>
+                <p>Select any file in either panel, right-click, and export it straight to Google Drive. The file
+                   uploads in the background with a live progress indicator, and once finished MiMiNavigator
+                   generates a public share link and copies it to your clipboard automatically. No browser tabs,
+                   no drag-and-drop to a web page, no manual permission dialogs &#8212; one context-menu action
+                   turns a local file into a shareable cloud link. Works with documents, archives, images, videos,
+                   and any other file type Google Drive accepts.</p>
+            </article>
+
+            <article class="feature-card feature-card-wide">
+                <p class="eyebrow">Private long links for real sharing</p>
+                <h2>Google Drive share links without manual browser work</h2>
+                <p>Right-click any selected file or folder and choose Copy Share Link. MiMiNavigator uploads it to
+                   Google Drive Public, creates a long external link, and copies it to the clipboard with either View only
+                   or Allow editing access. The first use opens Google OAuth; after that, the refresh token lives in
+                   macOS Keychain and repeated share-link actions run without opening the browser again.
+                   Uploaded share items land in My Drive/Public, and the synced folder appears as
+                   Google Drive Public in the sidebar.</p>
             </article>
 
             <article class="feature-card feature-card-wide" id="media-converter">
@@ -413,6 +421,12 @@
                 <p class="eyebrow">What macOS version do I need?</p>
                 <p>{{ minimumMacOSVersion }} or newer. Built natively with SwiftUI and AppKit &#8212;
                    no Electron, no web wrappers, no Java runtime. Pure macOS performance.</p>
+            </article>
+
+            <article class="feature-card">
+                <p class="eyebrow">Can I share files via cloud directly?</p>
+                <p>Yes. Right-click any file, choose Export to Google Drive, and a public share link
+                   is copied to your clipboard automatically. No browser needed after the first OAuth login.</p>
             </article>
 
             <article class="feature-card">

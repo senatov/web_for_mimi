@@ -61,6 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
     protected latestReleaseDate = 'Loading...';
     protected latestReleaseAge = 'Checking release age...';
     protected latestDmgFileDate = 'Checking DMG file date...';
+    protected latestDmgFileAge = '';
     protected latestDmgUrl = 'https://github.com/senatov/MiMiNavigator/releases';
     protected readonly releasesPageUrl = 'https://github.com/senatov/MiMiNavigator/releases';
     protected readonly minimumMacOSVersion = 'macOS 26';
@@ -84,6 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ];
     private readonly heroCarouselTransitionMs = 920;
     private latestReleaseIsoDate: string | null = null;
+    private latestDmgIsoDate: string | null = null;
     private releaseAgeTimerId: number | null = null;
     private heroCarouselTransitionTimerId: number | null = null;
 
@@ -372,7 +374,9 @@ export class AppComponent implements OnInit, OnDestroy {
         const dmgAssetDates = dmgAsset as { updated_at?: string | null; created_at?: string | null } | undefined;
         const dmgUpdatedAt = dmgAssetDates?.updated_at ?? null;
         const dmgCreatedAt = dmgAssetDates?.created_at ?? null;
+        this.latestDmgIsoDate = dmgUpdatedAt || dmgCreatedAt || releaseDate || null;
         this.latestDmgFileDate = this.resolveDmgFileDate(releaseDate, dmgUpdatedAt, dmgCreatedAt);
+        this.updateDmgFileAge();
 
         this.cdr.markForCheck();
     }
@@ -422,12 +426,22 @@ export class AppComponent implements OnInit, OnDestroy {
         dmgUpdatedAt?: string | null,
         dmgCreatedAt?: string | null
     ): string {
-        const dmgDate = dmgUpdatedAt || dmgCreatedAt || releaseDate;
+        const dmgDate = dmgUpdatedAt || dmgCreatedAt;
         if (!dmgDate) {
-            return 'Unknown DMG file date';
+            return releaseDate
+                ? this.gitHubService.formatReleaseDate(releaseDate)
+                : 'Unknown DMG file date';
         }
 
-        return this.gitHubService.formatReleaseDate(dmgDate);
+        const formattedDmg = this.gitHubService.formatReleaseDate(dmgDate);
+        if (releaseDate && dmgDate !== releaseDate) {
+            const formattedRelease = this.gitHubService.formatReleaseDate(releaseDate);
+            if (formattedDmg !== formattedRelease) {
+                return `${formattedDmg} (release: ${formattedRelease})`;
+            }
+        }
+
+        return formattedDmg;
     }
 
     private async loadRecentCommits(): Promise<void> {
@@ -440,6 +454,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.releaseAgeTimerId = window.setInterval(() => {
             this.updateReleaseAge();
+            this.updateDmgFileAge();
             this.cdr.markForCheck();
         }, 60_000);
     }
@@ -462,14 +477,27 @@ export class AppComponent implements OnInit, OnDestroy {
         this.latestReleaseAge = this.gitHubService.formatReleaseAge(this.latestReleaseIsoDate);
     }
 
+
+    private updateDmgFileAge(): void {
+        if (!this.latestDmgIsoDate) {
+            this.latestDmgFileAge = '';
+            return;
+        }
+
+        this.latestDmgFileAge = this.gitHubService.formatReleaseAge(this.latestDmgIsoDate)
+            .replace('Released ', 'Built ');
+    }
+
     private applyReleaseFallback(): void {
         this.latestReleaseIsoDate = null;
+        this.latestDmgIsoDate = null;
         this.stopReleaseAgeTimer();
         this.latestVersion = 'Latest release';
         this.latestDmgUrl = this.releasesPageUrl;
         this.latestReleaseDate = 'Unknown release date';
         this.latestReleaseAge = 'Age unavailable';
         this.latestDmgFileDate = 'Unknown DMG file date';
+        this.latestDmgFileAge = '';
         this.releaseNoteSections = [];
         this.cdr.markForCheck();
     }
