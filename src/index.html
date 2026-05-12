@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
             name="description"
-            content="Free native macOS 26+ Finder alternative with dual panes, tabs, SFTP/FTP, archive folders, keyboard shortcuts, and built-in media converter. Signed DMG."
+            content="Free native macOS 26+ Finder alternative with dual panes, Google Drive share links, remembered selections, SFTP/FTP/SMB, archive folders, keyboard shortcuts, and built-in media converter. Signed DMG."
     >
     <meta name="author" content="Iakov Senatov">
     <meta name="application-name" content="MiMiNavigator">
@@ -19,7 +19,7 @@
     <meta property="og:title" content="MiMiNavigator — Mac File Manager">
     <meta
             property="og:description"
-            content="Native Finder alternative for macOS 26+ with dual panes, tabs, SFTP/FTP, archive folders, keyboard shortcuts, and one-click media format conversion. Free signed DMG, no subscription."
+            content="Native Finder alternative for macOS 26+ with dual panes, Google Drive share links, remembered selections, SFTP/FTP/SMB, archive folders, keyboard shortcuts, and one-click media format conversion. Free signed DMG, no subscription."
     >
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
@@ -28,7 +28,7 @@
     <meta name="twitter:title" content="MiMiNavigator — Mac File Manager">
     <meta
             name="twitter:description"
-            content="Free native file manager for macOS 26+ with dual panels, SFTP, archive folders, keyboard workflow, and built-in media converter. Signed DMG."
+            content="Free native file manager for macOS 26+ with dual panels, Google Drive share links, SFTP/SMB, archive folders, keyboard workflow, remembered selections, and built-in media converter. Signed DMG."
     >
     <meta name="twitter:image" content="https://miminavi.tech/images/Preview0.png">
     <meta property="og:image" content="https://miminavi.tech/images/Preview0.png">
@@ -73,7 +73,7 @@
             ],
             "softwareVersion": "0.9.7.2",
             "fileSize": "15MB",
-            "description": "Free native dual-pane file manager and file browser for macOS 26+ with built-in media format converter. Two panels, tabs, SFTP, FTP, archive formats as folders, keyboard shortcuts, and one-click conversion between video, audio, and image formats. A signed Finder alternative built with SwiftUI and AppKit.",
+            "description": "Free native dual-pane file manager and file browser for macOS 26+ with Google Drive share links, built-in media format converter, SFTP, FTP, SMB, archive folders, keyboard shortcuts, remembered selections, and signed DMG distribution.",
             "featureList": [
                 "Dual-pane file browsing",
                 "Finder alternative for macOS 26+",
@@ -82,11 +82,13 @@
                 "ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, and CPIO archives as folders",
                 "F2 rename, F5 copy, F6 move, F7 new folder shortcuts",
                 "Advanced file search by name, date, size, and type",
+                "Google Drive Public uploads with long share links and Keychain-backed OAuth",
+                "Selection restore with scroll-to-selection after folder hops",
                 "Built-in video, audio, and image format converter",
                 "Signed and notarized DMG",
                 "Free download with no subscription"
             ],
-            "keywords": "macOS 26 file manager, Finder alternative, dual-pane file manager, SFTP file manager, FTP client, archive manager, ZIP RAR 7Z TAR, keyboard file manager, media converter, video converter, audio converter, image converter, signed DMG",
+            "keywords": "macOS 26 file manager, Finder alternative, dual-pane file manager, Google Drive share links, SFTP file manager, FTP client, archive manager, ZIP RAR 7Z TAR, keyboard file manager, media converter, video converter, audio converter, image converter, signed DMG",
             "author": {
                 "@type": "Person",
                 "name": "Iakov Senatov",
@@ -159,7 +161,7 @@
                     "name": "What makes this macOS file manager different?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "MiMiNavigator gives you two panels, tabs, SFTP that just works, 15+ archive formats as folders, keyboard-first workflow, and a built-in one-click media format converter — all in one free, signed DMG."
+                        "text": "MiMiNavigator gives you two panels, tabs, SFTP that just works, 15+ archive formats as folders, Google Drive share links, remembered selections, keyboard-first workflow, and a built-in one-click media format converter — all in one free, signed DMG."
                     }
                 },
                 {
@@ -168,6 +170,14 @@
                     "acceptedAnswer": {
                         "@type": "Answer",
                         "text": "Yes. MiMiNavigator includes a built-in media converter that transforms any media file into any other format with one click. Convert MP4 to AVI, WAV to MP3, PNG to JPEG, MKV to MOV, FLAC to AAC, and dozens more combinations — no extra software needed."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can MiMiNavigator create Google Drive links for files and folders?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. MiMiNavigator can upload a selected file or folder to Google Drive Public, create a long external share link with view or edit access, copy it to the clipboard, and keep the user's Google refresh token in macOS Keychain after the first OAuth sign-in."
                     }
                 },
                 {

@@ -273,8 +273,8 @@
                 <p>MiMiNavigator is built for Mac users searching for a Finder replacement, a dual-pane file browser,
                    a Total Commander style workflow, a signed DMG file manager, an SFTP/SMB client, an archive manager,
                    or a media converter that does not require a separate app. Includes a Finder-style sidebar,
-                   automatic cloud drive detection, GPS geotag detection on photos, smart copy with conflict resolution,
-                   and a disk ballast finder.</p>
+                   Google Drive share links, automatic cloud drive detection, GPS geotag detection on photos,
+                   smart copy with conflict resolution, persistent selection restore, and a disk ballast finder.</p>
             </article>
 
             <article class="feature-card">
@@ -328,16 +328,32 @@
                    and a dedicated Cloud Drives group. MiMiNavigator scans every folder in ~/Library/CloudStorage,
                    not just OneDrive, and auto-detects Google Drive, OneDrive, Dropbox, Proton Drive, iCloud Drive,
                    Box, and pCloud. New cloud providers are picked up automatically when they create a folder there.</p>
-                <p>Technical folder names are converted into readable labels with cloudDisplayName():
-                   GoogleDrive-senatov&#64;gmail.com becomes Google Drive (senatov&#64;gmail.com), and
-                   ProtonDrive-user&#64;gmail.com-folder becomes Proton Drive (user&#64;gmail.com).</p>
+                <p>Google Drive publishing has its own visible destination: uploaded share items land in My Drive/Public,
+                   and the synced folder appears as Google Drive Public in the sidebar.</p>
+            </article>
+
+            <article class="feature-card feature-card-wide">
+                <p class="eyebrow">New: private long links for real sharing</p>
+                <h2>Google Drive share links without manual browser work</h2>
+                <p>Right-click any selected file or folder and choose Copy Share Link. MiMiNavigator uploads it to
+                   Google Drive Public, creates a long external link, and copies it to the clipboard with either View only
+                   or Allow editing access. The first use opens Google OAuth; after that, the refresh token lives in
+                   macOS Keychain and repeated share-link actions run without opening the browser again.</p>
+            </article>
+
+            <article class="feature-card">
+                <h2>Selection memory that follows your path</h2>
+                <p>Go into a folder, select a file, step back to the parent, and return later: MiMiNavigator remembers
+                   the recent selection and scrolls it back into view. It keeps the last navigation hops per panel,
+                   so deep photo folders and cloud directories no longer reset you to the top of the list.</p>
             </article>
 
             <article class="feature-card">
                 <h2>Smart copy &amp; conflict handling</h2>
                 <p>File operations show live byte-level progress. When a conflict hits, a clear side-by-side
                    dialog shows the existing vs incoming file with size, date, and preview. Skip or replace &#8212;
-                   per file or for all. macOS service metadata (.DS_Store, Spotlight junk) is excluded automatically.</p>
+                   per file or for all. macOS service metadata (.DS_Store, Spotlight junk) is excluded automatically,
+                   and large Mac app packages are copied as package directories instead of fragile file streams.</p>
             </article>
 
             <article class="feature-card feature-card-wide" id="media-converter">
@@ -369,7 +385,8 @@
                 <p class="eyebrow">What makes this macOS file manager different?</p>
                 <p>Moving files without losing your mind. This file browser gives you two panels, tabs, a Finder-style sidebar,
                     SFTP/SMB that just works, 15+ archive formats as folders, smart copy with conflict cards,
-                    GPS geotag detection on photos, a disk ballast finder, and a keyboard workflow that does not fight you.</p>
+                    Google Drive share links, remembered selections, GPS geotag detection on photos, a disk ballast finder,
+                    and a keyboard workflow that does not fight you.</p>
             </article>
 
             <article class="feature-card">
