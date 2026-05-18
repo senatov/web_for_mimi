@@ -57,13 +57,13 @@
                 <section class="price-card" id="features0">
                     <p class="eyebrow">The file manager macOS should have shipped. I built it.</p>
                     <p class="hero-note">
-                        I never found a file manager on macOS that didn&#8217;t make me want to throw the laptop.
-                        Finder has no dual pane. Forklift costs money and still feels like a wrapper. Commander One
-                        wants a subscription for SFTP. So I built my own.
-                        MiMiNavigator gives you two panels, tabs, favorites, history, FTP/SFTP/SMB &#8212; and opens
-                        ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, CPIO like folders.
-                        Nested archives too. Photos with GPS get a globe badge. It detects disk ballast.
-                        It&#8217;s free, it&#8217;s signed, and I&#8217;m still shipping fixes every week.
+                        Finder still makes serious file work feel like window juggling. ForkLift, Commander One,
+                        and Path Finder all solve parts of the problem, but I wanted a native, keyboard-first
+                        commander-style app that stays focused on moving, comparing, searching, archiving, and
+                        sharing real files. MiMiNavigator gives you two panels, tabs, favorites, history,
+                        FTP/SFTP/SMB, Google Drive share links, photo geotag badges, disk ballast search, and
+                        archive folders for ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, and CPIO.
+                        It is free, signed, notarized, and still improving every week.
                     </p>
                 </section>
 
@@ -269,9 +269,10 @@
                 <h2>A native macOS 26+ file manager for real file work</h2>
                 <p>MiMiNavigator is built for Mac users searching for a Finder replacement, a dual-pane file browser,
                    a Total Commander style workflow, a signed DMG file manager, an SFTP/SMB client, an archive manager,
-                   or a media converter that does not require a separate app. Includes a Finder-style sidebar,
-                   Google Drive share links, automatic cloud drive detection, GPS geotag detection on photos,
-                   smart copy with conflict resolution, persistent selection restore, and a disk ballast finder.</p>
+                   or a practical tool for cleaning and organizing large folders. It brings together a Finder-style
+                   sidebar, Google Drive share links, automatic cloud drive detection, GPS geotag detection on photos,
+                   smart copy with conflict resolution, persistent selection restore, archive browsing, and a disk
+                   ballast finder.</p>
             </article>
 
             <article class="feature-card">
@@ -284,17 +285,18 @@
 
             <article class="feature-card">
                 <h2>SFTP, FTP &amp; SMB &#8212; all built in</h2>
-                <p>Connect to any remote server with one click. SFTP, FTP, and SMB shares mount right inside
-                   the panels &#8212; no separate app needed. Saved connections with colored status indicators,
-                   Keychain-stored passwords, auto-connect on startup, and history-based restore on disconnect.
-                   SMB shares work even without system /Volumes write access.</p>
+                <p>Connect to remote storage without leaving the two-panel workspace. SFTP, FTP, and SMB locations
+                   open inside the panels, so local and remote paths can be browsed, copied, and compared side by side.
+                   Saved connections use status indicators, Keychain-backed credentials, startup auto-connect, and
+                   history-based restore after disconnects. SMB shares can be managed even when system /Volumes access
+                   is not available.</p>
             </article>
 
             <article class="feature-card">
                 <h2>Archive manager for ZIP, RAR, 7Z, TAR and more</h2>
-                <p>Open ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, CPIO &#8212;
-                   browse them like regular directories. Nested archives too.
-                   Create archives with progress tracking and cancel support.</p>
+                <p>Open ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, and CPIO archives and browse
+                   them like regular directories. Nested archives are supported too. Create archives with progress
+                   tracking, cancellation, and clear context-menu actions instead of jumping to a separate utility.</p>
             </article>
 
             <article class="feature-card">
@@ -336,47 +338,45 @@
 
             <article class="feature-card">
                 <h2>Smart copy &amp; conflict handling</h2>
-                <p>File operations show live byte-level progress. When a conflict hits, a clear side-by-side
-                   dialog shows the existing vs incoming file with size, date, and preview. Skip or replace &#8212;
-                   per file or for all. macOS service metadata (.DS_Store, Spotlight junk) is excluded automatically,
-                   and large Mac app packages are copied as package directories instead of fragile file streams.</p>
+                <p>File operations show live byte-level progress. When a conflict appears, a side-by-side dialog
+                   compares the existing and incoming file by size, date, and preview. Skip or replace per file,
+                   or apply the same decision to the whole operation. macOS service metadata such as .DS_Store and
+                   Spotlight leftovers are excluded automatically, and Mac app packages are copied as package
+                   directories instead of fragile flat file streams.</p>
             </article>
 
             <article class="feature-card feature-card-wide">
                 <p class="eyebrow">Export any file to the cloud in one click</p>
                 <h2>One-click cloud export with public link</h2>
-                <p>Select any file in either panel, right-click, and export it straight to Google Drive. The file
-                   uploads in the background with a live progress indicator, and once finished MiMiNavigator
-                   generates a public share link and copies it to your clipboard automatically. No browser tabs,
-                   no drag-and-drop to a web page, no manual permission dialogs &#8212; one context-menu action
-                   turns a local file into a shareable cloud link. Works with documents, archives, images, videos,
-                   and any other file type Google Drive accepts.</p>
+                <p>Select any file in either panel, right-click, and export it straight to Google Drive. The upload
+                   runs in the background with a live progress indicator; when it finishes, MiMiNavigator creates a
+                   public share link and copies it to your clipboard. No browser tabs, no drag-and-drop to a web page,
+                   no manual permission hunt &#8212; one context-menu action turns a local file into a shareable cloud
+                   link for documents, archives, images, videos, and other Google Drive-supported files.</p>
             </article>
 
             <article class="feature-card feature-card-wide">
                 <p class="eyebrow">Private long links for real sharing</p>
                 <h2>Google Drive share links without manual browser work</h2>
-                <p>Right-click any selected file or folder and choose Copy Share Link. MiMiNavigator uploads it to
-                   Google Drive Public, creates a long external link, and copies it to the clipboard with either View only
-                   or Allow editing access. The first use opens Google OAuth; after that, the refresh token lives in
-                   macOS Keychain and repeated share-link actions run without opening the browser again.
-                   Uploaded share items land in My Drive/Public, and the synced folder appears as
-                   Google Drive Public in the sidebar.</p>
+                <p>Right-click a selected file or folder and choose Copy Share Link. MiMiNavigator uploads it to
+                   Google Drive Public, creates an external link, and copies it to the clipboard with View only or
+                   Allow editing access. The first use opens Google OAuth; after that, the refresh token lives in
+                   macOS Keychain and repeated share-link actions run without reopening the browser. Uploaded items
+                   land in My Drive/Public, and the synced folder appears as Google Drive Public in the sidebar.</p>
             </article>
 
             <article class="feature-card feature-card-wide" id="media-converter">
                 <p class="eyebrow">Built-in Media Format Converter</p>
                 <h2>Built-in media converter</h2>
-                <p>Right-click any video, audio, or image file, pick a target format, and convert it in one click.
-                   MP4 to AVI, WAV to MP3, PNG to JPEG, MKV to MOV, FLAC to AAC, WEBM to MP4, TIFF to PNG,
-                   OGG to WAV, and dozens more combinations are built into the file manager. It works as a video
-                   converter, audio converter, and image converter for everyday Mac workflows.</p>
+                <p>Right-click a video, audio, or image file, choose Convert Media, pick a target format, and run
+                   the conversion without leaving the file manager. Everyday paths include MP4 to AVI, WAV to MP3,
+                   PNG to JPEG, MKV to MOV, FLAC to AAC, WEBM to MP4, TIFF to PNG, and OGG to WAV.</p>
                 <details>
                     <summary>Supported video, audio, and image formats</summary>
                     <p>Video: MP4, AVI, MKV, MOV, WEBM, FLV, WMV. Audio: MP3, WAV, FLAC, AAC, OGG, WMA, M4A, AIFF.
                        Images: PNG, JPEG, TIFF, BMP, WEBP, GIF, HEIC, SVG.</p>
-                    <p>No extra app, no separate command-line setup, and no workflow break: convert files from the same place
-                       where you browse, preview, move, and organize them.</p>
+                    <p>No separate app and no workflow break: convert files from the same place where you browse,
+                       preview, move, and organize them.</p>
                 </details>
             </article>
         </section>
@@ -391,8 +391,8 @@
 
             <article class="feature-card">
                 <p class="eyebrow">What makes this macOS file manager different?</p>
-                <p>Moving files without losing your mind. This file browser gives you two panels, tabs, a Finder-style sidebar,
-                    SFTP/SMB that just works, 15+ archive formats as folders, smart copy with conflict cards,
+                <p>Moving files without losing your place. This file browser gives you two panels, tabs, a Finder-style sidebar,
+                    SFTP/FTP/SMB, archive formats as folders, smart copy with conflict cards,
                     Google Drive share links, remembered selections, GPS geotag detection on photos, a disk ballast finder,
                     and a keyboard workflow that does not fight you.</p>
             </article>
@@ -401,7 +401,16 @@
                 <p class="eyebrow">Can I use it instead of Finder on macOS 26+?</p>
                 <p>Yes. MiMiNavigator is designed as a native Finder alternative for macOS 26 or newer:
                    dual-pane browsing, tabs, Finder-style sidebar, SFTP/FTP/SMB, archive folders, search,
-                   preview, media conversion, and file operations are all available from one signed desktop app.</p>
+                   preview, media conversion, cloud share links, and file operations are available from one signed desktop app.</p>
+            </article>
+
+            <article class="feature-card feature-card-wide">
+                <p class="eyebrow">Roadmap: features worth copying from successful competitors</p>
+                <p>The next product direction is focused on workflows that already made other macOS file managers valuable:
+                   batch rename with live before/after preview and undo, a persistent preview pane, folder sync and directory
+                   compare, a command bar for quick actions, saved workspaces, Git status badges, stronger direct remote/cloud
+                   backends such as WebDAV/S3/B2, duplicate search, app cleanup, and deeper Finder/system integration. The goal
+                   is not to add noise; it is to finish the file-manager jobs that power users pay for elsewhere.</p>
             </article>
 
             <article class="feature-card">
