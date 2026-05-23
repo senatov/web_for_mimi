@@ -26,7 +26,8 @@ export interface RecentCommitViewModel {
     providedIn: 'root'
 })
 export class GitHubService {
-    private readonly latestReleaseUrl = 'https://api.github.com/repos/senatov/MiMiNavigator/releases/latest';
+    private readonly latestReleaseUrl = '/api/github/release';
+    private readonly publicLatestReleaseUrl = 'https://api.github.com/repos/senatov/MiMiNavigator/releases/latest';
     private readonly recentCommitsUrl = '/api/github/commits';
     private readonly localRecentCommitsUrl = 'assets/recent-commits.json';
     private readonly requestHeaders: HeadersInit = {
@@ -40,7 +41,7 @@ export class GitHubService {
 
     async loadLatestRelease(): Promise<GitHubLatestRelease | null> {
         try {
-            const response = await fetch(this.latestReleaseUrl, {
+            const response = await fetch(this.resolveLatestReleaseUrl(), {
                 headers: this.requestHeaders
             });
 
@@ -169,6 +170,15 @@ export class GitHubService {
 
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         return isLocalhost ? this.localRecentCommitsUrl : this.recentCommitsUrl;
+    }
+
+    private resolveLatestReleaseUrl(): string {
+        if (typeof window === 'undefined') {
+            return this.latestReleaseUrl;
+        }
+
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        return isLocalhost ? this.publicLatestReleaseUrl : this.latestReleaseUrl;
     }
 
     private logRecentCommitsError(message: string): void {

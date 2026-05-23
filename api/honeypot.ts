@@ -10,11 +10,6 @@
 //  product-oriented JSON payload for automated scanners and mistyped URLs.
 //
 
-// Minimal CommonJS module declaration for Vercel Node runtime.
-declare const module: {
-  exports: unknown;
-};
-
 interface VercelLikeRequest {
   method?: string;
   url?: string;
@@ -77,7 +72,7 @@ function handler(req: VercelLikeRequest, res: VercelLikeResponse): void {
   res.status(200).json(body);
 }
 
-module.exports = handler;
+export default handler;
 
 function getRequestedPath(req: VercelLikeRequest): string {
   const rawPath = parsePathFromUrl(req.url);

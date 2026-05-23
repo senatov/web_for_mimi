@@ -16,10 +16,6 @@ declare const process: {
     GITHUB_TOKEN?: string;
   };
 };
-// Minimal CommonJS module declaration for Vercel Node runtime.
-declare const module: {
-  exports: unknown;
-};
 
 // Minimal request/response declarations for Vercel Node runtime.
 interface VercelLikeRequest {
@@ -62,19 +58,18 @@ async function handler(req: VercelLikeRequest, res: VercelLikeResponse): Promise
   }
 
   const token = process.env.GITHUB_TOKEN;
+  const headers: Record<string, string> = {
+    Accept: GITHUB_ACCEPT_HEADER,
+    'User-Agent': 'web_for_mimi'
+  };
 
-  if (!token) {
-    res.status(500).json({ error: 'Missing GITHUB_TOKEN environment variable' });
-    return;
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
   }
 
   try {
     const response = await fetch(GITHUB_COMMITS_URL, {
-      headers: {
-        Accept: GITHUB_ACCEPT_HEADER,
-        Authorization: `Bearer ${token}`,
-        'User-Agent': 'web_for_mimi'
-      }
+      headers
     });
 
     if (!response.ok) {
@@ -104,7 +99,7 @@ async function handler(req: VercelLikeRequest, res: VercelLikeResponse): Promise
   }
 }
 
-module.exports = handler;
+export default handler;
 
 function mapCommits(commits: GitHubCommitApiItem[]): CommitViewModel[] {
   return commits
