@@ -1,5 +1,5 @@
 //
-//  honeypot.ts
+//  honeypot.js
 //  web_for_mimi
 //
 //  Created by Iakov Senatov.
@@ -9,36 +9,6 @@
 //  Vercel serverless function for unknown endpoints. It returns a harmless
 //  product-oriented JSON payload for automated scanners and mistyped URLs.
 //
-
-interface VercelLikeRequest {
-  method?: string;
-  url?: string;
-  headers?: {
-    host?: string;
-  };
-}
-
-interface VercelLikeResponse {
-  setHeader(name: string, value: string): void;
-  status(code: number): VercelLikeResponse;
-  json(body: unknown): void;
-}
-
-interface ProductPayload {
-  ok: boolean;
-  type: string;
-  requestedPath: string;
-  product: {
-    name: string;
-    tagline: string;
-    description: string;
-    platform: string;
-    website: string;
-    releases: string;
-    highlights: string[];
-  };
-  note: string;
-}
 
 const PRODUCT_PAYLOAD = {
   name: 'MiMiNavigator',
@@ -56,9 +26,9 @@ const PRODUCT_PAYLOAD = {
   ]
 };
 
-function handler(req: VercelLikeRequest, res: VercelLikeResponse): void {
+function handler(req, res) {
   const requestedPath = getRequestedPath(req);
-  const body: ProductPayload = {
+  const body = {
     ok: true,
     type: 'product-info',
     requestedPath,
@@ -72,9 +42,7 @@ function handler(req: VercelLikeRequest, res: VercelLikeResponse): void {
   res.status(200).json(body);
 }
 
-export default handler;
-
-function getRequestedPath(req: VercelLikeRequest): string {
+function getRequestedPath(req) {
   const rawPath = parsePathFromUrl(req.url);
 
   if (!rawPath) {
@@ -84,7 +52,7 @@ function getRequestedPath(req: VercelLikeRequest): string {
   return rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
 }
 
-function parsePathFromUrl(url?: string): string {
+function parsePathFromUrl(url) {
   if (!url) {
     return '';
   }
@@ -98,3 +66,5 @@ function parsePathFromUrl(url?: string): string {
     return url.split('?')[0] || '';
   }
 }
+
+module.exports = handler;
