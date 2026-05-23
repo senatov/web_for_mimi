@@ -45,5 +45,11 @@
       "destination": "https://miminavi.tech/:path*",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "/api/honeypot?path=/:path*"
+    }
   ]
 }
