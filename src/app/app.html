@@ -2,11 +2,14 @@
     <header class="site-header">
         <div class="topbar">
             <a class="brand brand-logo-link" href="#top" aria-label="MiMiNavigator home">
-      <span class="brand-logo-shell">
-        <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="1024" height="1024">
-        <span class="brand-logo-gloss" aria-hidden="true"></span>
-      </span>
-                <span class="brand-text">Finder replacement, File Manager for macOS 26+</span>
+                <span class="brand-logo-shell">
+                    <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="1024" height="1024">
+                    <span class="brand-logo-gloss" aria-hidden="true"></span>
+                </span>
+                <span class="brand-copy">
+                    <span class="brand-text">MiMiNavigator</span>
+                    <span class="brand-subtitle">Finder replacement for macOS 26+</span>
+                </span>
             </a>
 
             <nav class="topnav" aria-label="Primary navigation">
@@ -14,6 +17,10 @@
                 <a href="#preview">Screenshots</a>
                 <a href="#download">Download</a>
                 <a href="#faq">FAQ</a>
+                @if (!isMobileDevice) {
+                    <a class="nav-download" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
+                       (click)="trackDownloadClick('hero')">Download</a>
+                }
             </nav>
         </div>
     </header>
@@ -28,45 +35,40 @@
                 </p>
             </div>
         }
+
         <section class="hero">
             <div class="hero-copy">
                 <h1>MiMiNavigator</h1>
-                <a class="linkedin-card" [href]="linkedInProfileUrl" target="_blank" rel="noopener noreferrer"
-                   aria-label="Open Iakov Senatov LinkedIn profile" (click)="trackLinkedInClick('hero')">
-                    <span class="linkedin-card-cover" aria-hidden="true"></span>
+                <p class="hero-lede">Dual-pane file manager for people who move real files all day.</p>
+                <p class="hero-note">
+                    A native macOS 26+ Finder replacement with two panels, tabs, List/Preview/Tree modes,
+                    SFTP/FTP/SMB connections, archive folders, advanced search, media info, and Google Drive share links.
+                </p>
 
-                    <span class="linkedin-card-body">
-            <span class="linkedin-card-avatar" aria-hidden="true">IS</span>
+                <div class="hero-actions">
+                    @if (!isMobileDevice) {
+                        <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
+                           (click)="trackDownloadClick('hero')">Download App</a>
+                    } @else {
+                        <span class="mobile-download-hint">Open this page on a Mac to download.</span>
+                    }
+                    <a class="button button-secondary" href="#preview">View screenshots</a>
+                </div>
 
-            <span class="linkedin-card-main">
-              <span class="linkedin-card-name-row">
-                <span class="linkedin-card-title">Iakov Senatov</span>
-                <span class="linkedin-card-pronouns">He/Him</span>
-              </span>
+                <div class="hero-proof" aria-label="Product highlights">
+                    <span>Free, signed, notarized DMG</span>
+                    <span>SwiftUI + AppKit, no Electron</span>
+                    <span>AGPL-3.0 source on GitHub</span>
+                </div>
 
-              <span class="linkedin-card-role">
-                IT-Freelance &middot; Senior Java / Integration Consultant &middot; Legacy Modernization &middot; Banking &amp; Public Sector &middot; Spring, REST, SOAP
-              </span>
-              <span class="linkedin-card-meta">
-                    Heusenstamm, Hesse, Germany &middot; <span class="linkedin-card-link">Contact info</span>
-              </span>
-             </span>
-          </span>
-                </a>
-
-                <section class="price-card" id="features0">
-                    <p class="eyebrow">The file manager macOS should have shipped. I built it.</p>
-                    <p class="hero-note">
-                        Finder still makes serious file work feel like window juggling. ForkLift, Commander One,
-                        and Path Finder all solve parts of the problem, but I wanted a native, keyboard-first
-                        commander-style app that stays focused on moving, comparing, searching, archiving, and
-                        sharing real files. MiMiNavigator gives you two panels, tabs, favorites, history,
-                        FTP/SFTP/SMB, Google Drive share links, photo geotag badges, disk ballast search, and
-                        archive folders for ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, and CPIO.
-                        It is free, signed, notarized, and still improving every week.
-                    </p>
-                </section>
-
+                <div class="hero-capabilities" aria-label="Core capabilities">
+                    <span>Two panels</span>
+                    <span>Tabs</span>
+                    <span>SFTP/SMB</span>
+                    <span>50+ archive formats</span>
+                    <span>Media Convert</span>
+                    <span>Google Drive links</span>
+                </div>
             </div>
 
             <div class="hero-visual" aria-label="MiMiNavigator screenshot gallery">
@@ -80,6 +82,7 @@
                             <span class="window-dot red"></span>
                             <span class="window-dot yellow"></span>
                             <span class="window-dot green"></span>
+                            <span class="window-title">MiMiNavigator workspace</span>
                             <span class="hero-gallery-counter">{{ heroGalleryProgressLabel }}</span>
                         </div>
                         <div class="hero-carousel-stage"
@@ -94,15 +97,21 @@
                             <button type="button"
                                     class="hero-gallery-nav hero-gallery-nav-previous"
                                     aria-label="Previous screenshot"
-                                    (click)="showPreviousHeroGalleryImage($event)">‹</button>
+                                    (click)="showPreviousHeroGalleryImage($event)">
+                                <span aria-hidden="true">&#8249;</span>
+                            </button>
                             <button type="button"
                                     class="hero-gallery-nav hero-gallery-nav-next"
                                     aria-label="Next screenshot"
-                                    (click)="showNextHeroGalleryImage($event)">›</button>
+                                    (click)="showNextHeroGalleryImage($event)">
+                                <span aria-hidden="true">&#8250;</span>
+                            </button>
                             <button type="button"
                                     class="hero-gallery-open"
                                     aria-label="Open current screenshot in fullscreen gallery"
-                                    (click)="openHeroGallery($event)">⛶</button>
+                                    (click)="openHeroGallery($event)">
+                                <span aria-hidden="true">&#9974;</span>
+                            </button>
                         </div>
                         <div class="hero-gallery-thumbnails" aria-label="Choose screenshot">
                             <button *ngFor="let img of heroGalleryImages; let i = index; trackBy: trackHeroGalleryImage"
@@ -155,9 +164,91 @@
             </div>
         </section>
 
+        <section class="quick-strip" aria-label="MiMiNavigator workflow summary">
+            <div class="quick-strip-item">
+                <strong>Browse</strong>
+                <span>List, Preview, and Tree modes share sorting, marking, and keyboard navigation.</span>
+            </div>
+            <div class="quick-strip-item">
+                <strong>Move</strong>
+                <span>F5 copy, F6 move, conflict cards, progress panels, and Finder-compatible clipboard.</span>
+            </div>
+            <div class="quick-strip-item">
+                <strong>Connect</strong>
+                <span>SFTP, FTP, SMB, app-managed mounts, Keychain-backed saved servers.</span>
+            </div>
+            <div class="quick-strip-item">
+                <strong>Share</strong>
+                <span>Google Drive public links copied from the file manager context menu.</span>
+            </div>
+        </section>
+
+        <section class="feature-overview" id="features">
+            <div class="section-kicker">Features</div>
+            <div class="section-heading-block">
+                <h2>Built for the jobs Finder makes expensive</h2>
+                <p>
+                    MiMiNavigator combines commander-style speed with modern macOS UI: real two-panel work,
+                    remote locations, archive browsing, media inspection, and search workflows in one signed app.
+                </p>
+            </div>
+
+            <div class="feature-clusters">
+                <article class="feature-cluster">
+                    <span class="cluster-icon" aria-hidden="true">01</span>
+                    <h3>Panel workflow</h3>
+                    <p>Two independent panels, tabs, favorites, history, Finder-style sidebar, remembered selection, drag batches, and shared List/Preview/Tree view state.</p>
+                    <ul>
+                        <li>Tab switches panels; Insert marks and moves to next file.</li>
+                        <li>Preview mode now uses the same marked-file state as List mode.</li>
+                        <li>Tree mode adds lazy expandable directory rows with metadata columns.</li>
+                    </ul>
+                </article>
+
+                <article class="feature-cluster">
+                    <span class="cluster-icon" aria-hidden="true">02</span>
+                    <h3>Remote and cloud</h3>
+                    <p>SFTP, FTP, and SMB locations open inside the panels, with saved connections, status indicators, and history-based restore after disconnects.</p>
+                    <ul>
+                        <li>SMB can mount under app-owned support folders when /Volumes is unavailable.</li>
+                        <li>Cloud drives are detected from ~/Library/CloudStorage.</li>
+                        <li>Google Drive share links upload in the background and copy to clipboard.</li>
+                    </ul>
+                </article>
+
+                <article class="feature-cluster">
+                    <span class="cluster-icon" aria-hidden="true">03</span>
+                    <h3>Search and archives</h3>
+                    <p>Advanced search covers names, content, size, age, dates, deletable-only ballast scans, and archive contents without leaving the file manager.</p>
+                    <ul>
+                        <li>Browse ZIP, RAR, 7Z, TAR, DMG, ISO, CAB, XAR, LZH, ARJ, CPIO, and more.</li>
+                        <li>Archives behave like virtual folders with parent navigation.</li>
+                        <li>Large directories use timeouts, cache fallback, and sampled autofit.</li>
+                    </ul>
+                </article>
+
+                <article class="feature-cluster">
+                    <span class="cluster-icon" aria-hidden="true">04</span>
+                    <h3>Media and metadata</h3>
+                    <p>Media Info, EXIF photo dates, GPS map links, geotag badges, and Convert Media workflows are part of the file workflow.</p>
+                    <ul>
+                        <li>Convert video, audio, and image files from the context menu.</li>
+                        <li>Photos with GPS metadata get a compact badge on their file icon.</li>
+                        <li>Preview and metadata stay available while navigating siblings.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
         <section class="pricing" id="download">
-            <div>
-                <p class="eyebrow">Latest commits:</p>
+            <div class="release-panel">
+                <div class="section-kicker">Latest activity</div>
+                <h2>Current release: view-mode parity, Tree view, Preview DnD, autosave.</h2>
+                <p>
+                    Version 0.9.9.3 brings List, Preview, and Tree views closer together:
+                    shared sorting headers, panel keyboard callbacks, unified marked-file state, and periodic configuration autosave.
+                </p>
+
                 <section class="commit-feed" aria-label="Latest commits and release changes">
                     <div class="commit-feed-scroller" aria-label="Recent MiMiNavigator commits and latest release changes">
                         <div class="commit-list" role="list" aria-label="Recent MiMiNavigator commits">
@@ -168,8 +259,7 @@
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    [attr.aria-label]="'Open commit ' + commit.shortHash + ' on GitHub'"
-                                   [attr.title]="commit.message"
-                                >
+                                   [attr.title]="commit.message">
                                     <span class="commit-time">{{ commit.time }}</span>
                                     <span class="commit-message">{{ commit.message }}</span>
                                 </a>
@@ -199,7 +289,6 @@
             </div>
 
             <div class="pricing-card-column">
-                <p class="eyebrow">Download:</p>
                 <div class="price-card">
                     <div class="price">Download</div>
                     <div class="price-meta">
@@ -207,7 +296,7 @@
                         <p class="price-copy"><span class="price-label">Released:</span> <span class="price-file-date">{{ latestReleaseDate }}</span> <span class="price-release-age">({{ latestReleaseAge }})</span></p>
                         <p class="price-copy"><span class="price-label">DMG file date:</span> <span
                                 class="price-file-date">{{ latestDmgFileDate }}</span>@if (latestDmgFileAge) { <span class="price-release-age">({{ latestDmgFileAge }})</span>}</p>
-                        <p class="price-copy price-copy-platform">Signed DMG for <span>{{ minimumMacOSVersion }}</span> or newer.</p>
+                        <p class="price-copy price-copy-platform">Signed and notarized DMG for <span>{{ minimumMacOSVersion }}</span> or newer.</p>
                     </div>
                     @if (!isMobileDevice) {
                         <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
@@ -218,7 +307,7 @@
                         <p class="mobile-download-hint">Open this page on a Mac to download.</p>
                     }
                     <div class="download-pitch">
-                        <h2>Two panels or go home</h2>
+                        <h2>No App Store. No subscription. No Electron.</h2>
                         <p>{{ downloadPitchText }}</p>
                     </div>
                     <p class="price-copy">
@@ -231,11 +320,11 @@
 
         <section class="details" id="preview">
             <div class="details-copy">
-                <p class="eyebrow">macOS File Manager Screenshots</p>
-                <h2 class="section-heading-title">See it in action</h2>
+                <div class="section-kicker">Screenshots</div>
+                <h2 class="section-heading-title">See the actual app, not a marketing mockup</h2>
                 <p class="hero-text">
-                    Two panels. Tabs. A breadcrumb that does not lie. File sizes you can actually read.
-                    Click any screenshot to zoom in and judge for yourself.
+                    The page uses real MiMiNavigator screenshots. Click any image to zoom in and inspect the panels,
+                    toolbar, metadata views, and transfer workflows.
                 </p>
             </div>
 
@@ -244,214 +333,94 @@
                     <a href="/images/Preview0.png" (click)="openPreview('Preview0.png', 'mimiPreview0'); $event.preventDefault()"
                        aria-label="Open Preview0 screenshot in dialog">
                         <img class="preview-image" src="/images/Preview0.png"
-                             alt="MiMiNavigator file manager macOS &#8212; dual-panel workspace for file browsing">
+                             alt="MiMiNavigator file manager macOS - dual-panel workspace for file browsing">
                     </a>
                     <h3>Dual-panel workspace</h3>
-                    <p>Move, copy, compare &#8212; without opening six windows and losing your place.
-                       Left panel, right panel, no Finder nonsense.</p>
+                    <p>Move, copy, compare, search, and keep source and destination visible without Finder window juggling.</p>
                 </article>
 
                 <article class="preview-card">
                     <a href="/images/Preview1.png" (click)="openPreview('Preview1.png', 'mimiPreview1'); $event.preventDefault()"
                        aria-label="Open Preview1 screenshot in dialog">
                         <img class="preview-image" src="/images/Preview1.png"
-                             alt="MiMiNavigator file browser macOS &#8212; media preview and file details panel">
+                             alt="MiMiNavigator file browser macOS - media preview and file details panel">
                     </a>
-                    <h3>Media preview &amp; file details</h3>
-                    <p>Quick Look is cute. This is better &#8212; preview, metadata, and navigation in one view.</p>
+                    <h3>Media preview and file details</h3>
+                    <p>Inspect metadata, navigate siblings, use map links, and convert media from the same file workflow.</p>
                 </article>
             </div>
         </section>
 
-        <section class="feature-grid" id="features">
-            <article class="feature-card feature-card-wide">
-                <p class="eyebrow">Find MiMiNavigator when you need</p>
-                <h2>A native macOS 26+ file manager for real file work</h2>
-                <p>MiMiNavigator is built for Mac users searching for a Finder replacement, a dual-pane file browser,
-                   a Total Commander style workflow, a signed DMG file manager, an SFTP/SMB client, an archive manager,
-                   or a practical tool for cleaning and organizing large folders. It brings together a Finder-style
-                   sidebar, Google Drive share links, automatic cloud drive detection, GPS geotag detection on photos,
-                   smart copy with conflict resolution, persistent selection restore, archive browsing, and a disk
-                   ballast finder.</p>
+        <section class="roadmap-section" id="faq">
+            <div class="section-kicker">FAQ and roadmap</div>
+            <div class="section-heading-block">
+                <h2>Practical answers for a practical file manager</h2>
+                <p>MiMiNavigator is free, open source, signed, notarized, and still moving quickly.</p>
+            </div>
+
+            <div class="faq-grid">
+                <article class="faq-item">
+                    <h3>Why build another file manager for macOS?</h3>
+                    <p>Finder is good for casual browsing, but serious file work needs two panels, keyboard shortcuts, visible paths, batch operations, and fewer windows.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Can it replace Finder on macOS 26+?</h3>
+                    <p>Yes for file-manager work: dual-pane browsing, tabs, sidebar, SFTP/FTP/SMB, archives, search, preview, media conversion, cloud links, and file operations are all in one app.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>How do I install it?</h3>
+                    <p>Download the signed DMG, open it, drag MiMiNavigator to Applications, and launch it. No App Store and no extra installer.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Is it really free?</h3>
+                    <p>Yes. No trial, subscription, or hidden fee. The source is available under AGPL-3.0.</p>
+                </article>
+            </div>
+
+            <article class="roadmap-card">
+                <div>
+                    <h3>Roadmap</h3>
+                    <p>
+                        Next direction: batch rename with live before/after preview, folder sync and directory compare,
+                        saved workspaces, command bar, Git status badges, duplicate search, app cleanup, WebDAV/S3/B2,
+                        and deeper Finder/system integration.
+                    </p>
+                </div>
+                <a class="button button-secondary" href="#download">Get the current build</a>
             </article>
 
-            <article class="feature-card">
-                <h2>Dual-panel file browsing</h2>
-                <p>Two side-by-side panels with independent navigation, tabs, favorites, and history.
-                   Drag files between panels, compare directories at a glance, or just keep your source
-                   and destination visible at the same time. Useful when Finder windows, copy dialogs, and
-                   breadcrumb paths slow you down.</p>
-            </article>
+            <a class="linkedin-card" [href]="linkedInProfileUrl" target="_blank" rel="noopener noreferrer"
+               aria-label="Open Iakov Senatov LinkedIn profile" (click)="trackLinkedInClick('footer')">
+                <span class="linkedin-card-cover" aria-hidden="true"></span>
 
-            <article class="feature-card">
-                <h2>SFTP, FTP &amp; SMB &#8212; all built in</h2>
-                <p>Connect to remote storage without leaving the two-panel workspace. SFTP, FTP, and SMB locations
-                   open inside the panels, so local and remote paths can be browsed, copied, and compared side by side.
-                   Saved connections use status indicators, Keychain-backed credentials, startup auto-connect, and
-                   history-based restore after disconnects. SMB shares can be managed even when system /Volumes access
-                   is not available.</p>
-            </article>
-
-            <article class="feature-card">
-                <h2>Archive manager for ZIP, RAR, 7Z, TAR and more</h2>
-                <p>Open ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, and CPIO archives and browse
-                   them like regular directories. Nested archives are supported too. Create archives with progress
-                   tracking, cancellation, and clear context-menu actions instead of jumping to a separate utility.</p>
-            </article>
-
-            <article class="feature-card">
-                <h2>Advanced file search</h2>
-                <p>Find files by name, date range, age, size, and type. Search by modification or access date,
-                   filter by deletable-only, and use the built-in &#8220;ballast finder&#8221; to locate
-                   old unused files eating your disk. Real-time results with smart pruning that skips
-                   macOS bundle containers and runtime junk.</p>
-            </article>
-
-            <article class="feature-card">
-                <h2>Keyboard-first workflow</h2>
-                <p>Hotkeys for everything &#8212; F2 for inline rename, F5 for copy, F6 for move, F7 for new folder.
-                   Tab switches panels. Insert marks files. Multi-selection with ⌘-Click, ⇧-Click,
-                   and range select. Total Commander users will feel right at home.</p>
-            </article>
-
-            <article class="feature-card">
-                <h2>GeoTag detection on photos</h2>
-                <p>Photos with GPS coordinates get a small globe badge on their icon &#8212; automatically,
-                   in the background, after every directory scan. Reads EXIF headers from JPEG, HEIC, TIFF,
-                   DNG, and 10+ RAW formats without decoding pixels. See at a glance which shots have location data.</p>
-            </article>
-
-            <article class="feature-card">
-                <h2>Finder-style sidebar</h2>
-                <p>A toggleable source list with favorites, recent history, mounted volumes, AirDrop, Network, Trash,
-                   and a dedicated Cloud Drives group. MiMiNavigator scans every folder in ~/Library/CloudStorage
-                   and auto-detects Google Drive, OneDrive, Dropbox, Proton Drive, iCloud Drive,
-                   Box, and pCloud. New cloud providers are picked up automatically.</p>
-            </article>
-
-            <article class="feature-card">
-                <h2>Selection memory that follows your path</h2>
-                <p>Go into a folder, select a file, step back to the parent, and return later: MiMiNavigator remembers
-                   the recent selection and scrolls it back into view. It keeps the last navigation hops per panel,
-                   so deep photo folders and cloud directories no longer reset you to the top of the list.</p>
-            </article>
-
-            <article class="feature-card">
-                <h2>Smart copy &amp; conflict handling</h2>
-                <p>File operations show live byte-level progress. When a conflict appears, a side-by-side dialog
-                   compares the existing and incoming file by size, date, and preview. Skip or replace per file,
-                   or apply the same decision to the whole operation. macOS service metadata such as .DS_Store and
-                   Spotlight leftovers are excluded automatically, and Mac app packages are copied as package
-                   directories instead of fragile flat file streams.</p>
-            </article>
-
-            <article class="feature-card feature-card-wide">
-                <p class="eyebrow">Export any file to the cloud in one click</p>
-                <h2>One-click cloud export with public link</h2>
-                <p>Select any file in either panel, right-click, and export it straight to Google Drive. The upload
-                   runs in the background with a live progress indicator; when it finishes, MiMiNavigator creates a
-                   public share link and copies it to your clipboard. No browser tabs, no drag-and-drop to a web page,
-                   no manual permission hunt &#8212; one context-menu action turns a local file into a shareable cloud
-                   link for documents, archives, images, videos, and other Google Drive-supported files.</p>
-            </article>
-
-            <article class="feature-card feature-card-wide">
-                <p class="eyebrow">Private long links for real sharing</p>
-                <h2>Google Drive share links without manual browser work</h2>
-                <p>Right-click a selected file or folder and choose Copy Share Link. MiMiNavigator uploads it to
-                   Google Drive Public, creates an external link, and copies it to the clipboard with View only or
-                   Allow editing access. The first use opens Google OAuth; after that, the refresh token lives in
-                   macOS Keychain and repeated share-link actions run without reopening the browser. Uploaded items
-                   land in My Drive/Public, and the synced folder appears as Google Drive Public in the sidebar.</p>
-            </article>
-
-            <article class="feature-card feature-card-wide" id="media-converter">
-                <p class="eyebrow">Built-in Media Format Converter</p>
-                <h2>Built-in media converter</h2>
-                <p>Right-click a video, audio, or image file, choose Convert Media, pick a target format, and run
-                   the conversion without leaving the file manager. Everyday paths include MP4 to AVI, WAV to MP3,
-                   PNG to JPEG, MKV to MOV, FLAC to AAC, WEBM to MP4, TIFF to PNG, and OGG to WAV.</p>
-                <details>
-                    <summary>Supported video, audio, and image formats</summary>
-                    <p>Video: MP4, AVI, MKV, MOV, WEBM, FLV, WMV. Audio: MP3, WAV, FLAC, AAC, OGG, WMA, M4A, AIFF.
-                       Images: PNG, JPEG, TIFF, BMP, WEBP, GIF, HEIC, SVG.</p>
-                    <p>No separate app and no workflow break: convert files from the same place where you browse,
-                       preview, move, and organize them.</p>
-                </details>
-            </article>
-        </section>
-
-        <section class="feature-grid" id="faq">
-            <article class="feature-card">
-                <p class="eyebrow">Why build another file manager for macOS?</p>
-                <p>Because after 20 years of macOS, Apple still thinks one panel is enough.
-                    I grew up on Total Commander, moved to Mac, and no file browser came close. So I wrote my own dual-panel file
-                    manager from scratch.</p>
-            </article>
-
-            <article class="feature-card">
-                <p class="eyebrow">What makes this macOS file manager different?</p>
-                <p>Moving files without losing your place. This file browser gives you two panels, tabs, a Finder-style sidebar,
-                    SFTP/FTP/SMB, archive formats as folders, smart copy with conflict cards,
-                    Google Drive share links, remembered selections, GPS geotag detection on photos, a disk ballast finder,
-                    and a keyboard workflow that does not fight you.</p>
-            </article>
-
-            <article class="feature-card">
-                <p class="eyebrow">Can I use it instead of Finder on macOS 26+?</p>
-                <p>Yes. MiMiNavigator is designed as a native Finder alternative for macOS 26 or newer:
-                   dual-pane browsing, tabs, Finder-style sidebar, SFTP/FTP/SMB, archive folders, search,
-                   preview, media conversion, cloud share links, and file operations are available from one signed desktop app.</p>
-            </article>
-
-            <article class="feature-card feature-card-wide">
-                <p class="eyebrow">Roadmap: features worth copying from successful competitors</p>
-                <p>The next product direction is focused on workflows that already made other macOS file managers valuable:
-                   batch rename with live before/after preview and undo, a persistent preview pane, folder sync and directory
-                   compare, a command bar for quick actions, saved workspaces, Git status badges, stronger direct remote/cloud
-                   backends such as WebDAV/S3/B2, duplicate search, app cleanup, and deeper Finder/system integration. The goal
-                   is not to add noise; it is to finish the file-manager jobs that power users pay for elsewhere.</p>
-            </article>
-
-            <article class="feature-card">
-                <p class="eyebrow">How do I get it?</p>
-                <p>Download the signed DMG above, open it, and drag MiMiNavigator to Applications.
-                    Launch it from your Applications folder and start working right away.
-                    No App Store, no subscription, no extra installer. The source code is on GitHub too.</p>
-            </article>
-
-            <article class="feature-card">
-                <p class="eyebrow">Is it really free?</p>
-                <p>Yes. No trial, no subscription, no hidden fees. MiMiNavigator is open source under AGPL-3.0
-                   and distributed as a signed and notarized DMG. Use it forever.</p>
-            </article>
-
-            <article class="feature-card">
-                <p class="eyebrow">What macOS version do I need?</p>
-                <p>{{ minimumMacOSVersion }} or newer. Built natively with SwiftUI and AppKit &#8212;
-                   no Electron, no web wrappers, no Java runtime. Pure macOS performance.</p>
-            </article>
-
-            <article class="feature-card">
-                <p class="eyebrow">Can I share files via cloud directly?</p>
-                <p>Yes. Right-click any file, choose Export to Google Drive, and a public share link
-                   is copied to your clipboard automatically. No browser needed after the first OAuth login.</p>
-            </article>
-
-            <article class="feature-card">
-                <p class="eyebrow">Can I contribute?</p>
-                <p>Absolutely. The full source code is on GitHub. File issues, submit pull requests,
-                   or just star the repo if you find it useful. Feedback always welcome.</p>
-            </article>
+                <span class="linkedin-card-body">
+                    <span class="linkedin-card-avatar" aria-hidden="true">IS</span>
+                    <span class="linkedin-card-main">
+                        <span class="linkedin-card-name-row">
+                            <span class="linkedin-card-title">Iakov Senatov</span>
+                            <span class="linkedin-card-pronouns">He/Him</span>
+                        </span>
+                        <span class="linkedin-card-role">
+                            IT-Freelance &middot; Senior Java / Integration Consultant &middot; Legacy Modernization &middot; Banking &amp; Public Sector &middot; Spring, REST, SOAP
+                        </span>
+                        <span class="linkedin-card-meta">
+                            Heusenstamm, Hesse, Germany &middot; <span class="linkedin-card-link">Contact info</span>
+                        </span>
+                    </span>
+                </span>
+            </a>
         </section>
     </main>
 
     <footer class="footer">
         <a class="brand footer-brand brand-logo-link" href="#top" aria-label="MiMiNavigator home">
-      <span class="brand-logo-shell brand-logo-shell-footer">
-        <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="1024" height="1024">
-        <span class="brand-logo-gloss" aria-hidden="true"></span>
-      </span>
+            <span class="brand-logo-shell brand-logo-shell-footer">
+                <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="1024" height="1024">
+                <span class="brand-logo-gloss" aria-hidden="true"></span>
+            </span>
             <span class="brand-text">MiMiNavigator</span>
         </a>
 

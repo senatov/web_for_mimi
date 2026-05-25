@@ -98,7 +98,7 @@ export class AppComponent implements OnInit, OnDestroy {
     protected heroCarouselTransitioning = false;
     protected readonly heroGalleryImages: GalleryImageItem[] = this.buildHeroGalleryImages();
     protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    protected readonly downloadPitchText = 'MiMiNavigator is a free dual-pane file manager for macOS built for people who move real files all day. Two panels stay visible, so copy, move, compare, rename, compress, preview, share Google Drive links, and navigate without the Finder window shuffle. It feels like a modern Mac file browser with the muscle memory of classic commanders: keyboard-first, clear paths, fast context actions, archive folders, SFTP, favorites, history, remembered selections, and tabs when you need them. If you search Google for a free Mac dual pane file manager, dual panel file browser, Total Commander alternative for macOS, Finder replacement, or signed DMG file manager for Mac, this is the product you were trying to find.';
+    protected readonly downloadPitchText = 'MiMiNavigator is a free dual-pane file manager for macOS built for people who move real files all day. It keeps source and destination visible, supports keyboard-first operations, remembers panel state, opens remote and archive locations, shares Google Drive links, and ships as a signed notarized DMG.';
 
 
     ngOnInit(): void {

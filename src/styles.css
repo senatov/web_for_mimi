@@ -4,6 +4,10 @@
   --gd-font-text: Roboto, "Helvetica Neue", Arial, sans-serif;
   --gd-blue: #1a73e8;
   --gd-blue-dark: #174ea6;
+  --gd-blue-soft: #e8f0fe;
+  --gd-teal: #0f766e;
+  --gd-ink: #15171a;
+  --gd-ink-soft: #2f3640;
   --gd-green: #1e8e3e;
   --gd-red: #d93025;
   --gd-yellow: #f9ab00;
@@ -14,6 +18,10 @@
   --gd-grey-100: #f1f3f4;
   --gd-grey-50: #f8f9fa;
   --gd-surface: #ffffff;
+  --gd-surface-raised: #ffffff;
+  --gd-line: rgba(32, 33, 36, 0.12);
+  --gd-shadow-soft: 0 18px 60px rgba(45, 55, 72, 0.11);
+  --gd-shadow-card: 0 10px 32px rgba(45, 55, 72, 0.09);
   --gd-max-width: 1380px;
   --gd-gutter: 64px;
   font-family: var(--gd-font-text);

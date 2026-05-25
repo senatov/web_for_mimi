@@ -7,9 +7,10 @@
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-height: 0;
-  height: 100%;
+  height: auto;
+  margin-top: 12px;
 }
 
 .commit-feed-header {
@@ -34,14 +35,15 @@
 /* --- Scroller & items --- */
 
 .commit-feed-scroller {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 640px;
-  padding: 12px;
-  border: 1px solid var(--gd-grey-300);
-  border-radius: 8px;
-  background: var(--gd-grey-50);
+  max-height: 430px;
+  padding: 10px;
+  border: 1px solid var(--gd-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 8px 26px rgba(45, 55, 72, 0.06);
 }
 
 .commit-list {
@@ -57,8 +59,8 @@
   grid-template-columns: 80px minmax(0, 1fr);
   gap: 12px;
   align-items: baseline;
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--gd-grey-300);
+  padding: 9px 10px;
+  border-bottom: 1px solid rgba(218, 220, 224, 0.78);
   text-decoration: none;
   color: inherit;
   transition: background 0.12s ease;
@@ -81,7 +83,7 @@
 }
 
 .commit-message {
-  color: var(--gd-grey-900);
+  color: var(--gd-ink);
   font-family: var(--gd-font-text);
   font-size: 15px;
   font-weight: 400;
@@ -104,7 +106,7 @@
 .release-notes-inline {
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid var(--gd-grey-300);
+  border-top: 1px solid var(--gd-line);
 }
 
 .release-note-section {
@@ -126,7 +128,7 @@
 }
 
 .release-note-section li {
-  color: var(--gd-grey-900);
+  color: var(--gd-ink-soft);
   font-family: var(--gd-font-text);
   font-size: 15px;
   line-height: 1.55;

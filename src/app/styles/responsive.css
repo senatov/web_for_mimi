@@ -45,12 +45,46 @@
 
   .hero {
     grid-template-columns: 1fr;
+    padding-top: 44px;
   }
 
-  .preview-grid {
+  .hero-lede {
+    max-width: 18ch;
+  }
+
+  .quick-strip,
+  .feature-clusters,
+  .faq-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-strip-item:first-child,
+  .quick-strip-item:last-child {
+    border-radius: 0;
+  }
+
+  .quick-strip-item:nth-child(1) {
+    border-radius: 14px 0 0 0;
+  }
+
+  .quick-strip-item:nth-child(2) {
+    border-radius: 0 14px 0 0;
+  }
+
+  .quick-strip-item:nth-child(3) {
+    border-radius: 0 0 0 14px;
+  }
+
+  .quick-strip-item:nth-child(4) {
+    border-radius: 0 0 14px 0;
+  }
+
+  .section-heading-block {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 
+  .preview-grid,
   .preview-grid-large {
     grid-template-columns: 1fr;
   }
@@ -73,8 +107,9 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .feature-grid {
-    grid-template-columns: 1fr;
+  .roadmap-card {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
@@ -91,19 +126,99 @@
     flex-direction: column;
     align-items: stretch;
     padding: 12px var(--gd-gutter);
+    gap: 10px;
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
+
+  .topnav {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 4px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  .topnav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .topnav a {
+    flex: 0 0 auto;
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .topnav .nav-download {
+    display: none;
   }
 
   .hero {
-    padding: 28px var(--gd-gutter) 24px;
+    padding: 34px var(--gd-gutter) 24px;
     gap: 24px;
   }
 
   .hero-copy h1 {
-    font-size: clamp(30px, 10vw, 40px);
+    max-width: 100%;
+    overflow-wrap: normal;
+    white-space: nowrap;
+    font-size: clamp(34px, 9.2vw, 38px);
   }
 
-  .linkedin-card-actions {
+  .hero-lede {
+    max-width: 13ch;
+    font-size: clamp(26px, 9vw, 36px);
+  }
+
+  .hero-note {
+    font-size: 15px;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero-proof span,
+  .hero-capabilities span {
+    white-space: normal;
+  }
+
+  .hero-carousel-stage {
+    min-height: 260px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .hero-gallery-thumbnails {
     display: none;
+  }
+
+  .window-title {
+    display: none;
+  }
+
+  .quick-strip,
+  .feature-overview,
+  .roadmap-section {
+    padding-left: var(--gd-gutter);
+    padding-right: var(--gd-gutter);
+  }
+
+  .quick-strip,
+  .feature-clusters,
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-strip-item,
+  .quick-strip-item:nth-child(1),
+  .quick-strip-item:nth-child(2),
+  .quick-strip-item:nth-child(3),
+  .quick-strip-item:nth-child(4) {
+    border-radius: 12px;
   }
 
   .window-body {
@@ -116,11 +231,11 @@
   }
 
   .details {
-    padding: 20px var(--gd-gutter);
+    padding: 48px var(--gd-gutter);
   }
 
   .pricing {
-    padding: 20px var(--gd-gutter) 40px;
+    padding: 48px var(--gd-gutter);
     gap: 20px;
   }
 
@@ -129,7 +244,7 @@
   }
 
   .commit-feed-scroller {
-    max-height: 520px;
+    max-height: 430px;
   }
 
   .commit-item {
@@ -140,6 +255,21 @@
 
   .button {
     width: 100%;
+  }
+
+  .linkedin-card-body {
+    gap: 12px;
+    padding: 0 16px 16px;
+  }
+
+  .linkedin-card-avatar {
+    width: 58px;
+    height: 58px;
+    font-size: 20px;
+  }
+
+  .linkedin-card-main {
+    padding-top: 28px;
   }
 
   .footer {

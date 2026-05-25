@@ -42,8 +42,8 @@
   aspect-ratio: 16 / 10;
   min-height: 320px;
   overflow: hidden;
-  background: var(--gd-grey-50);
-  border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef3f8 100%);
+  border-radius: 0;
 }
 
 .hero-carousel-image {
@@ -119,8 +119,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  background: rgba(32, 33, 36, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  background: rgba(32, 33, 36, 0.68);
   color: #fff;
   box-shadow: 0 8px 22px rgba(32, 33, 36, 0.18);
   cursor: pointer;
@@ -129,10 +129,10 @@
 
 .hero-gallery-nav {
   top: 50%;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  font-size: 34px;
+  font-size: 30px;
   line-height: 1;
   transform: translateY(-50%);
 }
@@ -151,7 +151,7 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
 }
 
@@ -175,13 +175,13 @@
 .hero-gallery-thumbnails {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(56px, 72px);
+  grid-auto-columns: minmax(54px, 74px);
   gap: 8px;
   padding: 10px;
   overflow-x: auto;
   overflow-y: hidden;
-  border-top: 1px solid var(--gd-grey-300);
-  background: var(--gd-grey-50);
+  border-top: 1px solid var(--gd-line);
+  background: #fff;
   scrollbar-width: thin;
 }
 
