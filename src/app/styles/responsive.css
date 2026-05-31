@@ -169,8 +169,8 @@
   }
 
   .hero-lede {
-    max-width: 13ch;
-    font-size: clamp(26px, 9vw, 36px);
+    max-width: 22ch;
+    font-size: clamp(26px, 8vw, 34px);
   }
 
   .hero-note {
@@ -237,6 +237,10 @@
   .pricing {
     padding: 48px var(--gd-gutter);
     gap: 20px;
+  }
+
+  .release-panel h2 {
+    white-space: normal;
   }
 
   .price-card {

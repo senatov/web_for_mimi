@@ -7,6 +7,39 @@
   box-sizing: border-box;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+main > .mobile-banner {
+  order: 0;
+}
+
+main > .hero {
+  order: 1;
+}
+
+main > .pricing {
+  order: 2;
+}
+
+main > .quick-strip {
+  order: 3;
+}
+
+main > .feature-overview {
+  order: 4;
+}
+
+main > .details {
+  order: 5;
+}
+
+main > .roadmap-section {
+  order: 6;
+}
+
 .page-shell {
   position: relative;
   min-height: 100vh;

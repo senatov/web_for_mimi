@@ -39,7 +39,7 @@
         <section class="hero">
             <div class="hero-copy">
                 <h1>MiMiNavigator</h1>
-                <p class="hero-lede">Dual-pane file manager for people who move real files all day.</p>
+                <p class="hero-lede">Two panels. Real files. Fewer Finder detours.</p>
                 <p class="hero-note">
                     A native macOS 26+ Finder replacement with two panels, tabs, List/Preview/Tree modes,
                     SFTP/FTP/SMB connections, archive folders, advanced search, media info, and Google Drive share links.
@@ -47,13 +47,54 @@
 
                 <div class="hero-actions">
                     @if (!isMobileDevice) {
-                        <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
-                           (click)="trackDownloadClick('hero')">Download App</a>
+                        <button type="button"
+                                class="button button-primary"
+                                aria-label="Show what changed in the latest release"
+                                (click)="releasePopover.toggle($event)">
+                            <span class="whats-new-button-icon" aria-hidden="true">
+                                <span class="whats-new-spark"></span>
+                            </span>
+                            <span>What's new</span>
+                        </button>
                     } @else {
                         <span class="mobile-download-hint">Open this page on a Mac to download.</span>
                     }
                     <a class="button button-secondary" href="#preview">View screenshots</a>
                 </div>
+
+                <p-popover #releasePopover styleClass="release-popover-panel" aria-label="Latest release highlights">
+                    <div class="release-popover-content">
+                        <div class="release-popover-header">
+                            <span>Latest release</span>
+                            <strong>{{ latestVersion }}</strong>
+                        </div>
+
+                        <p>{{ latestReleaseSummary }}</p>
+
+                        @if (releaseNoteSections.length > 0) {
+                            <div class="release-popover-sections">
+                                <section *ngFor="let section of releaseNoteSections | slice:0:1; trackBy: trackReleaseNoteSection">
+                                    <h3>{{ section.title }}</h3>
+                                    <ul>
+                                        <li *ngFor="let item of section.items | slice:0:4; trackBy: trackReleaseNoteItem">{{ item }}</li>
+                                    </ul>
+                                </section>
+                            </div>
+                        } @else {
+                            <div class="release-popover-loading">Release highlights are loading.</div>
+                        }
+
+                        <div class="release-popover-actions">
+                            <a [href]="latestDmgUrl"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               (click)="trackDownloadClick('hero')">
+                                Download current build
+                            </a>
+                            <a href="#download" (click)="releasePopover.hide()">Full release notes</a>
+                        </div>
+                    </div>
+                </p-popover>
 
                 <div class="hero-proof" aria-label="Product highlights">
                     <span>Free, signed, notarized DMG</span>
@@ -243,11 +284,8 @@
         <section class="pricing" id="download">
             <div class="release-panel">
                 <div class="section-kicker">Latest activity</div>
-                <h2>Current release: view-mode parity, Tree view, Preview DnD, autosave.</h2>
-                <p>
-                    Version 0.9.9.3 brings List, Preview, and Tree views closer together:
-                    shared sorting headers, panel keyboard callbacks, unified marked-file state, and periodic configuration autosave.
-                </p>
+                <h2>{{ latestReleaseHeadline }}</h2>
+                <p>{{ latestReleaseSummary }}</p>
 
                 <section class="commit-feed" aria-label="Latest commits and release changes">
                     <div class="commit-feed-scroller" aria-label="Recent MiMiNavigator commits and latest release changes">
@@ -301,7 +339,10 @@
                     @if (!isMobileDevice) {
                         <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
                            (click)="trackDownloadClick('pricing')">
-                            Download App
+                            <span class="download-button-icon" aria-hidden="true">
+                                <span class="download-button-arrow"></span>
+                            </span>
+                            <span>Download App</span>
                         </a>
                     } @else {
                         <p class="mobile-download-hint">Open this page on a Mac to download.</p>

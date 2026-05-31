@@ -15,6 +15,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {PreviewDialogComponent, PreviewDialogData} from './preview-dialog.component';
 import {GitHubService, RecentCommitViewModel} from './github.service';
 import {GalleriaModule} from 'primeng/galleria';
+import {PopoverModule} from 'primeng/popover';
 import {SeoKeywordHighlightDirective} from './seo-keyword-highlight.directive';
 
 
@@ -47,7 +48,7 @@ type AnalyticsEventName =
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, MatDialogModule, GalleriaModule, SeoKeywordHighlightDirective],
+    imports: [CommonModule, MatDialogModule, GalleriaModule, PopoverModule, SeoKeywordHighlightDirective],
     templateUrl: './app.html',
     styleUrl: './styles/app.css',
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -60,6 +61,8 @@ export class AppComponent implements OnInit, OnDestroy {
     protected latestVersion = 'Loading...';
     protected latestReleaseDate = 'Loading...';
     protected latestReleaseAge = 'Checking release age...';
+    protected latestReleaseHeadline = 'Latest release is loading...';
+    protected latestReleaseSummary = 'Release details are loading from GitHub.';
     protected latestDmgFileDate = 'Checking DMG file date...';
     protected latestDmgFileAge = '';
     protected latestDmgUrl = 'https://github.com/senatov/MiMiNavigator/releases';
@@ -356,6 +359,8 @@ export class AppComponent implements OnInit, OnDestroy {
         const releaseDate = release.published_at || release.created_at;
 
         this.latestVersion = release.tag_name || 'Latest release';
+        this.latestReleaseHeadline = this.createReleaseHeadline(this.latestVersion);
+        this.latestReleaseSummary = this.extractReleaseSummary(release.body);
         this.latestDmgUrl = dmgAsset?.browser_download_url || release.html_url || this.releasesPageUrl;
         this.releaseNoteSections = this.extractReleaseNoteSections(release.body);
 
@@ -382,7 +387,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     private extractReleaseNoteSections(body?: string): ReleaseNoteSection[] {
-        const sectionNames = new Set(['added', 'changed', 'fixed']);
+        const sectionNames = new Set(['highlights', 'added', 'changed', 'fixed']);
         const sections: ReleaseNoteSection[] = [];
         let currentSection: ReleaseNoteSection | null = null;
 
@@ -411,6 +416,46 @@ export class AppComponent implements OnInit, OnDestroy {
         }
 
         return sections.filter(section => section.items.length > 0);
+    }
+
+    private createReleaseHeadline(version: string): string {
+        return version === 'Latest release'
+            ? 'Latest release'
+            : `Latest release: ${version}`;
+    }
+
+    private extractReleaseSummary(body?: string): string {
+        const summaryLines: string[] = [];
+
+        for (const rawLine of (body || '').split('\n')) {
+            const line = rawLine.trim();
+
+            if (!line || line.startsWith('#')) {
+                if (summaryLines.length > 0) {
+                    break;
+                }
+
+                continue;
+            }
+
+            if (line.startsWith('-')) {
+                if (summaryLines.length === 0) {
+                    return this.cleanReleaseNoteMarkdown(line.replace(/^-\s*/, ''))
+                        .replace(/\s+/g, ' ');
+                }
+
+                break;
+            }
+
+            summaryLines.push(line);
+        }
+
+        if (summaryLines.length === 0) {
+            return 'Release notes are loading from GitHub.';
+        }
+
+        return this.cleanReleaseNoteMarkdown(summaryLines.join(' '))
+            .replace(/\s+/g, ' ');
     }
 
     private cleanReleaseNoteMarkdown(value: string): string {
@@ -496,6 +541,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.latestDmgUrl = this.releasesPageUrl;
         this.latestReleaseDate = 'Unknown release date';
         this.latestReleaseAge = 'Age unavailable';
+        this.latestReleaseHeadline = 'Latest release';
+        this.latestReleaseSummary = 'Release details are temporarily unavailable. Use the releases page for the current build.';
         this.latestDmgFileDate = 'Unknown DMG file date';
         this.latestDmgFileAge = '';
         this.releaseNoteSections = [];
