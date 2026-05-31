@@ -19,9 +19,10 @@
   --gd-grey-50: #f8f9fa;
   --gd-surface: #ffffff;
   --gd-surface-raised: #ffffff;
-  --gd-line: rgba(32, 33, 36, 0.12);
-  --gd-shadow-soft: 0 18px 60px rgba(45, 55, 72, 0.11);
-  --gd-shadow-card: 0 10px 32px rgba(45, 55, 72, 0.09);
+  --gd-line: rgba(13, 31, 74, 0.24);
+  --gd-line-strong: rgba(13, 31, 74, 0.34);
+  --gd-shadow-soft: 0 20px 62px rgba(13, 31, 74, 0.16);
+  --gd-shadow-card: 0 14px 38px rgba(13, 31, 74, 0.14);
   --gd-max-width: 1380px;
   --gd-gutter: 64px;
   font-family: var(--gd-font-text);

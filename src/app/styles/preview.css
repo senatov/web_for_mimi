@@ -43,15 +43,15 @@
   gap: 16px;
   min-width: 0;
   padding: 20px;
-  border: 1px solid var(--gd-line);
+  border: 1px solid var(--gd-line-strong);
   border-radius: 14px;
   background: var(--gd-surface-raised);
-  box-shadow: 0 10px 32px rgba(45, 55, 72, 0.08);
+  box-shadow: var(--gd-shadow-card);
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .preview-card:hover {
-  box-shadow: 0 16px 42px rgba(45, 55, 72, 0.12);
+  box-shadow: 0 18px 46px rgba(13, 31, 74, 0.18);
   transform: translateY(-2px);
 }
 
@@ -200,7 +200,7 @@ img {
   width: 100%;
   height: auto;
   border-radius: 10px;
-  border: 1px solid var(--gd-line);
+  border: 1px solid var(--gd-line-strong);
   transition: box-shadow 0.2s ease;
   cursor: pointer;
 }
@@ -219,7 +219,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 28px;
-  border-top: 1px solid rgba(218, 220, 224, 0.72);
+  border-top: 1px solid var(--gd-line-strong);
 }
 
 .faq-grid {
@@ -230,7 +230,7 @@ img {
 
 .faq-item {
   padding: 22px 0 0;
-  border-top: 1px solid var(--gd-line);
+  border-top: 1px solid var(--gd-line-strong);
 }
 
 .faq-item h3 {
@@ -255,7 +255,7 @@ img {
   justify-content: space-between;
   gap: 32px;
   padding: 30px;
-  border: 1px solid rgba(15, 118, 110, 0.2);
+  border: 1px solid rgba(15, 118, 110, 0.36);
   border-radius: 16px;
   background: linear-gradient(135deg, rgba(15, 118, 110, 0.08) 0%, rgba(26, 115, 232, 0.07) 100%);
 }
