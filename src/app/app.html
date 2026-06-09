@@ -338,9 +338,12 @@
                     </div>
                     @if (!isMobileDevice) {
                         <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
+                           aria-label="Download MiMiNavigator DMG for macOS 26 or newer"
                            (click)="trackDownloadClick('pricing')">
-                            <span class="download-button-icon" aria-hidden="true">
-                                <span class="download-button-arrow"></span>
+                            <span class="download-platform-badge" aria-hidden="true">
+                                <span class="download-platform-screen">
+                                    <span class="download-platform-os">26+</span>
+                                </span>
                             </span>
                             <span>Download App</span>
                         </a>

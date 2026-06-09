@@ -171,7 +171,7 @@ export class AppComponent implements OnInit, OnDestroy {
                 this.heroGalleryVisible = true;
 
                 this.trackEvent('screenshot_open', {
-                        image: 'Preview3.png',
+                        image: this.heroGalleryCurrentItem.itemImageSrc,
                         gallerySize: this.heroGalleryImages.length
                 });
 

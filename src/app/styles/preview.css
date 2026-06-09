@@ -43,15 +43,16 @@
   gap: 16px;
   min-width: 0;
   padding: 20px;
-  border: 1px solid var(--gd-line-strong);
+  border: 1px solid var(--gd-image-line);
   border-radius: 14px;
   background: var(--gd-surface-raised);
-  box-shadow: var(--gd-shadow-card);
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  box-shadow: var(--gd-image-shadow);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .preview-card:hover {
-  box-shadow: 0 18px 46px rgba(13, 31, 74, 0.18);
+  border-color: rgba(95, 99, 104, 0.24);
+  box-shadow: var(--gd-image-shadow-hover);
   transform: translateY(-2px);
 }
 
@@ -200,13 +201,14 @@ img {
   width: 100%;
   height: auto;
   border-radius: 10px;
-  border: 1px solid var(--gd-line-strong);
-  transition: box-shadow 0.2s ease;
+  border: 1px solid var(--gd-image-line-soft);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
 }
 
 .preview-image:hover {
-  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.15), 0 4px 8px rgba(60, 64, 67, 0.1);
+  border-color: var(--gd-image-line);
+  box-shadow: 0 10px 26px rgba(13, 31, 74, 0.12);
 }
 
 .preview-grid-large {

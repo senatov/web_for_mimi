@@ -206,15 +206,16 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid rgba(13, 31, 74, 0.34);
+  border: 1px solid var(--gd-image-line);
   border-radius: 18px;
   background: var(--gd-surface);
-  box-shadow: var(--gd-shadow-soft);
-  transition: box-shadow 0.25s ease;
+  box-shadow: var(--gd-image-shadow);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .app-window:hover {
-  box-shadow: 0 24px 72px rgba(13, 31, 74, 0.2);
+  border-color: rgba(95, 99, 104, 0.24);
+  box-shadow: var(--gd-image-shadow-hover);
 }
 
 .app-window img {
@@ -230,8 +231,8 @@
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  border-bottom: 1px solid var(--gd-line-strong);
-  background: linear-gradient(180deg, rgba(248, 249, 250, 0.98) 0%, rgba(241, 243, 244, 0.88) 100%);
+  border-bottom: 1px solid var(--gd-image-line-soft);
+  background: linear-gradient(180deg, rgba(250, 251, 252, 0.98) 0%, rgba(244, 246, 248, 0.9) 100%);
 }
 
 .window-dot {
