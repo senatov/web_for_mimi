@@ -47,8 +47,28 @@
 
                 <div class="hero-actions">
                     @if (!isMobileDevice) {
+                        <a class="button button-primary"
+                           [href]="latestDmgUrl"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Download MiMiNavigator DMG for macOS 26 or newer"
+                           (click)="trackDownloadClick('hero')">
+                            <span class="download-platform-badge" aria-hidden="true">
+                                <img
+                                        class="download-platform-icon"
+                                        src="https://ico.hugeicons.com/apple-twotone-rounded@3x.webp?x=1.0.2"
+                                        alt=""
+                                        width="24"
+                                        height="24"
+                                        loading="lazy"
+                                        decoding="async"
+                                        referrerpolicy="no-referrer">
+                                <span class="download-platform-os">26+</span>
+                            </span>
+                            <span>Download App</span>
+                        </a>
                         <button type="button"
-                                class="button button-primary"
+                                class="button button-secondary"
                                 aria-label="Show what changed in the latest release"
                                 (click)="releasePopover.toggle($event)">
                             <span class="whats-new-button-icon" aria-hidden="true">
@@ -61,6 +81,9 @@
                     }
                     <a class="button button-secondary" href="#preview">View screenshots</a>
                 </div>
+                @if (!isMobileDevice) {
+                    <p class="hero-download-note">Signed DMG · macOS 26+ · Free</p>
+                }
 
                 <p-popover #releasePopover styleClass="release-popover-panel" aria-label="Latest release highlights">
                     <div class="release-popover-content">
@@ -341,9 +364,16 @@
                            aria-label="Download MiMiNavigator DMG for macOS 26 or newer"
                            (click)="trackDownloadClick('pricing')">
                             <span class="download-platform-badge" aria-hidden="true">
-                                <span class="download-platform-screen">
-                                    <span class="download-platform-os">26+</span>
-                                </span>
+                                <img
+                                        class="download-platform-icon"
+                                        src="https://ico.hugeicons.com/apple-twotone-rounded@3x.webp?x=1.0.2"
+                                        alt=""
+                                        width="24"
+                                        height="24"
+                                        loading="lazy"
+                                        decoding="async"
+                                        referrerpolicy="no-referrer">
+                                <span class="download-platform-os">26+</span>
                             </span>
                             <span>Download App</span>
                         </a>

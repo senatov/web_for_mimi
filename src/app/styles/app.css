@@ -215,9 +215,9 @@
 }
 
 .hero-gallery-thumbnail.active {
-  border-color: rgba(26, 115, 232, 0.38);
-  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.12);
-  opacity: 1;
+  border-color: rgba(26, 115, 232, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(26, 115, 232, 0.16);
+  opacity: 0.92;
 }
 
 /* ─── Gallery popup ─── */
