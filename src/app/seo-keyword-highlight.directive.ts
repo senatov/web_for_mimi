@@ -1,7 +1,7 @@
 import {AfterViewInit, Directive, ElementRef, inject} from '@angular/core';
 
 const VERSION_PATTERN = String.raw`macOS\s+\d+(?:\.\d+)*|v?\d+(?:\.\d+){1,4}`;
-const KEYWORD_PATTERN = String.raw`Total\s+Commander|App\s+Store|⌘-Click|⇧-Click|Cmd\+Click|Shift\+Click|macOS|DMG|SMB|EXIF|GitHub|SFTP|FTP|ZIP|RAR|7Z|TAR|GZIP|BZIP2|XZ|ISO|CAB|XAR|LZH|ARJ|CPIO|MP4|AVI|MKV|MOV|WEBM|FLV|WMV|MP3|WAV|FLAC|AAC|OGG|WMA|M4A|AIFF|PNG|JPEG|TIFF|BMP|WEBP|GIF|HEIC|SVG|F2|F5|F6|F7|AGPL-3\.0`;
+const KEYWORD_PATTERN = String.raw`Google\s+Drive|Total\s+Commander|App\s+Store|MiMiNavigator|CloudStorage|Dropbox|Finder|WebDAV|⌘-Click|⇧-Click|Cmd\+Click|Shift\+Click|macOS|DMG|GPS|S3|SMB|EXIF|GitHub|SFTP|FTP|ZIP|RAR|7Z|TAR|GZIP|BZIP2|XZ|ISO|CAB|XAR|LZH|ARJ|CPIO|MP4|AVI|MKV|MOV|WEBM|FLV|WMV|MP3|WAV|FLAC|AAC|OGG|WMA|M4A|AIFF|PNG|JPEG|TIFF|BMP|WEBP|GIF|HEIC|SVG|F2|F5|F6|F7|AGPL-3\.0`;
 const HIGHLIGHT_PATTERN = new RegExp(String.raw`(?<![\p{L}\p{N}_])(?:${VERSION_PATTERN}|${KEYWORD_PATTERN})(?![\p{L}\p{N}_])`, 'giu');
 const SKIPPED_SELECTOR = [
     'a',

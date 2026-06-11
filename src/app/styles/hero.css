@@ -1,11 +1,11 @@
 .hero {
   max-width: var(--gd-max-width);
   margin: 0 auto;
-  padding: 36px var(--gd-gutter) 22px;
+  padding: 36px max(32px, calc(var(--gd-gutter) - 20px)) 26px;
   display: grid;
-  grid-template-columns: minmax(430px, 0.82fr) minmax(560px, 1.18fr);
+  grid-template-columns: minmax(410px, 0.76fr) minmax(620px, 1.24fr);
   align-items: center;
-  gap: 46px;
+  gap: 38px;
 }
 
 .hero-copy {

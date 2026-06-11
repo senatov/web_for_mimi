@@ -17,10 +17,6 @@
                 <a href="#preview">Screenshots</a>
                 <a href="#download">Download</a>
                 <a href="#faq">FAQ</a>
-                @if (!isMobileDevice) {
-                    <a class="nav-download" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
-                       (click)="trackDownloadClick('hero')">Download</a>
-                }
             </nav>
         </div>
     </header>
@@ -42,7 +38,8 @@
                 <p class="hero-lede">Two panels. Real files. Fewer Finder detours.</p>
                 <p class="hero-note">
                     A native macOS 26+ Finder replacement with two panels, tabs, List/Preview/Tree modes,
-                    SFTP/FTP/SMB connections, archive folders, advanced search, media info, and Google Drive share links.
+                    SFTP/FTP/SMB connections, archive folders, advanced search, media info, and Share+Link
+                    for Google Drive and Dropbox.
                 </p>
 
                 <div class="hero-actions">
@@ -108,12 +105,6 @@
                         }
 
                         <div class="release-popover-actions">
-                            <a [href]="latestDmgUrl"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               (click)="trackDownloadClick('hero')">
-                                Download current build
-                            </a>
                             <a href="#download" (click)="releasePopover.hide()">Full release notes</a>
                         </div>
                     </div>
@@ -131,7 +122,7 @@
                     <span>SFTP/SMB</span>
                     <span>50+ archive formats</span>
                     <span>Media Convert</span>
-                    <span>Google Drive links</span>
+                    <span>Google Drive + Dropbox links</span>
                 </div>
             </div>
 
@@ -243,7 +234,7 @@
             </div>
             <div class="quick-strip-item">
                 <strong>Share</strong>
-                <span>Google Drive public links copied from the file manager context menu.</span>
+                <span>Short branded Google Drive and Dropbox links copied from the context menu.</span>
             </div>
         </section>
 
@@ -253,7 +244,7 @@
                 <h2>Built for the jobs Finder makes expensive</h2>
                 <p>
                     MiMiNavigator combines commander-style speed with modern macOS UI: real two-panel work,
-                    remote locations, archive browsing, media inspection, and search workflows in one signed app.
+                    remote locations, archive browsing, media inspection, cloud sharing, and search workflows in one signed app.
                 </p>
             </div>
 
@@ -272,11 +263,12 @@
                 <article class="feature-cluster">
                     <span class="cluster-icon" aria-hidden="true">02</span>
                     <h3>Remote and cloud</h3>
-                    <p>SFTP, FTP, and SMB locations open inside the panels, with saved connections, status indicators, and history-based restore after disconnects.</p>
+                    <p>SFTP, FTP, and SMB locations open inside the panels, while Share+Link works with mounted Google Drive and Dropbox accounts.</p>
                     <ul>
-                        <li>SMB can mount under app-owned support folders when /Volumes is unavailable.</li>
                         <li>Cloud drives are detected from ~/Library/CloudStorage.</li>
-                        <li>Google Drive share links upload in the background and copy to clipboard.</li>
+                        <li>Google Drive supports view-only and editable links; Dropbox supports view-only links.</li>
+                        <li>Dropbox uses OAuth PKCE, stores refresh tokens in Keychain, and creates its Public folder when needed.</li>
+                        <li>Provider links become short branded MiMiNavigator URLs and copy directly to the clipboard.</li>
                     </ul>
                 </article>
 
@@ -407,6 +399,8 @@
                     <a href="/images/Preview0.png" (click)="openPreview('Preview0.png', 'mimiPreview0'); $event.preventDefault()"
                        aria-label="Open Preview0 screenshot in dialog">
                         <img class="preview-image" src="/images/Preview0.png"
+                             width="1818"
+                             height="1264"
                              alt="MiMiNavigator file manager macOS - dual-panel workspace for file browsing">
                     </a>
                     <h3>Dual-panel workspace</h3>
@@ -417,6 +411,8 @@
                     <a href="/images/Preview1.png" (click)="openPreview('Preview1.png', 'mimiPreview1'); $event.preventDefault()"
                        aria-label="Open Preview1 screenshot in dialog">
                         <img class="preview-image" src="/images/Preview1.png"
+                             width="1818"
+                             height="1264"
                              alt="MiMiNavigator file browser macOS - media preview and file details panel">
                     </a>
                     <h3>Media preview and file details</h3>
@@ -440,7 +436,7 @@
 
                 <article class="faq-item">
                     <h3>Can it replace Finder on macOS 26+?</h3>
-                    <p>Yes for file-manager work: dual-pane browsing, tabs, sidebar, SFTP/FTP/SMB, archives, search, preview, media conversion, cloud links, and file operations are all in one app.</p>
+                    <p>Yes for file-manager work: dual-pane browsing, tabs, sidebar, SFTP/FTP/SMB, archives, search, preview, media conversion, and Google Drive or Dropbox Share+Link are all in one app.</p>
                 </article>
 
                 <article class="faq-item">

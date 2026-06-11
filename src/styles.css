@@ -67,8 +67,10 @@ select {
 }
 
 .seo-keyword-highlight {
-  color: #174ea6;
-  font-weight: 600;
+  color: #7c3aed;
+  font-family: var(--gd-font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .p-popover.release-popover-panel {

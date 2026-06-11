@@ -337,12 +337,14 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  min-height: 28px;
-  padding: 3px 8px 3px 5px;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 3px 7px 3px 4px;
   margin-right: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
+  background: radial-gradient(circle at 34% 28%, #fff3a7 0%, #ffd54f 42%, #f9ab00 100%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 3px 8px rgba(89, 58, 0, 0.24);
   flex: 0 0 auto;
 }
 
@@ -354,7 +356,7 @@
 }
 
 .download-platform-os {
-  color: #fff;
+  color: #5c3a00;
   font-size: 10px;
   font-weight: 800;
   line-height: 1;
