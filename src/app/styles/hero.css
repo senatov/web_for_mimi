@@ -3,9 +3,9 @@
   margin: 0 auto;
   padding: 34px var(--gd-gutter) 30px;
   display: grid;
-  grid-template-columns: minmax(360px, 0.72fr) minmax(600px, 1.28fr);
+  grid-template-columns: minmax(350px, 0.66fr) minmax(680px, 1.34fr);
   align-items: center;
-  gap: 48px;
+  gap: 42px;
 }
 
 .hero-copy {
@@ -19,7 +19,7 @@
 .eyebrow {
   margin: 0;
   color: var(--gd-blue-dark);
-  font-family: var(--gd-font-text);
+  font-family: var(--gd-font-text), sans-serif;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -28,9 +28,8 @@
 
 .hero-copy h1 {
   margin: 0;
-  color: var(--gd-ink);
-  font-family: var(--gd-font-display);
-  color: #7c3aed;
+  color: var(--gd-blue-dark);
+  font-family: var(--gd-font-display), sans-serif;
   font-size: clamp(48px, 5vw, 66px);
   font-weight: 500;
   line-height: 0.95;
@@ -41,7 +40,7 @@
   max-width: 22ch;
   margin: 0;
   color: var(--gd-ink);
-  font-family: var(--gd-font-display);
+  font-family: var(--gd-font-display), sans-serif;
   font-size: clamp(30px, 2.2vw, 36px);
   font-weight: 400;
   line-height: 1.08;
@@ -53,7 +52,7 @@
   max-width: 58ch;
   margin: 0;
   color: var(--gd-ink-soft);
-  font-family: var(--gd-font-text);
+  font-family: var(--gd-font-text), sans-serif;
   font-size: 15px;
   line-height: 1.6;
 }
@@ -62,7 +61,7 @@
   max-width: 62ch;
   margin: 0;
   color: var(--gd-ink-soft);
-  font-family: var(--gd-font-text);
+  font-family: var(--gd-font-text), sans-serif;
   font-size: 16px;
   line-height: 1.65;
 }
@@ -314,7 +313,7 @@
   border-radius: 50%;
   background: var(--gd-grey-100);
   color: var(--gd-blue);
-  font-family: var(--gd-font-display);
+  font-family: var(--gd-font-display), sans-serif;
   font-size: 23px;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -337,7 +336,7 @@
 
 .linkedin-card-title {
   color: var(--gd-ink);
-  font-family: var(--gd-font-display);
+  font-family: var(--gd-font-display), sans-serif;
   font-size: 22px;
   font-weight: 400;
   line-height: 1.2;
@@ -354,7 +353,7 @@
 
 .linkedin-card-role {
   color: var(--gd-grey-700);
-  font-family: var(--gd-font-text);
+  font-family: var(--gd-font-text), sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.35;

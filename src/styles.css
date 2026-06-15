@@ -2,8 +2,8 @@
   color-scheme: light;
   --gd-font-display: Roboto, "Helvetica Neue", Arial, sans-serif;
   --gd-font-text: Roboto, "Helvetica Neue", Arial, sans-serif;
-  --gd-blue: #1a73e8;
-  --gd-blue-dark: #174ea6;
+  --gd-blue: #426f9f;
+  --gd-blue-dark: #183f6f;
   --gd-blue-soft: #e8f0fe;
   --gd-teal: #0f766e;
   --gd-ink: #15171a;
@@ -27,9 +27,9 @@
   --gd-image-shadow-hover: 0 22px 58px rgba(13, 31, 74, 0.13);
   --gd-shadow-soft: 0 20px 62px rgba(13, 31, 74, 0.12);
   --gd-shadow-card: 0 12px 34px rgba(13, 31, 74, 0.08);
-  --gd-max-width: 1280px;
+  --gd-max-width: 1360px;
   --gd-gutter: 48px;
-  font-family: var(--gd-font-text);
+  font-family: var(--gd-font-text), sans-serif;
   font-size: 16px;
   line-height: 1.5;
   background: var(--gd-surface);
@@ -69,10 +69,10 @@ select {
 }
 
 .seo-keyword-highlight {
-  color: #7c3aed;
-  font-family: var(--gd-font-display);
+  color: var(--gd-blue-dark);
+  font-family: var(--gd-font-display), sans-serif;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .p-popover.release-popover-panel {
@@ -109,7 +109,7 @@ select {
   padding: 18px;
   background: #fff8dc;
   color: #071329;
-  font-family: var(--gd-font-text);
+  font-family: var(--gd-font-text), sans-serif;
 }
 
 .release-popover-header {
