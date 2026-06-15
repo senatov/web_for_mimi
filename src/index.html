@@ -11,8 +11,12 @@
     >
     <meta name="author" content="Iakov Senatov">
     <meta name="application-name" content="MiMiNavigator">
+    <meta
+            name="keywords"
+            content="MiMiNavigator, macOS file manager, Finder alternative, dual pane file manager, SFTP file manager, FTP client, SMB file manager, archive manager, Google Drive links, Dropbox links, signed DMG"
+    >
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#f4f0e8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="MiMiNavigator">
     <meta property="og:site_name" content="MiMiNavigator">
@@ -30,10 +34,12 @@
             name="twitter:description"
             content="Free native file manager for macOS 26+ with dual panels, Google Drive and Dropbox Share+Link, SFTP/SMB, archive folders, keyboard workflow, and built-in media converter. Signed DMG."
     >
-    <meta name="twitter:image" content="https://miminavi.tech/images/Preview0.png">
-    <meta property="og:image" content="https://miminavi.tech/images/Preview0.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta name="twitter:image" content="https://miminavi.tech/images/gallery/Preview0.png">
+    <meta name="twitter:image:alt" content="MiMiNavigator dual-pane macOS file manager screenshot">
+    <meta property="og:image" content="https://miminavi.tech/images/gallery/Preview0.png">
+    <meta property="og:image:alt" content="MiMiNavigator dual-pane macOS file manager screenshot">
+    <meta property="og:image:width" content="1587">
+    <meta property="og:image:height" content="1328">
     <meta property="og:image:type" content="image/png">
     <link rel="canonical" href="https://miminavi.tech/">
     <link rel="icon" href="/favicon.ico">
@@ -60,6 +66,8 @@
             "downloadUrl": "https://github.com/senatov/MiMiNavigator/releases",
             "url": "https://miminavi.tech/",
             "mainEntityOfPage": "https://miminavi.tech/",
+            "codeRepository": "https://github.com/senatov/MiMiNavigator",
+            "license": "https://www.gnu.org/licenses/agpl-3.0.en.html",
             "sameAs": [
                 "https://github.com/senatov/MiMiNavigator",
                 "https://github.com/senatov/MiMiNavigator/releases"
@@ -193,8 +201,12 @@
     </script>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TLEMWJB1L"></script>
     <script>
+        const googleTagScript = document.createElement('script');
+        googleTagScript.async = true;
+        googleTagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-8TLEMWJB1L';
+        document.head.appendChild(googleTagScript);
+
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {

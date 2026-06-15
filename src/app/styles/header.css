@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(250, 248, 243, 0.88);
   border-bottom: 1px solid var(--gd-line-strong);
   box-shadow: 0 1px 12px rgba(13, 31, 74, 0.05);
   backdrop-filter: saturate(180%) blur(18px);
@@ -63,7 +63,7 @@
 
 .brand-text {
   color: var(--gd-ink);
-  font-family: var(--gd-font-display);
+  font-family: var(--gd-font-display), sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.2;
@@ -95,7 +95,7 @@
 
 .topnav a {
   color: var(--nav-link-color, var(--gd-grey-700));
-  font-family: var(--gd-font-text);
+  font-family: var(--gd-font-text), sans-serif;
   font-size: 13px;
   font-weight: 700;
   line-height: 1.2;

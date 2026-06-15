@@ -14,7 +14,7 @@
   min-height: 118px;
   padding: 20px 22px;
   border: 1px solid var(--gd-line-strong);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .quick-strip-item:first-child {
@@ -106,7 +106,7 @@
   padding: 22px;
   border: 1px solid var(--gd-line-strong);
   border-radius: 12px;
-  background: var(--gd-surface-raised);
+  background: rgba(255, 255, 255, 0.86);
   box-shadow: 0 10px 26px rgba(13, 31, 74, 0.06);
 }
 
@@ -175,7 +175,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(340px, 450px);
   align-items: start;
   gap: 36px;
-  background: linear-gradient(180deg, #f7faff 0%, #eef4fb 100%);
+  background: linear-gradient(180deg, rgba(247, 244, 238, 0.72) 0%, rgba(240, 235, 226, 0.76) 100%);
   border-top: 1px solid var(--gd-line-strong);
   border-bottom: 1px solid var(--gd-line-strong);
 }
@@ -201,7 +201,7 @@
   padding: 24px;
   border: 1px solid rgba(13, 31, 74, 0.24);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 12px 34px rgba(13, 31, 74, 0.08);
 }
 
@@ -411,7 +411,7 @@
   padding: 14px 16px;
   border: 1px solid rgba(13, 31, 74, 0.2);
   border-radius: 10px;
-  background: #f8fafc;
+  background: rgba(248, 250, 252, 0.82);
 }
 
 .price-card > .price-copy:last-child {

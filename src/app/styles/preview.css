@@ -45,7 +45,7 @@
   padding: 14px;
   border: 1px solid rgba(95, 99, 104, 0.22);
   border-radius: 12px;
-  background: var(--gd-surface-raised);
+  background: rgba(255, 255, 255, 0.86);
   box-shadow: 0 12px 34px rgba(13, 31, 74, 0.07);
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
@@ -264,7 +264,7 @@ img {
   padding: 26px 30px;
   border: 1px solid rgba(15, 118, 110, 0.36);
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(15, 118, 110, 0.08) 0%, rgba(26, 115, 232, 0.07) 100%);
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.1) 0%, rgba(66, 111, 159, 0.1) 100%);
 }
 
 .roadmap-card h3 {
@@ -295,7 +295,7 @@ img {
   padding: 0 14px;
   border: 1px solid var(--gd-grey-300);
   border-radius: 8px;
-  background: var(--gd-surface);
+  background: rgba(255, 255, 255, 0.84);
   color: var(--gd-grey-500);
   font-size: 14px;
   font-weight: 400;
