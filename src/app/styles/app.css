@@ -42,8 +42,9 @@
   aspect-ratio: 3 / 2;
   min-height: 350px;
   overflow: hidden;
-  background: linear-gradient(180deg, #fbfcfe 0%, #f2f6fa 100%);
+  background: linear-gradient(180deg, #fbfcfe 0%, #f5f8fb 100%);
   border-radius: 0;
+  cursor: zoom-in;
 }
 
 .hero-carousel-image {
@@ -54,6 +55,7 @@
   height: 100%;
   object-fit: contain;
   object-position: center;
+  filter: contrast(1.08) saturate(1.06);
   will-change: opacity, transform, filter;
 }
 
@@ -186,7 +188,7 @@
   padding: 8px 10px 10px;
   overflow-x: auto;
   overflow-y: hidden;
-  border-top: 1px solid var(--gd-image-line-soft);
+  border-top: 1px solid rgba(95, 99, 104, 0.18);
   background: #fff;
   scrollbar-width: thin;
 }
@@ -198,11 +200,11 @@
   min-width: 0;
   padding: 0;
   overflow: hidden;
-  border: 1px solid var(--gd-image-line-soft);
+  border: 1px solid rgba(95, 99, 104, 0.18);
   border-radius: 7px;
   background: var(--gd-surface);
   cursor: pointer;
-  opacity: 0.78;
+  opacity: 0.9;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 }
 
@@ -211,7 +213,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: contrast(1.06) saturate(1.04);
+  filter: contrast(1.1) saturate(1.06);
 }
 
 .hero-gallery-thumbnail:hover,
@@ -222,8 +224,8 @@
 }
 
 .hero-gallery-thumbnail.active {
-  border-color: rgba(24, 63, 111, 0.42);
-  box-shadow: inset 0 0 0 1px rgba(24, 63, 111, 0.18), 0 4px 10px rgba(13, 31, 74, 0.08);
+  border-color: rgba(24, 63, 111, 0.52);
+  box-shadow: inset 0 0 0 1px rgba(24, 63, 111, 0.22), 0 4px 10px rgba(13, 31, 74, 0.08);
   opacity: 1;
 }
 

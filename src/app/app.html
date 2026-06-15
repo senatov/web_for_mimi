@@ -141,7 +141,11 @@
                             <span class="hero-gallery-counter">{{ heroGalleryProgressLabel }}</span>
                         </div>
                         <div class="hero-carousel-stage"
-                             [class.hero-carousel-stage-transitioning]="heroCarouselTransitioning">
+                             [class.hero-carousel-stage-transitioning]="heroCarouselTransitioning"
+                             role="button"
+                             tabindex="-1"
+                             aria-label="Open current screenshot in fullscreen gallery"
+                             (click)="openHeroGallery($event)">
                             <img [src]="heroGalleryImages[previousHeroCarouselIndex].itemImageSrc"
                                  [alt]="heroGalleryImages[previousHeroCarouselIndex].alt"
                                  class="hero-carousel-image hero-carousel-image-previous"

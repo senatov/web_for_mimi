@@ -219,3 +219,26 @@ select {
   background: var(--gd-blue-dark);
   text-decoration: none;
 }
+
+.cdk-overlay-pane.preview-dialog-panel,
+.preview-dialog-panel .mat-mdc-dialog-container,
+.preview-dialog-panel .mat-mdc-dialog-surface {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+}
+
+.preview-dialog-panel .mat-mdc-dialog-surface {
+  animation: none !important;
+  transition: none !important;
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none !important;
+}
+
+.preview-dialog-backdrop {
+  background: rgba(10, 20, 34, 0.72);
+}

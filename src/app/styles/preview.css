@@ -43,7 +43,7 @@
   gap: 14px;
   min-width: 0;
   padding: 14px;
-  border: 1px solid var(--gd-image-line);
+  border: 1px solid rgba(95, 99, 104, 0.22);
   border-radius: 12px;
   background: var(--gd-surface-raised);
   box-shadow: 0 12px 34px rgba(13, 31, 74, 0.07);
@@ -51,7 +51,7 @@
 }
 
 .preview-card:hover {
-  border-color: rgba(95, 99, 104, 0.24);
+  border-color: rgba(24, 63, 111, 0.32);
   box-shadow: 0 16px 38px rgba(13, 31, 74, 0.1);
 }
 
@@ -140,16 +140,20 @@
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  padding: 16px;
-  max-width: 92vw;
-  max-height: 92vh;
+  width: 100vw;
+  height: 100vh;
+  padding: 18px;
+  background: rgba(248, 250, 252, 0.96);
 }
 
 .preview-dialog-shell img {
   max-width: 100%;
-  max-height: 78vh;
+  max-height: calc(100vh - 76px);
   object-fit: contain;
-  border-radius: 8px;
+  border: 1px solid rgba(95, 99, 104, 0.22);
+  border-radius: 10px;
+  box-shadow: 0 16px 44px rgba(13, 31, 74, 0.18);
+  filter: contrast(1.08) saturate(1.06);
 }
 
 .preview-dialog-close {
@@ -200,16 +204,16 @@ img {
   width: 100%;
   height: auto;
   border-radius: 9px;
-  border: 1px solid var(--gd-image-line-soft);
-  filter: contrast(1.08) saturate(1.08) brightness(1.04);
+  border: 1px solid rgba(95, 99, 104, 0.2);
+  filter: contrast(1.12) saturate(1.08);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
   cursor: pointer;
 }
 
 .preview-image:hover {
-  border-color: var(--gd-image-line);
+  border-color: rgba(24, 63, 111, 0.34);
   box-shadow: 0 10px 26px rgba(13, 31, 74, 0.12);
-  filter: contrast(1.12) saturate(1.1) brightness(1.05);
+  filter: contrast(1.15) saturate(1.1);
 }
 
 .preview-grid-large {

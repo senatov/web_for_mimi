@@ -167,6 +167,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
         protected openHeroGallery(event?: Event): void {
                 event?.preventDefault();
+                event?.stopPropagation();
                 this.heroGalleryActiveIndex = this.heroCarouselIndex;
                 this.heroGalleryVisible = true;
 
@@ -350,8 +351,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
                 this.dialog.open(PreviewDialogComponent, {
                         data: dialogData,
-                        maxWidth: '92vw',
-                        maxHeight: '92vh',
+                        width: '100vw',
+                        height: '100vh',
+                        maxWidth: '100vw',
+                        maxHeight: '100vh',
                         panelClass: 'preview-dialog-panel',
                         backdropClass: 'preview-dialog-backdrop',
                         autoFocus: false,
