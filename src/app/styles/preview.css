@@ -1,10 +1,10 @@
 .details {
-  max-width: min(1520px, 100%);
+  max-width: min(1320px, 100%);
   margin: 0 auto;
-  padding: 68px max(32px, calc(var(--gd-gutter) - 20px)) 76px;
+  padding: 58px var(--gd-gutter) 68px;
   display: flex;
   flex-direction: column;
-  gap: 34px;
+  gap: 28px;
 }
 
 .section-heading {
@@ -34,19 +34,19 @@
 .preview-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
+  gap: 22px;
 }
 
 .preview-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   min-width: 0;
-  padding: 20px;
+  padding: 14px;
   border: 1px solid var(--gd-image-line);
-  border-radius: 14px;
+  border-radius: 12px;
   background: var(--gd-surface-raised);
-  box-shadow: var(--gd-image-shadow);
+  box-shadow: 0 12px 34px rgba(13, 31, 74, 0.07);
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
@@ -60,7 +60,7 @@
   margin: 0;
   color: var(--gd-ink);
   font-family: var(--gd-font-display);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   line-height: 1.3;
 }
@@ -68,7 +68,7 @@
 .preview-card p {
   margin: 0;
   color: var(--gd-ink-soft);
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -183,7 +183,7 @@
 
 .details-copy {
   max-width: 980px;
-  margin: 0 auto 24px;
+  margin: 0 auto 18px;
   text-align: center;
 }
 
@@ -200,7 +200,7 @@ img {
 .preview-image {
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 9px;
   border: 1px solid var(--gd-image-line-soft);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
@@ -213,25 +213,25 @@ img {
 
 .preview-grid-large {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 22px;
   align-items: start;
 }
 
 .roadmap-section {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 26px;
   border-top: 1px solid var(--gd-line-strong);
 }
 
 .faq-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
 }
 
 .faq-item {
-  padding: 22px 0 0;
+  padding: 20px 0 0;
   border-top: 1px solid var(--gd-line-strong);
 }
 
@@ -256,15 +256,15 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  padding: 30px;
+  padding: 26px 30px;
   border: 1px solid rgba(15, 118, 110, 0.36);
-  border-radius: 16px;
+  border-radius: 14px;
   background: linear-gradient(135deg, rgba(15, 118, 110, 0.08) 0%, rgba(26, 115, 232, 0.07) 100%);
 }
 
 .roadmap-card h3 {
   margin-bottom: 10px;
-  font-size: clamp(26px, 3vw, 40px);
+  font-size: clamp(26px, 2.6vw, 34px);
 }
 
 .logo-strip {

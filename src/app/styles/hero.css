@@ -1,17 +1,17 @@
 .hero {
   max-width: var(--gd-max-width);
   margin: 0 auto;
-  padding: 36px max(32px, calc(var(--gd-gutter) - 20px)) 26px;
+  padding: 34px var(--gd-gutter) 30px;
   display: grid;
-  grid-template-columns: minmax(410px, 0.76fr) minmax(620px, 1.24fr);
+  grid-template-columns: minmax(360px, 0.72fr) minmax(600px, 1.28fr);
   align-items: center;
-  gap: 38px;
+  gap: 48px;
 }
 
 .hero-copy {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   min-width: 0;
 }
 
@@ -30,18 +30,19 @@
   margin: 0;
   color: var(--gd-ink);
   font-family: var(--gd-font-display);
-  font-size: clamp(46px, 5vw, 68px);
+  color: #7c3aed;
+  font-size: clamp(48px, 5vw, 66px);
   font-weight: 500;
   line-height: 0.95;
   letter-spacing: 0;
 }
 
 .hero-lede {
-  max-width: 23ch;
+  max-width: 22ch;
   margin: 0;
   color: var(--gd-ink);
   font-family: var(--gd-font-display);
-  font-size: clamp(30px, 2.35vw, 38px);
+  font-size: clamp(30px, 2.2vw, 36px);
   font-weight: 400;
   line-height: 1.08;
   letter-spacing: 0;
@@ -49,12 +50,12 @@
 }
 
 .hero-note {
-  max-width: 62ch;
+  max-width: 58ch;
   margin: 0;
   color: var(--gd-ink-soft);
   font-family: var(--gd-font-text);
-  font-size: 16px;
-  line-height: 1.58;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .hero-text {
@@ -70,7 +71,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   margin-top: 4px;
 }
 
@@ -215,7 +216,7 @@
   flex-direction: column;
   width: 100%;
   border: 1px solid var(--gd-image-line);
-  border-radius: 18px;
+  border-radius: 16px;
   background: var(--gd-surface);
   box-shadow: var(--gd-image-shadow);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
@@ -238,14 +239,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 16px;
+  padding: 10px 16px;
   border-bottom: 1px solid var(--gd-image-line-soft);
   background: linear-gradient(180deg, rgba(250, 251, 252, 0.98) 0%, rgba(244, 246, 248, 0.9) 100%);
 }
 
 .window-dot {
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
 }
 
