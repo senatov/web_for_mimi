@@ -242,3 +242,7 @@ select {
 .preview-dialog-backdrop {
     background: rgba(10, 20, 34, 0.72);
 }
+
+body.p-overflow-hidden .site-header {
+    z-index: 0;
+}
