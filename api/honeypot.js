@@ -14,15 +14,17 @@ const PRODUCT_PAYLOAD = {
   name: 'MiMiNavigator',
   tagline: 'A fast dual-pane file manager for macOS.',
   description:
-    'MiMiNavigator is a free macOS file manager for people who move real files all day. It keeps two panels visible and supports fast navigation, copy, move, rename, preview, archive workflows, favorites, tabs, SFTP, and Google Drive link sharing.',
+    'MiMiNavigator is a progressive native open-source file manager for macOS 26+. It keeps two panels visible and supports tabs, inline rename, media conversion, 50+ archive formats, remote and cloud workflows, and configurable external compare or synchronization applications.',
   platform: 'macOS 26+',
   website: 'https://miminavi.tech/',
   releases: 'https://github.com/senatov/MiMiNavigator/releases',
   highlights: [
     'Dual-pane file browsing',
-    'Keyboard-first file operations',
-    'Archive, preview, and sharing tools',
-    'SFTP, tabs, favorites, and history'
+    'Tabs, inline rename, and keyboard-first file operations',
+    'Media conversion and 50+ archive formats',
+    'SFTP, FTP, SMB, mounted cloud storage, and sharing tools',
+    'External file and directory comparison or synchronization tools',
+    'Open-source AGPL-3.0 code and signed notarized releases'
   ]
 };
 

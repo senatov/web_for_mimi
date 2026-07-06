@@ -404,6 +404,48 @@
   justify-content: center;
 }
 
+:host ::ng-deep .p-galleria-prev-button,
+:host ::ng-deep .p-galleria-next-button {
+  z-index: 1101;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  background: rgba(32, 33, 36, 0.82);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  opacity: 1 !important;
+  visibility: visible !important;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+:host ::ng-deep .p-galleria-prev-button {
+  left: max(16px, env(safe-area-inset-left));
+}
+
+:host ::ng-deep .p-galleria-next-button {
+  right: max(16px, env(safe-area-inset-right));
+}
+
+:host ::ng-deep .p-galleria-prev-button:hover,
+:host ::ng-deep .p-galleria-next-button:hover,
+:host ::ng-deep .p-galleria-prev-button:focus-visible,
+:host ::ng-deep .p-galleria-next-button:focus-visible {
+  background: #202124;
+  outline: 3px solid rgba(255, 255, 255, 0.72);
+  outline-offset: 2px;
+}
+
+:host ::ng-deep .p-galleria-prev-icon,
+:host ::ng-deep .p-galleria-next-icon {
+  width: 22px;
+  height: 22px;
+}
+
 :host ::ng-deep .p-galleria-thumbnail-wrapper {
   overflow-x: auto;
   overflow-y: hidden;
@@ -433,6 +475,12 @@
 
   :host ::ng-deep .p-galleria-mask {
     padding: 14px 14px 88px;
+  }
+
+  :host ::ng-deep .p-galleria-prev-button,
+  :host ::ng-deep .p-galleria-next-button {
+    width: 48px;
+    height: 48px;
   }
 
   .gallery-popup-thumbnail {

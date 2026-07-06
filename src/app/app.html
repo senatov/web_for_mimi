@@ -103,6 +103,8 @@
                     <span>50+ archive formats</span>
                     <span>Media Convert</span>
                     <span>Google Drive + Dropbox links</span>
+                    <span>Batch rename</span>
+                    <span>Advanced search</span>
                 </div>
             </div>
 
@@ -176,7 +178,7 @@
                         (activeIndexChange)="onHeroGalleryActiveIndexChange($event)"
                         [fullScreen]="true"
                         [showItemNavigators]="true"
-                        [showItemNavigatorsOnHover]="true"
+                        [showItemNavigatorsOnHover]="false"
                         [showThumbnailNavigators]="true"
                         [showThumbnails]="true"
                         [showIndicators]="false"
@@ -426,7 +428,17 @@
 
                 <article class="faq-item">
                     <h3>Can it replace Finder on macOS 26+?</h3>
-                    <p>Yes for file-manager work: dual-pane browsing, tabs, sidebar, SFTP/FTP/SMB, archives, search, preview, media conversion, and Google Drive or Dropbox Share+Link are all in one app.</p>
+                    <p>Yes for file-manager work: two-panel browsing, tabs, inline rename, sidebar, SFTP/FTP/SMB, mounted cloud storage, 50+ archive formats, search, preview, and media conversion are all in one app.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Can it use external compare and sync tools?</h3>
+                    <p>Yes. Selected files or directories can be handed to configurable external applications for comparison and synchronization, so you can keep using the specialist tools you trust.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Which remote and cloud connections are supported?</h3>
+                    <p>SFTP, FTP, and SMB locations open inside the panels. Mounted cloud storage works as part of the file workflow, with dedicated Google Drive and Dropbox Share+Link support.</p>
                 </article>
 
                 <article class="faq-item">
@@ -444,7 +456,7 @@
                 <div>
                     <h3>Roadmap</h3>
                     <p>
-                        Next direction: batch rename with live before/after preview, folder sync and directory compare,
+                        Next direction: batch rename with live before/after preview, built-in folder sync and directory compare,
                         saved workspaces, command bar, Git status badges, duplicate search, app cleanup, WebDAV/S3/B2,
                         and deeper Finder/system integration.
                     </p>
