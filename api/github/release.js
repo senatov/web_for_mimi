@@ -44,8 +44,15 @@ async function handler(req, res) {
       return;
     }
 
+    const release = await response.json();
+    const assets = Array.isArray(release.assets)
+      ? release.assets.map(asset => ({
+          ...asset,
+          browser_download_url: `https://miminavi.tech/api/github/download?asset_id=${asset.id}`
+        }))
+      : [];
     res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
-    res.status(200).json(await response.json());
+    res.status(200).json({ ...release, assets });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown server error';
     res.status(500).json({ error: 'Unable to load latest release', details: message });
