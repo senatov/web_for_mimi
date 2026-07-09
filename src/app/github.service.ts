@@ -22,6 +22,11 @@ export interface RecentCommitViewModel {
     time: string;
 }
 
+interface RecentCommitsFetchResult {
+    commits: RecentCommitViewModel[];
+    error: string | null;
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -57,27 +62,53 @@ export class GitHubService {
 
     async loadRecentCommits(): Promise<RecentCommitViewModel[]> {
         const commitsUrl = this.resolveRecentCommitsUrl();
+        const result = await this.fetchRecentCommits(commitsUrl);
 
+        if (result.commits.length > 0 || commitsUrl === this.localRecentCommitsUrl) {
+            this.logRecentCommitsError(result.error);
+            return result.commits;
+        }
+
+        const fallbackResult = await this.fetchRecentCommits(this.localRecentCommitsUrl);
+
+        if (fallbackResult.commits.length > 0) {
+            return fallbackResult.commits;
+        }
+
+        this.logRecentCommitsError([result.error, fallbackResult.error].filter(Boolean).join('; '));
+        return [];
+    }
+
+    private async fetchRecentCommits(url: string): Promise<RecentCommitsFetchResult> {
         try {
-            const response = await fetch(commitsUrl);
+            const response = await fetch(url);
 
             if (!response.ok) {
-                this.logRecentCommitsError(`Commits endpoint failed with status ${response.status}`);
-                return [];
+                return {
+                    commits: [],
+                    error: `Commits endpoint ${url} failed with status ${response.status}`
+                };
             }
 
             const payload = (await response.json()) as unknown;
 
-            if (!Array.isArray(payload)) {
-                this.logRecentCommitsError('Commits endpoint response is not an array');
-                return [];
+            if (Array.isArray(payload)) {
+                return {
+                    commits: payload as RecentCommitViewModel[],
+                    error: null
+                };
             }
 
-            return payload as RecentCommitViewModel[];
+            return {
+                commits: [],
+                error: `Commits endpoint ${url} response is not an array`
+            };
         } catch (error: unknown) {
             const message = error instanceof Error ? error.message : 'Unknown commits loading error';
-            this.logRecentCommitsError(message);
-            return [];
+            return {
+                commits: [],
+                error: `${url}: ${message}`
+            };
         }
     }
 
@@ -181,8 +212,8 @@ export class GitHubService {
         return isLocalhost ? this.publicLatestReleaseUrl : this.latestReleaseUrl;
     }
 
-    private logRecentCommitsError(message: string): void {
-        if (!isDevMode()) {
+    private logRecentCommitsError(message: string | null): void {
+        if (!message || !isDevMode()) {
             return;
         }
 
