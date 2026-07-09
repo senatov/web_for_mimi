@@ -178,6 +178,11 @@
     flex-direction: column;
   }
 
+  .hero-proof,
+  .hero-capabilities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .hero-proof span,
   .hero-capabilities span {
     white-space: normal;
