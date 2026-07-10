@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef, inject} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, inject, OnDestroy} from '@angular/core';
 
 const VERSION_PATTERN = String.raw`macOS\s+\d+(?:\.\d+)*|v?\d+(?:\.\d+){1,4}`;
 const KEYWORD_PATTERN = String.raw`Google\s+Drive|Total\s+Commander|App\s+Store|MiMiNavigator|CloudStorage|Dropbox|Finder|WebDAV|⌘-Click|⇧-Click|Cmd\+Click|Shift\+Click|macOS|DMG|GPS|S3|SMB|EXIF|GitHub|SFTP|FTP|ZIP|RAR|7Z|TAR|GZIP|BZIP2|XZ|ISO|CAB|XAR|LZH|ARJ|CPIO|MP4|AVI|MKV|MOV|WEBM|FLV|WMV|MP3|WAV|FLAC|AAC|OGG|WMA|M4A|AIFF|PNG|JPEG|TIFF|BMP|WEBP|GIF|HEIC|SVG|F2|F5|F6|F7|AGPL-3\.0`;
@@ -19,19 +19,32 @@ const SKIPPED_SELECTOR = [
     selector: '[appSeoKeywordHighlight]',
     standalone: true
 })
-export class SeoKeywordHighlightDirective implements AfterViewInit {
+export class SeoKeywordHighlightDirective implements AfterViewInit, OnDestroy {
     private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+    private observer: MutationObserver | null = null;
+    private isDestroyed = false;
     private isHighlighting = false;
 
     ngAfterViewInit(): void {
         queueMicrotask(() => {
+            if (this.isDestroyed) {
+                return;
+            }
+
             this.highlight();
-            new MutationObserver(() => {
+            this.observer = new MutationObserver(() => {
                 if (!this.isHighlighting) {
                     this.highlight();
                 }
-            }).observe(this.elementRef.nativeElement, {childList: true, characterData: true, subtree: true});
+            });
+            this.observer.observe(this.elementRef.nativeElement, {childList: true, characterData: true, subtree: true});
         });
+    }
+
+    ngOnDestroy(): void {
+        this.isDestroyed = true;
+        this.observer?.disconnect();
+        this.observer = null;
     }
 
     private highlight(): void {

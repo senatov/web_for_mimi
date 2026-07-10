@@ -249,7 +249,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
 
-        //  suspicious ?
         protected openHeroGalleryAt(index: number, event?: Event): void {
                 event?.preventDefault();
                 event?.stopPropagation();
