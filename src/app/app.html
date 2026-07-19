@@ -62,6 +62,7 @@
                     <p class="hero-download-note">Signed DMG · macOS 26+ · Free</p>
                 }
 
+                <!--suppress HtmlUnknownTag -->
                 <p-popover #releasePopover styleClass="release-popover-panel" aria-label="Latest release highlights">
                     <div class="release-popover-content">
                         <div class="release-popover-header">
@@ -91,19 +92,19 @@
                 </p-popover>
 
                 <div class="hero-proof" aria-label="Product highlights">
-                    <span>Free, signed, notarized DMG</span>
-                    <span>SwiftUI + AppKit, no Electron</span>
-                    <span>AGPL-3.0 source on GitHub</span>
+                    <span>Free · signed · notarized</span>
+                    <span>Native SwiftUI + AppKit</span>
+                    <span>Open source · AGPL-3.0</span>
                 </div>
 
                 <div class="hero-capabilities" aria-label="Core capabilities">
                     <span>Two panels</span>
                     <span>Tabs</span>
-                    <span>SFTP/SMB</span>
+                    <span>SFTP · FTP · SMB</span>
                     <span>50+ archive formats</span>
-                    <span>Media Convert</span>
-                    <span>Google Drive + Dropbox links</span>
-                    <span>Batch rename</span>
+                    <span>Media info + convert</span>
+                    <span>Drive + Dropbox links</span>
+                    <span>Batch operations</span>
                     <span>Advanced search</span>
                 </div>
             </div>
@@ -170,6 +171,7 @@
                     </div>
                 </div>
 
+                <!--suppress HtmlUnknownTag -->
                 <p-galleria
                         [visible]="heroGalleryVisible"
                         (visibleChange)="onHeroGalleryVisibleChange($event)"
@@ -185,7 +187,7 @@
                         [circular]="true"
                         [numVisible]="5"
                         [containerStyle]="{ 'max-width': '100vw' }">
-                    <ng-template pTemplate="item">
+                    <ng-template #item>
                         <div class="gallery-popup-frame">
                             <button type="button"
                                     class="gallery-popup-close"
@@ -202,7 +204,7 @@
                             </div>
                         </div>
                     </ng-template>
-                    <ng-template pTemplate="thumbnail" let-item>
+                    <ng-template #thumbnail let-item>
                         <img [src]="item.thumbnailImageSrc"
                              [alt]="item.alt"
                              class="gallery-popup-thumbnail">
@@ -214,19 +216,19 @@
         <section class="quick-strip" aria-label="MiMiNavigator workflow summary">
             <div class="quick-strip-item">
                 <strong>Browse</strong>
-                <span>List, Preview, and Tree modes share sorting, marking, and keyboard navigation.</span>
+                <span>List, Preview, and Tree views keep sorting, selection, marks, and keyboard navigation in sync.</span>
             </div>
             <div class="quick-strip-item">
                 <strong>Move</strong>
-                <span>F5 copy, F6 move, conflict cards, progress panels, and Finder-compatible clipboard.</span>
+                <span>Copy, move, drag batches, resolve conflicts, and follow every transfer without hiding either panel.</span>
             </div>
             <div class="quick-strip-item">
                 <strong>Connect</strong>
-                <span>SFTP, FTP, SMB, app-managed mounts, Keychain-backed saved servers.</span>
+                <span>Open SFTP, FTP, SMB, mounted cloud drives, archives, and saved Keychain-backed servers in a panel.</span>
             </div>
             <div class="quick-strip-item">
                 <strong>Share</strong>
-                <span>Short branded Google Drive and Dropbox links copied from the context menu.</span>
+                <span>Create view or edit links for Google Drive and view links for Dropbox straight from the context menu.</span>
             </div>
         </section>
 
@@ -235,8 +237,8 @@
             <div class="section-heading-block">
                 <h2>Built for the jobs Finder makes expensive</h2>
                 <p>
-                    MiMiNavigator combines commander-style speed with modern macOS UI: real two-panel work,
-                    remote locations, archive browsing, media inspection, cloud sharing, and search workflows in one signed app.
+                    The latest MiMiNavigator brings List, Preview, and Tree workflows under one shared panel model,
+                    with remote access, archive search, rich media metadata, cloud sharing, and dependable batch operations.
                 </p>
             </div>
 
@@ -244,45 +246,45 @@
                 <article class="feature-cluster">
                     <span class="cluster-icon" aria-hidden="true">01</span>
                     <h3>Panel workflow</h3>
-                    <p>Two independent panels, tabs, favorites, history, Finder-style sidebar, remembered selection, drag batches, and shared List/Preview/Tree view state.</p>
+                    <p>Two independent panels keep tabs, paths, history, favorites, sidebar locations, selections, and marked files ready while you switch views.</p>
                     <ul>
-                        <li>Tab switches panels; Insert marks and moves to next file.</li>
-                        <li>Preview mode now uses the same marked-file state as List mode.</li>
-                        <li>Tree mode adds lazy expandable directory rows with metadata columns.</li>
+                        <li>Use Tab to change panels and Insert to mark a file and advance.</li>
+                        <li>List and Preview share marks, sorting, and the active selection.</li>
+                        <li>Tree expands folders lazily and keeps useful metadata columns visible.</li>
                     </ul>
                 </article>
 
                 <article class="feature-cluster">
                     <span class="cluster-icon" aria-hidden="true">02</span>
                     <h3>Remote and cloud</h3>
-                    <p>SFTP, FTP, and SMB locations open inside the panels, while Share+Link works with mounted Google Drive and Dropbox accounts.</p>
+                    <p>Remote servers and mounted cloud storage behave like panel locations, with credentials protected by macOS Keychain and sharing close at hand.</p>
                     <ul>
-                        <li>Cloud drives are detected from ~/Library/CloudStorage.</li>
-                        <li>Google Drive supports view-only and editable links; Dropbox supports view-only links.</li>
-                        <li>Dropbox uses OAuth PKCE, stores refresh tokens in Keychain, and creates its Public folder when needed.</li>
-                        <li>Provider links become short branded MiMiNavigator URLs and copy directly to the clipboard.</li>
+                        <li>Connect to SFTP, FTP, and SMB or reopen a saved server.</li>
+                        <li>Mounted Google Drive and Dropbox folders are detected automatically.</li>
+                        <li>Create Google view/edit links and Dropbox view links from the context menu.</li>
+                        <li>Short branded links copy immediately; Dropbox authorization uses OAuth PKCE.</li>
                     </ul>
                 </article>
 
                 <article class="feature-cluster">
                     <span class="cluster-icon" aria-hidden="true">03</span>
                     <h3>Search and archives</h3>
-                    <p>Advanced search covers names, content, size, age, dates, deletable-only ballast scans, and archive contents without leaving the file manager.</p>
+                    <p>Find files by name, text, size, age, and dates—or search inside archives and isolate removable disk ballast without leaving the panels.</p>
                     <ul>
-                        <li>Browse ZIP, RAR, 7Z, TAR, DMG, ISO, CAB, XAR, LZH, ARJ, CPIO, and more.</li>
-                        <li>Archives behave like virtual folders with parent navigation.</li>
-                        <li>Large directories use timeouts, cache fallback, and sampled autofit.</li>
+                        <li>Browse more than 50 formats, including ZIP, RAR, 7Z, TAR, DMG, and ISO.</li>
+                        <li>Archives open as virtual folders with familiar parent navigation.</li>
+                        <li>Large folders stay responsive with bounded loading, cached results, and sampled column sizing.</li>
                     </ul>
                 </article>
 
                 <article class="feature-cluster">
                     <span class="cluster-icon" aria-hidden="true">04</span>
                     <h3>Media and metadata</h3>
-                    <p>Media Info, EXIF photo dates, GPS map links, geotag badges, and Convert Media workflows are part of the file workflow.</p>
+                    <p>Inspect photos, audio, and video in place, reveal useful metadata, and start conversion without breaking the current file workflow.</p>
                     <ul>
-                        <li>Convert video, audio, and image files from the context menu.</li>
-                        <li>Photos with GPS metadata get a compact badge on their file icon.</li>
-                        <li>Preview and metadata stay available while navigating siblings.</li>
+                        <li>Convert video, audio, and images directly from the context menu.</li>
+                        <li>Read EXIF dates and jump from GPS coordinates to a map.</li>
+                        <li>Geotag badges, Preview, and metadata remain useful while moving through sibling files.</li>
                     </ul>
                 </article>
             </div>
@@ -337,10 +339,10 @@
                 <div class="price-card">
                     <div class="price">Download</div>
                     <div class="price-meta">
-                        <p class="price-copy"><span class="price-label">Latest version:</span> <strong>{{ latestVersion }}</strong></p>
-                        <p class="price-copy"><span class="price-label">Released:</span> <span class="price-file-date">{{ latestReleaseDate }}</span> <span class="price-release-age">({{ latestReleaseAge }})</span></p>
-                        <p class="price-copy"><span class="price-label">DMG file date:</span> <span
-                                class="price-file-date">{{ latestDmgFileDate }}</span>@if (latestDmgFileAge) { <span class="price-release-age">({{ latestDmgFileAge }})</span>}</p>
+                        <p class="price-copy"><span class="price-label">Version</span> <strong>{{ latestVersion }}</strong></p>
+                        <p class="price-copy"><span class="price-label">Released</span> <span class="price-value"><span class="price-file-date">{{ latestReleaseDate }}</span><span class="price-release-age">{{ latestReleaseAge }}</span></span></p>
+                        <p class="price-copy"><span class="price-label">DMG built</span> <span class="price-value"><span
+                                class="price-file-date">{{ latestDmgFileDate }}</span>@if (latestDmgFileAge) { <span class="price-release-age">{{ latestDmgFileAge }}</span>}</span></p>
                         <p class="price-copy price-copy-platform">Signed and notarized DMG for <span>{{ minimumMacOSVersion }}</span> or newer.</p>
                     </div>
                     @if (!isMobileDevice) {

@@ -185,7 +185,9 @@
 
   .hero-proof span,
   .hero-capabilities span {
-    white-space: normal;
+    padding-inline: 8px;
+    font-size: 11px;
+    white-space: nowrap;
   }
 
   .hero-carousel-stage {
@@ -246,6 +248,15 @@
 
   .price-card {
     padding: 20px;
+  }
+
+  .price-copy {
+    grid-template-columns: 72px minmax(0, 1fr);
+    column-gap: 8px;
+  }
+
+  .price-release-age {
+    display: none;
   }
 
   .commit-feed-scroller {

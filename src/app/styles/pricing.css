@@ -108,6 +108,13 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.86);
   box-shadow: 0 10px 26px rgba(13, 31, 74, 0.06);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.feature-cluster:hover {
+  transform: translateY(-3px);
+  border-color: rgba(26, 115, 232, 0.3);
+  box-shadow: 0 16px 34px rgba(13, 31, 74, 0.1);
 }
 
 .cluster-icon {
@@ -197,8 +204,8 @@
 .price-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 24px;
+  gap: 14px;
+  padding: 22px 24px;
   border: 1px solid rgba(13, 31, 74, 0.24);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.9);
@@ -243,12 +250,20 @@
 
 .price-copy {
   color: var(--gd-ink);
-  display: block;
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 10px;
   margin: 0;
   font-family: var(--gd-font-text), sans-serif;
   font-size: 15px;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.45;
+}
+
+.price-meta {
+  display: grid;
+  gap: 7px;
 }
 
 .price-copy strong {
@@ -261,10 +276,19 @@
   color: var(--gd-grey-700);
   font-size: 14px;
   font-weight: 500;
-  margin-right: 4px;
+  margin-right: 0;
+}
+
+.price-value {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+  white-space: nowrap;
 }
 
 .price-copy-platform {
+  display: block;
   color: var(--gd-grey-700);
   font-size: 14px;
   font-weight: 400;
@@ -285,7 +309,8 @@
   color: var(--gd-grey-500);
   font-size: 13px;
   font-weight: 400;
-  font-style: italic;
+  font-style: normal;
+  white-space: nowrap;
 }
 
 .button-block {

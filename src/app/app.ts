@@ -107,7 +107,7 @@ export class AppComponent implements OnInit, OnDestroy {
         protected heroCarouselTransitioning = false;
         protected readonly heroGalleryImages: GalleryImageItem[] = this.buildHeroGalleryImages();
         protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        protected readonly downloadPitchText = 'MiMiNavigator is a free dual-pane file manager for macOS built for people who move real files all day. It keeps source and destination visible, supports keyboard-first operations, remembers panel state, opens remote and archive locations, creates short Google Drive and Dropbox Share+Link URLs, and ships as a signed notarized DMG.';
+        protected readonly downloadPitchText = 'Work in two persistent panels with keyboard-first copy, move, marking, search, remote servers, archive folders, media tools, and cloud sharing. The native SwiftUI + AppKit app is free, open source, and distributed as a signed, notarized DMG.';
 
 
 

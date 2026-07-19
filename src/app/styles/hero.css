@@ -152,10 +152,14 @@
 .hero-proof,
 .hero-capabilities {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
   margin: 0;
   max-width: 560px;
+}
+
+.hero-proof span:last-child {
+  grid-column: 1 / -1;
 }
 
 .hero-proof span,
@@ -164,8 +168,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 34px;
-  padding: 7px 11px;
+  min-height: 38px;
+  padding: 8px 14px;
   border: 1px solid rgba(72, 88, 104, 0.22);
   border-radius: 7px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(237, 242, 246, 0.88));
@@ -177,7 +181,7 @@
   letter-spacing: 0;
   text-align: center;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
-  overflow-wrap: anywhere;
+  white-space: nowrap;
   cursor: default;
   transition:
     transform 160ms ease,
