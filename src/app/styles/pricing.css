@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   gap: 7px;
-  min-height: 118px;
+  min-height: 132px;
   padding: 20px 22px;
   border: 1px solid var(--gd-line-strong);
   background: rgba(255, 255, 255, 0.82);
@@ -95,6 +95,7 @@
 .feature-clusters {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: 16px;
 }
 
@@ -103,6 +104,7 @@
   flex-direction: column;
   gap: 13px;
   min-width: 0;
+  height: 100%;
   padding: 22px;
   border: 1px solid var(--gd-line-strong);
   border-radius: 12px;

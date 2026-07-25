@@ -2,37 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>MiMiNavigator — Progressive File Manager for macOS 26+</title>
+    <title>MiMiNavigator — Native Dual-Panel File Manager for macOS 26+</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
             name="description"
-            content="Progressive file manager for macOS 26+ with two panels, tabs, inline rename, SFTP/SMB, cloud access, 50+ archives, media conversion and external compare/sync tools."
+            content="Native dual-panel file manager for macOS 26+ with safe cleanup search, Multi-Rename, SFTP/FTP/SMB, 50+ archive formats, media tools, and cloud sharing."
     >
     <meta name="author" content="Iakov Senatov">
     <meta name="application-name" content="MiMiNavigator">
     <meta
             name="keywords"
-            content="MiMiNavigator, progressive macOS file manager, macOS 26 file manager, Finder alternative, dual pane file manager, tabs, inline rename, SFTP, FTP, SMB, cloud file manager, archive manager, 50 archive formats, media converter, external compare tool, directory sync, open source, signed notarized DMG"
+            content="MiMiNavigator, native macOS file manager, macOS 26 file manager, Finder alternative, dual pane file manager, Find Files, app leftovers cleanup, Multi-Rename, SFTP, FTP, SMB, archive manager, 50 archive formats, media converter, open source, signed notarized DMG"
     >
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#f4f0e8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="MiMiNavigator">
     <meta property="og:site_name" content="MiMiNavigator">
-    <meta property="og:title" content="MiMiNavigator — Progressive File Manager for macOS 26+">
+    <meta property="og:title" content="MiMiNavigator — Native Dual-Panel File Manager for macOS 26+">
     <meta
             property="og:description"
-            content="Native open-source Finder alternative with two panels, tabs, inline rename, remote and cloud connections, 50+ archive formats, media conversion, and configurable external compare or sync tools."
+            content="Native open-source Finder alternative with two panels, safe cleanup search, Multi-Rename, remote connections, 50+ archive formats, media tools, and cloud sharing."
     >
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://miminavi.tech/">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MiMiNavigator — Progressive File Manager for macOS 26+">
+    <meta name="twitter:title" content="MiMiNavigator — Native Dual-Panel File Manager for macOS 26+">
     <meta
             name="twitter:description"
-            content="Native open-source macOS 26+ file manager: two panels, tabs, inline rename, SFTP/FTP/SMB, cloud access, archives, media conversion, and external compare or sync tools."
+            content="Native open-source macOS 26+ file manager with two panels, safe cleanup search, Multi-Rename, remote servers, archives, media tools, and cloud sharing."
     >
     <meta name="twitter:image" content="https://miminavi.tech/images/gallery/Preview0.png">
     <meta name="twitter:image:alt" content="MiMiNavigator dual-pane macOS file manager screenshot">
@@ -80,23 +80,24 @@
                 "https://miminavi.tech/images/gallery/Preview0.png",
                 "https://miminavi.tech/images/gallery/Preview1.png"
             ],
-            "description": "MiMiNavigator is a progressive native open-source file manager for macOS 26 or newer. It combines two-panel browsing, tabs, inline rename, keyboard-first file operations, SFTP, FTP, SMB and cloud workflows, more than 50 archive formats, media conversion, and configurable external applications for file and directory comparison or synchronization.",
+            "description": "MiMiNavigator is a native open-source dual-panel file manager for macOS 26 or newer. It combines keyboard-first file operations, safe cleanup search, Multi-Rename, SFTP, FTP, SMB and cloud workflows, more than 50 archive formats, and media tools.",
             "featureList": [
-                "Native progressive Finder alternative for macOS 26+",
+                "Native dual-panel Finder alternative for macOS 26+",
                 "Two independent file panels with visible source and destination",
                 "Tabs, favorites, history, remembered selections, and keyboard-first navigation",
                 "Inline file and folder renaming plus F2 rename, F5 copy, F6 move, and F7 new folder shortcuts",
                 "SFTP, FTP, and SMB remote file management with Keychain-backed saved connections",
                 "Mounted cloud storage workflows including Google Drive and Dropbox Share+Link",
                 "More than 50 archive formats including ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, and CPIO",
-                "Advanced file search by name, date, size, and type",
+                "Spotlight-backed Find Files with safe presets for stale files, empty folders, and app leftovers",
+                "Multi-Rename with masks, counters, replacements, case conversion, live conflict previews, and rollback",
                 "Built-in conversion for video, audio, and image files",
                 "Configurable external applications for comparing and synchronizing files or directories",
                 "Open-source AGPL-3.0 code available on GitHub",
                 "Security-focused OAuth PKCE and macOS Keychain credential storage",
                 "Free signed and notarized DMG with no subscription"
             ],
-            "keywords": "progressive macOS 26 file manager, Finder alternative, two-panel file manager, tabs, inline rename, SFTP FTP SMB, cloud file manager, 50+ archive formats, external file compare, directory synchronization, media converter, open-source macOS app, signed notarized DMG",
+            "keywords": "native macOS 26 file manager, Finder alternative, dual-panel file manager, Find Files, app leftovers cleanup, Multi-Rename, SFTP FTP SMB, cloud file manager, 50+ archive formats, media converter, open-source macOS app, signed notarized DMG",
             "author": {
                 "@type": "Person",
                 "@id": "https://miminavi.tech/#iakov-senatov",
@@ -225,8 +226,12 @@
         var sc_project = 13215703;
         var sc_invisible = 1;
         var sc_security = "d2c2ae13";
+
+        const statcounterScript = document.createElement('script');
+        statcounterScript.async = true;
+        statcounterScript.src = 'https://www.statcounter.com/counter/counter.js';
+        document.head.appendChild(statcounterScript);
     </script>
-    <script src="https://www.statcounter.com/counter/counter.js" async></script>
     <!-- End of Statcounter Code -->
 
     <!-- Microsoft Clarity tracking for miminavi.tech -->
@@ -241,9 +246,9 @@
 <body>
 <app-root>
 <noscript>
-	    <h1>MiMiNavigator — Progressive Open-Source File Manager for macOS 26+</h1>
+	    <h1>MiMiNavigator — Native Dual-Panel File Manager for macOS 26+</h1>
 	    <p>A free native two-panel Finder alternative with tabs, inline rename, favorites, history, keyboard shortcuts,
-	       advanced search, SFTP, FTP, SMB, mounted cloud storage, Google Drive and Dropbox Share+Link, and more than
+	       safe cleanup search, Multi-Rename, SFTP, FTP, SMB, mounted cloud storage, Google Drive and Dropbox Share+Link, and more than
 	       50 archive formats including ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, and CPIO.
 	       MiMiNavigator converts video, audio, and image files and can launch configurable external applications for
 	       comparing or synchronizing files and directories. OAuth PKCE, macOS Keychain credential storage, signed and

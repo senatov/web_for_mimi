@@ -158,10 +158,6 @@
   max-width: 560px;
 }
 
-.hero-proof span:last-child {
-  grid-column: 1 / -1;
-}
-
 .hero-proof span,
 .hero-capabilities span {
   position: relative;

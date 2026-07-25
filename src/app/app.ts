@@ -77,20 +77,21 @@ export class AppComponent implements OnInit, OnDestroy {
         protected readonly linkedInProfileUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
         private readonly previewImageBasePath = '/images';
         private readonly previewDialogHint = 'Press Esc or click outside to close';
-        private readonly heroGalleryFolderPath = 'gallery';
-        private readonly heroGalleryFileNames = [
+        private readonly heroGalleryImagePaths = [
                 'Preview0.png',
                 'Preview1.png',
-                'g0.png',
-                'g1.png',
-                'g2.png',
-                'g3.png',
-                'g4.png',
-                'g5.png',
-                'g6.png',
-                'g7.png',
-                'g8.png',
-                'g9.png'
+                'Preview2.png',
+                'Preview3.png',
+                'gallery/g0.png',
+                'gallery/g1.png',
+                'gallery/g2.png',
+                'gallery/g3.png',
+                'gallery/g4.png',
+                'gallery/g5.png',
+                'gallery/g6.png',
+                'gallery/g7.png',
+                'gallery/g8.png',
+                'gallery/g9.png'
         ];
         private readonly heroCarouselTransitionMs = 920;
         private latestReleaseIsoDate: string | null = null;
@@ -375,10 +376,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
         private buildHeroGalleryImages(): GalleryImageItem[] {
-                return this.heroGalleryFileNames.map(fileName => {
+                return this.heroGalleryImagePaths.map(relativePath => {
                         return this.createGalleryImageItem(
-                            `${this.heroGalleryFolderPath}/${fileName}`,
-                            this.createHeroGalleryImageTitle(fileName)
+                            relativePath,
+                            this.createHeroGalleryImageTitle(relativePath)
                         );
                 });
         }
@@ -398,7 +399,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
 
-        private createHeroGalleryImageTitle(fileName: string): string {
+        private createHeroGalleryImageTitle(relativePath: string): string {
+                const fileName = relativePath.split('/').pop() ?? relativePath;
                 const title = fileName.replace(/\.[^.]+$/, '').replace(/^g(\d+)$/i, 'Demo $1');
 
                 return `MiMiNavigator ${title}`;
