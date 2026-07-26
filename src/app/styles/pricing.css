@@ -299,11 +299,15 @@
 .homebrew-command pre {
   overflow-x: auto;
   margin: 0;
-  color: #eef6ff;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 12px;
   line-height: 1.65;
   white-space: pre;
+}
+
+.homebrew-command code {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
 }
 
 .homebrew-copy-button {

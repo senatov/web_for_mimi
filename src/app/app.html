@@ -384,20 +384,20 @@
                         </div>
                         <span class="homebrew-mark" aria-hidden="true">brew</span>
                     </div>
-                    <p>Copy both commands, paste them into Terminal, and press Return.</p>
+                    <p>Copy the command, paste it into Terminal, and press Return.</p>
                     <div class="homebrew-command">
-                        <pre aria-label="Homebrew installation commands"><code>{{ homebrewInstallCommand }}</code></pre>
+                        <pre aria-label="Homebrew installation command"><code>{{ homebrewInstallCommand }}</code></pre>
                         <button type="button"
                                 class="homebrew-copy-button"
                                 [class.homebrew-copy-button-copied]="homebrewCopied"
-                                [attr.aria-label]="homebrewCopied ? 'Homebrew commands copied' : 'Copy Homebrew installation commands'"
+                                [attr.aria-label]="homebrewCopied ? 'Homebrew command copied' : 'Copy Homebrew installation command'"
                                 (click)="copyHomebrewCommands()">
                             <span aria-hidden="true">{{ homebrewCopied ? '✓' : '⧉' }}</span>
                             {{ homebrewCopied ? 'Copied' : 'Copy' }}
                         </button>
                     </div>
                     <span class="homebrew-copy-status" aria-live="polite">
-                        {{ homebrewCopied ? 'Both commands copied to the clipboard.' : '' }}
+                        {{ homebrewCopied ? 'Command copied to the clipboard.' : '' }}
                     </span>
                 </div>
             </div>
