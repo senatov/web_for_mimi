@@ -251,6 +251,18 @@
     padding: 20px;
   }
 
+  .homebrew-card {
+    padding: 18px;
+  }
+
+  .homebrew-command {
+    grid-template-columns: 1fr;
+  }
+
+  .homebrew-copy-button {
+    width: 100%;
+  }
+
   .price-copy {
     grid-template-columns: 72px minmax(0, 1fr);
     column-gap: 8px;

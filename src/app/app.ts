@@ -45,6 +45,7 @@ declare global {
 type AnalyticsEventName =
     | 'download_click'
     | 'github_click'
+    | 'homebrew_copy'
     | 'linkedin_click'
     | 'releases_click'
     | 'screenshot_open';
@@ -91,9 +92,12 @@ export class AppComponent implements OnInit, OnDestroy {
                 'gallery/g6.png',
                 'gallery/g7.png',
                 'gallery/g8.png',
-                'gallery/g9.png'
+                'gallery/g9.png',
+                'gallery/g10.png',
+                'gallery/g11.png'
         ];
         private readonly heroCarouselTransitionMs = 920;
+        private homebrewCopyTimerId: number | null = null;
         private latestReleaseIsoDate: string | null = null;
         private latestDmgIsoDate: string | null = null;
         private releaseAgeTimerId: number | null = null;
@@ -106,8 +110,10 @@ export class AppComponent implements OnInit, OnDestroy {
         protected heroCarouselIndex = 0;
         protected previousHeroCarouselIndex = 0;
         protected heroCarouselTransitioning = false;
+        protected homebrewCopied = false;
         protected readonly heroGalleryImages: GalleryImageItem[] = this.buildHeroGalleryImages();
         protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        protected readonly homebrewInstallCommand = 'brew tap senatov/tap\nbrew install miminavigator';
         protected readonly downloadPitchText = 'Work in two persistent panels with keyboard-first copy, move, marking, search, remote servers, archive folders, media tools, and cloud sharing. The native SwiftUI + AppKit app is free, open source, and distributed as a signed, notarized DMG.';
 
 
@@ -124,6 +130,7 @@ export class AppComponent implements OnInit, OnDestroy {
         ngOnDestroy(): void {
                 this.stopReleaseAgeTimer();
                 this.stopHeroCarouselTransition();
+                this.stopHomebrewCopyTimer();
         }
 
 
@@ -162,6 +169,23 @@ export class AppComponent implements OnInit, OnDestroy {
                         location,
                         version: this.latestVersion
                 });
+        }
+
+
+
+        protected async copyHomebrewCommands(): Promise<void> {
+                await navigator.clipboard.writeText(this.homebrewInstallCommand);
+                this.stopHomebrewCopyTimer();
+                this.homebrewCopied = true;
+                this.trackEvent('homebrew_copy', {
+                        location: 'pricing'
+                });
+                this.cdr.markForCheck();
+                this.homebrewCopyTimerId = window.setTimeout(() => {
+                        this.homebrewCopied = false;
+                        this.homebrewCopyTimerId = null;
+                        this.cdr.markForCheck();
+                }, 2_400);
         }
 
 
@@ -371,6 +395,16 @@ export class AppComponent implements OnInit, OnDestroy {
                 }
 
                 this.heroCarouselTransitioning = false;
+        }
+
+
+
+        private stopHomebrewCopyTimer(): void {
+                if (this.homebrewCopyTimerId === null) {
+                        return;
+                }
+                window.clearTimeout(this.homebrewCopyTimerId);
+                this.homebrewCopyTimerId = null;
         }
 
 

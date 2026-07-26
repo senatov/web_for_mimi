@@ -249,6 +249,7 @@
                     <ul>
                         <li>Use Tab to change panels and Insert to mark a file and advance.</li>
                         <li>List and Preview share marks, sorting, and the active selection.</li>
+                        <li>Complete local and cloud paths from the keyboard with folder-aware suggestions.</li>
                         <li>Copy, move, compare, and drag batches with both locations visible.</li>
                     </ul>
                 </article>
@@ -281,7 +282,7 @@
                     <p>Open network locations as panel destinations, publish cloud links, and inspect or convert media in place.</p>
                     <ul>
                         <li>Connect to SFTP, FTP, and SMB with Keychain-backed saved servers.</li>
-                        <li>Create Google Drive and Dropbox share links from the context menu.</li>
+                        <li>Create Google Drive and Dropbox share links with view-only or editing access.</li>
                         <li>Convert video, audio, and images directly from the context menu.</li>
                         <li>Read EXIF dates and jump from GPS coordinates to a map.</li>
                     </ul>
@@ -336,7 +337,7 @@
 
             <div class="pricing-card-column">
                 <div class="price-card">
-                    <div class="price">Download</div>
+                    <div class="price">Download directly</div>
                     <div class="price-meta">
                         <p class="price-copy"><span class="price-label">Version</span> <strong>{{ latestVersion }}</strong></p>
                         <p class="price-copy"><span class="price-label">Released</span> <span class="price-value"><span class="price-file-date">{{ latestReleaseDate }}</span><span class="price-release-age">{{ latestReleaseAge }}</span></span></p>
@@ -360,7 +361,7 @@
                                         referrerpolicy="no-referrer">
                                 <span class="download-platform-os">26+</span>
                             </span>
-                            <span>Download App</span>
+                            <span>Download DMG</span>
                         </a>
                     } @else {
                         <p class="mobile-download-hint">Open this page on a Mac to download.</p>
@@ -373,6 +374,31 @@
                         <a [href]="releasesPageUrl" target="_blank" rel="noopener noreferrer"
                            (click)="trackReleasesClick('pricing')">Browse all releases</a>
                     </p>
+                </div>
+
+                <div class="homebrew-card">
+                    <div class="homebrew-card-heading">
+                        <div>
+                            <span class="homebrew-kicker">Or use the command line</span>
+                            <h2>Install with Homebrew</h2>
+                        </div>
+                        <span class="homebrew-mark" aria-hidden="true">brew</span>
+                    </div>
+                    <p>Copy both commands, paste them into Terminal, and press Return.</p>
+                    <div class="homebrew-command">
+                        <pre aria-label="Homebrew installation commands"><code>{{ homebrewInstallCommand }}</code></pre>
+                        <button type="button"
+                                class="homebrew-copy-button"
+                                [class.homebrew-copy-button-copied]="homebrewCopied"
+                                [attr.aria-label]="homebrewCopied ? 'Homebrew commands copied' : 'Copy Homebrew installation commands'"
+                                (click)="copyHomebrewCommands()">
+                            <span aria-hidden="true">{{ homebrewCopied ? '✓' : '⧉' }}</span>
+                            {{ homebrewCopied ? 'Copied' : 'Copy' }}
+                        </button>
+                    </div>
+                    <span class="homebrew-copy-status" aria-live="polite">
+                        {{ homebrewCopied ? 'Both commands copied to the clipboard.' : '' }}
+                    </span>
                 </div>
             </div>
         </section>
