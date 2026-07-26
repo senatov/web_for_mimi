@@ -93,6 +93,10 @@
     grid-template-columns: 1fr;
   }
 
+  .pricing-card-column {
+    grid-column: 1;
+  }
+
   .section-heading {
     flex-direction: column;
     align-items: flex-start;
@@ -273,6 +277,7 @@
   }
 
   .commit-feed-scroller {
+    height: auto;
     max-height: 430px;
   }
 

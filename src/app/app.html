@@ -292,10 +292,6 @@
 
         <section class="pricing" id="download">
             <div class="release-panel">
-                <div class="section-kicker">Latest activity</div>
-                <h2>{{ latestReleaseHeadline }}</h2>
-                <p>{{ latestReleaseSummary }}</p>
-
                 <section class="commit-feed" aria-label="Latest commits and release changes">
                     <div class="commit-feed-scroller" aria-label="Recent MiMiNavigator commits and latest release changes">
                         <div class="commit-list" role="list" aria-label="Recent MiMiNavigator commits">
@@ -337,7 +333,10 @@
 
             <div class="pricing-card-column">
                 <div class="price-card">
-                    <div class="price">Download directly</div>
+                    <div class="download-release-heading">
+                        <h2>{{ latestReleaseHeadline }}</h2>
+                        <p>{{ latestReleaseSummary }}</p>
+                    </div>
                     <div class="price-meta">
                         <p class="price-copy"><span class="price-label">Version</span> <strong>{{ latestVersion }}</strong></p>
                         <p class="price-copy"><span class="price-label">Released</span> <span class="price-value"><span class="price-file-date">{{ latestReleaseDate }}</span><span class="price-release-age">{{ latestReleaseAge }}</span></span></p>
@@ -345,6 +344,7 @@
                                 class="price-file-date">{{ latestDmgFileDate }}</span>@if (latestDmgFileAge) { <span class="price-release-age">{{ latestDmgFileAge }}</span>}</span></p>
                         <p class="price-copy price-copy-platform">Signed and notarized DMG for <span>{{ minimumMacOSVersion }}</span> or newer.</p>
                     </div>
+                    <div class="download-direct-label">Download directly</div>
                     @if (!isMobileDevice) {
                         <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
                            aria-label="Download MiMiNavigator DMG for macOS 26 or newer"

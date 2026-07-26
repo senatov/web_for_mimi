@@ -181,9 +181,9 @@
   margin: 0;
   padding: 38px max(var(--gd-gutter), calc((100vw - var(--gd-max-width)) / 2 + var(--gd-gutter))) 46px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 450px);
-  align-items: start;
-  gap: 36px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(440px, 0.9fr);
+  align-items: stretch;
+  gap: 28px;
   background: linear-gradient(180deg, rgba(247, 244, 238, 0.72) 0%, rgba(240, 235, 226, 0.76) 100%);
   border-top: 1px solid var(--gd-line-strong);
   border-bottom: 1px solid var(--gd-line-strong);
@@ -194,13 +194,15 @@
   flex-direction: column;
   gap: 14px;
   min-width: 0;
+  height: 100%;
 }
 
 .pricing-card-column {
   display: flex;
+  grid-column: auto;
   flex-direction: column;
-  gap: 16px;
   align-self: start;
+  gap: 16px;
 }
 
 .price-card {
@@ -212,6 +214,11 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 12px 34px rgba(13, 31, 74, 0.08);
+}
+
+.price-card,
+.homebrew-card {
+  min-width: 0;
 }
 
 .homebrew-card {
@@ -339,6 +346,7 @@
 
 .homebrew-copy-status {
   min-height: 16px;
+  margin-top: auto;
   color: #56705f;
   font-size: 12px;
   line-height: 1.3;
@@ -380,6 +388,36 @@
   line-height: 1.2;
 }
 
+.download-release-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.download-release-heading h2 {
+  margin: 0;
+  color: var(--gd-ink);
+  font-family: var(--gd-font-display), sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.download-release-heading p {
+  margin: 0;
+  color: var(--gd-ink-soft);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.download-direct-label {
+  margin: 2px 0 -5px;
+  color: var(--gd-grey-700);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
 .price-copy {
   color: var(--gd-ink);
   display: grid;
@@ -413,10 +451,10 @@
 
 .price-value {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: 5px;
   min-width: 0;
-  white-space: nowrap;
 }
 
 .price-copy-platform {
