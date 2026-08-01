@@ -2,37 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>MiMiNavigator — Native Dual-Panel File Manager for macOS 26+</title>
+    <title>MiMiNavigator — Total Commander–Style File Manager for macOS 26+</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
             name="description"
-            content="Native dual-panel file manager for macOS 26+ with safe cleanup search, Multi-Rename, SFTP/FTP/SMB, 50+ archive formats, media tools, and cloud sharing."
+            content="Native Total Commander–style dual-panel file manager for macOS 26+ with persistent tabs, List/Preview/Tree views, Find Files, Multi-Rename, SFTP/FTP, network discovery, Archive VFS, and media conversion."
     >
     <meta name="author" content="Iakov Senatov">
     <meta name="application-name" content="MiMiNavigator">
     <meta
             name="keywords"
-            content="MiMiNavigator, native macOS file manager, macOS 26 file manager, Finder alternative, dual pane file manager, Find Files, app leftovers cleanup, Multi-Rename, SFTP, FTP, SMB, archive manager, 50 archive formats, media converter, open source, signed notarized DMG"
+            content="MiMiNavigator, macOS 26 file manager, Total Commander for Mac, Norton Commander for Mac, Finder alternative, native dual panel file manager, SwiftUI file manager, persistent tabs, List Preview Tree views, TC keyboard shortcuts, Find Files, app leftovers cleanup, Multi-Rename, SFTP client, FTP client, SMB AFP network discovery, Archive VFS, 50+ archive formats, media converter, external diff tools, open source macOS app, signed notarized DMG, Homebrew cask"
     >
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#f4f0e8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="MiMiNavigator">
     <meta property="og:site_name" content="MiMiNavigator">
-    <meta property="og:title" content="MiMiNavigator — Native Dual-Panel File Manager for macOS 26+">
+    <meta property="og:title" content="MiMiNavigator — Total Commander–Style File Manager for macOS 26+">
     <meta
             property="og:description"
-            content="Native open-source Finder alternative with two panels, safe cleanup search, Multi-Rename, remote connections, 50+ archive formats, media tools, and cloud sharing."
+            content="Native open-source Finder alternative with persistent dual panels, TC-style hotkeys, List/Preview/Tree views, remote connections, Archive VFS, media conversion, and cloud sharing."
     >
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://miminavi.tech/">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MiMiNavigator — Native Dual-Panel File Manager for macOS 26+">
+    <meta name="twitter:title" content="MiMiNavigator — Total Commander–Style File Manager for macOS 26+">
     <meta
             name="twitter:description"
-            content="Native open-source macOS 26+ file manager with two panels, safe cleanup search, Multi-Rename, remote servers, archives, media tools, and cloud sharing."
+            content="Native open-source macOS 26+ file manager with persistent dual panels, TC-style hotkeys, Tree view, remote servers, Archive VFS, media conversion, and cloud sharing."
     >
     <meta name="twitter:image" content="https://miminavi.tech/images/gallery/Preview0.png">
     <meta name="twitter:image:alt" content="MiMiNavigator dual-pane macOS file manager screenshot">
@@ -80,24 +80,29 @@
                 "https://miminavi.tech/images/gallery/Preview0.png",
                 "https://miminavi.tech/images/gallery/Preview1.png"
             ],
-            "description": "MiMiNavigator is a native open-source dual-panel file manager for macOS 26 or newer. It combines keyboard-first file operations, safe cleanup search, Multi-Rename, SFTP, FTP, SMB and cloud workflows, more than 50 archive formats, and media tools.",
+            "description": "MiMiNavigator is a native open-source, Total Commander–style dual-panel file manager for macOS 26 or newer. It combines persistent tabs and views, keyboard-first file operations, Find Files, Multi-Rename, remote and network workflows, Archive VFS, media conversion, and cloud sharing.",
             "featureList": [
                 "Native dual-panel Finder alternative for macOS 26+",
                 "Two independent file panels with visible source and destination",
-                "Tabs, favorites, history, remembered selections, and keyboard-first navigation",
+                "Persistent tabs plus per-tab List, Preview, and Tree views",
+                "Favorites, history, remembered selections, TC-style menus, and keyboard-first navigation",
                 "Inline file and folder renaming plus F2 rename, F5 copy, F6 move, and F7 new folder shortcuts",
-                "SFTP, FTP, and SMB remote file management with Keychain-backed saved connections",
+                "SFTP and FTP remote browsing with Keychain-backed saved connections",
+                "SMB and AFP network-neighborhood discovery, mounting, and browsing",
                 "Mounted cloud storage workflows including Google Drive and Dropbox Share+Link",
-                "More than 50 archive formats including ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, and CPIO",
+                "Archive VFS with parent navigation, automatic repacking, and more than 50 formats including ZIP, RAR, 7Z, TAR, DMG, PKG, and ISO",
                 "Spotlight-backed Find Files with safe presets for stale files, empty folders, and app leftovers",
                 "Multi-Rename with masks, counters, replacements, case conversion, live conflict previews, and rollback",
-                "Built-in conversion for video, audio, and image files",
+                "Built-in conversion for video, audio, GIF, and image files",
                 "Configurable external applications for comparing and synchronizing files or directories",
+                "External Tool Doctor for archive, compare, and media dependencies",
+                "Persistent bounded GRDB/SQLite cache for directory sizes and validated SHA-256 hashes",
+                "Secure automatic update installation with validation and rollback",
                 "Open-source AGPL-3.0 code available on GitHub",
                 "Security-focused OAuth PKCE and macOS Keychain credential storage",
                 "Free signed and notarized DMG with no subscription"
             ],
-            "keywords": "native macOS 26 file manager, Finder alternative, dual-panel file manager, Find Files, app leftovers cleanup, Multi-Rename, SFTP FTP SMB, cloud file manager, 50+ archive formats, media converter, open-source macOS app, signed notarized DMG",
+            "keywords": "macOS 26 file manager, Total Commander for Mac, Norton Commander for Mac, Finder alternative, native dual-panel file manager, SwiftUI file manager, persistent tabs, List Preview Tree views, TC keyboard shortcuts, Find Files, Multi-Rename, SFTP FTP, SMB AFP network discovery, Archive VFS, media converter, external diff tools, open-source macOS app, Homebrew cask",
             "author": {
                 "@type": "Person",
                 "@id": "https://miminavi.tech/#iakov-senatov",
@@ -165,7 +170,7 @@
                     "name": "Can it replace Finder on macOS 26+?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Yes for file-manager work: two-panel browsing, tabs, inline rename, sidebar, SFTP/FTP/SMB, mounted cloud storage, 50+ archive formats, search, preview, and media conversion are all in one app."
+                        "text": "Yes for file-manager work: persistent dual panels and tabs, List/Preview/Tree views, inline rename, Find Files, SFTP/FTP, SMB/AFP network discovery, mounted cloud storage, Archive VFS, and media conversion are all in one app."
                     }
                 },
                 {
@@ -181,7 +186,7 @@
                     "name": "Which remote and cloud connections are supported?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "SFTP, FTP, and SMB locations open inside the panels. Mounted cloud storage works as part of the file workflow, with dedicated Google Drive and Dropbox Share+Link support."
+                        "text": "SFTP and FTP servers open inside the panels with saved Keychain-backed connections. The network neighborhood discovers and mounts SMB and AFP shares. Mounted cloud storage works as part of the file workflow, with dedicated Google Drive and Dropbox Share+Link support."
                     }
                 },
                 {
@@ -246,11 +251,11 @@
 <body>
 <app-root>
 <noscript>
-	    <h1>MiMiNavigator — Native Dual-Panel File Manager for macOS 26+</h1>
-	    <p>A free native two-panel Finder alternative with tabs, inline rename, favorites, history, keyboard shortcuts,
-	       safe cleanup search, Multi-Rename, SFTP, FTP, SMB, mounted cloud storage, Google Drive and Dropbox Share+Link, and more than
-	       50 archive formats including ZIP, RAR, 7Z, TAR, GZIP, BZIP2, XZ, ISO, CAB, XAR, LZH, ARJ, and CPIO.
-	       MiMiNavigator converts video, audio, and image files and can launch configurable external applications for
+	    <h1>MiMiNavigator — Total Commander–Style File Manager for macOS 26+</h1>
+	    <p>A free native two-panel Finder alternative with persistent tabs, List/Preview/Tree views, TC-style hotkeys,
+	       Find Files, Multi-Rename, SFTP/FTP, SMB/AFP network discovery, mounted cloud storage, Google Drive and Dropbox Share+Link,
+	       and Archive VFS for more than 50 formats including ZIP, RAR, 7Z, TAR, DMG, PKG, ISO, CAB, XAR, LZH, ARJ, and CPIO.
+	       MiMiNavigator converts video, GIF, audio, and image files and can launch configurable external applications for
 	       comparing or synchronizing files and directories. OAuth PKCE, macOS Keychain credential storage, signed and
 	       notarized DMG releases, and AGPL-3.0 source code support a transparent security model. No subscription,
 	       no App Store requirement, and no extra installer.</p>
