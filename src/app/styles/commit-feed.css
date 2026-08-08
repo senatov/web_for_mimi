@@ -58,7 +58,7 @@
 
 .commit-item {
   display: grid;
-  grid-template-columns: 80px minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
   gap: 12px;
   align-items: baseline;
   padding: 9px 10px;
