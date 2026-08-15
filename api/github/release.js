@@ -10,13 +10,22 @@
 //  from GitHub. Keeps the landing page off direct browser GitHub API calls.
 //
 
-const GITHUB_LATEST_RELEASE_URL = 'https://api.github.com/repos/senatov/MiMiNavigator/releases/latest';
 const GITHUB_ACCEPT_HEADER = 'application/vnd.github+json';
+const PROJECT_REPOSITORIES = {
+  navigator: 'senatov/MiMiNavigator',
+  trends: 'senatov/mimiTrends'
+};
 
 async function handler(req, res) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
     res.status(405).json({ error: 'Method not allowed' });
+    return;
+  }
+  const project = typeof req.query.project === 'string' ? req.query.project : 'navigator';
+  const repository = PROJECT_REPOSITORIES[project];
+  if (!repository) {
+    res.status(400).json({ error: 'Unknown project' });
     return;
   }
 
@@ -30,7 +39,7 @@ async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(GITHUB_LATEST_RELEASE_URL, {
+    const response = await fetch(`https://api.github.com/repos/${repository}/releases/latest`, {
       headers
     });
 
@@ -48,7 +57,7 @@ async function handler(req, res) {
     const assets = Array.isArray(release.assets)
       ? release.assets.map(asset => ({
           ...asset,
-          browser_download_url: `https://miminavi.tech/api/github/download?asset_id=${asset.id}`
+          browser_download_url: `/api/github/download?asset_id=${asset.id}&project=${project}`
         }))
       : [];
     res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');

@@ -17,6 +17,7 @@ import {GitHubService, RecentCommitViewModel} from './github.service';
 import {GalleriaModule} from 'primeng/galleria';
 import {PopoverModule} from 'primeng/popover';
 import {SeoKeywordHighlightDirective} from './seo-keyword-highlight.directive';
+import {TrendsPageComponent} from './trends-page.component';
 
 
 
@@ -55,12 +56,13 @@ type AnalyticsEventName =
 @Component({
         selector: 'app-root',
         standalone: true,
-        imports: [CommonModule, MatDialogModule, GalleriaModule, PopoverModule, SeoKeywordHighlightDirective],
+        imports: [CommonModule, MatDialogModule, GalleriaModule, PopoverModule, SeoKeywordHighlightDirective, TrendsPageComponent],
         templateUrl: './app.html',
         styleUrl: './styles/app.css',
         changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit, OnDestroy {
+        protected readonly isTrendsPage = window.location.pathname.replace(/\/$/, '') === '/trends';
         private readonly dialog = inject(MatDialog);
         private readonly cdr = inject(ChangeDetectorRef);
         private readonly gitHubService = inject(GitHubService);

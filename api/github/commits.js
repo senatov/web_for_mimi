@@ -10,10 +10,11 @@
 //  from GitHub using an optional server-side token.
 //
 
-const GITHUB_COMMITS_URL = 'https://api.github.com/repos/senatov/MiMiNavigator/commits?per_page=18';
-const GITHUB_LATEST_RELEASE_URL = 'https://api.github.com/repos/senatov/MiMiNavigator/releases/latest';
-const GITHUB_BRANCH_URL = 'https://api.github.com/repos/senatov/MiMiNavigator/branches/master';
 const GITHUB_ACCEPT_HEADER = 'application/vnd.github+json';
+const PROJECT_REPOSITORIES = {
+  navigator: 'senatov/MiMiNavigator',
+  trends: 'senatov/mimiTrends'
+};
 
 async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -21,6 +22,13 @@ async function handler(req, res) {
     res.status(405).json({ error: 'Method not allowed' });
     return;
   }
+  const project = typeof req.query.project === 'string' ? req.query.project : 'navigator';
+  const repository = PROJECT_REPOSITORIES[project];
+  if (!repository) {
+    res.status(400).json({ error: 'Unknown project' });
+    return;
+  }
+  const commitsUrl = `https://api.github.com/repos/${repository}/commits?per_page=18`;
 
   const headers = {
     Accept: GITHUB_ACCEPT_HEADER,
@@ -32,12 +40,12 @@ async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(GITHUB_COMMITS_URL, {
+    const response = await fetch(commitsUrl, {
       headers
     });
 
     if (!response.ok) {
-      const fallbackCommits = await loadFallbackCommits(headers);
+      const fallbackCommits = await loadFallbackCommits(headers, repository);
 
       if (fallbackCommits.length > 0) {
         res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
@@ -70,14 +78,14 @@ async function handler(req, res) {
   }
 }
 
-async function loadFallbackCommits(headers) {
-  const releaseResponse = await fetch(GITHUB_LATEST_RELEASE_URL, {
+async function loadFallbackCommits(headers, repository) {
+  const releaseResponse = await fetch(`https://api.github.com/repos/${repository}/releases/latest`, {
     headers
   });
 
   if (releaseResponse.ok) {
     const release = await releaseResponse.json();
-    const compareUrl = extractCompareApiUrl(release.body);
+    const compareUrl = extractCompareApiUrl(release.body, repository);
 
     if (compareUrl) {
       const compareResponse = await fetch(compareUrl, {
@@ -94,7 +102,12 @@ async function loadFallbackCommits(headers) {
     }
   }
 
-  const branchResponse = await fetch(GITHUB_BRANCH_URL, {
+  const repositoryResponse = await fetch(`https://api.github.com/repos/${repository}`, { headers });
+  if (!repositoryResponse.ok) {
+    return [];
+  }
+  const repositoryPayload = await repositoryResponse.json();
+  const branchResponse = await fetch(`https://api.github.com/repos/${repository}/branches/${repositoryPayload.default_branch}`, {
     headers
   });
 
@@ -108,18 +121,19 @@ async function loadFallbackCommits(headers) {
   return commit ? mapCommits([commit]) : [];
 }
 
-function extractCompareApiUrl(body) {
+function extractCompareApiUrl(body, repository) {
   if (!body) {
     return null;
   }
 
-  const match = body.match(/github\.com\/senatov\/MiMiNavigator\/compare\/([^\s)]+)/i);
+  const escapedRepository = repository.replace('/', '\\/');
+  const match = body.match(new RegExp(`github\\.com\\/${escapedRepository}\\/compare\\/([^\\s)]+)`, 'i'));
 
   if (!match) {
     return null;
   }
 
-  return `https://api.github.com/repos/senatov/MiMiNavigator/compare/${match[1]}`;
+  return `https://api.github.com/repos/${repository}/compare/${match[1]}`;
 }
 
 function mapCommits(commits) {

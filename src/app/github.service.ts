@@ -38,9 +38,9 @@ export class GitHubService {
     private readonly daysPerMonth = 30;
     private readonly monthsPerYear = 12;
 
-    async loadLatestRelease(): Promise<GitHubLatestRelease | null> {
+    async loadLatestRelease(project: 'navigator' | 'trends' = 'navigator'): Promise<GitHubLatestRelease | null> {
         try {
-            const response = await fetch(this.resolveLatestReleaseUrl(), {
+            const response = await fetch(this.resolveLatestReleaseUrl(project), {
                 headers: this.requestHeaders
             });
 
@@ -54,9 +54,9 @@ export class GitHubService {
         }
     }
 
-    async loadRecentCommits(): Promise<RecentCommitViewModel[]> {
+    async loadRecentCommits(project: 'navigator' | 'trends' = 'navigator'): Promise<RecentCommitViewModel[]> {
         try {
-            const response = await fetch(this.recentCommitsUrl);
+            const response = await fetch(`${this.recentCommitsUrl}?project=${project}`);
 
             if (!response.ok) {
                 this.logRecentCommitsError(`Commits endpoint failed with status ${response.status}`);
@@ -160,13 +160,19 @@ export class GitHubService {
         return `Released ${diffInYears} years ago`;
     }
 
-    private resolveLatestReleaseUrl(): string {
+    private resolveLatestReleaseUrl(project: 'navigator' | 'trends'): string {
         if (typeof window === 'undefined') {
-            return this.latestReleaseUrl;
+            return `${this.latestReleaseUrl}?project=${project}`;
         }
 
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        return isLocalhost ? this.publicLatestReleaseUrl : this.latestReleaseUrl;
+        if (!isLocalhost) {
+            return `${this.latestReleaseUrl}?project=${project}`;
+        }
+
+        return project === 'trends'
+            ? 'https://api.github.com/repos/senatov/mimiTrends/releases/latest'
+            : this.publicLatestReleaseUrl;
     }
 
     private logRecentCommitsError(message: string): void {

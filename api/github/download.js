@@ -12,6 +12,10 @@
 
 const GITHUB_ACCEPT_HEADER = 'application/octet-stream';
 const ASSET_ID_PATTERN = /^\d+$/;
+const PROJECT_REPOSITORIES = {
+  navigator: 'senatov/MiMiNavigator',
+  trends: 'senatov/mimiTrends'
+};
 
 async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -20,8 +24,14 @@ async function handler(req, res) {
     return;
   }
   const assetID = typeof req.query.asset_id === 'string' ? req.query.asset_id : '';
+  const project = typeof req.query.project === 'string' ? req.query.project : 'navigator';
+  const repository = PROJECT_REPOSITORIES[project];
   if (!ASSET_ID_PATTERN.test(assetID)) {
     res.status(400).json({ error: 'Invalid asset_id' });
+    return;
+  }
+  if (!repository) {
+    res.status(400).json({ error: 'Unknown project' });
     return;
   }
   if (!process.env.GITHUB_TOKEN) {
@@ -35,7 +45,7 @@ async function handler(req, res) {
   };
   try {
     const response = await fetch(
-      `https://api.github.com/repos/senatov/MiMiNavigator/releases/assets/${assetID}`,
+      `https://api.github.com/repos/${repository}/releases/assets/${assetID}`,
       { headers, redirect: 'manual' }
     );
     const location = response.headers.get('location');

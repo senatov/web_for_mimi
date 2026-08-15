@@ -93,6 +93,30 @@
   gap: 8px;
 }
 
+.project-switcher {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--gd-line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: inset 0 1px 2px rgba(13, 31, 74, 0.06);
+}
+
+.project-switcher-option {
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: var(--gd-grey-500);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.project-switcher-option.active {
+  color: #fff;
+  background: #365c8d;
+  box-shadow: 0 2px 8px rgba(13, 31, 74, 0.2);
+}
+
 .topnav a {
   color: var(--nav-link-color, var(--gd-grey-700));
   font-family: var(--gd-font-text), sans-serif;

@@ -1,3 +1,6 @@
+@if (isTrendsPage) {
+    <app-trends-page />
+} @else {
 <div class="page-shell">
     <header class="site-header">
         <div class="topbar">
@@ -11,6 +14,11 @@
                     <span class="brand-subtitle">Finder replacement for macOS 26+</span>
                 </span>
             </a>
+
+            <div class="project-switcher" aria-label="Choose MiMi project">
+                <a href="/" class="project-switcher-option active" aria-current="page">Navigator</a>
+                <a href="/trends" class="project-switcher-option">Trends</a>
+            </div>
 
             <nav class="topnav" aria-label="Primary navigation">
                 <a href="#features">Features</a>
@@ -542,3 +550,4 @@
         </div>
     </footer>
 </div>
+}
