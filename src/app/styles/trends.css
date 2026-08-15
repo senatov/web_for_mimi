@@ -1,0 +1,16 @@
+.trends-page { --gd-blue: #365c8d; --gd-blue-dark: #203f68; }
+.trends-logo-shell { border-radius: 12px; background: #15233f; }
+.trends-logo-shell img { width: 100%; height: 100%; border-radius: 10px; object-fit: cover; }
+.trends-hero { align-items: center; }
+.trends-hero-visual { min-width: 0; color: inherit; text-decoration: none; }
+.trends-hero-visual .app-window { overflow: hidden; }
+.trends-hero-visual img { display: block; width: 100%; height: auto; }
+.trends-preview-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.trends-preview-grid .preview-card:first-child { grid-column: span 2; }
+.trends-preview-grid .preview-image { aspect-ratio: 16 / 10; object-fit: contain; background: #eef1f5; }
+@media (max-width: 900px) {
+  .topbar { flex-wrap: wrap; }
+  .project-switcher { order: 3; margin: 0 auto; }
+  .trends-preview-grid { grid-template-columns: 1fr; }
+  .trends-preview-grid .preview-card:first-child { grid-column: auto; }
+}
