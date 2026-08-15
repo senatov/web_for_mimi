@@ -54,13 +54,8 @@ async function handler(req, res) {
     }
 
     const release = await response.json();
-    const assets = Array.isArray(release.assets)
-      ? release.assets.map(asset => ({
-          ...asset,
-          browser_download_url: `/api/github/download?asset_id=${asset.id}&project=${project}`
-        }))
-      : [];
-    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
+    const assets = Array.isArray(release.assets) ? release.assets : [];
+    res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
     res.status(200).json({ ...release, assets });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown server error';
