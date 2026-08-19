@@ -483,9 +483,20 @@
                     <p>SFTP and FTP servers open inside the panels with saved Keychain-backed connections. The network neighborhood discovers and mounts SMB and AFP shares. Mounted cloud storage works as part of the file workflow, with dedicated Google Drive and Dropbox Share+Link support.</p>
                 </article>
 
-                <article class="faq-item">
+                <article class="faq-item faq-item-installation">
                     <h3>How do I install it?</h3>
                     <p>Download the signed DMG, open it, drag MiMiNavigator to Applications, and launch it. No App Store and no extra installer.</p>
+                    <button type="button"
+                            class="installation-preview-button"
+                            aria-label="Enlarge the MiMiNavigator installation screenshot"
+                            (click)="openPreview('Installation.png', 'Installing MiMiNavigator')">
+                        <img src="/images/Installation.png"
+                             width="841"
+                             height="635"
+                             loading="lazy"
+                             alt="Drag MiMiNavigator to the Applications folder to install it">
+                        <span class="installation-preview-zoom" aria-hidden="true">↗</span>
+                    </button>
                 </article>
 
                 <article class="faq-item">

@@ -1,7 +1,7 @@
 :root {
     color-scheme: light;
-    --gd-font-display: Roboto, "Helvetica Neue", Arial, sans-serif;
-    --gd-font-text: Roboto, "Helvetica Neue", Arial, sans-serif;
+    --gd-font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --gd-font-text: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     --gd-blue: #426f9f;
     --gd-blue-dark: #183f6f;
     --gd-blue-soft: #e8f0fe;
@@ -71,8 +71,15 @@ select {
 .seo-keyword-highlight {
     color: var(--gd-blue-dark);
     font-family: var(--gd-font-display), sans-serif;
-    font-weight: 700;
-    letter-spacing: 0;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+h1 .seo-keyword-highlight,
+h2 .seo-keyword-highlight,
+h3 .seo-keyword-highlight {
+    font-weight: inherit;
+    letter-spacing: inherit;
 }
 
 .p-popover.release-popover-panel {
@@ -230,13 +237,40 @@ select {
 }
 
 .preview-dialog-panel .mat-mdc-dialog-surface {
-    animation: none !important;
-    transition: none !important;
+    animation: previewBurstIn 560ms cubic-bezier(0.16, 1, 0.3, 1) both !important;
+    transform-origin: center !important;
     overflow: hidden;
     border-radius: 0;
     background: transparent;
     box-shadow: none;
-    transform: none !important;
+}
+
+@keyframes previewBurstIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.18) rotate(-4deg);
+        filter: brightness(2.2) blur(12px);
+    }
+    48% {
+        opacity: 1;
+        transform: scale(1.035) rotate(0.5deg);
+        filter: brightness(1.22) blur(0);
+    }
+    72% {
+        transform: scale(0.988) rotate(0);
+        filter: brightness(1.04);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+        filter: brightness(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .preview-dialog-panel .mat-mdc-dialog-surface {
+        animation: none !important;
+    }
 }
 
 .preview-dialog-backdrop {

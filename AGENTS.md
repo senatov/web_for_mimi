@@ -22,3 +22,8 @@ These defaults are optimized for AI coding agents (and humans) working on apps t
   needed. Always curl https://ai-gateway.vercel.sh/v1/models first; never trust model IDs from memory
 - For durable agent loops or untrusted code: use Workflow (pause/resume/state) + Sandbox; use Vercel MCP for secure infra access
 <!-- VERCEL BEST PRACTICES END -->
+
+## Git commits
+
+- After completing repository changes, always create a git commit unless the user explicitly says not to commit.
+- Write a detailed, meaningful commit message that explains both what changed and why. Prefer a concise subject followed by an informative body for non-trivial changes.

@@ -251,6 +251,10 @@
     white-space: normal;
   }
 
+  .faq-item-installation {
+    grid-template-columns: minmax(0, 1fr) 112px;
+  }
+
   .price-card {
     padding: 20px;
   }
