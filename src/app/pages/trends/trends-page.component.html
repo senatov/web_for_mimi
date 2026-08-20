@@ -1,7 +1,7 @@
 <div class="page-shell trends-page">
     <header class="site-header">
         <div class="topbar">
-            <a class="brand brand-logo-link" href="#top" aria-label="MiMiTrends home">
+            <a class="brand brand-logo-link" [routerLink]="['/trends']" fragment="top" aria-label="MiMiTrends home">
                 <span class="brand-logo-shell trends-logo-shell">
                     <img src="/images/trends/AppIcon-1024.png" alt="MiMiTrends logo" width="1024" height="1024">
                 </span>
@@ -12,15 +12,15 @@
             </a>
 
             <div class="project-switcher" aria-label="Choose MiMi project">
-                <a href="/" class="project-switcher-option">Navigator</a>
-                <a href="/trends" class="project-switcher-option active" aria-current="page">Trends</a>
+                <a [routerLink]="['/']" class="project-switcher-option">Navigator</a>
+                <a [routerLink]="['/trends']" class="project-switcher-option active" aria-current="page">Trends</a>
             </div>
 
             <nav class="topnav" aria-label="Primary navigation">
-                <a href="#features">Features</a>
-                <a href="#preview">Screenshots</a>
-                <a href="#download">Download</a>
-                <a href="#faq">FAQ</a>
+                <a [routerLink]="['/trends']" fragment="features">Features</a>
+                <a [routerLink]="['/trends']" fragment="preview">Screenshots</a>
+                <a [routerLink]="['/trends']" fragment="download">Download</a>
+                <a [routerLink]="['/trends']" fragment="faq">FAQ</a>
             </nav>
         </div>
     </header>
@@ -41,14 +41,14 @@
                 <p class="hero-note">A desktop scanner for US and European equities that discovers current market leaders, detects recent price anomalies and repeating short cycles, and explains why each instrument was selected.</p>
                 <div class="hero-actions">
                     <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer">Download DMG</a>
-                    <a class="button button-secondary" href="#preview">View screenshots</a>
+                    <a class="button button-secondary" [routerLink]="['/trends']" fragment="preview">View screenshots</a>
                 </div>
                 <p class="hero-download-note">Local SQLite storage · macOS build · Free and open source</p>
                 <div class="hero-proof" aria-label="Product highlights">
                     <span>Live leader discovery</span><span>Adaptive ranking</span><span>Local-first</span><span>Open source</span>
                 </div>
             </div>
-            <a class="trends-hero-visual" href="#preview" aria-label="View MiMiTrends screenshots">
+            <a class="trends-hero-visual" [routerLink]="['/trends']" fragment="preview" aria-label="View MiMiTrends screenshots">
                 <div class="app-window">
                     <div class="window-chrome"><span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span><span class="window-title">MiMiTrends scanner</span></div>
                     <img src="/images/trends/MainWindow.png" alt="MiMiTrends market anomaly scanner window">
@@ -114,5 +114,5 @@
         </section>
     </main>
 
-    <footer class="footer"><a class="brand footer-brand" href="#top"><span class="brand-logo-shell brand-logo-shell-footer trends-logo-shell"><img src="/images/trends/AppIcon-1024.png" alt="MiMiTrends logo"></span><span class="brand-text">MiMiTrends</span></a><div class="footer-links"><a href="#features">Features</a><a href="#preview">Screenshots</a><a href="#download">Download</a><a href="#faq">FAQ</a><a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">GitHub</a><a [href]="linkedInUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></footer>
+    <footer class="footer"><a class="brand footer-brand" [routerLink]="['/trends']" fragment="top"><span class="brand-logo-shell brand-logo-shell-footer trends-logo-shell"><img src="/images/trends/AppIcon-1024.png" alt="MiMiTrends logo"></span><span class="brand-text">MiMiTrends</span></a><div class="footer-links"><a [routerLink]="['/trends']" fragment="features">Features</a><a [routerLink]="['/trends']" fragment="preview">Screenshots</a><a [routerLink]="['/trends']" fragment="download">Download</a><a [routerLink]="['/trends']" fragment="faq">FAQ</a><a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">GitHub</a><a [href]="linkedInUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></footer>
 </div>

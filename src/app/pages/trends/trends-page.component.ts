@@ -1,9 +1,10 @@
 import {CommonModule} from '@angular/common';
 import {DOCUMENT} from '@angular/common';
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit, ViewEncapsulation} from '@angular/core';
+import {RouterLink} from '@angular/router';
 
-import {GitHubService, RecentCommitViewModel} from './github.service';
-import {GitHubLatestRelease} from './github.models';
+import {GitHubService, RecentCommitViewModel} from '../../github.service';
+import {GitHubLatestRelease} from '../../github.models';
 
 interface TrendsScreenshot {
     src: string;
@@ -15,9 +16,9 @@ interface TrendsScreenshot {
 @Component({
     selector: 'app-trends-page',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, RouterLink],
     templateUrl: './trends-page.component.html',
-    styleUrls: ['./styles/app.css', './styles/trends.css'],
+    styleUrls: ['../../styles/app.css', '../../styles/trends.css'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

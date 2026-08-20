@@ -1,10 +1,7 @@
-@if (isTrendsPage) {
-    <app-trends-page />
-} @else {
 <div class="page-shell">
     <header class="site-header">
         <div class="topbar">
-            <a class="brand brand-logo-link" href="#top" aria-label="MiMiNavigator home">
+            <a class="brand brand-logo-link" [routerLink]="['/']" fragment="top" aria-label="MiMiNavigator home">
                 <span class="brand-logo-shell">
                     <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="1024" height="1024">
                     <span class="brand-logo-gloss" aria-hidden="true"></span>
@@ -16,15 +13,15 @@
             </a>
 
             <div class="project-switcher" aria-label="Choose MiMi project">
-                <a href="/" class="project-switcher-option active" aria-current="page">Navigator</a>
-                <a href="/trends" class="project-switcher-option">Trends</a>
+                <a [routerLink]="['/']" class="project-switcher-option active" aria-current="page">Navigator</a>
+                <a [routerLink]="['/trends']" class="project-switcher-option">Trends</a>
             </div>
 
             <nav class="topnav" aria-label="Primary navigation">
-                <a href="#features">Features</a>
-                <a href="#preview">Screenshots</a>
-                <a href="#download">Download</a>
-                <a href="#faq">FAQ</a>
+                <a [routerLink]="['/']" fragment="features">Features</a>
+                <a [routerLink]="['/']" fragment="preview">Screenshots</a>
+                <a [routerLink]="['/']" fragment="download">Download</a>
+                <a [routerLink]="['/']" fragment="faq">FAQ</a>
             </nav>
         </div>
     </header>
@@ -64,7 +61,7 @@
                     } @else {
                         <span class="mobile-download-hint">Open this page on a Mac to download.</span>
                     }
-                    <a class="button button-secondary" href="#preview">View screenshots</a>
+                    <a class="button button-secondary" [routerLink]="['/']" fragment="preview">View screenshots</a>
                 </div>
                 @if (!isMobileDevice) {
                     <p class="hero-download-note">Signed DMG · macOS 26+ · Free</p>
@@ -94,7 +91,7 @@
                         }
 
                         <div class="release-popover-actions">
-                            <a href="#download" (click)="releasePopover.hide()">Full release notes</a>
+                            <a [routerLink]="['/']" fragment="download" (click)="releasePopover.hide()">Full release notes</a>
                         </div>
                     </div>
                 </p-popover>
@@ -514,7 +511,7 @@
                         CloudKit settings sync, and deeper Finder integration.
                     </p>
                 </div>
-                <a class="button button-secondary" href="#download">Get the current build</a>
+                <a class="button button-secondary" [routerLink]="['/']" fragment="download">Get the current build</a>
             </article>
 
             <a class="linkedin-card" [href]="linkedInProfileUrl" target="_blank" rel="noopener noreferrer"
@@ -541,7 +538,7 @@
     </main>
 
     <footer class="footer">
-        <a class="brand footer-brand brand-logo-link" href="#top" aria-label="MiMiNavigator home">
+        <a class="brand footer-brand brand-logo-link" [routerLink]="['/']" fragment="top" aria-label="MiMiNavigator home">
             <span class="brand-logo-shell brand-logo-shell-footer">
                 <img class="brand-logo-image" src="/images/appstore.png" alt="MiMiNavigator logo" width="1024" height="1024">
                 <span class="brand-logo-gloss" aria-hidden="true"></span>
@@ -550,10 +547,10 @@
         </a>
 
         <div class="footer-links">
-            <a href="#features">Features</a>
-            <a href="#preview">Screenshots</a>
-            <a href="#download">Download</a>
-            <a href="#faq">FAQ</a>
+            <a [routerLink]="['/']" fragment="features">Features</a>
+            <a [routerLink]="['/']" fragment="preview">Screenshots</a>
+            <a [routerLink]="['/']" fragment="download">Download</a>
+            <a [routerLink]="['/']" fragment="faq">FAQ</a>
             <a href="https://github.com/senatov/MiMiNavigator" target="_blank" rel="noopener noreferrer"
                (click)="trackGitHubClick('footer')">GitHub</a>
             <a [href]="linkedInProfileUrl" target="_blank" rel="noopener noreferrer"
@@ -561,4 +558,3 @@
         </div>
     </footer>
 </div>
-}
