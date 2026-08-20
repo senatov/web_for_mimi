@@ -38,14 +38,14 @@
                 <div class="section-kicker">Kotlin · JavaFX · local-first</div>
                 <h1>MiMiTrends</h1>
                 <p class="hero-lede">See unusual market movement while it is still fresh.</p>
-                <p class="hero-note">A desktop scanner for US and European equities that detects recent price anomalies, ranks the strongest defensible signals, and explains why each instrument was selected.</p>
+                <p class="hero-note">A desktop scanner for US and European equities that discovers current market leaders, detects recent price anomalies and repeating short cycles, and explains why each instrument was selected.</p>
                 <div class="hero-actions">
                     <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer">Download DMG</a>
                     <a class="button button-secondary" href="#preview">View screenshots</a>
                 </div>
                 <p class="hero-download-note">Local SQLite storage · macOS build · Free and open source</p>
                 <div class="hero-proof" aria-label="Product highlights">
-                    <span>Adaptive ranking</span><span>Local-first</span><span>Kotlin/JVM</span><span>Open source</span>
+                    <span>Live leader discovery</span><span>Adaptive ranking</span><span>Local-first</span><span>Open source</span>
                 </div>
             </div>
             <a class="trends-hero-visual" href="#preview" aria-label="View MiMiTrends screenshots">
@@ -57,7 +57,7 @@
         </section>
 
         <section class="quick-strip" aria-label="MiMiTrends workflow summary">
-            <div class="quick-strip-item"><strong>Collect</strong><span>Normalize recent US and European market data using exchange-aware calendars and timestamps.</span></div>
+            <div class="quick-strip-item"><strong>Discover</strong><span>Read a bounded first-page set of current performance and trading-volume leaders before every scan.</span></div>
             <div class="quick-strip-item"><strong>Detect</strong><span>Find statistically unusual impulses, reversals, and persistent trends instead of ordinary noise.</span></div>
             <div class="quick-strip-item"><strong>Rank</strong><span>Prioritize fresh, explainable candidates with adaptive selection and configurable guardrails.</span></div>
             <div class="quick-strip-item"><strong>Inspect</strong><span>Review candles, volume, signal context, and your imported executions on the same chart.</span></div>
@@ -69,8 +69,8 @@
             <div class="feature-clusters">
                 <article class="feature-cluster"><span class="cluster-icon">01</span><h3>Fresh anomaly detection</h3><p>Detect upward and downward impulses, V-shaped reversals, and steady trends from completed minute-aligned OHLCV bars.</p></article>
                 <article class="feature-cluster"><span class="cluster-icon">02</span><h3>Adaptive, explainable ranking</h3><p>Combine price rarity, candle structure, volume confirmation, continuation, freshness, and historical outcomes into a transparent priority.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon">03</span><h3>Market-aware data</h3><p>Use local exchange time zones, trading calendars, provider observation timestamps, and bounded fallbacks for US and European instruments.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon">04</span><h3>Private portfolio context</h3><p>Keep history, profiles, statistics, signals, and imported broker executions in local SQLite storage.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon">03</span><h3>Performance-led discovery</h3><p>Merge the first public performance and most-traded pages, sort by percentage performance, and evaluate the leading 30 resolvable equities with the regular quality gates.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon">04</span><h3>Repeating-cycle warning</h3><p>Identify statistically repeating two- or three-minute price paths and place a bright-red ↻ marker beside the cleaned company name.</p></article>
             </div>
         </section>
 
@@ -104,7 +104,8 @@
             <div class="section-kicker">FAQ</div><div class="section-heading-block"><h2>Know what the scanner does—and what it does not</h2></div>
             <div class="faq-grid">
                 <article class="faq-item"><h3>Is MiMiTrends a trading bot?</h3><p>No. It is informational software: it does not place orders, provide investment advice, or guarantee that a detected anomaly will continue.</p></article>
-                <article class="faq-item"><h3>Which markets are supported?</h3><p>The scanner supports configurable US, European, or combined watchlists with exchange-local calendars and time zones.</p></article>
+                <article class="faq-item"><h3>Which markets are supported?</h3><p>The scanner supports configurable US, European, or combined watchlists and supplements them with a bounded first-page set of current public market leaders.</p></article>
+                <article class="faq-item"><h3>What does the red ↻ mean?</h3><p>The latest minute bars show a statistically repeating two- or three-minute path. It describes observed cyclic structure; it does not predict that the next phase will repeat.</p></article>
                 <article class="faq-item"><h3>Do I need an API key?</h3><p>No key is required for the default data path. Finnhub is an optional enhancement for supported US symbols.</p></article>
                 <article class="faq-item"><h3>Where is my data stored?</h3><p>Minute history, profiles, statistics, runs, outcomes, preferences, and imported executions are stored locally in SQLite.</p></article>
                 <article class="faq-item"><h3>Which platforms are ready?</h3><p>The application is cross-platform by design. The current UI and builds have been tested on macOS; Windows and Linux packages are implemented but not yet platform-verified.</p></article>

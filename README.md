@@ -2,11 +2,12 @@
 
 ## Site https://miminavi.tech
 
-Angular 21 landing page for MiMiNavigator.
+Angular 21 presentation site for MiMiNavigator and MiMiTrends.
 
 ## What is inside
 
 - Angular standalone application structure
+- Dedicated `/trends` product page with release downloads, current screenshots, feature details, and FAQ
 - Clean landing page inspired by the product-first layout rhythm of Fork
 - Git-ready folder with `.gitignore`
 - IntelliJ IDEA friendly project folder with minimal `.idea` metadata

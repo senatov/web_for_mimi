@@ -48,6 +48,12 @@ export class TrendsPageComponent implements OnInit {
             alt: 'MiMiTrends broker CSV import',
             title: 'Local broker CSV import',
             description: 'Import Scalable Capital transactions locally and match executions to the corresponding chart without uploading portfolio data.'
+        },
+        {
+            src: '/images/trends/MacOSPackaging.png',
+            alt: 'MiMiTrends signed macOS application and DMG packaging output',
+            title: 'Native macOS packaging',
+            description: 'Build a versioned, Developer ID signed, notarized, and verified DMG with a private Java runtime.'
         }
     ];
 
@@ -90,22 +96,22 @@ export class TrendsPageComponent implements OnInit {
 
     private applySeoMetadata(): void {
         const title = 'MiMiTrends — Local-First Market Anomaly Scanner for US and European Stocks';
-        const description = 'Kotlin and JavaFX desktop scanner that detects, ranks, and explains fresh price anomalies, impulses, reversals, and trends in US and European equities.';
+        const description = 'Local-first Kotlin and JavaFX stock scanner with performance-led discovery, fresh anomaly ranking, repeating short-cycle detection, and explainable US and European market analysis.';
         const imageUrl = 'https://miminavi.tech/images/trends/MainWindow.png';
         const pageUrl = 'https://miminavi.tech/trends';
 
         this.document.title = title;
         this.setMeta('name', 'description', description);
         this.setMeta('name', 'application-name', 'MiMiTrends');
-        this.setMeta('name', 'keywords', 'MiMiTrends, market anomaly scanner, stock anomaly detector, unusual price movement, momentum scanner, US stock scanner, European stock scanner, Kotlin desktop app, JavaFX trading software, local-first market analysis, OHLCV scanner, volume anomaly, V-shaped reversal detector, trend scanner, SQLite market data');
+        this.setMeta('name', 'keywords', 'MiMiTrends, market anomaly scanner, stock performance scanner, most traded stocks, repeating price cycle detector, stock anomaly detector, unusual price movement, momentum scanner, US stock scanner, European stock scanner, Kotlin desktop app, JavaFX trading software, local-first market analysis, OHLCV scanner, volume anomaly, V-shaped reversal detector, trend scanner, SQLite market data');
         this.setMeta('property', 'og:site_name', 'MiMiTrends');
         this.setMeta('property', 'og:title', title);
         this.setMeta('property', 'og:description', description);
         this.setMeta('property', 'og:url', pageUrl);
         this.setMeta('property', 'og:image', imageUrl);
         this.setMeta('property', 'og:image:alt', 'MiMiTrends anomaly scanner and signal chart');
-        this.setMeta('property', 'og:image:width', '1700');
-        this.setMeta('property', 'og:image:height', '1278');
+        this.setMeta('property', 'og:image:width', '1696');
+        this.setMeta('property', 'og:image:height', '1263');
         this.setMeta('property', 'og:image:type', 'image/png');
         this.setMeta('name', 'twitter:title', title);
         this.setMeta('name', 'twitter:description', description);
@@ -136,6 +142,8 @@ export class TrendsPageComponent implements OnInit {
             description,
             featureList: [
                 'Fresh US and European equity anomaly detection',
+                'Performance-sorted discovery from bounded public leader pages',
+                'Statistical detection of repeating two- and three-minute price cycles',
                 'Adaptive ranking of impulses, reversals, and persistent trends',
                 'Exchange-aware market calendars and observation timestamps',
                 'Local SQLite market history and signal storage',
