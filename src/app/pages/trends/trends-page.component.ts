@@ -2,9 +2,11 @@ import {CommonModule} from '@angular/common';
 import {DOCUMENT} from '@angular/common';
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {RouterLink} from '@angular/router';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 import {GitHubService, RecentCommitViewModel} from '../../github.service';
 import {GitHubLatestRelease} from '../../github.models';
+import {PreviewDialogComponent, PreviewDialogData} from '../../preview-dialog.component';
 
 interface TrendsScreenshot {
     src: string;
@@ -16,7 +18,7 @@ interface TrendsScreenshot {
 @Component({
     selector: 'app-trends-page',
     standalone: true,
-    imports: [CommonModule, RouterLink],
+    imports: [CommonModule, RouterLink, MatDialogModule],
     templateUrl: './trends-page.component.html',
     styleUrls: ['../../styles/app.css', '../../styles/trends.css'],
     encapsulation: ViewEncapsulation.None,
@@ -26,6 +28,7 @@ export class TrendsPageComponent implements OnInit {
     private readonly gitHubService = inject(GitHubService);
     private readonly cdr = inject(ChangeDetectorRef);
     private readonly document = inject(DOCUMENT);
+    private readonly dialog = inject(MatDialog);
 
     protected readonly repositoryUrl = 'https://github.com/senatov/mimiTrends';
     protected readonly releasesUrl = `${this.repositoryUrl}/releases`;
@@ -72,6 +75,27 @@ export class TrendsPageComponent implements OnInit {
         return commit.hash;
     }
 
+    protected openScreenshot(screenshot: TrendsScreenshot): void {
+        const data: PreviewDialogData = {
+            imageUrl: screenshot.src,
+            altText: screenshot.alt,
+            title: screenshot.title,
+            hint: 'Use Esc or the close control to return to the gallery'
+        };
+
+        this.dialog.open(PreviewDialogComponent, {
+            data,
+            width: 'min(1440px, 96vw)',
+            height: 'min(920px, 94vh)',
+            maxWidth: '96vw',
+            maxHeight: '94vh',
+            panelClass: 'preview-dialog-panel',
+            backdropClass: 'preview-dialog-backdrop',
+            autoFocus: false,
+            restoreFocus: true
+        });
+    }
+
     private async loadRelease(): Promise<void> {
         const release = await this.gitHubService.loadLatestRelease('trends');
         if (release) {
@@ -104,7 +128,7 @@ export class TrendsPageComponent implements OnInit {
         this.document.title = title;
         this.setMeta('name', 'description', description);
         this.setMeta('name', 'application-name', 'MiMiTrends');
-        this.setMeta('name', 'keywords', 'MiMiTrends, market anomaly scanner, stock performance scanner, most traded stocks, repeating price cycle detector, stock anomaly detector, unusual price movement, momentum scanner, US stock scanner, European stock scanner, Kotlin desktop app, JavaFX trading software, local-first market analysis, OHLCV scanner, volume anomaly, V-shaped reversal detector, trend scanner, SQLite market data');
+        this.setMeta('name', 'keywords', 'MiMiTrends, market anomaly scanner, live stock leader discovery, stock performance scanner, most traded stocks, range-aware repeating price cycle detector, stock anomaly detector, unusual price movement, momentum scanner, US stock scanner, European stock scanner, Kotlin desktop app, JavaFX trading software, local-first market analysis, OHLCV scanner, volume anomaly, V-shaped reversal detector, SQLite and DuckDB market analytics');
         this.setMeta('property', 'og:site_name', 'MiMiTrends');
         this.setMeta('property', 'og:title', title);
         this.setMeta('property', 'og:description', description);

@@ -39,11 +39,21 @@
 }
 
 .feature-overview,
-.roadmap-section {
+.roadmap-section,
+.latest-improvements {
   max-width: var(--gd-max-width);
   margin: 0 auto;
   padding: 58px var(--gd-gutter);
 }
+
+.latest-improvements { padding-top: 44px; padding-bottom: 44px; border-top: 1px solid var(--gd-line-strong); }
+.latest-improvements .section-heading-block { margin-bottom: 24px; }
+.improvement-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--gd-line-strong); border-radius: 16px; background: var(--gd-line-strong); }
+.improvement-grid article { display: grid; grid-template-columns: 38px 1fr; gap: 4px 14px; padding: 22px; background: rgba(255, 255, 255, 0.88); }
+.improvement-grid .material-icons-outlined { grid-row: span 2; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: var(--gd-blue-soft); color: var(--gd-blue-dark); font-size: 20px; }
+.improvement-grid h3, .improvement-grid p { margin: 0; }
+.improvement-grid h3 { color: var(--gd-ink); font-size: 16px; line-height: 1.3; }
+.improvement-grid p { color: var(--gd-ink-soft); font-size: 13px; line-height: 1.55; }
 
 .feature-overview {
   border-top: 1px solid var(--gd-line-strong);

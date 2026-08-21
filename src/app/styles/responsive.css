@@ -54,7 +54,8 @@
 
   .quick-strip,
   .feature-clusters,
-  .faq-grid {
+  .faq-grid,
+  .improvement-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -187,8 +188,8 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .hero-proof span,
-  .hero-capabilities span {
+  .hero-proof li,
+  .hero-capabilities li {
     padding-inline: 8px;
     font-size: 11px;
     white-space: normal;
@@ -209,14 +210,16 @@
 
   .quick-strip,
   .feature-overview,
-  .roadmap-section {
+  .roadmap-section,
+  .latest-improvements {
     padding-left: var(--gd-gutter);
     padding-right: var(--gd-gutter);
   }
 
   .quick-strip,
   .feature-clusters,
-  .faq-grid {
+  .faq-grid,
+  .improvement-grid {
     grid-template-columns: 1fr;
   }
 

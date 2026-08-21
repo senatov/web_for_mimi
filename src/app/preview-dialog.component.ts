@@ -30,28 +30,29 @@ export interface PreviewDialogData {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 14px;
             width: 100vw;
             height: 100vh;
-            padding: 18px;
-            background: #f8fafc;
+            padding: clamp(22px, 4vw, 52px);
+            background: radial-gradient(circle at 50% 0, rgba(66, 111, 159, .22), transparent 42%), #09111f;
             box-sizing: border-box;
         }
 
         .preview-dialog-title,
         .preview-dialog-hint {
-            color: #183f6f;
+            color: #f8fafc;
             font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.35;
             text-align: center;
         }
 
         .preview-dialog-title {
-            font-size: 14px;
-            font-weight: 700;
+            font-size: 16px;
+            font-weight: 650;
         }
 
         .preview-dialog-hint {
+            color: #aebbd0;
             font-size: 12px;
             font-weight: 500;
         }
@@ -59,37 +60,38 @@ export interface PreviewDialogData {
         .preview-dialog-shell img {
             display: block;
             max-width: 100%;
-            max-height: calc(100vh - 88px);
+            max-height: calc(100vh - 126px);
             object-fit: contain;
-            border: 1px solid rgba(95, 99, 104, 0.22);
-            border-radius: 10px;
-            box-shadow: 0 16px 44px rgba(13, 31, 74, 0.18);
-            filter: contrast(1.08) saturate(1.06);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 14px;
+            box-shadow: 0 28px 80px rgba(0, 0, 0, 0.5);
         }
 
         .preview-dialog-close {
             position: absolute;
-            top: 14px;
-            right: 14px;
+            top: 18px;
+            right: 18px;
             z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
-            border: 1px solid rgba(24, 63, 111, 0.18);
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
-            color: #183f6f;
-            box-shadow: 0 8px 18px rgba(13, 31, 74, 0.14);
-            font-size: 20px;
+            background: rgba(11, 22, 39, 0.72);
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(16px);
+            font-size: 25px;
             cursor: pointer;
         }
 
         .preview-dialog-close:hover,
         .preview-dialog-close:focus-visible {
-            background: #fff;
-            outline: 0;
+            background: rgba(255, 255, 255, 0.14);
+            outline: 3px solid rgba(255, 255, 255, .45);
+            outline-offset: 2px;
         }
     `],
     template: `

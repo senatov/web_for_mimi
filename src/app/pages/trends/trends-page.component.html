@@ -44,9 +44,12 @@
                     <a class="button button-secondary" [routerLink]="['/trends']" fragment="preview">View screenshots</a>
                 </div>
                 <p class="hero-download-note">Local SQLite storage · macOS build · Free and open source</p>
-                <div class="hero-proof" aria-label="Product highlights">
-                    <span>Live leader discovery</span><span>Adaptive ranking</span><span>Local-first</span><span>Open source</span>
-                </div>
+                <ul class="hero-proof" aria-label="Product highlights">
+                    <li><span class="material-icons-outlined" aria-hidden="true">bolt</span>Live discovery</li>
+                    <li><span class="material-icons-outlined" aria-hidden="true">query_stats</span>Adaptive ranking</li>
+                    <li><span class="material-icons-outlined" aria-hidden="true">database</span>Local-first</li>
+                    <li><span class="material-icons-outlined" aria-hidden="true">code</span>Open source</li>
+                </ul>
             </div>
             <a class="trends-hero-visual" [routerLink]="['/trends']" fragment="preview" aria-label="View MiMiTrends screenshots">
                 <div class="app-window">
@@ -54,6 +57,19 @@
                     <img src="/images/trends/MainWindow.png" alt="MiMiTrends market anomaly scanner window">
                 </div>
             </a>
+        </section>
+
+        <section class="latest-improvements" aria-labelledby="trends-latest-title">
+            <div class="section-kicker">Recently improved</div>
+            <div class="section-heading-block">
+                <h2 id="trends-latest-title">Sharper signals, cleaner evidence</h2>
+                <p>Current project work focuses on trustworthy timestamps, broader discovery, and patterns that remain useful as price ranges shift.</p>
+            </div>
+            <div class="improvement-grid">
+                <article><span class="material-icons-outlined" aria-hidden="true">schedule</span><h3>Honest market time</h3><p>Broker hours and price-market hours are distinguished, while fallback timestamps remain explicit instead of making stale quotes look current.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">waves</span><h3>Range-aware cycles</h3><p>Repeating two- and three-minute traffic is recognized even when the underlying price range shifts.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">travel_explore</span><h3>Leaders every cycle</h3><p>Top public performance and most-traded candidates are refreshed, resolved, and evaluated on each scan pass.</p></article>
+            </div>
         </section>
 
         <section class="quick-strip" aria-label="MiMiTrends workflow summary">
@@ -96,7 +112,12 @@
         <section class="details" id="preview">
             <div class="details-copy"><div class="section-kicker">Screenshots</div><h2 class="section-heading-title">Real screens from the Kotlin desktop app</h2><p class="hero-text">Inspect the scanner, chart, configuration, and local transaction-import workflow.</p></div>
             <div class="preview-grid trends-preview-grid">
-                <article class="preview-card" *ngFor="let screenshot of screenshots"><a [href]="screenshot.src" target="_blank"><img class="preview-image" [src]="screenshot.src" [alt]="screenshot.alt"></a><h3>{{ screenshot.title }}</h3><p>{{ screenshot.description }}</p></article>
+                <article class="preview-card" *ngFor="let screenshot of screenshots">
+                    <button type="button" class="preview-card-trigger" (click)="openScreenshot(screenshot)" [attr.aria-label]="'Enlarge ' + screenshot.title">
+                        <span class="preview-card-image-shell"><img class="preview-image" [src]="screenshot.src" [alt]="screenshot.alt"><span class="preview-card-zoom material-icons-outlined" aria-hidden="true">zoom_in</span></span>
+                        <span class="preview-card-copy"><strong>{{ screenshot.title }}</strong><span>{{ screenshot.description }}</span></span>
+                    </button>
+                </article>
             </div>
         </section>
 
