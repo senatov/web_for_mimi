@@ -82,22 +82,26 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         private readonly previewImageBasePath = '/images';
         private readonly previewDialogHint = 'Press Esc or click outside to close';
         private readonly heroGalleryImagePaths = [
-                'Preview0.png',
-                'Preview1.png',
-                'Preview2.png',
-                'Preview3.png',
-                'gallery/g0.png',
-                'gallery/g1.png',
-                'gallery/g2.png',
-                'gallery/g3.png',
-                'gallery/g4.png',
-                'gallery/g5.png',
-                'gallery/g6.png',
-                'gallery/g7.png',
-                'gallery/g8.png',
-                'gallery/g9.png',
-                'gallery/g10.png',
-                'gallery/g11.png'
+                'gallery/dual-panel-workspace.png',
+                'gallery/advanced-file-search.png',
+                'gallery/media-converter-video.png',
+                'gallery/network-neighborhood.png',
+                'gallery/authorized-folders-dialog.png',
+                'gallery/cloud-share-settings.png',
+                'gallery/external-tools-diagnostics.png',
+                'gallery/permissions-settings.png',
+                'gallery/diff-tool-details.png',
+                'gallery/panel-settings.png',
+                'gallery/saved-server-editor.png',
+                'gallery/diff-tool-settings.png',
+                'gallery/path-completion.png',
+                'gallery/connections-menu.png',
+                'gallery/server-passwords.png',
+                'gallery/column-presets.png',
+                'gallery/cloud-share-menu.png',
+                'gallery/sidebar-and-favorites.png',
+                'gallery/file-preview-panel.png',
+                'gallery/media-converter-gif.png'
         ];
         private readonly heroCarouselTransitionMs = 920;
         private homebrewCopyTimerId: number | null = null;
@@ -439,7 +443,11 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
         private createHeroGalleryImageTitle(relativePath: string): string {
                 const fileName = relativePath.split('/').pop() ?? relativePath;
-                const title = fileName.replace(/\.[^.]+$/, '').replace(/^g(\d+)$/i, 'Demo $1');
+                const title = fileName
+                        .replace(/\.[^.]+$/, '')
+                        .split('-')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
 
                 return `MiMiNavigator ${title}`;
         }
