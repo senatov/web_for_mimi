@@ -97,10 +97,10 @@
                 </p-popover>
 
                 <ul class="hero-proof" aria-label="Product highlights">
-                    <li><span class="material-icons-outlined" aria-hidden="true">redeem</span>Free</li>
-                    <li><span class="material-icons-outlined" aria-hidden="true">verified_user</span>Signed &amp; notarized</li>
-                    <li><span class="material-icons-outlined" aria-hidden="true">desktop_mac</span>Native macOS</li>
-                    <li><span class="material-icons-outlined" aria-hidden="true">code</span>Open source</li>
+                    <li><p-tag value="Free" severity="success" [rounded]="true"></p-tag></li>
+                    <li><p-tag value="Signed & notarized" severity="info" [rounded]="true"></p-tag></li>
+                    <li><p-tag value="Native macOS" severity="secondary" [rounded]="true"></p-tag></li>
+                    <li><p-tag value="Open source" severity="contrast" [rounded]="true"></p-tag></li>
                 </ul>
 
                 <ul class="hero-capabilities" aria-label="Core capabilities">
@@ -217,22 +217,32 @@
             </div>
         </section>
 
-        <section class="quick-strip" aria-label="MiMiNavigator workflow summary">
-            <div class="quick-strip-item">
-                <strong>Find</strong>
-                <span>Search names and content, including PDF and Microsoft Office documents, with focused cleanup presets.</span>
+        <section class="prime-workflow" aria-labelledby="navigator-workflow-title">
+            <div class="prime-section-heading">
+                <div>
+                    <div class="section-kicker">One workspace, complete flow</div>
+                    <h2 id="navigator-workflow-title">From finding a file to delivering it</h2>
+                </div>
+                <p-tag value="Commander workflow" severity="info" [rounded]="true"></p-tag>
             </div>
-            <div class="quick-strip-item">
-                <strong>Act</strong>
-                <span>Select search results together, then open, copy, move, rename, or send them safely to Trash.</span>
-            </div>
-            <div class="quick-strip-item">
-                <strong>Connect</strong>
-                <span>Open SFTP/FTP servers, discover SMB/AFP shares, mount cloud drives, and browse archives as folders.</span>
-            </div>
-            <div class="quick-strip-item">
-                <strong>Share</strong>
-                <span>Create view or edit links for Google Drive and view links for Dropbox straight from the context menu.</span>
+            <p-divider></p-divider>
+            <div class="prime-workflow-grid">
+                <p-card header="Find" subheader="Names, metadata and document content">
+                    <p>Search ordinary files, PDF and Microsoft Office content, archives, large forgotten items, empty folders, and application leftovers.</p>
+                    <p-tag value="Actionable results" severity="success"></p-tag>
+                </p-card>
+                <p-card header="Act" subheader="Two panels keep context visible">
+                    <p>Open, preview, compare, copy, move, batch rename, pack, extract, or send items safely to the macOS Trash.</p>
+                    <p-tag value="Keyboard + mouse" severity="secondary"></p-tag>
+                </p-card>
+                <p-card header="Connect" subheader="Local, remote and network locations">
+                    <p>Browse SFTP and FTP servers, discover SMB and AFP shares, use mounted cloud drives, and treat archives like folders.</p>
+                    <p-tag value="Reusable profiles" severity="warn"></p-tag>
+                </p-card>
+                <p-card header="Share" subheader="Links without leaving the panels">
+                    <p>Create Google Drive view or edit links and Dropbox view links directly from the file context menu.</p>
+                    <p-tag value="Provider-scoped OAuth" severity="info"></p-tag>
+                </p-card>
             </div>
         </section>
 
@@ -246,6 +256,33 @@
                 <article><span class="material-icons-outlined" aria-hidden="true">find_in_page</span><h3>Document content search</h3><p>Find Files now searches text inside PDF and Microsoft Office documents and presents results like the main file panels.</p></article>
                 <article><span class="material-icons-outlined" aria-hidden="true">account_tree</span><h3>Read-only Git context</h3><p>Subtle badges identify modified, untracked, ignored, and conflicted files without adding repository-changing commands.</p></article>
                 <article><span class="material-icons-outlined" aria-hidden="true">select_window</span><h3>Native window ownership</h3><p>Search, progress, decision, and utility windows stay with MiMiNavigator without floating above unrelated applications.</p></article>
+            </div>
+        </section>
+
+        <section class="navigator-command-center" aria-labelledby="command-center-title">
+            <div class="prime-section-heading command-center-heading">
+                <div>
+                    <div class="section-kicker">Native power, calmly presented</div>
+                    <h2 id="command-center-title">A file manager that explains what it just did</h2>
+                    <p>Compact feedback stays out of the way during work, while the dedicated history rivet keeps the latest 32 operations available across sessions.</p>
+                </div>
+                <div class="command-center-tags" aria-label="Current release capabilities">
+                    <p-tag value="Persistent notice history" severity="success"></p-tag>
+                    <p-tag value="Source → destination paths" severity="info"></p-tag>
+                    <p-tag value="Theme-aware" severity="secondary"></p-tag>
+                </div>
+            </div>
+            <p-divider align="left"><span class="divider-caption">WHAT STAYS VISIBLE</span></p-divider>
+            <div class="command-center-grid">
+                <p-card header="Two persistent panels">
+                    <p>Source and destination remain on screen together, with independent tabs, sorting, paths, selection, and List, Preview, or Tree views.</p>
+                </p-card>
+                <p-card header="Numbered operation history">
+                    <p>Recent animated notices retain timestamps and available From/To paths, use your configured colors, and survive restart.</p>
+                </p-card>
+                <p-card header="Safe destructive work">
+                    <p>Deletion means macOS Trash. Batch changes use confirmation, progress, cancellation, and conflict handling instead of silent mutation.</p>
+                </p-card>
             </div>
         </section>
 

@@ -16,6 +16,9 @@ import {PreviewDialogComponent, PreviewDialogData} from '../../preview-dialog.co
 import {GitHubService, RecentCommitViewModel} from '../../github.service';
 import {GalleriaModule} from 'primeng/galleria';
 import {PopoverModule} from 'primeng/popover';
+import {CardModule} from 'primeng/card';
+import {DividerModule} from 'primeng/divider';
+import {TagModule} from 'primeng/tag';
 import {RouterLink} from '@angular/router';
 import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 import {PageMetadataService} from '../../page-metadata.service';
@@ -57,7 +60,7 @@ type AnalyticsEventName =
 @Component({
         selector: 'app-navigator-page',
         standalone: true,
-        imports: [CommonModule, MatDialogModule, GalleriaModule, PopoverModule, RouterLink, SeoKeywordHighlightDirective],
+        imports: [CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, RouterLink, SeoKeywordHighlightDirective],
         templateUrl: './navigator-page.component.html',
         styleUrl: '../../styles/app.css',
         changeDetection: ChangeDetectionStrategy.OnPush

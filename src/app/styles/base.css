@@ -24,20 +24,28 @@ main > .pricing {
   order: 2;
 }
 
-main > .quick-strip {
+main > .prime-workflow {
   order: 3;
 }
 
-main > .feature-overview {
+main > .latest-improvements {
   order: 4;
 }
 
-main > .details {
+main > .navigator-command-center {
   order: 5;
 }
 
-main > .roadmap-section {
+main > .feature-overview {
   order: 6;
+}
+
+main > .details {
+  order: 7;
+}
+
+main > .roadmap-section {
+  order: 8;
 }
 
 .page-shell {
