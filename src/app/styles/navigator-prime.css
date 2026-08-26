@@ -34,6 +34,10 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+:host ::ng-deep .prime-workflow > .p-divider {
+  margin: 24px 0 22px;
+}
+
 .command-center-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
