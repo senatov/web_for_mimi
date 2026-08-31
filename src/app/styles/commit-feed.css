@@ -7,7 +7,7 @@
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-height: 0;
   height: auto;
   margin-top: 12px;
@@ -35,12 +35,12 @@
 /* --- Scroller & items --- */
 
 .commit-feed-scroller {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  height: 0;
-  max-height: none;
+  height: auto;
+  max-height: 390px;
   padding: 10px;
   border: 1px solid var(--gd-line-strong);
   border-radius: 14px;
@@ -66,6 +66,11 @@
   text-decoration: none;
   color: inherit;
   transition: background 0.12s ease;
+}
+
+.commit-item:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--gd-blue) 36%, transparent);
+  outline-offset: -3px;
 }
 
 .commit-item:last-child {

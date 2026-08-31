@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "ng build && node scripts/render-static-routes.mjs",
   "outputDirectory": "dist/web-for-mimi",
   "redirects": [
     {
@@ -50,7 +51,11 @@
   "rewrites": [
     {
       "source": "/trends",
-      "destination": "/index.html"
+      "destination": "/trends/index.html"
+    },
+    {
+      "source": "/trends/",
+      "destination": "/trends/index.html"
     },
     {
       "source": "/:path*",

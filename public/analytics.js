@@ -12,7 +12,9 @@
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
     window.gtag('js', new Date());
-    window.gtag('config', 'G-8TLEMWJB1L', {anonymize_ip: true});
+    // Angular reports each routed page explicitly, avoiding duplicate initial views
+    // and preserving distinct Navigator and Trends paths in analytics.
+    window.gtag('config', 'G-8TLEMWJB1L', {anonymize_ip: true, send_page_view: false});
     window.sc_project = 13215703;
     window.sc_invisible = 1;
     window.sc_security = 'd2c2ae13';

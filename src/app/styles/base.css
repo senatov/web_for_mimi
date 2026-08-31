@@ -12,42 +12,6 @@ main {
   flex-direction: column;
 }
 
-main > .mobile-banner {
-  order: 0;
-}
-
-main > .hero {
-  order: 1;
-}
-
-main > .pricing {
-  order: 2;
-}
-
-main > .prime-workflow {
-  order: 3;
-}
-
-main > .latest-improvements {
-  order: 4;
-}
-
-main > .navigator-command-center {
-  order: 5;
-}
-
-main > .feature-overview {
-  order: 6;
-}
-
-main > .details {
-  order: 7;
-}
-
-main > .roadmap-section {
-  order: 8;
-}
-
 .page-shell {
   position: relative;
   isolation: isolate;
