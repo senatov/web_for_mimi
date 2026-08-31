@@ -323,7 +323,11 @@
             </div>
         </section>
 
-        <section class="pricing" id="download">
+        <section class="pricing" id="download" aria-labelledby="navigator-release-section-title">
+            <div class="release-section-header">
+                <div class="section-kicker">Release center</div>
+                <h2 id="navigator-release-section-title">Download, install, and inspect the latest build</h2>
+            </div>
             <div class="release-panel">
                 <section class="commit-feed" aria-label="Latest commits and release changes">
                     <div class="commit-feed-scroller" aria-label="Recent MiMiNavigator commits and latest release changes">
@@ -379,20 +383,12 @@
                     </div>
                     <div class="download-direct-label">Download directly</div>
                     @if (!isMobileDevice) {
-                        <a class="button button-primary button-block" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
-                           aria-label="Download MiMiNavigator DMG for macOS 26 or newer"
+                        <a class="button button-primary button-block dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
+                           aria-label="Download MiMiNavigator DMG for macOS 26 or 27"
                            (click)="trackDownloadClick('pricing')">
                             <span class="download-platform-badge" aria-hidden="true">
-                                <img
-                                        class="download-platform-icon"
-                                        src="https://ico.hugeicons.com/apple-twotone-rounded@3x.webp?x=1.0.2"
-                                        alt=""
-                                        width="24"
-                                        height="24"
-                                        loading="lazy"
-                                        decoding="async"
-                                        referrerpolicy="no-referrer">
-                                <span class="download-platform-os">26+</span>
+                                <span class="download-platform-icon">&#63743;</span>
+                                <span class="download-platform-os">26–27</span>
                             </span>
                             <span>Download DMG</span>
                         </a>

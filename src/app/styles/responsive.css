@@ -94,6 +94,11 @@
     grid-template-columns: 1fr;
   }
 
+  .release-section-header {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
   .pricing-card-column {
     grid-column: 1;
   }
@@ -288,6 +293,10 @@
     max-height: 430px;
   }
 
+  .commit-feed {
+    height: auto;
+  }
+
   .commit-item {
     grid-template-columns: max-content minmax(0, 1fr);
     gap: 8px;
@@ -296,6 +305,11 @@
 
   .button {
     width: 100%;
+  }
+
+  .dmg-download-button,
+  .dmg-download-button.button-block {
+    width: min(100%, 290px);
   }
 
   .linkedin-card-body {

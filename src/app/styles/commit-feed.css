@@ -7,9 +7,9 @@
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   min-height: 0;
-  height: auto;
+  height: 100%;
   margin-top: 12px;
 }
 
@@ -35,12 +35,12 @@
 /* --- Scroller & items --- */
 
 .commit-feed-scroller {
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  height: auto;
-  max-height: 390px;
+  height: 0;
+  max-height: none;
   padding: 10px;
   border: 1px solid var(--gd-line-strong);
   border-radius: 14px;

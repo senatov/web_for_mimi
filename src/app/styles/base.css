@@ -12,6 +12,22 @@ main {
   flex-direction: column;
 }
 
+main > .mobile-banner {
+  order: -2;
+}
+
+main > .hero {
+  order: -1;
+}
+
+main > .pricing {
+  order: 0;
+}
+
+main > section:not(.hero):not(.pricing) {
+  order: 1;
+}
+
 .page-shell {
   position: relative;
   isolation: isolate;
