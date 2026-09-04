@@ -39,7 +39,13 @@ export class TrendsPageComponent implements OnInit {
             src: '/images/trends/MainWindow.png',
             alt: 'MiMiTrends anomaly scanner and signal chart',
             title: 'Scanner and signal chart',
-            description: 'Rank fresh signals, inspect minute candles, volume, entry context, and imported executions in one workspace.'
+            description: 'Rank fresh signals and actionable setups while inspecting minute candles, volume, EMA 9/21, Trend 30, and entry context in one workspace.'
+        },
+        {
+            src: '/images/trends/PositiveWatch.png',
+            alt: 'MiMiTrends positive watch list and intraday trend chart',
+            title: 'Positive watch and trend context',
+            description: 'Compare downside-safety candidates with current-session candles, confirmation counts, entry quality, EMA 9/21, and the retrospective 30-candle trend.'
         },
         {
             src: '/images/trends/ScannerSettings.png',
@@ -121,14 +127,14 @@ export class TrendsPageComponent implements OnInit {
 
     private applySeoMetadata(): void {
         const title = 'MiMiTrends — Local-First Market Anomaly Scanner for US and European Stocks';
-        const description = 'Local-first Kotlin and JavaFX stock scanner with performance-led discovery, fresh anomaly ranking, repeating short-cycle detection, and explainable US and European market analysis.';
+        const description = 'Local-first Kotlin and JavaFX stock scanner with fresh anomaly ranking, actionable opportunity retention, positive-watch context, and explainable intraday trend overlays for US and European equities.';
         const imageUrl = 'https://miminavi.tech/images/trends/MainWindow.png';
         const pageUrl = 'https://miminavi.tech/trends';
 
         this.document.title = title;
         this.setMeta('name', 'description', description);
         this.setMeta('name', 'application-name', 'MiMiTrends');
-        this.setMeta('name', 'keywords', 'MiMiTrends, market anomaly scanner, live stock leader discovery, stock performance scanner, most traded stocks, range-aware repeating price cycle detector, stock anomaly detector, unusual price movement, momentum scanner, US stock scanner, European stock scanner, Kotlin desktop app, JavaFX trading software, local-first market analysis, OHLCV scanner, volume anomaly, V-shaped reversal detector, SQLite and DuckDB market analytics');
+        this.setMeta('name', 'keywords', 'MiMiTrends, market anomaly scanner, live stock leader discovery, positive watch, actionable trading opportunities, EMA 9, EMA 21, intraday trend overlay, stock anomaly detector, unusual price movement, momentum scanner, US stock scanner, European stock scanner, Kotlin desktop app, JavaFX trading software, local-first market analysis, OHLCV scanner, V-shaped reversal detector, SQLite and DuckDB market analytics');
         this.setMeta('property', 'og:site_name', 'MiMiTrends');
         this.setMeta('property', 'og:title', title);
         this.setMeta('property', 'og:description', description);
