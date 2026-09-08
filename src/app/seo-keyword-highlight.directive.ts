@@ -11,6 +11,7 @@ const SKIPPED_SELECTOR = [
     '.seo-keyword-highlight',
     '.hero-proof',
     '.hero-capabilities',
+    '.hero-highlights',
     '.brand-copy',
     '.commit-feed'
 ].join(',');

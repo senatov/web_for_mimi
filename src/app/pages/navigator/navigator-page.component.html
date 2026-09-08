@@ -96,21 +96,34 @@
                     </div>
                 </p-popover>
 
-                <ul class="hero-proof" aria-label="Product highlights">
-                    <li><p-tag value="Free" severity="success" [rounded]="true"></p-tag></li>
-                    <li><p-tag value="Signed & notarized" severity="info" [rounded]="true"></p-tag></li>
-                    <li><p-tag value="Native macOS" severity="secondary" [rounded]="true"></p-tag></li>
-                    <li><p-tag value="Open source" severity="contrast" [rounded]="true"></p-tag></li>
-                </ul>
+                <div class="hero-highlights" aria-label="MiMiNavigator at a glance">
+                    <section class="hero-highlight-group" aria-labelledby="hero-product-details-title">
+                        <div class="hero-highlight-heading">
+                            <h2 id="hero-product-details-title">Product details</h2>
+                            <span>Hover or focus for details</span>
+                        </div>
+                        <ul class="hero-highlight-grid">
+                            <li><span class="hero-highlight hero-highlight-proof" tabindex="0" pTooltip="No purchase, subscription, or feature paywall." tooltipEvent="both" tooltipPosition="top"><span class="material-icons-outlined" aria-hidden="true">check_circle</span>Free</span></li>
+                            <li><span class="hero-highlight hero-highlight-proof" tabindex="0" pTooltip="The downloadable DMG is Developer ID signed and notarized by Apple." tooltipEvent="both" tooltipPosition="top"><span class="material-icons-outlined" aria-hidden="true">verified_user</span>Signed &amp; notarized</span></li>
+                            <li><span class="hero-highlight hero-highlight-proof" tabindex="0" pTooltip="Built with SwiftUI and AppKit for macOS 26 and later." tooltipEvent="both" tooltipPosition="top"><span class="material-icons-outlined" aria-hidden="true">desktop_mac</span>Native macOS</span></li>
+                            <li><span class="hero-highlight hero-highlight-proof" tabindex="0" pTooltip="The source code is publicly available on GitHub." tooltipEvent="both" tooltipPosition="top"><span class="material-icons-outlined" aria-hidden="true">code</span>Open source</span></li>
+                        </ul>
+                    </section>
 
-                <ul class="hero-capabilities" aria-label="Core capabilities">
-                    <li>Dual panels</li>
-                    <li>Find &amp; clean</li>
-                    <li>Multi-Rename</li>
-                    <li>Remote servers</li>
-                    <li>Archives</li>
-                    <li>Media tools</li>
-                </ul>
+                    <section class="hero-highlight-group" aria-labelledby="hero-core-tools-title">
+                        <div class="hero-highlight-heading">
+                            <h2 id="hero-core-tools-title">Core tools</h2>
+                        </div>
+                        <ul class="hero-highlight-grid">
+                            <li><span class="hero-highlight" tabindex="0" pTooltip="Keep two locations visible and move or compare files without losing context." tooltipEvent="both" tooltipPosition="top"><span class="material-icons-outlined" aria-hidden="true">view_column</span>Dual panels</span></li>
+                            <li><span class="hero-highlight" tabindex="0" pTooltip="Search names and document content, then surface large, empty, or leftover items." tooltipEvent="both" tooltipPosition="top"><span class="material-icons-outlined" aria-hidden="true">manage_search</span>Find &amp; clean</span></li>
+                            <li><span class="hero-highlight" tabindex="0" pTooltip="Preview and apply structured filename changes to multiple items at once." tooltipEvent="both" tooltipPosition="top"><span class="material-icons-outlined" aria-hidden="true">drive_file_rename_outline</span>Multi-Rename</span></li>
+                            <li><span class="hero-highlight" tabindex="0" pTooltip="Save and browse SFTP and FTP connections alongside local locations." tooltipEvent="both" tooltipPosition="top"><span class="material-icons-outlined" aria-hidden="true">dns</span>Remote servers</span></li>
+                            <li><span class="hero-highlight" tabindex="0" pTooltip="Browse supported archives like folders and work with their contents in place." tooltipEvent="both" tooltipPosition="top"><span class="material-icons-outlined" aria-hidden="true">folder_zip</span>Archives</span></li>
+                            <li><span class="hero-highlight" tabindex="0" pTooltip="Convert images, audio, and video from a focused media workflow." tooltipEvent="both" tooltipPosition="top"><span class="material-icons-outlined" aria-hidden="true">perm_media</span>Media tools</span></li>
+                        </ul>
+                    </section>
+                </div>
             </div>
 
             <div class="hero-visual" aria-label="MiMiNavigator screenshot gallery">

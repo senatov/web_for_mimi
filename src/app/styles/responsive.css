@@ -200,6 +200,18 @@
     white-space: normal;
   }
 
+  .hero-highlight-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero-highlight {
+    min-height: 40px;
+    padding-inline: 9px;
+    white-space: normal;
+  }
+
   .hero-carousel-stage {
     min-height: 260px;
     aspect-ratio: 4 / 3;

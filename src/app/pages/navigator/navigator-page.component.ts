@@ -19,6 +19,7 @@ import {PopoverModule} from 'primeng/popover';
 import {CardModule} from 'primeng/card';
 import {DividerModule} from 'primeng/divider';
 import {TagModule} from 'primeng/tag';
+import {TooltipModule} from 'primeng/tooltip';
 import {RouterLink} from '@angular/router';
 import {PageMetadataService} from '../../page-metadata.service';
 
@@ -59,7 +60,7 @@ type AnalyticsEventName =
 @Component({
         selector: 'app-navigator-page',
         standalone: true,
-        imports: [CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, RouterLink],
+        imports: [CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, TooltipModule, RouterLink],
         templateUrl: './navigator-page.component.html',
         styleUrl: '../../styles/app.css',
         changeDetection: ChangeDetectionStrategy.OnPush
