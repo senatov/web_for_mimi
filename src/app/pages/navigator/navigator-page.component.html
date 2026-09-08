@@ -8,7 +8,7 @@
                 </span>
                 <span class="brand-copy">
                     <span class="brand-text">MiMiNavigator</span>
-                    <span class="brand-subtitle">Finder replacement for macOS 26+</span>
+                    <span class="brand-subtitle">Dual-panel file manager for macOS 26+</span>
                 </span>
             </a>
 
@@ -26,7 +26,7 @@
         </div>
     </header>
 
-    <main id="top" appSeoKeywordHighlight>
+    <main id="top">
         @if (isMobileDevice) {
             <div class="mobile-banner" role="alert">
                 <span class="mobile-banner-icon" aria-hidden="true">&#x1F4BB;</span>
@@ -40,7 +40,7 @@
         <section class="hero">
             <div class="hero-copy">
                 <h1>MiMiNavigator</h1>
-                <p class="hero-lede">Two panels. Real files. Fewer Finder detours.</p>
+                <p class="hero-lede">Two panels. One focused workspace.</p>
                 <p class="hero-note">
                     A native macOS 26+ file manager inspired by Total Commander and Norton Commander, with persistent
                     dual panels, tabs, List/Preview/Tree views, Find Files, Multi-Rename, SFTP/FTP, network discovery,
@@ -190,8 +190,9 @@
                         [showIndicators]="false"
                         [circular]="true"
                         [numVisible]="5"
+                        [responsiveOptions]="galleryResponsiveOptions"
                         [containerStyle]="{ 'max-width': '100vw' }">
-                    <ng-template #item>
+                    <ng-template #item let-item>
                         <div class="gallery-popup-frame">
                             <button type="button"
                                     class="gallery-popup-close"
@@ -199,12 +200,13 @@
                                     (click)="onHeroGalleryVisibleChange(false)">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <img [src]="heroGalleryDialogItem.itemImageSrc"
-                                 [alt]="heroGalleryDialogItem.alt"
+                            <img [src]="item.itemImageSrc"
+                                 [alt]="item.alt"
                                  class="gallery-popup-image">
                             <div class="gallery-popup-meta">
                                 <span class="gallery-popup-counter">{{ heroGalleryDialogProgressLabel }}</span>
-                                <span class="gallery-popup-title">{{ heroGalleryDialogItem.title }}</span>
+                                <span class="gallery-popup-title">{{ item.title }}</span>
+                                <button type="button" class="button button-secondary" (click)="openGalleryDetail()">Inspect image</button>
                             </div>
                         </div>
                     </ng-template>
@@ -232,7 +234,7 @@
                     <p-tag value="Actionable results" severity="success"></p-tag>
                 </p-card>
                 <p-card header="Act" subheader="Two panels keep context visible">
-                    <p>Open, preview, compare, copy, move, batch rename, pack, extract, or send items safely to the macOS Trash.</p>
+                    <p>Preview, copy, move, batch rename, and manage archives. Hand comparisons to your preferred external tool.</p>
                     <p-tag value="Keyboard + mouse" severity="secondary"></p-tag>
                 </p-card>
                 <p-card header="Connect" subheader="Local, remote and network locations">
@@ -249,22 +251,22 @@
         <section class="latest-improvements" aria-labelledby="navigator-latest-title">
             <div class="section-kicker">Recently improved</div>
             <div class="section-heading-block">
-                <h2 id="navigator-latest-title">Clearer search, calmer windows</h2>
-                <p>The current release expands document search, adds read-only Git context, and keeps every independent window within its proper macOS scope.</p>
+                <h2 id="navigator-latest-title">More consistent previews and media tools</h2>
+                <p>Recent improvements focus on image sizing, fresh dialog context, and recoverable media conversion.</p>
             </div>
             <div class="improvement-grid">
-                <article><span class="material-icons-outlined" aria-hidden="true">find_in_page</span><h3>Document content search</h3><p>Find Files now searches text inside PDF and Microsoft Office documents and presents results like the main file panels.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">account_tree</span><h3>Read-only Git context</h3><p>Subtle badges identify modified, untracked, ignored, and conflicted files without adding repository-changing commands.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">select_window</span><h3>Native window ownership</h3><p>Search, progress, decision, and utility windows stay with MiMiNavigator without floating above unrelated applications.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">image</span><h3>Consistent image previews</h3><p>Proportional thumbnails use the selected preview size, with compact selection frames and readable filenames.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">tune</span><h3>Safer media conversion</h3><p>Source-file protection and GIF recovery reduce the risk of losing files when a conversion fails or is cancelled.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">select_window</span><h3>Fresh dialog context</h3><p>Explicitly reopening a utility window replaces stale content with the files and settings from your latest action.</p></article>
             </div>
         </section>
 
         <section class="navigator-command-center" aria-labelledby="command-center-title">
             <div class="prime-section-heading command-center-heading">
                 <div>
-                    <div class="section-kicker">Native power, calmly presented</div>
-                    <h2 id="command-center-title">A file manager that explains what it just did</h2>
-                    <p>Compact feedback stays out of the way during work, while the dedicated history rivet keeps the latest 32 operations available across sessions.</p>
+                    <div class="section-kicker">Operation feedback</div>
+                    <h2 id="command-center-title">Keep track of file operations</h2>
+                    <p>Compact notices summarize completed actions. Open the history control to review the latest 32 operations across sessions.</p>
                 </div>
                 <div class="command-center-tags" aria-label="Current release capabilities">
                     <p-tag value="Persistent notice history" severity="success"></p-tag>
@@ -280,8 +282,8 @@
                 <p-card header="Numbered operation history">
                     <p>Recent animated notices retain timestamps and available From/To paths, use your configured colors, and survive restart.</p>
                 </p-card>
-                <p-card header="Safe destructive work">
-                    <p>Deletion means macOS Trash. Batch changes use confirmation, progress, cancellation, and conflict handling instead of silent mutation.</p>
+                <p-card header="Clear deletion behavior">
+                    <p>Local items use recoverable macOS recycling where supported. Protocol-based remote deletion may be permanent; review the destination before confirming.</p>
                 </p-card>
             </div>
         </section>
@@ -289,7 +291,7 @@
         <section class="feature-overview" id="features">
             <div class="section-kicker">Features</div>
             <div class="section-heading-block">
-                <h2>Built for the jobs Finder makes expensive</h2>
+                <h2>Tools for everyday file management</h2>
                 <p>
                     MiMiNavigator combines TC-style menus and hotkeys with persistent tabs and views,
                     Find Files, Multi-Rename, remote access, Archive VFS, media conversion, and cloud sharing.
@@ -306,7 +308,7 @@
                 <article class="feature-cluster">
                     <span class="cluster-icon" aria-hidden="true">02</span>
                     <h3>Find and clean</h3>
-                    <p>Search names and text inside ordinary, PDF, and Microsoft Office files; find large or forgotten items, empty folders, and application leftovers; then review results together. Anything removed goes to the macOS Trash.</p>
+                    <p>Search names and text inside ordinary, PDF, and Microsoft Office files; find large or forgotten items, empty folders, and application leftovers; then review results together. Local cleanup uses macOS recycling where supported.</p>
                 </article>
 
                 <article class="feature-cluster">
@@ -331,6 +333,8 @@
             <div class="release-panel">
                 <section class="commit-feed" aria-label="Latest commits and release changes">
                     <div class="commit-feed-scroller" aria-label="Recent MiMiNavigator commits and latest release changes">
+                        <h3 class="release-feed-title">Development activity</h3>
+                        <p class="release-feed-note">Recent commits may include changes not yet included in the downloadable release.</p>
                         <div class="commit-list" role="list" aria-label="Recent MiMiNavigator commits">
                             @if (recentCommits.length > 0) {
                                 <a *ngFor="let commit of recentCommits; trackBy: trackRecentCommit"
@@ -351,6 +355,7 @@
                         </div>
                         @if (releaseNoteSections.length > 0) {
                             <div class="release-notes-inline" aria-label="Latest release changes">
+                                <h3 class="release-feed-title">Release notes · {{ latestVersion }}</h3>
                                 <section *ngFor="let section of releaseNoteSections; trackBy: trackReleaseNoteSection"
                                          class="release-note-section">
                                     <h3>{{ section.title }}</h3>
@@ -377,9 +382,9 @@
                     <div class="price-meta">
                         <p class="price-copy"><span class="price-label">Version</span> <strong>{{ latestVersion }}</strong></p>
                         <p class="price-copy"><span class="price-label">Released</span> <span class="price-value"><span class="price-file-date">{{ latestReleaseDate }}</span><span class="price-release-age">{{ latestReleaseAge }}</span></span></p>
-                        <p class="price-copy"><span class="price-label">DMG built</span> <span class="price-value"><span
+                        <p class="price-copy"><span class="price-label">DMG updated</span> <span class="price-value"><span
                                 class="price-file-date">{{ latestDmgFileDate }}</span>@if (latestDmgFileAge) { <span class="price-release-age">{{ latestDmgFileAge }}</span>}</span></p>
-                        <p class="price-copy price-copy-platform">Signed and notarized DMG for <span>{{ minimumMacOSVersion }}</span> or newer.</p>
+                        <p class="price-copy price-copy-platform">Signed and notarized DMG for Apple silicon and <span>{{ minimumMacOSVersion }}</span> or newer.</p>
                     </div>
                     <div class="download-direct-label">Download directly</div>
                     @if (!isMobileDevice) {
@@ -396,7 +401,7 @@
                         <p class="mobile-download-hint">Open this page on a Mac to download.</p>
                     }
                     <div class="download-pitch">
-                        <h2>No App Store. No subscription. No Electron.</h2>
+                        <h2>Free, open-source, native macOS software</h2>
                         <p>{{ downloadPitchText }}</p>
                     </div>
                     <p class="price-copy">
@@ -435,7 +440,7 @@
         <section class="details" id="preview">
             <div class="details-copy">
                 <div class="section-kicker">Screenshots</div>
-                <h2 class="section-heading-title">See the actual app, not a marketing mockup</h2>
+                <h2 class="section-heading-title">Explore the workspace in detail</h2>
                 <p class="hero-text">
                     The page uses real MiMiNavigator screenshots. Click any image to zoom in and inspect the panels,
                     toolbar, metadata views, and transfer workflows.
@@ -452,7 +457,7 @@
                              alt="MiMiNavigator file manager macOS - dual-panel workspace for file browsing">
                     </a>
                     <h3>Dual-panel workspace</h3>
-                    <p>Move, copy, and search while keeping source and destination visible without Finder window juggling.</p>
+                    <p>Keep source and destination visible while browsing, searching, copying, and moving files.</p>
                 </article>
 
                 <article class="preview-card">
@@ -496,14 +501,14 @@
         <section class="roadmap-section" id="faq">
             <div class="section-kicker">FAQ and roadmap</div>
             <div class="section-heading-block">
-                <h2>Practical answers for a practical file manager</h2>
-                <p>MiMiNavigator is free, open source, signed, notarized, and still moving quickly.</p>
+                <h2>Requirements, installation, and file handling</h2>
+                <p>Essential information before you install or start working with files.</p>
             </div>
 
             <div class="faq-grid">
                 <article class="faq-item">
                     <h3>Why build another file manager for macOS?</h3>
-                    <p>Finder is good for casual browsing, but serious file work needs two panels, keyboard shortcuts, visible paths, batch operations, and fewer windows.</p>
+                    <p>MiMiNavigator offers an alternative workflow for people who prefer two panels, visible paths, keyboard shortcuts, and batch operations.</p>
                 </article>
 
                 <article class="faq-item">
@@ -523,7 +528,7 @@
 
                 <article class="faq-item">
                     <h3>Is file removal safe?</h3>
-                    <p>Absolutely. MiMiNavigator removes files and directories only by sending them to the macOS Trash—never by permanently deleting them. What you do with those files in the Trash afterwards, if you are paranoid or enemies are watching you, is none of MiMiNavigator's business.</p>
+                    <p>Local files and supported cloud-provider items use recoverable macOS recycling. SFTP/FTP and other protocol-based servers may not provide a Trash, so remote deletion can be permanent. Review confirmations and keep backups of important data.</p>
                 </article>
 
                 <article class="faq-item">
@@ -557,7 +562,7 @@
                 <div>
                     <h3>Roadmap</h3>
                     <p>
-                        Next direction: saved workspaces, duplicate search, direct WebDAV/S3/B2 access,
+                        Areas under consideration include saved workspaces, duplicate search, direct WebDAV/S3/B2 access,
                         CloudKit settings sync, and deeper Finder integration. Persistent Preview,
                         the Commander action bar, and read-only Git status are already available today.
                     </p>

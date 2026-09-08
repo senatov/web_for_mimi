@@ -22,6 +22,9 @@
   text-transform: uppercase;
 }
 
+.release-feed-title { margin: 12px 10px 6px; color: var(--gd-ink); font-size: 16px; font-weight: 600; }
+.release-feed-note { margin: 0 10px 14px; color: var(--gd-grey-500); font-size: 13px; line-height: 1.5; }
+
 .commit-feed-header h3 {
   margin: 0;
   color: var(--gd-grey-500);

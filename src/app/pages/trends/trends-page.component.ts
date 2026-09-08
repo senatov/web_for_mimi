@@ -39,13 +39,13 @@ export class TrendsPageComponent implements OnInit {
             src: '/images/trends/MainWindow.png',
             alt: 'MiMiTrends anomaly scanner and signal chart',
             title: 'Scanner and signal chart',
-            description: 'Rank fresh signals and actionable setups while inspecting minute candles, volume, EMA 9/21, Trend 30, and entry context in one workspace.'
+            description: 'Review detected price and volume signals alongside minute candles, EMA 9/21, and the retrospective Trend 30 overlay.'
         },
         {
             src: '/images/trends/PositiveWatch.png',
             alt: 'MiMiTrends positive watch list and intraday trend chart',
             title: 'Positive watch and trend context',
-            description: 'Compare downside-safety candidates with current-session candles, confirmation counts, entry quality, EMA 9/21, and the retrospective 30-candle trend.'
+            description: 'Compare watchlist candidates using current-session candles, confirmation counts, EMA 9/21, and the retrospective 30-candle trend.'
         },
         {
             src: '/images/trends/ScannerSettings.png',
@@ -97,7 +97,7 @@ export class TrendsPageComponent implements OnInit {
             maxHeight: '94vh',
             panelClass: 'preview-dialog-panel',
             backdropClass: 'preview-dialog-backdrop',
-            autoFocus: false,
+            autoFocus: 'first-tabbable',
             restoreFocus: true
         });
     }

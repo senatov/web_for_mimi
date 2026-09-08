@@ -20,7 +20,6 @@ import {CardModule} from 'primeng/card';
 import {DividerModule} from 'primeng/divider';
 import {TagModule} from 'primeng/tag';
 import {RouterLink} from '@angular/router';
-import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 import {PageMetadataService} from '../../page-metadata.service';
 
 
@@ -60,7 +59,7 @@ type AnalyticsEventName =
 @Component({
         selector: 'app-navigator-page',
         standalone: true,
-        imports: [CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, RouterLink, SeoKeywordHighlightDirective],
+        imports: [CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, RouterLink],
         templateUrl: './navigator-page.component.html',
         styleUrl: '../../styles/app.css',
         changeDetection: ChangeDetectionStrategy.OnPush
@@ -121,6 +120,10 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         protected previousHeroCarouselIndex = 0;
         protected heroCarouselTransitioning = false;
         protected homebrewCopied = false;
+        protected readonly galleryResponsiveOptions = [
+                {breakpoint: '900px', numVisible: 4},
+                {breakpoint: '600px', numVisible: 2}
+        ];
         protected readonly heroGalleryImages: GalleryImageItem[] = this.buildHeroGalleryImages();
         protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         protected readonly homebrewInstallCommand = 'brew update >/dev/null && brew install --cask --force senatov/tap/miminavigator';
@@ -386,15 +389,21 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
                 this.dialog.open(PreviewDialogComponent, {
                         data: dialogData,
-                        width: '100vw',
-                        height: '100vh',
-                        maxWidth: '100vw',
-                        maxHeight: '100vh',
+                        width: '96vw',
+                        height: '94dvh',
+                        maxWidth: '1600px',
+                        maxHeight: '94dvh',
                         panelClass: 'preview-dialog-panel',
                         backdropClass: 'preview-dialog-backdrop',
-                        autoFocus: false,
+                        autoFocus: 'first-tabbable',
                         restoreFocus: true,
                 });
+        }
+
+        protected openGalleryDetail(): void {
+                const item = this.heroGalleryDialogItem;
+                this.onHeroGalleryVisibleChange(false);
+                this.openPreview(item.itemImageSrc.replace('/images/', ''), item.title);
         }
 
 
@@ -665,7 +674,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 }
 
                 this.latestDmgFileAge = this.gitHubService.formatReleaseAge(this.latestDmgIsoDate)
-                    .replace('Released ', 'Built ');
+                    .replace('Released ', 'Updated ');
         }
 
 
