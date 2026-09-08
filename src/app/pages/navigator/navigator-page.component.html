@@ -177,6 +177,7 @@
 
                 <!--suppress HtmlUnknownTag -->
                 <p-galleria
+                        [pt]="{prevButton: {'aria-label': 'Previous screenshot'}, nextButton: {'aria-label': 'Next screenshot'}}"
                         [visible]="heroGalleryVisible"
                         (visibleChange)="onHeroGalleryVisibleChange($event)"
                         [value]="heroGalleryImages"
@@ -194,12 +195,6 @@
                         [containerStyle]="{ 'max-width': '100vw' }">
                     <ng-template #item let-item>
                         <div class="gallery-popup-frame">
-                            <button type="button"
-                                    class="gallery-popup-close"
-                                    aria-label="Close fullscreen screenshot preview"
-                                    (click)="onHeroGalleryVisibleChange(false)">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                             <img [src]="item.itemImageSrc"
                                  [alt]="item.alt"
                                  class="gallery-popup-image">
