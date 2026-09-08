@@ -245,6 +245,8 @@
   overflow: auto;
 }
 
+.gallery-control-label { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
 .gallery-popup-close {
   position: fixed;
   top: max(16px, env(safe-area-inset-top));

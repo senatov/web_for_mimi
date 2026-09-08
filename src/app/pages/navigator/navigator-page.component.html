@@ -177,7 +177,6 @@
 
                 <!--suppress HtmlUnknownTag -->
                 <p-galleria
-                        [pt]="{prevButton: {'aria-label': 'Previous screenshot'}, nextButton: {'aria-label': 'Next screenshot'}}"
                         [visible]="heroGalleryVisible"
                         (visibleChange)="onHeroGalleryVisibleChange($event)"
                         [value]="heroGalleryImages"
@@ -193,6 +192,8 @@
                         [numVisible]="5"
                         [responsiveOptions]="galleryResponsiveOptions"
                         [containerStyle]="{ 'max-width': '100vw' }">
+                    <ng-template #itempreviousicon><span aria-hidden="true">‹</span><span class="gallery-control-label">Previous screenshot</span></ng-template>
+                    <ng-template #itemnexticon><span aria-hidden="true">›</span><span class="gallery-control-label">Next screenshot</span></ng-template>
                     <ng-template #item let-item>
                         <div class="gallery-popup-frame">
                             <img [src]="item.itemImageSrc"
