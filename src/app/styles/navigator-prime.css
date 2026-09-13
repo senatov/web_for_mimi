@@ -127,10 +127,19 @@
 
 .command-center-tags {
   display: flex;
-  flex: 0 0 260px;
+  flex: 0 0 auto;
+  width: 230px;
+  max-width: 100%;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: stretch;
   gap: 9px;
+}
+
+:host ::ng-deep .command-center-tags p-tag.p-tag {
+  width: 100%;
+  min-height: 30px;
+  justify-content: center;
+  text-align: center;
 }
 
 .divider-caption {
@@ -212,7 +221,7 @@
 
   .command-center-tags {
     flex: none;
-    align-items: flex-start;
+    align-items: stretch;
   }
 }
 

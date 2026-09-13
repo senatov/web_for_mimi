@@ -27,6 +27,7 @@ npm run build
 
 ## Product content and screenshots
 
+- Visible release, DMG, and commit timestamps use compact `DD.MM.YYYY HH:mm` formatting in the visitor’s browser time zone. The DMG release annotation uses smaller text; operation-feedback tags share equal dimensions.
 - Release metadata comes from GitHub. Development commits are labelled separately because they may not be part of the downloadable release.
 - Production builds fetch the latest MiMiNavigator and MiMiTrends releases and write their versions, publication dates, and release URLs into the rendered JSON-LD. The same release dates are written to `sitemap.xml`, so these values must not be maintained by hand.
 - Successful Vercel production deployments trigger `.github/workflows/notify-indexnow.yml`, which submits `/` and `/trends` to IndexNow once per deployment. The verification key is served from the site root. Google discovery continues through the sitemap declared in `robots.txt`; do not notify search engines from visitor page loads.

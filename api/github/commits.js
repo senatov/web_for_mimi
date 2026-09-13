@@ -144,28 +144,8 @@ function mapCommits(commits) {
       shortHash: commit.sha.slice(0, 8),
       url: commit.html_url,
       message: commit.commit.message.replace(/\s+/g, ' ').trim(),
-      time: formatCommitTime(commit.commit.author?.date)
+      time: commit.commit.author?.date || ''
     }));
-}
-
-function formatCommitTime(value) {
-  if (!value) {
-    return 'Unknown';
-  }
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return 'Unknown';
-  }
-
-  return new Intl.DateTimeFormat('en-GB', {
-    day: '2-digit',
-    month: '2-digit',
-    year: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit'
-  }).format(date);
 }
 
 module.exports = handler;

@@ -70,7 +70,10 @@ export class GitHubService {
                 return [];
             }
 
-            return payload as RecentCommitViewModel[];
+            return (payload as RecentCommitViewModel[]).map(commit => ({
+                ...commit,
+                time: this.formatReleaseDate(commit.time)
+            }));
         } catch (error: unknown) {
             const message = error instanceof Error ? error.message : 'Unknown commits loading error';
             this.logRecentCommitsError(message);
@@ -83,14 +86,14 @@ export class GitHubService {
         if (!date) {
             return 'Unknown date';
         }
-        return new Intl.DateTimeFormat('en-GB', {
+        return new Intl.DateTimeFormat('de-DE', {
             day: '2-digit',
-            month: 'short',
+            month: '2-digit',
             year: 'numeric',
             hour: '2-digit',
             minute: '2-digit',
             hour12: false
-        }).format(date).replace(',', ' ·');
+        }).format(date).replace(',', '');
     }
 
     formatReleaseAge(isoDate: string): string {
@@ -114,50 +117,50 @@ export class GitHubService {
         }
 
         if (diffInMinutes === 1) {
-            return 'Released 1 minute ago';
+            return 'Released 1 min ago';
         }
 
         if (diffInMinutes < 60) {
-            return `Released ${diffInMinutes} minutes ago`;
+            return `Released ${diffInMinutes} min ago`;
         }
 
         const diffInHours = Math.floor(diffInMilliseconds / this.millisecondsPerHour);
 
         if (diffInHours === 1) {
-            return 'Released 1 hour ago';
+            return 'Released 1 h ago';
         }
 
         if (diffInHours < 24) {
-            return `Released ${diffInHours} hours ago`;
+            return `Released ${diffInHours} h ago`;
         }
 
         const diffInDays = Math.floor(diffInMilliseconds / this.millisecondsPerDay);
 
         if (diffInDays === 1) {
-            return 'Released 1 day ago';
+            return 'Released 1 d ago';
         }
 
         if (diffInDays < this.daysPerMonth) {
-            return `Released ${diffInDays} days ago`;
+            return `Released ${diffInDays} d ago`;
         }
 
         const diffInMonths = Math.floor(diffInDays / this.daysPerMonth);
 
         if (diffInMonths === 1) {
-            return 'Released 1 month ago';
+            return 'Released 1 mo ago';
         }
 
         if (diffInMonths < this.monthsPerYear) {
-            return `Released ${diffInMonths} months ago`;
+            return `Released ${diffInMonths} mo ago`;
         }
 
         const diffInYears = Math.floor(diffInMonths / this.monthsPerYear);
 
         if (diffInYears === 1) {
-            return 'Released 1 year ago';
+            return 'Released 1 yr ago';
         }
 
-        return `Released ${diffInYears} years ago`;
+        return `Released ${diffInYears} yr ago`;
     }
 
     private resolveLatestReleaseUrl(project: 'navigator' | 'trends'): string {

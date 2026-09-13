@@ -76,6 +76,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         protected latestReleaseAge = 'Checking release age...';
         protected latestReleaseHeadline = 'Latest release is loading...';
         protected latestReleaseSummary = 'Release details are loading from GitHub.';
+        protected latestDmgReleaseNote = '';
         protected latestDmgFileDate = 'Checking DMG file date...';
         protected latestDmgFileAge = '';
         protected latestDmgUrl = 'https://github.com/senatov/MiMiNavigator/releases';
@@ -608,6 +609,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
             dmgUpdatedAt?: string | null,
             dmgCreatedAt?: string | null
         ): string {
+                this.latestDmgReleaseNote = '';
                 const dmgDate = dmgUpdatedAt || dmgCreatedAt;
                 if (!dmgDate) {
                         return releaseDate
@@ -619,7 +621,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 if (releaseDate && dmgDate !== releaseDate) {
                         const formattedRelease = this.gitHubService.formatReleaseDate(releaseDate);
                         if (formattedDmg !== formattedRelease) {
-                                return `${formattedDmg} (release: ${formattedRelease})`;
+                                this.latestDmgReleaseNote = `release: ${formattedRelease}`;
                         }
                 }
 
@@ -692,6 +694,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 this.latestReleaseHeadline = 'Latest release';
                 this.latestReleaseSummary = 'Release details are temporarily unavailable. Use the releases page for the current build.';
                 this.latestDmgFileDate = 'Unknown DMG file date';
+                this.latestDmgReleaseNote = '';
                 this.latestDmgFileAge = '';
                 this.releaseNoteSections = [];
                 this.cdr.markForCheck();

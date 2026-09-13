@@ -392,7 +392,7 @@
                         <p class="price-copy"><span class="price-label">Version</span> <strong>{{ latestVersion }}</strong></p>
                         <p class="price-copy"><span class="price-label">Released</span> <span class="price-value"><span class="price-file-date">{{ latestReleaseDate }}</span><span class="price-release-age">{{ latestReleaseAge }}</span></span></p>
                         <p class="price-copy"><span class="price-label">DMG updated</span> <span class="price-value"><span
-                                class="price-file-date">{{ latestDmgFileDate }}</span>@if (latestDmgFileAge) { <span class="price-release-age">{{ latestDmgFileAge }}</span>}</span></p>
+                                class="price-file-date">{{ latestDmgFileDate }}</span>@if (latestDmgReleaseNote) { <small class="price-release-note">{{ latestDmgReleaseNote }}</small>}@if (latestDmgFileAge) { <span class="price-release-age">{{ latestDmgFileAge }}</span>}</span></p>
                         <p class="price-copy price-copy-platform">Signed and notarized DMG for Apple silicon and <span>{{ minimumMacOSVersion }}</span> or newer.</p>
                     </div>
                     <div class="download-direct-label">Download directly</div>
