@@ -260,13 +260,13 @@
         <section class="latest-improvements" aria-labelledby="navigator-latest-title">
             <div class="section-kicker">Recently improved</div>
             <div class="section-heading-block">
-                <h2 id="navigator-latest-title">More consistent previews and media tools</h2>
-                <p>Recent improvements focus on image sizing, fresh dialog context, and recoverable media conversion.</p>
+                <h2 id="navigator-latest-title">Public builds and clearer media windows</h2>
+                <p>The latest release makes public source checkouts buildable and improves media preview and window presentation.</p>
             </div>
             <div class="improvement-grid">
-                <article><span class="material-icons-outlined" aria-hidden="true">image</span><h3>Consistent image previews</h3><p>Proportional thumbnails use the selected preview size, with compact selection frames and readable filenames.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">tune</span><h3>Safer media conversion</h3><p>Source-file protection and GIF recovery reduce the risk of losing files when a conversion fails or is cancelled.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">select_window</span><h3>Fresh dialog context</h3><p>Explicitly reopening a utility window replaces stale content with the files and settings from your latest action.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">deployed_code</span><h3>Buildable public checkout</h3><p>Public builds resolve prebuilt MiMiKits XCFrameworks from GitHub release assets without requiring access to private source repositories.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">image</span><h3>Clear preview boundaries</h3><p>Thin blue and dark-green borders make image and video previews easier to distinguish from the surrounding workspace.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">select_window</span><h3>Reliable utility windows</h3><p>Media &amp; Convert and related standalone windows reliably open above the main window while remaining normal application windows.</p></article>
             </div>
         </section>
 
@@ -427,7 +427,7 @@
                         </div>
                         <span class="homebrew-mark" aria-hidden="true">brew</span>
                     </div>
-                    <p>Copy the command, paste it into Terminal, and press Return.</p>
+                    <p>Copy the command, paste it into Terminal, and press Return. It installs only when the Homebrew release is newer than the copy already in Applications.</p>
                     <div class="homebrew-command">
                         <pre aria-label="Homebrew installation command"><code>{{ homebrewInstallCommand }}</code></pre>
                         <button type="button"

@@ -28,6 +28,19 @@ npm run build
 ## Product content and screenshots
 
 - Release metadata comes from GitHub. Development commits are labelled separately because they may not be part of the downloadable release.
+- Production builds fetch the latest MiMiNavigator and MiMiTrends releases and write their versions, publication dates, and release URLs into the rendered JSON-LD. The same release dates are written to `sitemap.xml`, so these values must not be maintained by hand.
+- Successful Vercel production deployments trigger `.github/workflows/notify-indexnow.yml`, which submits `/` and `/trends` to IndexNow once per deployment. The verification key is served from the site root. Google discovery continues through the sitemap declared in `robots.txt`; do not notify search engines from visitor page loads.
+
+### Register release-triggered metadata refreshes
+
+The public page loads release details dynamically, but search crawlers also need a newly rendered HTML document after a release. Connect GitHub Releases to the production deployment once:
+
+1. In the Vercel project, open **Settings → Git → Deploy Hooks**.
+2. Create a hook named `MiMi release metadata`, targeting the `master` branch, and copy its URL.
+3. In each product repository (`senatov/MiMiNavigator` and `senatov/mimiTrends`), open **Settings → Webhooks → Add webhook**.
+4. Paste the Vercel Deploy Hook URL as the payload URL, select `application/json`, choose **Let me select individual events**, enable **Releases**, and save the active webhook.
+
+GitHub will then call the private Deploy Hook URL when release state changes. Vercel rebuilds the site, the build reads the current release metadata, and the successful production deployment triggers a single IndexNow notification. Treat the Deploy Hook URL as a secret and do not commit it to either repository.
 - PrimeNG Galleria provides fullscreen browsing and responsive thumbnail navigation. The shared Angular Material dialog adds fit-to-window, 1:1 viewing, zoom controls, keyboard dismissal, and scrollable detail inspection for both products.
 - Screenshots retain their original proportions and colors. Preview cards use a consistent media area without cropping the image.
 - Local and supported cloud-provider recycling is distinguished from potentially permanent protocol-based remote deletion.

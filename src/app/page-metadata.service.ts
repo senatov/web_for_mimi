@@ -37,6 +37,27 @@ export class PageMetadataService {
         }
     }
 
+    updateNavigatorRelease(version: string, datePublished: string | null | undefined, downloadUrl: string): void {
+        for (const element of this.document.querySelectorAll<HTMLScriptElement>('script[type="application/ld+json"]')) {
+            try {
+                const data = JSON.parse(element.text) as Record<string, unknown>;
+                if (data['@type'] !== 'SoftwareApplication' || data['name'] !== 'MiMiNavigator') {
+                    continue;
+                }
+
+                data['softwareVersion'] = version.replace(/^v/, '');
+                data['downloadUrl'] = downloadUrl;
+                if (datePublished) {
+                    data['datePublished'] = datePublished.slice(0, 10);
+                }
+                element.text = JSON.stringify(data);
+                return;
+            } catch {
+                // Ignore unrelated or malformed structured-data blocks.
+            }
+        }
+    }
+
     private captureMeta(): MetaSnapshot[] {
         const snapshots: MetaSnapshot[] = [];
         for (const element of this.document.querySelectorAll<HTMLMetaElement>('meta[name], meta[property]')) {

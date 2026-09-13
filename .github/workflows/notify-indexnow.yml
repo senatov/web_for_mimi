@@ -1,0 +1,23 @@
+name: Notify search engines after production deployment
+
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+
+jobs:
+  notify-indexnow:
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      (github.event.deployment.environment == 'Production' ||
+       github.event.deployment.environment == 'production')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out deployed revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha }}
+
+      - name: Notify IndexNow
+        run: node scripts/notify-indexnow.mjs

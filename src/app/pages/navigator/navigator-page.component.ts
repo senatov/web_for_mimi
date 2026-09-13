@@ -127,7 +127,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         ];
         protected readonly heroGalleryImages: GalleryImageItem[] = this.buildHeroGalleryImages();
         protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        protected readonly homebrewInstallCommand = 'brew update >/dev/null && brew install --cask --force senatov/tap/miminavigator';
+        protected readonly homebrewInstallCommand = 'brew tap senatov/tap >/dev/null && "$(brew --repo senatov/tap)/scripts/install-miminavigator"';
         protected readonly downloadPitchText = 'Work in two persistent panels with exact active-panel mirroring, TC-style hotkeys, document content search, read-only Git status, List, Preview, and Tree views, remote servers, archive folders, media conversion, and cloud sharing. The native SwiftUI + AppKit app is free, open source, and distributed as a signed, notarized DMG.';
 
 
@@ -489,6 +489,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 this.latestReleaseSummary = this.extractReleaseSummary(release.body);
                 this.latestDmgUrl = dmgAsset?.browser_download_url || release.html_url || this.releasesPageUrl;
                 this.releaseNoteSections = this.extractReleaseNoteSections(release.body);
+                this.pageMetadata.updateNavigatorRelease(this.latestVersion, releaseDate, this.latestDmgUrl);
 
                 if (releaseDate) {
                         this.latestReleaseIsoDate = releaseDate;
