@@ -1,0 +1,43 @@
+/* Shared cell treatment for both product pages, after responsive corner rules. */
+.improvement-grid {
+  gap: 12px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.quick-strip {
+  gap: 12px;
+}
+
+.improvement-grid article,
+.quick-strip .quick-strip-item,
+.feature-cluster,
+.preview-card,
+.faq-item,
+.roadmap-card {
+  min-width: 0;
+  border: 1px solid rgba(24, 63, 111, 0.2);
+  border-radius: 12px;
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 55%, #edf1f6 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px rgba(24, 63, 111, 0.06),
+    0 2px 3px rgba(13, 31, 74, 0.06),
+    0 6px 14px rgba(13, 31, 74, 0.05);
+}
+
+/* Keep Angular deep selectors separate: Trends uses no encapsulation. */
+:host ::ng-deep .prime-workflow .p-card,
+:host ::ng-deep .navigator-command-center .p-card {
+  min-width: 0;
+  border: 1px solid rgba(24, 63, 111, 0.2);
+  border-radius: 12px;
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 55%, #edf1f6 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px rgba(24, 63, 111, 0.06),
+    0 2px 3px rgba(13, 31, 74, 0.06),
+    0 6px 14px rgba(13, 31, 74, 0.05);
+}
