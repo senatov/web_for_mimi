@@ -2,6 +2,7 @@ import {CommonModule} from '@angular/common';
 import {DOCUMENT} from '@angular/common';
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {RouterLink} from '@angular/router';
+import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 import {GitHubService, RecentCommitViewModel} from '../../github.service';
@@ -18,7 +19,7 @@ interface TrendsScreenshot {
 @Component({
     selector: 'app-trends-page',
     standalone: true,
-    imports: [CommonModule, RouterLink, MatDialogModule],
+    imports: [SeoKeywordHighlightDirective, CommonModule, RouterLink, MatDialogModule],
     templateUrl: './trends-page.component.html',
     styleUrls: ['../../styles/app.css', '../../styles/trends.css'],
     encapsulation: ViewEncapsulation.None,

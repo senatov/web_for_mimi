@@ -21,6 +21,7 @@ import {DividerModule} from 'primeng/divider';
 import {TagModule} from 'primeng/tag';
 import {TooltipModule} from 'primeng/tooltip';
 import {RouterLink} from '@angular/router';
+import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 import {PageMetadataService} from '../../page-metadata.service';
 
 
@@ -60,7 +61,7 @@ type AnalyticsEventName =
 @Component({
         selector: 'app-navigator-page',
         standalone: true,
-        imports: [CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, TooltipModule, RouterLink],
+        imports: [SeoKeywordHighlightDirective, CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, TooltipModule, RouterLink],
         templateUrl: './navigator-page.component.html',
         styleUrl: '../../styles/app.css',
         changeDetection: ChangeDetectionStrategy.OnPush

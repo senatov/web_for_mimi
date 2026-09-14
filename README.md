@@ -43,6 +43,7 @@ The public page loads release details dynamically, but search crawlers also need
 
 GitHub will then call the private Deploy Hook URL when release state changes. Vercel rebuilds the site, the build reads the current release metadata, and the successful production deployment triggers a single IndexNow notification. Treat the Deploy Hook URL as a secret and do not commit it to either repository.
 - PrimeNG Galleria provides fullscreen browsing and responsive thumbnail navigation. The shared Angular Material dialog adds fit-to-window, 1:1 viewing, zoom controls, keyboard dismissal, and scrollable detail inspection for both products.
+- Both product pages subtly highlight product names, technical keywords, and versions in blue with a medium-bold weight, including dynamically loaded content. Links, buttons, icon glyphs, hero badges, and the commit feed retain their own styling.
 - Both product pages share subtly rounded, raised content cards with a soft gradient, inset highlight, and restrained shadow. Improvement icons use centered flex containers and Material Icons Outlined glyph names.
 - Screenshots retain their original proportions and colors. Preview cards use a consistent media area without cropping the image.
 - Local and supported cloud-provider recycling is distinguished from potentially permanent protocol-based remote deletion.
