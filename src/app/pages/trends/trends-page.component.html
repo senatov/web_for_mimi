@@ -109,7 +109,11 @@
             </div>
             <div class="pricing-card-column"><div class="price-card">
                 <div class="download-release-heading"><h2>{{ latestVersion }}</h2><p>Current MiMiTrends desktop release</p></div>
-                <div class="price-meta"><p class="price-copy"><span class="price-label">Released</span> {{ latestReleaseDate }}</p><p class="price-copy price-copy-platform">Signed macOS DMG. Windows and Linux packaging exists but remains platform-test pending.</p></div>
+                <div class="price-meta">
+                    <p class="price-copy"><span class="price-label">Released</span> <span class="price-value"><span class="price-file-date">{{ latestReleaseDate }}</span></span></p>
+                    <p class="price-copy price-copy-platform">Signed <strong>macOS DMG</strong>. Windows and Linux packaging exists but remains platform-test pending.</p>
+                </div>
+                <div class="download-direct-label">Download directly</div>
                 <a class="button button-primary button-block dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer" aria-label="Download MiMiTrends DMG for macOS 26 or 27">
                     <span class="download-platform-badge" aria-hidden="true"><span class="download-platform-icon">&#63743;</span><span class="download-platform-os">26–27</span></span>
                     <span>Download DMG</span>

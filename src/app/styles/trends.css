@@ -3,6 +3,17 @@
   --gd-blue-dark: #203f68;
 }
 
+/* Keep the release center visually connected to the shared page texture. */
+.trends-page .pricing {
+  background: linear-gradient(180deg, rgba(247, 244, 238, 0.48) 0%, rgba(240, 235, 226, 0.52) 100%);
+}
+
+.trends-page .price-card {
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
 .trends-logo-shell {
   border-radius: 12px;
   background: #15233f;
