@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {DOCUMENT} from '@angular/common';
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
@@ -25,7 +25,7 @@ interface TrendsScreenshot {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TrendsPageComponent implements OnInit {
+export class TrendsPageComponent implements OnInit, OnDestroy {
     private readonly gitHubService = inject(GitHubService);
     private readonly cdr = inject(ChangeDetectorRef);
     private readonly document = inject(DOCUMENT);
@@ -70,12 +70,24 @@ export class TrendsPageComponent implements OnInit {
 
     protected latestVersion = 'Latest release';
     protected latestReleaseDate = 'Checking GitHub…';
+    protected latestReleaseAge = 'Checking release age...';
+    protected latestDmgFileDate = 'Checking DMG file date...';
+    protected latestDmgFileAge = '';
     protected latestDmgUrl = this.releasesUrl;
     protected recentCommits: RecentCommitViewModel[] = [];
+    private latestReleaseIsoDate: string | null = null;
+    private latestDmgIsoDate: string | null = null;
+    private releaseAgeTimerId: number | null = null;
 
     ngOnInit(): void {
         this.applySeoMetadata();
         void Promise.all([this.loadRelease(), this.loadCommits()]);
+    }
+
+    ngOnDestroy(): void {
+        if (this.releaseAgeTimerId !== null) {
+            window.clearInterval(this.releaseAgeTimerId);
+        }
     }
 
     protected trackCommit(_: number, commit: RecentCommitViewModel): string {
@@ -109,16 +121,39 @@ export class TrendsPageComponent implements OnInit {
             this.applyRelease(release);
         } else {
             this.latestReleaseDate = 'See GitHub for current builds';
+            this.latestReleaseAge = 'Age unavailable';
+            this.latestDmgFileDate = 'Unknown DMG file date';
         }
         this.cdr.markForCheck();
     }
 
     private applyRelease(release: GitHubLatestRelease): void {
         const dmg = release.assets.find(asset => asset.name.toLowerCase().endsWith('.dmg'));
+        const releaseDate = release.published_at || release.created_at || null;
+        const dmgDate = dmg?.updated_at || dmg?.created_at || releaseDate;
         this.latestVersion = release.tag_name || 'Latest release';
         this.latestDmgUrl = dmg?.browser_download_url || release.html_url || this.releasesUrl;
-        const date = release.published_at || release.created_at;
-        this.latestReleaseDate = date ? this.gitHubService.formatReleaseDate(date) : 'Date unavailable';
+        this.latestReleaseIsoDate = releaseDate;
+        this.latestDmgIsoDate = dmgDate;
+        this.latestReleaseDate = releaseDate ? this.gitHubService.formatReleaseDate(releaseDate) : 'Unknown release date';
+        this.latestDmgFileDate = dmgDate ? this.gitHubService.formatReleaseDate(dmgDate) : 'Unknown DMG file date';
+        this.updateAges();
+        if (this.releaseAgeTimerId !== null) {
+            window.clearInterval(this.releaseAgeTimerId);
+        }
+        this.releaseAgeTimerId = window.setInterval(() => {
+            this.updateAges();
+            this.cdr.markForCheck();
+        }, 60_000);
+    }
+
+    private updateAges(): void {
+        this.latestReleaseAge = this.latestReleaseIsoDate
+            ? this.gitHubService.formatReleaseAge(this.latestReleaseIsoDate)
+            : 'Age unavailable';
+        this.latestDmgFileAge = this.latestDmgIsoDate
+            ? this.gitHubService.formatReleaseAge(this.latestDmgIsoDate).replace('Released ', 'Updated ')
+            : '';
     }
 
     private async loadCommits(): Promise<void> {
