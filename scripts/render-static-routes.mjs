@@ -77,10 +77,10 @@ sitemap = updateSitemapDate(sitemap, 'https://miminavi.tech/trends', trendsRelea
 await writeFile(sitemapPath, sitemap);
 
 let trendsHtml = navigatorHtml;
-const title = 'MiMiTrends — Local-First Market Anomaly Scanner for US and European Stocks';
-const description = 'Local-first Kotlin and JavaFX stock scanner with performance-led discovery, fresh anomaly ranking, repeating short-cycle detection, and explainable US and European market analysis.';
-const keywords = 'MiMiTrends, market anomaly scanner, live stock leader discovery, stock performance scanner, most traded stocks, repeating price cycle detector, unusual price movement, momentum scanner, US stock scanner, European stock scanner, Kotlin desktop app, JavaFX trading software, local-first market analysis, OHLCV scanner, volume anomaly, V-shaped reversal detector, SQLite market analytics';
-const imageUrl = 'https://miminavi.tech/images/trends/MainWindow.png';
+const title = 'MiMiTrends — Local-First Corridor and Rapid-Crash Radar';
+const description = 'Local-first Kotlin and JavaFX desktop radar that rotates through liquid US and European equities, finds stable intraday corridors and sudden four-minute drops, and keeps market data on-device.';
+const keywords = 'MiMiTrends, stock corridor scanner, rapid crash alert, intraday corridor detector, liquid stock scanner, US stock radar, European stock radar, four minute price drop, local-first stock scanner, Kotlin desktop app, JavaFX trading software, Yahoo OHLCV, optional Finnhub, SQLite market data';
+const imageUrl = 'https://miminavi.tech/images/trends/AppIcon-1024.png';
 const pageUrl = 'https://miminavi.tech/trends';
 
 trendsHtml = replaceOnce(trendsHtml, /<title>[^<]*<\/title>/, `<title>${title}</title>`, 'title');
@@ -93,13 +93,13 @@ trendsHtml = replaceOnce(trendsHtml, /<meta property="og:title" content="[^"]*">
 trendsHtml = replaceOnce(trendsHtml, /<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${description}">`, 'Open Graph description');
 trendsHtml = replaceOnce(trendsHtml, /<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${pageUrl}">`, 'Open Graph URL');
 trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${imageUrl}">`, 'Open Graph image');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image:alt" content="[^"]*">/, '<meta property="og:image:alt" content="MiMiTrends anomaly scanner and signal chart">', 'Open Graph image alt');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image:width" content="[^"]*">/, '<meta property="og:image:width" content="1696">', 'Open Graph image width');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image:height" content="[^"]*">/, '<meta property="og:image:height" content="1263">', 'Open Graph image height');
+trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image:alt" content="[^"]*">/, '<meta property="og:image:alt" content="MiMiTrends application icon">', 'Open Graph image alt');
+trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image:width" content="[^"]*">/, '<meta property="og:image:width" content="1024">', 'Open Graph image width');
+trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image:height" content="[^"]*">/, '<meta property="og:image:height" content="1024">', 'Open Graph image height');
 trendsHtml = replaceOnce(trendsHtml, /<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${title}">`, 'Twitter title');
 trendsHtml = replaceOnce(trendsHtml, /<meta name="twitter:description" content="[^"]*">/, `<meta name="twitter:description" content="${description}">`, 'Twitter description');
 trendsHtml = replaceOnce(trendsHtml, /<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${imageUrl}">`, 'Twitter image');
-trendsHtml = replaceOnce(trendsHtml, /<meta name="twitter:image:alt" content="[^"]*">/, '<meta name="twitter:image:alt" content="MiMiTrends anomaly scanner and signal chart">', 'Twitter image alt');
+trendsHtml = replaceOnce(trendsHtml, /<meta name="twitter:image:alt" content="[^"]*">/, '<meta name="twitter:image:alt" content="MiMiTrends application icon">', 'Twitter image alt');
 trendsHtml = replaceOnce(trendsHtml, /<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${pageUrl}">`, 'canonical URL');
 trendsHtml = replaceOnce(trendsHtml, /(<link rel="icon"[^>]*href=")[^"]*("[^>]*>)/, '$1/images/trends/AppIcon-1024.png$2', 'favicon');
 
@@ -116,6 +116,15 @@ const structuredData = {
     softwareVersion: trendsRelease.version,
     datePublished: trendsRelease.datePublished,
     downloadUrl: trendsRelease.downloadUrl,
+    featureList: [
+        'Stable two-hour intraday corridor detection',
+        'Rapid-crash alerts for declines of at least 0.50% within four minutes',
+        'Rotating coverage of up to 90 liquid US and European equities per regular cycle',
+        'Independent one-minute priority checks for active rapid crashes',
+        'Bounded public discovery of up to 20 candidates every 30 minutes',
+        'Accepted US and European signal refresh through Scalable when an ISIN is known',
+        'Focused local SQLite market history and accepted-event storage'
+    ],
     offers: {'@type': 'Offer', price: '0', priceCurrency: 'EUR'},
     author: {
         '@type': 'Person',
@@ -128,7 +137,7 @@ trendsHtml = trendsHtml.replace(/\s*<script type="application\/ld\+json">[\s\S]*
 const structuredDataTag = `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`;
 trendsHtml = replaceOnce(trendsHtml, /(<script src="\/analytics\.js" defer><\/script>)/, `${structuredDataTag}$1`, 'analytics script insertion point');
 
-const staticFallback = `<div class="seo-static-fallback"><h1>MiMiTrends</h1><p>${description}</p><p>Discover current US and European market leaders, inspect fresh anomaly signals and repeating short cycles, and keep scanner history and imported transaction context locally in SQLite.</p><a href="https://github.com/senatov/mimiTrends/releases">Download MiMiTrends from GitHub</a></div>`;
+const staticFallback = `<div class="seo-static-fallback"><h1>MiMiTrends</h1><p>${description}</p><p>Rotate through liquid US and European equities, publish only stable two-hour corridors and rapid four-minute crashes, and keep focused scanner history and imported transaction context locally in SQLite.</p><a href="https://github.com/senatov/mimiTrends/releases">Download MiMiTrends from GitHub</a></div>`;
 trendsHtml = trendsHtml.replace(/<app-root>\s*<noscript>[\s\S]*?<\/noscript>/, '<app-root>');
 trendsHtml = replaceOnce(trendsHtml, /<app-root>/, `<app-root>${staticFallback}`, 'application root');
 
