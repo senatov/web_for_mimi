@@ -37,16 +37,10 @@ export class TrendsPageComponent implements OnInit, OnDestroy {
     protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     protected readonly screenshots: TrendsScreenshot[] = [
         {
-            src: '/images/trends/BrokerCsvImport.png',
-            alt: 'MiMiTrends broker CSV import',
-            title: 'Local broker CSV import',
-            description: 'Import Scalable Capital transactions locally and match executions to the corresponding chart without uploading portfolio data.'
-        },
-        {
-            src: '/images/trends/MacOSPackaging.png',
-            alt: 'MiMiTrends signed macOS application and DMG packaging output',
-            title: 'Native macOS packaging',
-            description: 'Build a versioned, Developer ID signed, notarized, and verified DMG with a private Java runtime.'
+            src: '/images/trends/LiveRadar.png',
+            alt: 'MiMiTrends compact Live radar showing rapid-crash alerts',
+            title: 'Compact Live radar',
+            description: 'See confirmed rapid crashes immediately in full-width yellow rows, together with movement, price, age, scan progress, and the active liquid pool.'
         }
     ];
 
