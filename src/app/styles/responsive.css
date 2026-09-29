@@ -283,6 +283,12 @@
     padding: 18px;
   }
 
+  .known-issues-card {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px;
+  }
+
   .homebrew-command {
     grid-template-columns: 1fr;
   }

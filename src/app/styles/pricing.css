@@ -247,8 +247,82 @@
 }
 
 .price-card,
+.known-issues-card,
 .homebrew-card {
   min-width: 0;
+}
+
+.known-issues-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 0.72fr);
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+  border: 1px solid rgba(34, 116, 103, 0.28);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(73, 172, 153, 0.16), transparent 45%),
+    rgba(248, 253, 251, 0.96);
+  box-shadow: 0 10px 28px rgba(20, 76, 67, 0.07);
+}
+
+.known-issues-copy {
+  min-width: 0;
+}
+
+.known-issues-kicker {
+  display: block;
+  margin-bottom: 3px;
+  color: #267565;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.known-issues-card h2 {
+  margin: 0;
+  color: var(--gd-ink);
+  font-family: var(--gd-font-display), sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.known-issues-card p {
+  margin: 6px 0 0;
+  color: var(--gd-ink-soft);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.known-issues-button {
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 14px;
+  border-color: rgba(28, 102, 89, 0.32);
+  background: linear-gradient(180deg, #ffffff 0%, #edf8f5 100%);
+  color: #155f52;
+  box-shadow: 0 7px 18px rgba(20, 91, 79, 0.12);
+  font-size: 14px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.known-issues-button:hover {
+  border-color: rgba(28, 102, 89, 0.5);
+  background: linear-gradient(180deg, #ffffff 0%, #e2f4ef 100%);
+  color: #0f5348;
+}
+
+.known-issues-button .material-icons-outlined {
+  font-size: 20px;
+}
+
+.known-issues-button .known-issues-arrow {
+  margin-left: auto;
+  font-size: 17px;
 }
 
 .homebrew-card {
