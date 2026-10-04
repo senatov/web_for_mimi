@@ -90,7 +90,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 'gallery/dual-panel-workspace.png',
                 'gallery/advanced-file-search.png',
                 'gallery/media-converter-video.png',
-                'gallery/network-neighborhood.png',
+                'gallery/server-connections.png',
                 'gallery/authorized-folders-dialog.png',
                 'gallery/cloud-share-settings.png',
                 'gallery/external-tools-diagnostics.png',
