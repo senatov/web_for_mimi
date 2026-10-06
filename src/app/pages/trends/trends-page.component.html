@@ -54,9 +54,9 @@
                     <li><span class="material-icons-outlined" aria-hidden="true">code</span>Open source</li>
                 </ul>
             </div>
-            <button class="trends-hero-visual" type="button" (click)="openScreenshot(screenshots[0])" aria-label="Enlarge current MiMiTrends workspace screenshot">
-                <img src="/images/trends/live-radar-current.png" alt="Current MiMiTrends Live radar, source activity table, and selected candlestick chart" width="1175" height="1152" fetchpriority="high">
-                <span class="trends-hero-caption"><span>Current workspace · 6 October 2026</span><span class="material-icons-outlined" aria-hidden="true">zoom_in</span></span>
+            <button class="trends-hero-visual" type="button" (click)="openScreenshot(heroScreenshot)" aria-label="Enlarge MiMiTrends Rapid moves settings screenshot">
+                <img [src]="heroScreenshot.src" [alt]="heroScreenshot.alt" width="1180" height="1151" fetchpriority="high">
+                <span class="trends-hero-caption"><span>Rapid moves settings · 6 October 2026</span><span class="material-icons-outlined" aria-hidden="true">zoom_in</span></span>
             </button>
         </section>
 

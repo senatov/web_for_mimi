@@ -35,6 +35,12 @@ export class TrendsPageComponent implements OnInit, OnDestroy {
     protected readonly releasesUrl = `${this.repositoryUrl}/releases`;
     protected readonly linkedInUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
     protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    protected readonly heroScreenshot: TrendsScreenshot = {
+        src: '/images/trends/rapid-moves-settings.png',
+        alt: 'MiMiTrends Rapid moves settings over the live radar and selected candlestick chart',
+        title: 'Rapid moves settings',
+        description: 'Tune rapid-crash and rapid-rise thresholds, time windows, minimum price, and turnover while keeping the live radar in view.'
+    };
     protected readonly screenshots: TrendsScreenshot[] = [
         {
             src: '/images/trends/live-radar-current.png',
@@ -46,7 +52,7 @@ export class TrendsPageComponent implements OnInit, OnDestroy {
             src: '/images/trends/LiveRadar.png',
             alt: 'Earlier MiMiTrends Live radar layout showing a rapid-crash alert',
             title: 'Earlier alert layout',
-            description: 'An earlier interface showing how a rapid-crash alert appears. The current workspace is shown above.'
+            description: 'An earlier interface showing how a rapid-crash alert appears. The current workspace is shown in the first screenshot.'
         }
     ];
 
