@@ -38,7 +38,7 @@
                 <div class="section-kicker">Kotlin · JavaFX · local-first</div>
                 <h1>MiMiTrends</h1>
                 <p class="hero-lede">Catch broad intraday corridors and sudden live drops.</p>
-                <p class="hero-note">A focused desktop radar that rotates through liquid US and European equities and publishes only two setup families: stable two-hour corridors and rapid four-minute crashes.</p>
+                <p class="hero-note">A local desktop workspace for live US and European equity coverage. Review confirmed corridors and rapid crashes beside source activity, then inspect the selected signal on a detailed chart.</p>
                 <div class="hero-actions">
                     <a class="button button-primary dmg-download-button hero-dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer" aria-label="Download MiMiTrends DMG for macOS 26 or 27">
                         <span class="download-platform-badge" aria-hidden="true"><span class="download-platform-icon">&#63743;</span><span class="download-platform-os">26–27</span></span>
@@ -54,36 +54,29 @@
                     <li><span class="material-icons-outlined" aria-hidden="true">code</span>Open source</li>
                 </ul>
             </div>
-            <div class="trends-hero-visual" aria-label="MiMiTrends focused radar overview">
-                <div class="app-window">
-                    <div class="window-chrome"><span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span><span class="window-title">MiMiTrends live-session radar</span></div>
-                    <div class="radar-summary">
-                        <div class="radar-summary-header"><span>Liquid US + Europe</span><strong>ROTATING</strong></div>
-                        <div class="radar-signal corridor-signal"><span class="radar-signal-name">▰ TRADABLE CORRIDOR</span><span>Stable 120-minute range</span></div>
-                        <div class="radar-signal crash-signal"><span class="radar-signal-name">‼ RAPID CRASH</span><span>−0.50% or more in 4 minutes</span></div>
-                        <div class="radar-metrics"><span><strong>90</strong> regular-cycle capacity</span><span><strong>1 min</strong> priority recheck</span><span><strong>12 h</strong> focused local window</span></div>
-                    </div>
-                </div>
-            </div>
+            <button class="trends-hero-visual" type="button" (click)="openScreenshot(screenshots[0])" aria-label="Enlarge current MiMiTrends workspace screenshot">
+                <img src="/images/trends/live-radar-current.png" alt="Current MiMiTrends Live radar, source activity table, and selected candlestick chart" width="1175" height="1152" fetchpriority="high">
+                <span class="trends-hero-caption"><span>Current workspace · 6 October 2026</span><span class="material-icons-outlined" aria-hidden="true">zoom_in</span></span>
+            </button>
         </section>
 
         <section class="latest-improvements" aria-labelledby="trends-latest-title">
             <div class="section-kicker">Recently improved</div>
             <div class="section-heading-block">
-                <h2 id="trends-latest-title">Broader coverage, less analytical overhead</h2>
-                <p>The active scanner now spends its time and memory on liquid-session coverage, stable corridors, and sudden live drops instead of deep predictive analysis.</p>
+                <h2 id="trends-latest-title">See the signal and the sources behind it</h2>
+                <p>Recent updates make the live workspace easier to read: source status sits beside the radar, a selected event opens a detailed chart, and recent coverage or news is available on demand.</p>
             </div>
             <div class="improvement-grid">
-                <article><span class="material-icons-outlined" aria-hidden="true">filter_alt</span><h3>Two useful event types</h3><p>Only <strong>TRADABLE_CORRIDOR</strong> and <strong>RAPID_CRASH</strong> are published by the focused radar.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">radar</span><h3>Broader liquid rotation</h3><p>Each regular cycle covers up to 90 eligible symbols while larger US and European universes rotate without starving either region.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">speed</span><h3>Lean data path</h3><p>Yahoo bootstraps one day and then loads only the missing tail; the radar reads a focused 12-hour local window.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">monitoring</span><h3>Source activity at a glance</h3><p>Yahoo, Finnhub, Tradegate, Euronext, Scalable and discovery sources show their latest activity and valid item counts beside the radar.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">candlestick_chart</span><h3>Signal-focused chart</h3><p>Inspect minute candles, volume, moving averages and signal context. Switch between focused and full-history views, with optional imported-trade overlays.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">article</span><h3>News when you need it</h3><p>Open recent linked headlines for a radar event in a separate Rumors window. The headlines offer reading leads, not an explanation confirmed by the scanner.</p></article>
             </div>
         </section>
 
         <section class="quick-strip" aria-label="MiMiTrends workflow summary">
             <div class="quick-strip-item"><strong>Discover</strong><span>Add up to 20 public leader candidates every 30 minutes instead of reopening external pages for every scan.</span></div>
             <div class="quick-strip-item"><strong>Rotate</strong><span>Interleave liquid US and European symbols across regular cycles with capacity for up to 90 instruments.</span></div>
-            <div class="quick-strip-item"><strong>Detect</strong><span>Publish stable 120-minute corridors and declines of at least 0.50% within four minutes.</span></div>
+            <div class="quick-strip-item"><strong>Detect</strong><span>Publish stable 120-minute corridors and rapid drops across four-minute or sustained fifteen-minute windows.</span></div>
             <div class="quick-strip-item"><strong>Prioritize</strong><span>Recheck active rapid crashes every minute outside the normal scanning queue.</span></div>
         </section>
 
@@ -91,10 +84,10 @@
             <div class="section-kicker">Features</div>
             <div class="section-heading-block"><h2>A focused radar for the live trading session</h2><p>MiMiTrends narrows a broad rotating universe into two readable event types without presenting either one as a recommendation.</p></div>
             <div class="feature-clusters">
-                <article class="feature-cluster"><span class="cluster-icon">01</span><h3>Rapid live crashes</h3><p>Detect a close-to-close decline of at least 0.50% within four minutes. The table shows <strong>RAPID CRASH</strong> in red on a light-yellow cell and moves it to the independent priority scanner.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon">01</span><h3>Rapid live crashes</h3><p>Detect a 0.30% four-minute or 0.60% sustained fifteen-minute decline, subject to price, volume, turnover, and data-continuity checks. The table shows <strong>RAPID CRASH</strong> in red on a light-yellow cell and moves it to the independent priority scanner.</p></article>
                 <article class="feature-cluster"><span class="cluster-icon">02</span><h3>Tradable corridors</h3><p>Find stable two-hour ranges with repeated edge touches, bounded drift, and enough remaining room to be worth inspecting.</p></article>
                 <article class="feature-cluster"><span class="cluster-icon">03</span><h3>Broad liquid rotation</h3><p>Prioritize recent turnover and feed freshness, process up to 90 eligible symbols per regular cycle, and rotate through larger US and European universes.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon">04</span><h3>Selective external sources</h3><p>Use wallstreetONLINE only for bounded discovery, refresh accepted US and European signals through Scalable when an ISIN is known, and keep optional venue adapters configurable.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon">04</span><h3>Selective external sources</h3><p>See each source's latest activity beside the radar. Scalable can refresh accepted signals when an ISIN and valid login are available; optional venue adapters remain configurable.</p></article>
             </div>
         </section>
 
@@ -130,7 +123,7 @@
         </section>
 
         <section class="details" id="preview">
-            <div class="details-copy"><div class="section-kicker">Current interface</div><h2 class="section-heading-title">One focused radar, no dashboard noise</h2><p class="hero-text">The gallery shows the current compact workspace instead of the retired multi-panel scanner. Confirmed events stay primary; charts and supporting workflows appear only when needed.</p></div>
+            <div class="details-copy"><div class="section-kicker">Screenshots</div><h2 class="section-heading-title">Explore the workspace in detail</h2><p class="hero-text">The first image shows the current radar, source panel and expanded chart. Select either screenshot for a full-resolution viewer with 100% zoom.</p></div>
             <div class="preview-grid trends-preview-grid">
                 <article class="preview-card" *ngFor="let screenshot of screenshots">
                     <button type="button" class="preview-card-trigger" (click)="openScreenshot(screenshot)" [attr.aria-label]="'Enlarge ' + screenshot.title">
@@ -146,7 +139,7 @@
             <div class="faq-grid">
                 <article class="faq-item"><h3>Is MiMiTrends a trading bot?</h3><p>No. It is informational software: it does not place orders, provide investment advice, or guarantee that a detected anomaly will continue.</p></article>
                 <article class="faq-item"><h3>Which markets are supported?</h3><p>The radar supports configurable US, European, or combined watchlists. It processes up to 90 eligible symbols per regular cycle, rotates through larger universes, and adds at most 20 public discovery candidates every 30 minutes.</p></article>
-                <article class="faq-item"><h3>What does RAPID CRASH mean?</h3><p>Confirmed closing prices declined by at least 0.50% across the available four-minute window. The fixed threshold is an alert—not a forecast, a sell signal, or trading advice.</p></article>
+                <article class="faq-item"><h3>What does RAPID CRASH mean?</h3><p>Confirmed closing prices declined by at least 0.30% over four minutes or 0.60% over a sustained fifteen-minute window, subject to price, volume, turnover, and continuity checks. The event is an alert, not a forecast or trading advice.</p></article>
                 <article class="faq-item"><h3>What else does the radar publish?</h3><p><strong>TRADABLE CORRIDOR</strong> marks a stable two-hour range with repeated edge interaction, limited drift, and usable remaining room. Deep trend, prediction, and long-horizon research models are outside the active radar.</p></article>
                 <article class="faq-item"><h3>Do I need an API key?</h3><p>No key is required for the default data path. Finnhub is an optional enhancement for supported US symbols.</p></article>
                 <article class="faq-item"><h3>Where is my data stored?</h3><p>Minute history, company profiles, compact scan runs, accepted corridor/crash events, preferences, and imported executions are stored locally in SQLite. Retention and backup cleanup run during startup and shutdown.</p></article>

@@ -63,7 +63,7 @@ type AnalyticsEventName =
         standalone: true,
         imports: [SeoKeywordHighlightDirective, CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, TooltipModule, RouterLink],
         templateUrl: './navigator-page.component.html',
-        styleUrl: '../../styles/app.css',
+        styleUrls: ['../../styles/app.css', '../../styles/navigator/prime.css', '../../styles/navigator/gallery.css'],
         changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavigatorPageComponent implements OnInit, OnDestroy {
@@ -87,26 +87,26 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         private readonly previewImageBasePath = '/images';
         private readonly previewDialogHint = 'Press Esc or click outside to close';
         private readonly heroGalleryImagePaths = [
-                'gallery/dual-panel-workspace.png',
-                'gallery/advanced-file-search.png',
-                'gallery/media-converter-video.png',
-                'gallery/server-connections.png',
-                'gallery/authorized-folders-dialog.png',
-                'gallery/cloud-share-settings.png',
-                'gallery/external-tools-diagnostics.png',
-                'gallery/permissions-settings.png',
-                'gallery/diff-tool-details.png',
-                'gallery/panel-settings.png',
-                'gallery/saved-server-editor.png',
-                'gallery/diff-tool-settings.png',
-                'gallery/path-completion.png',
-                'gallery/connections-menu.png',
-                'gallery/server-passwords.png',
-                'gallery/column-presets.png',
-                'gallery/cloud-share-menu.png',
-                'gallery/sidebar-and-favorites.png',
-                'gallery/file-preview-panel.png',
-                'gallery/media-converter-gif.png'
+                'navigator/gallery/dual-panel-workspace.png',
+                'navigator/gallery/advanced-file-search.png',
+                'navigator/gallery/media-converter-video.png',
+                'navigator/gallery/server-connections.png',
+                'navigator/gallery/authorized-folders-dialog.png',
+                'navigator/gallery/cloud-share-settings.png',
+                'navigator/gallery/external-tools-diagnostics.png',
+                'navigator/gallery/permissions-settings.png',
+                'navigator/gallery/diff-tool-details.png',
+                'navigator/gallery/panel-settings.png',
+                'navigator/gallery/saved-server-editor.png',
+                'navigator/gallery/diff-tool-settings.png',
+                'navigator/gallery/path-completion.png',
+                'navigator/gallery/connections-menu.png',
+                'navigator/gallery/server-passwords.png',
+                'navigator/gallery/column-presets.png',
+                'navigator/gallery/cloud-share-menu.png',
+                'navigator/gallery/sidebar-and-favorites.png',
+                'navigator/gallery/file-preview-panel.png',
+                'navigator/gallery/media-converter-gif.png'
         ];
         private readonly heroCarouselTransitionMs = 920;
         private homebrewCopyTimerId: number | null = null;

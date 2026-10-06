@@ -21,7 +21,7 @@ interface TrendsScreenshot {
     standalone: true,
     imports: [SeoKeywordHighlightDirective, CommonModule, RouterLink, MatDialogModule],
     templateUrl: './trends-page.component.html',
-    styleUrls: ['../../styles/app.css', '../../styles/trends.css'],
+    styleUrls: ['../../styles/app.css', '../../styles/trends/page.css'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -37,10 +37,16 @@ export class TrendsPageComponent implements OnInit, OnDestroy {
     protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     protected readonly screenshots: TrendsScreenshot[] = [
         {
+            src: '/images/trends/live-radar-current.png',
+            alt: 'Current MiMiTrends workspace with Live radar, source activity and the selected candlestick chart',
+            title: 'Live radar and chart',
+            description: 'The current workspace brings confirmed events, live source status, and the selected price chart together. Open the image to inspect candles, volume, and controls at full resolution.'
+        },
+        {
             src: '/images/trends/LiveRadar.png',
-            alt: 'MiMiTrends compact Live radar showing rapid-crash alerts',
-            title: 'Compact Live radar',
-            description: 'See confirmed rapid crashes immediately in full-width yellow rows, together with movement, price, age, scan progress, and the active liquid pool.'
+            alt: 'Earlier MiMiTrends Live radar layout showing a rapid-crash alert',
+            title: 'Earlier alert layout',
+            description: 'An earlier interface showing how a rapid-crash alert appears. The current workspace is shown above.'
         }
     ];
 
@@ -139,7 +145,7 @@ export class TrendsPageComponent implements OnInit, OnDestroy {
 
     private applySeoMetadata(): void {
         const title = 'MiMiTrends — Local-First Corridor and Rapid-Crash Radar';
-        const description = 'Local-first Kotlin and JavaFX desktop radar that rotates through liquid US and European equities, finds stable intraday corridors and sudden four-minute drops, and keeps market data on-device.';
+        const description = 'Local-first Kotlin and JavaFX desktop radar for liquid US and European equities, with live source status, corridor and rapid-crash alerts, recent news, and a signal-focused chart.';
         const imageUrl = 'https://miminavi.tech/images/trends/AppIcon-1024.png';
         const pageUrl = 'https://miminavi.tech/trends';
 
@@ -185,7 +191,7 @@ export class TrendsPageComponent implements OnInit, OnDestroy {
             description,
             featureList: [
                 'Stable two-hour intraday corridor detection',
-                'Rapid-crash alerts for declines of at least 0.50% within four minutes',
+                'Rapid-crash alerts for 0.30% four-minute or 0.60% sustained fifteen-minute declines with market-data quality checks',
                 'Rotating coverage of up to 90 liquid US and European equities per regular cycle',
                 'Independent one-minute priority checks for active rapid crashes',
                 'Bounded public discovery of up to 20 candidates every 30 minutes',
@@ -193,7 +199,9 @@ export class TrendsPageComponent implements OnInit, OnDestroy {
                 'Exchange-aware market calendars and observation timestamps',
                 'Focused local SQLite market history and accepted-event storage',
                 'Local broker CSV transaction import',
-                'JavaFX price charts with OHLCV and execution context'
+                'JavaFX price charts with OHLCV and execution context',
+                'Live source activity beside the radar and on-demand recent coverage',
+                'On-demand Rumors headlines from public news sources'
             ]
         });
         this.document.head.appendChild(structuredData);
