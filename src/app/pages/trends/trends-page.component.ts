@@ -150,15 +150,15 @@ export class TrendsPageComponent implements OnInit, OnDestroy {
     }
 
     private applySeoMetadata(): void {
-        const title = 'MiMiTrends — Local-First Corridor and Rapid-Crash Radar';
-        const description = 'Local-first Kotlin and JavaFX desktop radar for liquid US and European equities, with live source status, corridor and rapid-crash alerts, recent news, and a signal-focused chart.';
+        const title = 'MiMiTrends — Live Corridor and Rapid-Move Radar';
+        const description = 'Local-first desktop radar for liquid US and European equities, with configurable rapid-rise and rapid-crash alerts, two-hour corridors, live source status, and signal charts.';
         const imageUrl = 'https://miminavi.tech/images/trends/AppIcon-1024.png';
         const pageUrl = 'https://miminavi.tech/trends';
 
         this.document.title = title;
         this.setMeta('name', 'description', description);
         this.setMeta('name', 'application-name', 'MiMiTrends');
-        this.setMeta('name', 'keywords', 'MiMiTrends, stock corridor scanner, rapid crash alert, intraday corridor detector, liquid stock scanner, US stock radar, European stock radar, four minute price drop, local-first stock scanner, Kotlin desktop app, JavaFX trading software, Yahoo OHLCV, optional Finnhub, SQLite market data');
+        this.setMeta('name', 'keywords', 'MiMiTrends, rapid rise alert, rapid crash alert, intraday corridor scanner, US and European stock radar, configurable rapid moves, local-first market scanner, Kotlin JavaFX desktop app');
         this.setMeta('property', 'og:site_name', 'MiMiTrends');
         this.setMeta('property', 'og:title', title);
         this.setMeta('property', 'og:description', description);
@@ -186,7 +186,7 @@ export class TrendsPageComponent implements OnInit, OnDestroy {
             '@type': 'SoftwareApplication',
             name: 'MiMiTrends',
             applicationCategory: 'FinanceApplication',
-            operatingSystem: 'macOS, Windows, Linux',
+            operatingSystem: 'macOS',
             isAccessibleForFree: true,
             url: pageUrl,
             downloadUrl: this.releasesUrl,
@@ -197,10 +197,12 @@ export class TrendsPageComponent implements OnInit, OnDestroy {
             description,
             featureList: [
                 'Stable two-hour intraday corridor detection',
+                'Configurable rapid-rise alerts, defaulting to 1.5% within four minutes with market-data quality checks',
                 'Rapid-crash alerts for 0.30% four-minute or 0.60% sustained fifteen-minute declines with market-data quality checks',
+                'Settings for rapid-move thresholds, time windows, minimum price, turnover, and rapid-rise row color',
                 'Rotating coverage of up to 90 liquid US and European equities per regular cycle',
                 'Independent one-minute priority checks for active rapid crashes',
-                'Bounded public discovery of up to 20 candidates every 30 minutes',
+                'Bounded public discovery of up to 40 candidates every 30 minutes',
                 'Accepted US and European signal refresh through Scalable when an ISIN is known',
                 'Exchange-aware market calendars and observation timestamps',
                 'Focused local SQLite market history and accepted-event storage',

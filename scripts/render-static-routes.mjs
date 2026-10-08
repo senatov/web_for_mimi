@@ -77,9 +77,9 @@ sitemap = updateSitemapDate(sitemap, 'https://miminavi.tech/trends', trendsRelea
 await writeFile(sitemapPath, sitemap);
 
 let trendsHtml = navigatorHtml;
-const title = 'MiMiTrends — Local-First Corridor and Rapid-Crash Radar';
-const description = 'Local-first Kotlin and JavaFX desktop radar for liquid US and European equities, with live source status, corridor and rapid-crash alerts, recent news, and a signal-focused chart.';
-const keywords = 'MiMiTrends, stock corridor scanner, rapid crash alert, intraday corridor detector, liquid stock scanner, US stock radar, European stock radar, four minute price drop, local-first stock scanner, Kotlin desktop app, JavaFX trading software, Yahoo OHLCV, optional Finnhub, SQLite market data';
+const title = 'MiMiTrends — Live Corridor and Rapid-Move Radar';
+const description = 'Local-first desktop radar for liquid US and European equities, with configurable rapid-rise and rapid-crash alerts, two-hour corridors, live source status, and signal charts.';
+const keywords = 'MiMiTrends, rapid rise alert, rapid crash alert, intraday corridor scanner, US and European stock radar, configurable rapid moves, local-first market scanner, Kotlin JavaFX desktop app';
 const imageUrl = 'https://miminavi.tech/images/trends/AppIcon-1024.png';
 const pageUrl = 'https://miminavi.tech/trends';
 
@@ -118,12 +118,18 @@ const structuredData = {
     downloadUrl: trendsRelease.downloadUrl,
     featureList: [
         'Stable two-hour intraday corridor detection',
+        'Configurable rapid-rise alerts, defaulting to 1.5% within four minutes with market-data quality checks',
         'Rapid-crash alerts for 0.30% four-minute or 0.60% sustained fifteen-minute declines with market-data quality checks',
+        'Settings for rapid-move thresholds, time windows, minimum price, turnover, and rapid-rise row color',
         'Rotating coverage of up to 90 liquid US and European equities per regular cycle',
         'Independent one-minute priority checks for active rapid crashes',
-        'Bounded public discovery of up to 20 candidates every 30 minutes',
+        'Bounded public discovery of up to 40 candidates every 30 minutes',
         'Accepted US and European signal refresh through Scalable when an ISIN is known',
-        'Focused local SQLite market history and accepted-event storage'
+        'Exchange-aware market calendars and observation timestamps',
+        'Focused local SQLite market history and accepted-event storage',
+        'Local broker CSV transaction import and execution overlays on price charts',
+        'Live source activity beside the radar and on-demand recent coverage',
+        'On-demand linked headlines from public news sources'
     ],
     offers: {'@type': 'Offer', price: '0', priceCurrency: 'EUR'},
     author: {
@@ -137,7 +143,7 @@ trendsHtml = trendsHtml.replace(/\s*<script type="application\/ld\+json">[\s\S]*
 const structuredDataTag = `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`;
 trendsHtml = replaceOnce(trendsHtml, /(<script src="\/analytics\.js" defer><\/script>)/, `${structuredDataTag}$1`, 'analytics script insertion point');
 
-const staticFallback = `<div class="seo-static-fallback"><h1>MiMiTrends</h1><p>${description}</p><p>Rotate through liquid US and European equities, publish only stable two-hour corridors and rapid price drops, and keep focused scanner history and imported transaction context locally in SQLite.</p><a href="https://github.com/senatov/mimiTrends/releases">Download MiMiTrends from GitHub</a></div>`;
+const staticFallback = `<div class="seo-static-fallback"><h1>MiMiTrends</h1><p>${description}</p><p>Rotate through liquid US and European equities, publish quality-checked rapid rises, rapid crashes, and two-hour corridors, and keep scanner history and imported transaction context locally in SQLite.</p><a href="https://github.com/senatov/mimiTrends/releases">Download MiMiTrends from GitHub</a></div>`;
 trendsHtml = trendsHtml.replace(/<app-root>\s*<noscript>[\s\S]*?<\/noscript>/, '<app-root>');
 trendsHtml = replaceOnce(trendsHtml, /<app-root>/, `<app-root>${staticFallback}`, 'application root');
 

@@ -33,6 +33,64 @@
   padding-top: clamp(24px, 6vw, 90px);
 }
 
+.trends-page .hero-highlights { margin-top: 8px; }
+.trends-page .hero-highlight-heading h2 {
+  margin: 0;
+  color: var(--gd-ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+.trends-page .hero-proof { max-width: 560px; }
+.trends-page .hero-proof li { white-space: normal; }
+.trends-page .trends-feature-clusters { grid-auto-rows: 1fr; }
+.trends-page .trends-feature-clusters .cluster-icon.material-icons-outlined { font-size: 22px; font-weight: normal; }
+.trends-page #features,
+.trends-page #download,
+.trends-page #preview,
+.trends-page #faq,
+.trends-page #references { scroll-margin-top: 82px; }
+
+.trends-references {
+  max-width: var(--gd-max-width);
+  margin: 0 auto;
+  padding: 58px var(--gd-gutter) 76px;
+  border-top: 1px solid var(--gd-line-strong);
+}
+
+.trends-reference-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.trends-reference-card {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 14px;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--gd-line-strong);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 10px 26px rgba(13, 31, 74, 0.06);
+}
+
+.trends-reference-card > .material-icons-outlined {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--gd-blue-soft);
+  color: var(--gd-blue-dark);
+  font-size: 20px;
+}
+
+.trends-reference-card h3 { margin: 0 0 5px; color: var(--gd-ink); font-size: 16px; }
+.trends-reference-card p { margin: 0 0 10px; color: var(--gd-ink-soft); font-size: 13px; line-height: 1.5; }
+.trends-reference-card a, .trends-reference-note a { color: var(--gd-blue-dark); font-size: 13px; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.trends-reference-note { margin: 18px 0 0; color: var(--gd-ink-soft); font-size: 13px; line-height: 1.5; }
+
 .trends-hero-visual {
   position: relative;
   display: block;
@@ -120,6 +178,10 @@
   .trends-preview-grid .preview-card-copy {
     padding: 16px;
   }
+}
+
+@media (max-width: 700px) {
+  .trends-reference-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
