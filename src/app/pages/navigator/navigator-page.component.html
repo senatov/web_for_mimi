@@ -268,6 +268,14 @@
                 <article><span class="material-icons-outlined" aria-hidden="true">view_column</span><h3>More Finder columns</h3><p>Choose Version, Comments, and Tags from the column header menu, alongside Created, Added, Kind, Size, and other details.</p></article>
                 <article><span class="material-icons-outlined" aria-hidden="true">sort</span><h3>Consistent file details</h3><p>Local scans retain metadata for display and sorting, while newly enabled columns fit their contents automatically.</p></article>
             </div>
+            <div class="development-update" aria-label="Recent development changes">
+                <div>
+                    <span class="development-update-kicker">Since the latest published DMG</span>
+                    <h3>Navigation and toolbar refinements</h3>
+                    <p>Recent source changes restore the toolbar view controls, improve automatic column fitting after remote navigation and external folder updates, and keep archive and remote paths in context while navigating.</p>
+                </div>
+                <a href="https://github.com/senatov/MiMiNavigator/commits/master/" target="_blank" rel="noopener noreferrer">Follow development on GitHub <span aria-hidden="true">↗</span></a>
+            </div>
         </section>
 
         <section class="navigator-command-center" aria-labelledby="command-center-title">
@@ -436,30 +444,45 @@
                     </a>
                 </aside>
 
-                <div class="homebrew-card">
+                <section class="homebrew-card" aria-labelledby="homebrew-title">
                     <div class="homebrew-card-heading">
-                        <div>
-                            <span class="homebrew-kicker">Or use the command line</span>
-                            <h2>Install with Homebrew</h2>
+                        <span class="homebrew-kicker">Command line</span>
+                        <h2 id="homebrew-title">Install MiMiNavigator with Homebrew</h2>
+                        <p>One command installs the current Homebrew release on your Mac.</p>
+                    </div>
+                    <div class="homebrew-step">
+                        <span class="homebrew-step-number" aria-hidden="true">1</span>
+                        <div class="homebrew-step-content">
+                            <h3>Copy and run the installer</h3>
+                            <div class="homebrew-command">
+                                <div class="homebrew-terminal-bar" aria-hidden="true">
+                                    <span class="homebrew-terminal-dots"><i></i><i></i><i></i></span>
+                                    <span>Terminal</span>
+                                </div>
+                                <div class="homebrew-terminal-body">
+                                    <pre aria-label="Homebrew installation command"><code><span class="homebrew-prompt" aria-hidden="true">$ </span>{{ homebrewInstallCommand }}</code></pre>
+                                    <button type="button"
+                                            class="homebrew-copy-button"
+                                            [class.homebrew-copy-button-copied]="homebrewCopied"
+                                            [attr.aria-label]="homebrewCopied ? 'Homebrew command copied' : 'Copy Homebrew installation command'"
+                                            [attr.title]="homebrewCopied ? 'Copied' : 'Copy command'"
+                                            (click)="copyHomebrewCommands()">
+                                        <span class="material-icons-outlined" aria-hidden="true">{{ homebrewCopied ? 'check' : 'content_copy' }}</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="homebrew-copy-status" role="status" aria-live="polite">{{ homebrewCopyStatus }}</span>
                         </div>
-                        <span class="homebrew-mark" aria-hidden="true">brew</span>
                     </div>
-                    <p>Copy the command, paste it into Terminal, and press Return. It installs only when the Homebrew release is newer than the copy already in Applications.</p>
-                    <div class="homebrew-command">
-                        <pre aria-label="Homebrew installation command"><code>{{ homebrewInstallCommand }}</code></pre>
-                        <button type="button"
-                                class="homebrew-copy-button"
-                                [class.homebrew-copy-button-copied]="homebrewCopied"
-                                [attr.aria-label]="homebrewCopied ? 'Homebrew command copied' : 'Copy Homebrew installation command'"
-                                (click)="copyHomebrewCommands()">
-                            <span aria-hidden="true">{{ homebrewCopied ? '✓' : '⧉' }}</span>
-                            {{ homebrewCopied ? 'Copied' : 'Copy' }}
-                        </button>
+                    <div class="homebrew-step">
+                        <span class="homebrew-step-number" aria-hidden="true">2</span>
+                        <div class="homebrew-step-content">
+                            <h3>Open MiMiNavigator</h3>
+                            <p>Launch it from Applications. The installer updates the app only when the Homebrew release is newer than the installed copy.</p>
+                        </div>
                     </div>
-                    <span class="homebrew-copy-status" aria-live="polite">
-                        {{ homebrewCopied ? 'Command copied to the clipboard.' : '' }}
-                    </span>
-                </div>
+                    <p class="homebrew-requirement">Requires <a href="https://brew.sh/" target="_blank" rel="noopener noreferrer">Homebrew</a> and an Apple silicon Mac running macOS 26 or newer.</p>
+                </section>
             </div>
         </section>
 

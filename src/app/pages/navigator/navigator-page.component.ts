@@ -123,6 +123,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         protected previousHeroCarouselIndex = 0;
         protected heroCarouselTransitioning = false;
         protected homebrewCopied = false;
+        protected homebrewCopyStatus = '';
         protected readonly galleryResponsiveOptions = [
                 {breakpoint: '900px', numVisible: 4},
                 {breakpoint: '600px', numVisible: 2}
@@ -191,15 +192,20 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
 
         protected async copyHomebrewCommands(): Promise<void> {
-                await navigator.clipboard.writeText(this.homebrewInstallCommand);
                 this.stopHomebrewCopyTimer();
-                this.homebrewCopied = true;
-                this.trackEvent('homebrew_copy', {
-                        location: 'pricing'
-                });
+                try {
+                        await navigator.clipboard.writeText(this.homebrewInstallCommand);
+                        this.homebrewCopied = true;
+                        this.homebrewCopyStatus = 'Command copied. Paste it into Terminal and press Return.';
+                        this.trackEvent('homebrew_copy', {location: 'pricing'});
+                } catch {
+                        this.homebrewCopied = false;
+                        this.homebrewCopyStatus = 'Copy was unavailable. Select the command above and copy it manually.';
+                }
                 this.cdr.markForCheck();
                 this.homebrewCopyTimerId = window.setTimeout(() => {
                         this.homebrewCopied = false;
+                        this.homebrewCopyStatus = '';
                         this.homebrewCopyTimerId = null;
                         this.cdr.markForCheck();
                 }, 2_400);
