@@ -83,7 +83,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         protected latestDmgFileAge = '';
         protected latestDmgUrl = 'https://github.com/senatov/MiMiNavigator/releases';
         protected readonly releasesPageUrl = 'https://github.com/senatov/MiMiNavigator/releases';
-        protected minimumMacOSVersion = 'macOS 26';
+        protected minimumMacOSVersion = 'macOS 27';
         protected readonly linkedInProfileUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
         private readonly previewImageBasePath = '/images';
         private readonly previewDialogHint = 'Press Esc or click outside to close';
