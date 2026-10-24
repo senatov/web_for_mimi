@@ -8,7 +8,7 @@
                 </span>
                 <span class="brand-copy">
                     <span class="brand-text">MiMiNavigator</span>
-                    <span class="brand-subtitle">Dual-panel file manager for macOS 26+</span>
+                    <span class="brand-subtitle">Dual-panel file manager for macOS</span>
                 </span>
             </a>
 
@@ -37,12 +37,18 @@
             </div>
         }
 
+        <aside class="support-transition" aria-label="macOS compatibility update">
+            <strong>macOS 26 support ends with v0.9.1.2.</strong>
+            <span>This is the last compatible release for macOS 26. Current development and future releases require macOS 27 or newer.</span>
+            <a href="https://github.com/senatov/MiMiNavigator/releases/tag/v0.9.1.2" target="_blank" rel="noopener noreferrer">Get the macOS 26 release</a>
+        </aside>
+
         <section class="hero">
             <div class="hero-copy">
                 <h1>MiMiNavigator</h1>
                 <p class="hero-lede">Two panels. One focused workspace.</p>
                 <p class="hero-note">
-                    A native macOS 26+ file manager inspired by Total Commander and Norton Commander, with persistent
+                    A native macOS file manager inspired by Total Commander and Norton Commander, with persistent
                     dual panels, tabs, List/Preview/Tree views, Find Files, Multi-Rename, SFTP/FTP, network discovery,
                     Archive VFS, media conversion, and Share+Link for Google Drive and Dropbox.
                 </p>
@@ -64,7 +70,7 @@
                     <a class="button button-secondary" [routerLink]="['/']" fragment="preview">View screenshots</a>
                 </div>
                 @if (!isMobileDevice) {
-                    <p class="hero-download-note">Signed DMG · macOS 26+ · Free</p>
+                    <p class="hero-download-note">Signed DMG · {{ minimumMacOSVersion }}+ · Free</p>
                 }
 
                 <!--suppress HtmlUnknownTag -->
@@ -105,7 +111,7 @@
                         <ul class="hero-highlight-grid">
                             <li><span class="hero-highlight hero-highlight-proof" tabindex="0" pTooltip="No purchase, subscription, or feature paywall." tooltipEvent="both" tooltipPosition="top" tooltipStyleClass="hero-speech-tooltip" appendTo="body" [showDelay]="140" [hideDelay]="80"><span class="material-icons-outlined" aria-hidden="true">check_circle</span>Free</span></li>
                             <li><span class="hero-highlight hero-highlight-proof" tabindex="0" pTooltip="The downloadable DMG is Developer ID signed and notarized by Apple." tooltipEvent="both" tooltipPosition="top" tooltipStyleClass="hero-speech-tooltip" appendTo="body" [showDelay]="140" [hideDelay]="80"><span class="material-icons-outlined" aria-hidden="true">verified_user</span>Signed &amp; notarized</span></li>
-                            <li><span class="hero-highlight hero-highlight-proof" tabindex="0" pTooltip="Built with SwiftUI and AppKit for macOS 26 and later." tooltipEvent="both" tooltipPosition="top" tooltipStyleClass="hero-speech-tooltip" appendTo="body" [showDelay]="140" [hideDelay]="80"><span class="material-icons-outlined" aria-hidden="true">desktop_mac</span>Native macOS</span></li>
+                            <li><span class="hero-highlight hero-highlight-proof" tabindex="0" pTooltip="Built with SwiftUI and AppKit for macOS. Check the download requirement below." tooltipEvent="both" tooltipPosition="top" tooltipStyleClass="hero-speech-tooltip" appendTo="body" [showDelay]="140" [hideDelay]="80"><span class="material-icons-outlined" aria-hidden="true">desktop_mac</span>Native macOS</span></li>
                             <li><span class="hero-highlight hero-highlight-proof" tabindex="0" pTooltip="The source code is publicly available on GitHub." tooltipEvent="both" tooltipPosition="top" tooltipStyleClass="hero-speech-tooltip" appendTo="body" [showDelay]="140" [hideDelay]="80"><span class="material-icons-outlined" aria-hidden="true">code</span>Open source</span></li>
                         </ul>
                     </section>
@@ -271,8 +277,8 @@
             <div class="development-update" aria-label="Recent development changes">
                 <div>
                     <span class="development-update-kicker">Since the latest published DMG</span>
-                    <h3>Navigation and toolbar refinements</h3>
-                    <p>Recent source changes restore the toolbar view controls, improve automatic column fitting after remote navigation and external folder updates, and keep archive and remote paths in context while navigating.</p>
+                    <h3>macOS 27 development roadmap</h3>
+                    <p>Moving the development target to macOS 27 opens a review of native toolbar overflow, drag reordering for Favorites, and simpler item-bound dialogs. These are planned evaluations, not features in the current DMG.</p>
                 </div>
                 <a href="https://github.com/senatov/MiMiNavigator/commits/master/" target="_blank" rel="noopener noreferrer">Follow development on GitHub <span aria-hidden="true">↗</span></a>
             </div>
@@ -406,11 +412,11 @@
                     <div class="download-direct-label">Download directly</div>
                     @if (!isMobileDevice) {
                         <a class="button button-primary button-block dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
-                           aria-label="Download MiMiNavigator DMG for macOS 26 or 27"
+                           [attr.aria-label]="'Download MiMiNavigator DMG for ' + minimumMacOSVersion + ' or newer'"
                            (click)="trackDownloadClick('pricing')">
                             <span class="download-platform-badge" aria-hidden="true">
                                 <span class="download-platform-icon">&#63743;</span>
-                                <span class="download-platform-os">26–27</span>
+                                <span class="download-platform-os">{{ minimumMacOSVersion }}</span>
                             </span>
                             <span>Download DMG</span>
                         </a>
@@ -481,7 +487,7 @@
                             <p>Launch it from Applications. The installer updates the app only when the Homebrew release is newer than the installed copy.</p>
                         </div>
                     </div>
-                    <p class="homebrew-requirement">Requires <a href="https://brew.sh/" target="_blank" rel="noopener noreferrer">Homebrew</a> and an Apple silicon Mac running macOS 26 or newer.</p>
+                    <p class="homebrew-requirement">Requires <a href="https://brew.sh/" target="_blank" rel="noopener noreferrer">Homebrew</a> and an Apple silicon Mac running {{ minimumMacOSVersion }} or newer for the current Homebrew release.</p>
                 </section>
             </div>
         </section>
@@ -561,7 +567,7 @@
                 </article>
 
                 <article class="faq-item">
-                    <h3>Can it replace Finder on macOS 26+?</h3>
+                    <h3>Can it replace Finder on a supported Mac?</h3>
                     <p>Yes for file-manager work: persistent dual panels and tabs, List/Preview/Tree views, inline rename, Find Files, SFTP/FTP, SMB/AFP network discovery, mounted cloud storage, Archive VFS, and media conversion are all in one app.</p>
                 </article>
 

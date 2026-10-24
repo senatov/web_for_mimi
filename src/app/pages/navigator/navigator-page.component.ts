@@ -23,6 +23,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {RouterLink} from '@angular/router';
 import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 import {PageMetadataService} from '../../page-metadata.service';
+import {navigatorMinimumMacOS} from '../../navigator-platform';
 
 
 
@@ -82,7 +83,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         protected latestDmgFileAge = '';
         protected latestDmgUrl = 'https://github.com/senatov/MiMiNavigator/releases';
         protected readonly releasesPageUrl = 'https://github.com/senatov/MiMiNavigator/releases';
-        protected readonly minimumMacOSVersion = 'macOS 26';
+        protected minimumMacOSVersion = 'macOS 26';
         protected readonly linkedInProfileUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
         private readonly previewImageBasePath = '/images';
         private readonly previewDialogHint = 'Press Esc or click outside to close';
@@ -493,6 +494,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 const releaseDate = release.published_at || release.created_at;
 
                 this.latestVersion = release.tag_name || 'Latest release';
+                this.minimumMacOSVersion = `macOS ${navigatorMinimumMacOS(this.latestVersion)}`;
                 this.latestReleaseHeadline = this.createReleaseHeadline(this.latestVersion);
                 this.latestReleaseSummary = this.extractReleaseSummary(release.body);
                 this.latestDmgUrl = dmgAsset?.browser_download_url || release.html_url || this.releasesPageUrl;

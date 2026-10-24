@@ -48,6 +48,12 @@ async function loadLatestRelease(repository) {
 
 function updateNavigatorReleaseMetadata(html, release) {
     let updated = replaceOnce(html, /(\"softwareVersion\"\s*:\s*)\"[^\"]*\"/, `$1"${release.version}"`, 'MiMiNavigator softwareVersion');
+    const parts = release.version.split('.').map(Number);
+    const finalMacOS26Release = [0, 9, 1, 2];
+    const firstDifference = parts.findIndex((part, index) => part !== finalMacOS26Release[index]);
+    const requiresMacOS27 = parts.length === 4 && parts.every(Number.isInteger)
+        && firstDifference >= 0 && parts[firstDifference] > finalMacOS26Release[firstDifference];
+    updated = replaceOnce(updated, /("softwareRequirements"\s*:\s*)"[^"]*"/, `$1"macOS ${requiresMacOS27 ? 27 : 26} or newer"`, 'MiMiNavigator softwareRequirements');
     updated = replaceOnce(updated, /(\"datePublished\"\s*:\s*)\"[^\"]*\"/, `$1"${release.datePublished}"`, 'MiMiNavigator datePublished');
     return replaceOnce(updated, /(\"downloadUrl\"\s*:\s*)\"[^\"]*\"/, `$1"${release.downloadUrl}"`, 'MiMiNavigator downloadUrl');
 }

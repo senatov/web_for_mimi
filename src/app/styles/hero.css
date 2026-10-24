@@ -469,3 +469,7 @@
   color: var(--gd-blue);
   font-weight: 500;
 }
+
+.support-transition { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 18px auto 0; padding: 14px 20px; max-width: 1180px; border: 2px solid var(--gd-blue-dark); border-radius: 12px; background: rgba(246, 249, 253, .96); color: var(--gd-ink); font-size: 14px; line-height: 1.5; }
+.support-transition strong { font-weight: 800; }
+.support-transition a { color: var(--gd-blue-dark); font-weight: 700; }

@@ -1,5 +1,6 @@
 import {DOCUMENT} from '@angular/common';
 import {inject, Injectable} from '@angular/core';
+import {navigatorMinimumMacOS} from './navigator-platform';
 
 interface MetaSnapshot {
     attribute: 'name' | 'property';
@@ -46,6 +47,7 @@ export class PageMetadataService {
                 }
 
                 data['softwareVersion'] = version.replace(/^v/, '');
+                data['softwareRequirements'] = `macOS ${navigatorMinimumMacOS(version)} or newer`;
                 data['downloadUrl'] = downloadUrl;
                 if (datePublished) {
                     data['datePublished'] = datePublished.slice(0, 10);
