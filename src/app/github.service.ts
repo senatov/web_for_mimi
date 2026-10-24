@@ -165,12 +165,12 @@ export class GitHubService {
 
     private resolveLatestReleaseUrl(project: 'navigator' | 'trends'): string {
         if (typeof window === 'undefined') {
-            return `${this.latestReleaseUrl}?project=${project}`;
+            return `${this.latestReleaseUrl}?project=${project}&channel=latest`;
         }
 
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         if (!isLocalhost) {
-            return `${this.latestReleaseUrl}?project=${project}`;
+            return `${this.latestReleaseUrl}?project=${project}&channel=latest`;
         }
 
         return project === 'trends'

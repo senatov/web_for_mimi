@@ -8,6 +8,9 @@ Angular 21 presentation site for MiMiNavigator and MiMiTrends.
 
 MiMiNavigator v0.9.1.2 is the final release for macOS 26. Current source builds and subsequent releases require macOS 27 or newer. The site keeps a direct link to v0.9.1.2 for macOS 26 users. The download requirement and JSON-LD `softwareRequirements` follow the latest GitHub release version, so the site must not advertise a future macOS 27 build as compatible with macOS 26.
 
+The `/api/github/release` endpoint returns v0.9.1.2 to legacy in-app updaters when the latest release requires macOS 27. The landing page requests `channel=latest`; new app builds send their macOS major version. Keep the API and site changes deployed together before publishing a macOS 27 release.
+Since the published v0.9.1.2 updater cannot identify whether it runs on macOS 26 or 27, users already on macOS 27 must install the first 27-only release manually. Later releases can update automatically through the OS-aware request.
+
 The macOS 27 roadmap evaluates native toolbar overflow, collection reordering, and item-bound dialogs. Those improvements are plans, not claims about the published DMG. See the application's staged improvement plan for verification gates.
 
 ## What is inside
