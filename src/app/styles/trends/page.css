@@ -48,7 +48,7 @@
 .trends-page #download,
 .trends-page #preview,
 .trends-page #faq,
-.trends-page #references { scroll-margin-top: 82px; }
+.trends-page #references { scroll-margin-top: var(--section-scroll-offset); }
 
 .trends-references {
   max-width: var(--gd-max-width);

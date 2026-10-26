@@ -12,16 +12,20 @@
             </a>
 
             <div class="project-switcher" aria-label="Choose MiMi project">
-                <a [routerLink]="['/']" class="project-switcher-option">Navigator</a>
-                <a [routerLink]="['/trends']" class="project-switcher-option active" aria-current="page">Trends</a>
+                <a [routerLink]="['/']" class="project-switcher-option"><img src="/images/navigator/appstore.png" alt="" width="20" height="20">Navigator</a>
+                <a [routerLink]="['/trends']" class="project-switcher-option active" aria-current="page"><img src="/images/trends/AppIcon-1024.png" alt="" width="20" height="20">Trends</a>
             </div>
 
             <nav class="topnav" aria-label="Primary navigation">
-                <a [routerLink]="['/trends']" fragment="features">Features</a>
-                <a [routerLink]="['/trends']" fragment="preview">Screenshots</a>
-                <a [routerLink]="['/trends']" fragment="download">Download</a>
-                <a [routerLink]="['/trends']" fragment="faq">FAQ</a>
-                <a [routerLink]="['/trends']" fragment="references">References</a>
+                <a [routerLink]="['/trends']" fragment="features"><span class="material-icons-outlined" aria-hidden="true">widgets</span>Features</a>
+                <a [routerLink]="['/trends']" fragment="preview"><span class="material-icons-outlined" aria-hidden="true">photo_library</span>Screenshots</a>
+                <a [routerLink]="['/trends']" fragment="download"><span class="material-icons-outlined" aria-hidden="true">download</span>Download</a>
+                <a [routerLink]="['/trends']" fragment="faq"><span class="material-icons-outlined" aria-hidden="true">help_outline</span>FAQ</a>
+                <a [routerLink]="['/trends']" fragment="references"><span class="material-icons-outlined" aria-hidden="true">menu_book</span>References</a>
+                <a class="feedback-nav-link"
+                   href="https://miminavi.blogspot.com/2026/05/blog-post.html#comments"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Report a bug or suggest an improvement"><span class="material-icons-outlined" aria-hidden="true">rate_review</span>Feedback</a>
             </nav>
         </div>
     </header>
@@ -152,7 +156,20 @@
                 }
                 <div class="download-pitch"><h2>No cloud account. No subscription.</h2><p>Your scanner history and imported transaction context stay on your computer. MiMiTrends is informational software and does not place orders or provide investment advice.</p></div>
                 <p class="price-copy"><a [href]="releasesUrl" target="_blank" rel="noopener noreferrer">Browse all releases</a></p>
-            </div></div>
+            </div>
+                <aside class="feedback-card" aria-labelledby="trends-feedback-title">
+                    <div>
+                        <span class="feedback-kicker">Help improve MiMiTrends</span>
+                        <h2 id="trends-feedback-title">Found a bug or have a suggestion?</h2>
+                        <p>Please share it in the comments or send me an email. I read every report and idea with care, and appreciate your help.</p>
+                    </div>
+                    <div class="feedback-links">
+                        <a href="https://miminavi.blogspot.com/2026/05/blog-post.html#comments"
+                           target="_blank" rel="noopener noreferrer">Leave a comment</a>
+                        <a href="mailto:javaentwickler@gmail.com">javaentwickler@gmail.com</a>
+                    </div>
+                </aside>
+            </div>
         </section>
 
         <section class="details" id="preview">

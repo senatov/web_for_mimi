@@ -29,9 +29,14 @@ main > section:not(.hero):not(.pricing) {
 }
 
 .page-shell {
+  --section-scroll-offset: 82px;
   position: relative;
   isolation: isolate;
   min-height: 100vh;
+}
+
+.page-shell main > section[id] {
+  scroll-margin-top: var(--section-scroll-offset);
 }
 
 .page-shell::before {
