@@ -145,6 +145,10 @@
   --nav-link-color: #7c3aed;
 }
 
+.topnav a.feedback-nav-link {
+  --nav-link-color: #176b5b;
+}
+
 .topnav a:hover {
   color: var(--nav-link-color, var(--gd-blue));
   background: color-mix(in srgb, var(--nav-link-color, var(--gd-blue)) 10%, #fff);

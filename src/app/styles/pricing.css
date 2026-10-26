@@ -265,6 +265,7 @@
 
 .price-card,
 .known-issues-card,
+.feedback-card,
 .homebrew-card {
   min-width: 0;
 }
@@ -340,6 +341,60 @@
 .known-issues-button .known-issues-arrow {
   margin-left: auto;
   font-size: 17px;
+}
+
+.feedback-card {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 18px 20px;
+  border: 1px solid var(--gd-line-strong);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.feedback-kicker {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--gd-blue-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.feedback-card h2 {
+  margin: 0;
+  color: var(--gd-ink);
+  font-family: var(--gd-font-display), sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.feedback-card p {
+  margin: 7px 0 0;
+  color: var(--gd-ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.feedback-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.feedback-links a {
+  color: var(--gd-blue-dark);
+  font-size: 13px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.feedback-links a:focus-visible {
+  outline: 2px solid var(--gd-blue);
+  outline-offset: 3px;
 }
 
 .homebrew-card {
