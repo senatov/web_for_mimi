@@ -50,6 +50,10 @@
   ],
   "rewrites": [
     {
+      "source": "/info1",
+      "destination": "/api/info1"
+    },
+    {
       "source": "/trends",
       "destination": "/trends/index.html"
     },
