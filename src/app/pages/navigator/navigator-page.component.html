@@ -85,7 +85,7 @@
                             <strong>{{ latestVersion }}</strong>
                         </div>
 
-                        <p>{{ latestReleaseSummary }}</p>
+                        <p data-seo-dynamic>{{ latestReleaseSummary }}</p>
 
                         @if (releaseNoteSections.length > 0) {
                             <div class="release-popover-sections">
@@ -270,19 +270,19 @@
         <section class="latest-improvements" aria-labelledby="navigator-latest-title">
             <div class="section-kicker">Recently improved</div>
             <div class="section-heading-block">
-                <h2 id="navigator-latest-title">File details that match Finder</h2>
-                <p>The latest release restores local file metadata in List view and makes more Finder details available as columns.</p>
+                <h2 id="navigator-latest-title">Cleanup suggestions you review before acting</h2>
+                <p>Version 0.9.1.5 adds a Cleanup tab in Find Files. It scans eligible local storage during quiet periods, saves progress, and leaves every removal decision to you.</p>
             </div>
             <div class="improvement-grid">
-                <article><span class="material-icons-outlined" aria-hidden="true">schedule</span><h3>Last Open dates</h3><p>List view reads the last-used date from macOS Spotlight, so files with an indexed date show when they were last opened.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">view_column</span><h3>More Finder columns</h3><p>Choose Version, Comments, and Tags from the column header menu, alongside Created, Added, Kind, Size, and other details.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">sort</span><h3>Consistent file details</h3><p>Local scans retain metadata for display and sorting, while newly enabled columns fit their contents automatically.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">manage_search</span><h3>Useful candidates</h3><p>Review exact duplicates across eligible local volumes, old installers, temporary files, empty folders, and stale PID files. Cloud, system, development, and Time Machine locations are excluded.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">pause_circle</span><h3>Quiet, resumable scans</h3><p>Scanning waits until the app is out of focus and the Mac is lightly loaded. SQLite checkpoints let it resume after a restart instead of starting over.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">delete_outline</span><h3>You choose what moves to Trash</h3><p>Nothing is removed automatically. Select items or duplicate groups, keep at least one copy, and let the app recheck candidates before moving them to Trash.</p></article>
             </div>
             <div class="development-update" aria-label="Recent development changes">
                 <div>
-                    <span class="development-update-kicker">Next improvements</span>
-                    <h3>macOS 27 development roadmap</h3>
-                    <p>Moving the development target to macOS 27 opens a review of native toolbar overflow, drag reordering for Favorites, and simpler item-bound dialogs. These are planned evaluations, not features in the current DMG.</p>
+                    <span class="development-update-kicker">Also improved</span>
+                    <h3>A more compact native titlebar</h3>
+                    <p>Version 0.9.1.4 refined the macOS 27 titlebar with tighter toolbar spacing, grouped actions, and accessible button targets. Cleanup followed in 0.9.1.5.</p>
                 </div>
                 <a href="https://github.com/senatov/MiMiNavigator/commits/master/" target="_blank" rel="noopener noreferrer">Follow development on GitHub <span aria-hidden="true">↗</span></a>
             </div>
@@ -335,7 +335,7 @@
                 <article class="feature-cluster">
                     <span class="cluster-icon" aria-hidden="true">02</span>
                     <h3>Find and clean</h3>
-                    <p>Search names and text inside ordinary, PDF, and Microsoft Office files; find large or forgotten items, empty folders, and application leftovers; then review results together. Local cleanup uses macOS recycling where supported.</p>
+                    <p>Search names and text inside ordinary, PDF, and Microsoft Office files. The Cleanup tab suggests eligible local duplicates and stale items for review; it never deletes them automatically.</p>
                 </article>
 
                 <article class="feature-cluster">
@@ -403,8 +403,8 @@
             <div class="pricing-card-column">
                 <div class="price-card">
                     <div class="download-release-heading">
-                        <h2>{{ latestReleaseHeadline }}</h2>
-                        <p>{{ latestReleaseSummary }}</p>
+                        <h2 data-seo-dynamic>{{ latestReleaseHeadline }}</h2>
+                        <p data-seo-dynamic>{{ latestReleaseSummary }}</p>
                     </div>
                     <div class="price-meta">
                         <p class="price-copy"><span class="price-label">Version</span> <strong>{{ latestVersion }}</strong></p>
@@ -604,6 +604,11 @@
                 </article>
 
                 <article class="faq-item">
+                    <h3>Does Cleanup delete files automatically?</h3>
+                    <p>No. The background scan only suggests candidates in eligible local locations. You select what to remove; duplicate groups retain at least one copy, and the app checks candidates again before moving them to Trash. Apple Intelligence can review possible leftovers only when its on-device model is available.</p>
+                </article>
+
+                <article class="faq-item">
                     <h3>Which remote and cloud connections are supported?</h3>
                     <p>SFTP and FTP servers open inside the panels with saved Keychain-backed connections. The network neighborhood discovers and mounts SMB and AFP shares. Mounted cloud storage works as part of the file workflow, with dedicated Google Drive and Dropbox Share+Link support.</p>
                 </article>
@@ -634,8 +639,8 @@
                 <div>
                     <h3>Roadmap</h3>
                     <p>
-                        Areas under consideration include saved workspaces, duplicate search, direct WebDAV/S3/B2 access,
-                        CloudKit settings sync, and deeper Finder integration. Persistent Preview,
+                        Areas under consideration include saved workspaces, direct WebDAV/S3/B2 access,
+                        CloudKit settings sync, and deeper Finder integration. Duplicate review, Persistent Preview,
                         the Commander action bar, and read-only Git status are already available today.
                     </p>
                 </div>

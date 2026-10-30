@@ -14,7 +14,8 @@ const SKIPPED_SELECTOR = [
     '.hero-capabilities',
     '.hero-highlights',
     '.brand-copy',
-    '.commit-feed'
+    '.commit-feed',
+    '[data-seo-dynamic]'
 ].join(',');
 
 @Directive({

@@ -526,16 +526,27 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
 
         private extractReleaseNoteSections(body?: string): ReleaseNoteSection[] {
-                const sectionNames = new Set(['highlights', 'added', 'changed', 'fixed']);
                 const sections: ReleaseNoteSection[] = [];
                 let currentSection: ReleaseNoteSection | null = null;
+                let sawReleaseTitle = false;
 
                 for (const rawLine of (body || '').split('\n')) {
+                        if (rawLine.trim() === '---') {
+                                break;
+                        }
+                        if (/^#\s+/.test(rawLine)) {
+                                if (sawReleaseTitle) {
+                                        break;
+                                }
+                                sawReleaseTitle = true;
+                                continue;
+                        }
                         const headingMatch = rawLine.match(/^##\s+(.+?)\s*$/);
 
                         if (headingMatch) {
                                 const title = headingMatch[1].trim();
-                                currentSection = sectionNames.has(title.toLowerCase()) ? {title, items: []} : null;
+                                const isChangeSection = /^(highlights|added|changed|fixed|improvements(?: since .+)?)$/i.test(title);
+                                currentSection = isChangeSection ? {title, items: []} : null;
 
                                 if (currentSection) {
                                         sections.push(currentSection);
@@ -573,6 +584,10 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 for (const rawLine of (body || '').split('\n')) {
                         const line = rawLine.trim();
 
+                        if (line === '---') {
+                                break;
+                        }
+
                         if (!line || line.startsWith('#')) {
                                 if (summaryLines.length > 0) {
                                         break;
@@ -594,7 +609,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 }
 
                 if (summaryLines.length === 0) {
-                        return 'Release notes are loading from GitHub.';
+                        return 'See the release notes below for current improvements.';
                 }
 
                 return this.cleanReleaseNoteMarkdown(summaryLines.join(' '))

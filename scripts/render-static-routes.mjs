@@ -133,6 +133,8 @@ const structuredData = {
         'Accepted US and European signal refresh through Scalable when an ISIN is known',
         'Exchange-aware market calendars and observation timestamps',
         'Focused local SQLite market history and accepted-event storage',
+        'Seven-day retention for market and scan history with local database compaction',
+        'Close-confirmed rapid moves and repaired instrument lookup',
         'Local broker CSV transaction import and execution overlays on price charts',
         'Live source activity beside the radar and on-demand recent coverage',
         'On-demand linked headlines from public news sources'
