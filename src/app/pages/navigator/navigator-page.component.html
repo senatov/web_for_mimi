@@ -271,11 +271,11 @@
             <div class="section-kicker">Recently improved</div>
             <div class="section-heading-block">
                 <h2 id="navigator-latest-title">Cleanup suggestions you review before acting</h2>
-                <p>Version 0.9.1.5 adds a Cleanup tab in Find Files. It scans eligible local storage during quiet periods, saves progress, and leaves every removal decision to you.</p>
+                <p>Version 0.9.1.5 adds a Cleanup tab in Find Files. Its automatic scan works through eligible local locations during quiet periods, saves directory checkpoints, and leaves every removal decision to you.</p>
             </div>
             <div class="improvement-grid">
-                <article><span class="material-icons-outlined" aria-hidden="true">manage_search</span><h3>Useful candidates</h3><p>Review exact duplicates across eligible local volumes, old installers, temporary files, empty folders, and stale PID files. Cloud, system, development, and Time Machine locations are excluded.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">pause_circle</span><h3>Quiet, resumable scans</h3><p>Scanning waits until the app is out of focus and the Mac is lightly loaded. SQLite checkpoints let it resume after a restart instead of starting over.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">manage_search</span><h3>Useful candidates</h3><p>Review exact duplicates, old installers, temporary files, empty folders, and stale PID files found in your home directory and writable local volumes. System, cloud, development, and Time Machine locations are excluded.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">pause_circle</span><h3>Automatic, resumable scans</h3><p>Scanning starts with the app; no switch is needed. It waits while MiMiNavigator is active or the Mac is busy, resumes from saved directory checkpoints after a restart, and revisits eligible locations later.</p></article>
                 <article><span class="material-icons-outlined" aria-hidden="true">delete_outline</span><h3>You choose what moves to Trash</h3><p>Nothing is removed automatically. Select items or duplicate groups, keep at least one copy, and let the app recheck candidates before moving them to Trash.</p></article>
             </div>
             <div class="development-update" aria-label="Recent development changes">
@@ -605,7 +605,7 @@
 
                 <article class="faq-item">
                     <h3>Does Cleanup delete files automatically?</h3>
-                    <p>No. The background scan only suggests candidates in eligible local locations. You select what to remove; duplicate groups retain at least one copy, and the app checks candidates again before moving them to Trash. Apple Intelligence can review possible leftovers only when its on-device model is available.</p>
+                    <p>No. The automatic scan gradually adds suggestions from eligible local locations to the Cleanup tab. You select what to remove; duplicate groups retain at least one copy, and the app checks candidates again before moving them to Trash. Apple Intelligence can review possible leftovers only when its on-device model is available.</p>
                 </article>
 
                 <article class="faq-item">
