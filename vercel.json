@@ -62,6 +62,14 @@
       "destination": "/trends/index.html"
     },
     {
+      "source": "/cleanup",
+      "destination": "/cleanup/index.html"
+    },
+    {
+      "source": "/cleanup/",
+      "destination": "/cleanup/index.html"
+    },
+    {
       "source": "/:path*",
       "destination": "/api/honeypot?path=/:path*"
     }

@@ -1,6 +1,6 @@
 const siteUrl = (process.env.SITE_URL || 'https://miminavi.tech').replace(/\/$/, '');
 const key = '0371f8c975dfdf028e5e4e63ac5aecf2';
-const urls = [`${siteUrl}/`, `${siteUrl}/trends`];
+const urls = [`${siteUrl}/`, `${siteUrl}/trends`, `${siteUrl}/cleanup`];
 
 const response = await fetch('https://api.indexnow.org/indexnow', {
     method: 'POST',

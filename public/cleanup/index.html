@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cleanup guide — MiMiNavigator</title>
+  <meta name="description" content="How MiMiNavigator Cleanup scans eligible local storage, resumes after interruptions, uses optional on-device Apple Intelligence, and lets you review candidates before moving anything to Trash.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cleanup guide — MiMiNavigator">
+  <meta property="og:description" content="A practical guide to automatic Cleanup scans, saved progress, local scope, optional on-device AI review, and manual removal.">
+  <meta property="og:url" content="https://miminavi.tech/cleanup">
+  <link rel="canonical" href="https://miminavi.tech/cleanup">
+  <link rel="icon" type="image/png" href="/images/navigator/appstore.png">
+  <link rel="stylesheet" href="/cleanup/guide.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><img src="/images/navigator/appstore.png" alt="" width="42" height="42"><span><strong>MiMiNavigator</strong><small>Dual-panel file manager for macOS</small></span></a>
+    <nav aria-label="Site navigation"><a href="/">Overview</a><a href="/cleanup" aria-current="page">Cleanup guide</a><a href="/#download">Download</a><a href="/trends">MiMiTrends</a></nav>
+  </header>
+  <main>
+    <div class="intro">
+      <p class="eyebrow">MiMiNavigator help</p>
+      <h1>How Cleanup works</h1>
+      <p class="lead">Cleanup quietly collects candidates for your review. It does not remove files on its own, and its optional AI review is limited to possible leftovers from uninstalled applications.</p>
+      <div class="release-note" role="note"><strong>Feature availability:</strong> Automatic scanning is in v0.9.1.5. The sortable table and in-app folder links described below are in the development source after v0.9.1.5; they are not in the published v0.9.1.5 DMG.</div>
+    </div>
+
+    <section aria-labelledby="scan-heading">
+      <p class="eyebrow">Automatic scan</p>
+      <h2 id="scan-heading">Where it scans and when it pauses</h2>
+      <div class="cards">
+        <article><span class="number">01</span><h3>Starts on its own</h3><p>A background task starts with MiMiNavigator. It scans eligible roots in sequence, waits six hours after a full pass, then revisits them. There is no switch to manage.</p></article>
+        <article><span class="number">02</span><h3>Uses spare capacity</h3><p>The scan waits while MiMiNavigator is in the foreground, system load is high, or thermal conditions are unsuitable. It resumes when those conditions improve.</p></article>
+        <article><span class="number">03</span><h3>Remembers progress</h3><p>SQLite stores completed directory checkpoints and candidate snapshots. After a restart, traversal resumes at the last committed directory. Interrupted hashing can repeat, using cached hashes when valid.</p></article>
+        <article><span class="number">04</span><h3>Stays within a safe scope</h3><p>Cleanup visits the home directory and writable local volumes it can access. It does not scan all of macOS: system, cloud, Time Machine, and development locations are excluded.</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="results-heading">
+      <p class="eyebrow">Review results</p>
+      <h2 id="results-heading">Candidates appear gradually</h2>
+      <p>Results accumulate in the Cleanup tab during a scan and remain available across sessions. The standard checks suggest exact file and leaf-folder duplicates, old installers, temporary files, old empty folders, and stale PID files. A suggestion is a reason to inspect an item, not a verdict that it is disposable.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Cleanup results table in the development build</caption>
+          <thead><tr><th scope="col">Column or control</th><th scope="col">What it does</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Date Mod.</th><td>Sort candidates by modification date.</td></tr>
+            <tr><th scope="row">Size</th><td>Sort by file or folder size.</td></tr>
+            <tr><th scope="row">Location</th><td>Sort by containing directory. Select its readable path link to open that directory in the active file panel.</td></tr>
+            <tr><th scope="row">Folder name</th><td>Select an empty or duplicate folder name to open that folder itself in the active panel.</td></tr>
+            <tr><th scope="row">Review</th><td>Mark a candidate for the manual Trash action. Row highlighting and navigation do not mark it for removal.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="ai-section" aria-labelledby="ai-heading">
+      <p class="eyebrow">Built-in AI assistance</p>
+      <h2 id="ai-heading">What the on-device model does</h2>
+      <p>When Apple's on-device Apple Intelligence Foundation Models system model is available and ready, MiMiNavigator can ask it to review possible leftovers from uninstalled applications. The model receives a candidate path and category, not file contents. It returns a conservative <strong>KEEP</strong> or <strong>REVIEW</strong> suggestion.</p>
+      <p>If the model is unavailable, this optional leftover review is skipped. The standard file checks continue to work. An AI suggestion never triggers deletion and does not prove that removing an item is safe.</p>
+    </section>
+
+    <section aria-labelledby="safety-heading">
+      <p class="eyebrow">You decide</p>
+      <h2 id="safety-heading">Nothing is deleted automatically</h2>
+      <p>Choose individual items or copies in a duplicate group, review the confirmation, and move the selection to Trash only when you are satisfied. Cleanup keeps at least one verified copy in each duplicate group and rechecks candidates immediately before the move.</p>
+      <div class="actions"><a class="primary" href="/#download">Get MiMiNavigator</a><a href="https://github.com/senatov/MiMiNavigator/releases" target="_blank" rel="noopener noreferrer">Read release notes ↗</a></div>
+    </section>
+  </main>
+  <footer><span>MiMiNavigator · Free and open source</span><a href="/">Back to overview</a></footer>
+</body>
+</html>
