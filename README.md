@@ -40,7 +40,7 @@ The portal's `package.json` version is independent of the application release. I
 ## Product content and screenshots
 
 - Visible release, DMG, and commit timestamps use compact `DD.MM.YYYY HH:mm` formatting in the visitor’s browser time zone. The DMG release annotation uses smaller text; operation-feedback tags share equal dimensions.
-- Release metadata comes from GitHub. Development commits are labelled separately because they may not be part of the downloadable release.
+- Release metadata comes from GitHub. Development commits are labelled separately because they may not be part of the downloadable release. The Navigator download card links directly to the current published release, and its DMG timestamp remains bound to the GitHub asset date while keyword highlighting runs.
 - The Navigator page's "Recently improved" section describes the published Cleanup release. Keep static product copy aligned with the latest published release; release notes and download data load dynamically from GitHub.
 - The `/cleanup` guide distinguishes the published v0.9.1.5 scan from the sortable table and in-app folder links still in development. Update its availability note when those UI changes ship.
 - The mimiTrendsIOS page presents the active SwiftUI project in the same card-based design as the Navigator page. Its release center shows recent development commits separately from the complete, script-generated commit list in the published release notes. The previous Kotlin prototype is linked only as an archived reference. The current notarized Mac DMG requires macOS 27+, the mobile design targets iPad, and an iPad App Store release is pending.

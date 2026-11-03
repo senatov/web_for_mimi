@@ -1,6 +1,6 @@
 {
   "name": "web-for-mimi",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "description": "Angular landing page for MiMiNavigator inspired by Fork.",
   "scripts": {

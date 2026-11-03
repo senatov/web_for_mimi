@@ -410,7 +410,7 @@
                     <div class="price-meta">
                         <p class="price-copy"><span class="price-label">Version</span> <strong>{{ latestVersion }}</strong></p>
                         <p class="price-copy"><span class="price-label">Released</span> <span class="price-value"><span class="price-file-date">{{ latestReleaseDate }}</span><span class="price-release-age">{{ latestReleaseAge }}</span></span></p>
-                        <p class="price-copy"><span class="price-label">DMG updated</span> <span class="price-value"><span
+                        <p class="price-copy"><span class="price-label">DMG updated</span> <span class="price-value"><span data-seo-dynamic
                                 class="price-file-date">{{ latestDmgFileDate }}</span>@if (latestDmgReleaseNote) { <small class="price-release-note">{{ latestDmgReleaseNote }}</small>}@if (latestDmgFileAge) { <span class="price-release-age">{{ latestDmgFileAge }}</span>}</span></p>
                         <p class="price-copy price-copy-platform">Signed and notarized DMG for Apple silicon and <span>{{ minimumMacOSVersion }}</span> or newer.</p>
                     </div>
@@ -432,7 +432,10 @@
                         <h2>Free, open-source, native macOS software</h2>
                         <p>{{ downloadPitchText }}</p>
                     </div>
-                    <p class="price-copy">
+                    <p class="price-copy release-card-link">
+                        <a [href]="latestReleaseUrl" target="_blank" rel="noopener noreferrer">Open this release on GitHub</a>
+                    </p>
+                    <p class="price-copy release-card-link">
                         <a [href]="releasesPageUrl" target="_blank" rel="noopener noreferrer"
                            (click)="trackReleasesClick('pricing')">Browse all releases</a>
                     </p>

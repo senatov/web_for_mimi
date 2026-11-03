@@ -887,6 +887,15 @@
   font-size: 13px;
 }
 
+.price-card > .release-card-link {
+  display: block;
+  font-size: 13px;
+}
+
+.price-card > .release-card-link a {
+  color: var(--gd-blue);
+}
+
 .price-card > .price-copy:last-child a {
   color: var(--gd-blue);
   text-decoration: none;

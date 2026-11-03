@@ -83,6 +83,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         protected latestDmgFileAge = '';
         protected latestDmgUrl = 'https://github.com/senatov/MiMiNavigator/releases';
         protected readonly releasesPageUrl = 'https://github.com/senatov/MiMiNavigator/releases';
+        protected latestReleaseUrl = this.releasesPageUrl;
         protected minimumMacOSVersion = 'macOS 27';
         protected readonly linkedInProfileUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
         private readonly previewImageBasePath = '/images';
@@ -498,6 +499,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 this.latestReleaseHeadline = this.createReleaseHeadline(this.latestVersion);
                 this.latestReleaseSummary = this.extractReleaseSummary(release.body);
                 this.latestDmgUrl = dmgAsset?.browser_download_url || release.html_url || this.releasesPageUrl;
+                this.latestReleaseUrl = release.html_url || this.releasesPageUrl;
                 this.releaseNoteSections = this.extractReleaseNoteSections(release.body);
                 this.pageMetadata.updateNavigatorRelease(this.latestVersion, releaseDate, this.latestDmgUrl);
 
@@ -713,6 +715,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 this.stopReleaseAgeTimer();
                 this.latestVersion = 'Latest release';
                 this.latestDmgUrl = this.releasesPageUrl;
+                this.latestReleaseUrl = this.releasesPageUrl;
                 this.latestReleaseDate = 'Unknown release date';
                 this.latestReleaseAge = 'Age unavailable';
                 this.latestReleaseHeadline = 'Latest release';
