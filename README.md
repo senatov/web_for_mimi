@@ -2,7 +2,7 @@
 
 ## Site https://miminavi.tech
 
-Angular 21 presentation site for MiMiNavigator and MiMiTrends.
+Angular 21 presentation site for MiMiNavigator and the SwiftUI mimiTrendsIOS prototype.
 
 ## MiMiNavigator platform policy
 
@@ -16,7 +16,7 @@ The macOS 27 roadmap evaluates native toolbar overflow, collection reordering, a
 ## What is inside
 
 - Angular standalone application structure
-- Dedicated `/trends` product page with release downloads, current screenshots, feature details, and FAQ
+- Dedicated `/mimitrendsios` page with the current Mac DMG, iPad and Mac screenshots, platform details, and FAQ. The former `/trends` URL redirects permanently.
 - Standalone `/cleanup` user guide for automatic scan scope, saved progress, optional on-device AI, review, and development-build table behavior
 - Clean landing page inspired by the product-first layout rhythm of Fork
 - Git-ready folder with `.gitignore`
@@ -41,9 +41,11 @@ npm run build
 - Release metadata comes from GitHub. Development commits are labelled separately because they may not be part of the downloadable release.
 - The Navigator page's "Recently improved" section describes the published Cleanup release. Keep static product copy aligned with the latest published release; release notes and download data load dynamically from GitHub.
 - The `/cleanup` guide distinguishes the published v0.9.1.5 scan from the sortable table and in-app folder links still in development. Update its availability note when those UI changes ship.
-- The Trends page summarizes published v1.3.058 improvements and links to existing radar and SQLite documentation. Its release version and DMG link load dynamically from GitHub.
-- Production builds fetch the latest MiMiNavigator and MiMiTrends releases and write their versions, publication dates, and release URLs into the rendered JSON-LD. The same release dates are written to `sitemap.xml`, so these values must not be maintained by hand.
-- Successful Vercel production deployments trigger `.github/workflows/notify-indexnow.yml`, which submits `/`, `/trends`, and `/cleanup` to IndexNow once per deployment. The verification key is served from the site root. Google discovery continues through the sitemap declared in `robots.txt`; do not notify search engines from visitor page loads.
+- The mimiTrendsIOS page presents the active SwiftUI project. Its previous Kotlin prototype is linked only as an archived reference. The current notarized Mac DMG requires macOS 27+, the mobile design targets iPad, and an iPad App Store release is pending.
+- The page images were captured from the running 0.0.1.2 iPad Simulator and macOS app. Refresh them from actual builds whenever the page describes a materially different interface.
+- Production builds fetch the latest MiMiNavigator and mimiTrendsIOS releases and write their versions, publication dates, and release URLs into route-specific JSON-LD. The same release dates are written to `sitemap.xml`.
+- Successful Vercel production deployments trigger `.github/workflows/notify-indexnow.yml`, which submits `/`, `/mimitrendsios`, and `/cleanup` to IndexNow once per deployment. The verification key is served from the site root. Google discovery continues through the sitemap declared in `robots.txt`.
+- On the production host, `analytics.js` starts GA4, StatCounter, and Microsoft Clarity. Angular sends one explicit GA4 page view for each route navigation; GA4 automatic page views are disabled. The StatCounter image in `index.html` is only a JavaScript-disabled fallback.
 
 ### Register release-triggered metadata refreshes
 
@@ -51,7 +53,7 @@ The public page loads release details dynamically, but search crawlers also need
 
 1. In the Vercel project, open **Settings → Git → Deploy Hooks**.
 2. Create a hook named `MiMi release metadata`, targeting the `master` branch, and copy its URL.
-3. In each product repository (`senatov/MiMiNavigator` and `senatov/mimiTrends`), open **Settings → Webhooks → Add webhook**.
+3. In each product repository (`senatov/MiMiNavigator` and `senatov/mimiTrendsIOS`), open **Settings → Webhooks → Add webhook**.
 4. Paste the Vercel Deploy Hook URL as the payload URL, select `application/json`, choose **Let me select individual events**, enable **Releases**, and save the active webhook.
 
 GitHub will then call the private Deploy Hook URL when release state changes. Vercel rebuilds the site, the build reads the current release metadata, and the successful production deployment triggers a single IndexNow notification. Treat the Deploy Hook URL as a secret and do not commit it to either repository.
@@ -63,4 +65,4 @@ GitHub will then call the private Deploy Hook URL when release state changes. Ve
 
 ## Deployment checks
 
-Run `npm run build` followed by `node scripts/render-static-routes.mjs` to validate the production bundle and route-specific static metadata. Before publishing, inspect `/` and `/trends` at desktop and mobile widths, test fullscreen navigation and zoom, and confirm the download link against the GitHub release.
+Run `npm run build` followed by `node scripts/render-static-routes.mjs` to validate the production bundle and route-specific static metadata. Before publishing, inspect `/` and `/mimitrendsios` at desktop and mobile widths, test screenshot zoom, and confirm the download link against the GitHub release.

@@ -46,6 +46,16 @@
       ],
       "destination": "https://miminavi.tech/:path*",
       "permanent": true
+    },
+    {
+      "source": "/trends",
+      "destination": "/mimitrendsios",
+      "permanent": true
+    },
+    {
+      "source": "/trends/",
+      "destination": "/mimitrendsios",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -54,12 +64,12 @@
       "destination": "/api/info1"
     },
     {
-      "source": "/trends",
-      "destination": "/trends/index.html"
+      "source": "/mimitrendsios",
+      "destination": "/mimitrendsios/index.html"
     },
     {
-      "source": "/trends/",
-      "destination": "/trends/index.html"
+      "source": "/mimitrendsios/",
+      "destination": "/mimitrendsios/index.html"
     },
     {
       "source": "/cleanup",

@@ -1,213 +1,117 @@
 <div class="page-shell trends-page">
     <header class="site-header">
         <div class="topbar">
-            <a class="brand brand-logo-link" [routerLink]="['/trends']" fragment="top" aria-label="MiMiTrends home">
-                <span class="brand-logo-shell trends-logo-shell">
-                    <img src="/images/trends/AppIcon-1024.png" alt="MiMiTrends logo" width="1024" height="1024">
-                </span>
-                <span class="brand-copy">
-                    <span class="brand-text">MiMiTrends</span>
-                    <span class="brand-subtitle">Live corridor &amp; rapid-move radar</span>
-                </span>
+            <a class="brand brand-logo-link" [routerLink]="['/mimitrendsios']" fragment="top" aria-label="mimiTrendsIOS home">
+                <span class="brand-logo-shell trends-logo-shell"><img src="/images/trends/AppIcon-1024.png" alt="" width="1024" height="1024"></span>
+                <span class="brand-copy"><span class="brand-text">mimiTrendsIOS</span><span class="brand-subtitle">SwiftUI market radar</span></span>
             </a>
-
             <div class="project-switcher" aria-label="Choose MiMi project">
                 <a [routerLink]="['/']" class="project-switcher-option"><img src="/images/navigator/appstore.png" alt="" width="20" height="20">Navigator</a>
-                <a [routerLink]="['/trends']" class="project-switcher-option active" aria-current="page"><img src="/images/trends/AppIcon-1024.png" alt="" width="20" height="20">Trends</a>
+                <a [routerLink]="['/mimitrendsios']" class="project-switcher-option active" aria-current="page"><img src="/images/trends/AppIcon-1024.png" alt="" width="20" height="20">mimiTrendsIOS</a>
             </div>
-
             <nav class="topnav" aria-label="Primary navigation">
-                <a [routerLink]="['/trends']" fragment="features"><span class="material-icons-outlined" aria-hidden="true">widgets</span>Features</a>
-                <a [routerLink]="['/trends']" fragment="preview"><span class="material-icons-outlined" aria-hidden="true">photo_library</span>Screenshots</a>
-                <a [routerLink]="['/trends']" fragment="download"><span class="material-icons-outlined" aria-hidden="true">download</span>Download</a>
-                <a [routerLink]="['/trends']" fragment="faq"><span class="material-icons-outlined" aria-hidden="true">help_outline</span>FAQ</a>
-                <a [routerLink]="['/trends']" fragment="references"><span class="material-icons-outlined" aria-hidden="true">menu_book</span>How it works</a>
-                <a class="feedback-nav-link"
-                   href="https://miminavi.blogspot.com/2026/05/blog-post.html#comments"
-                   target="_blank" rel="noopener noreferrer"
-                   aria-label="Report a bug or suggest an improvement"><span class="material-icons-outlined" aria-hidden="true">rate_review</span>Feedback</a>
+                <a [routerLink]="['/mimitrendsios']" fragment="features">Features</a>
+                <a [routerLink]="['/mimitrendsios']" fragment="preview">Screenshots</a>
+                <a [routerLink]="['/mimitrendsios']" fragment="download">Mac download</a>
+                <a [routerLink]="['/mimitrendsios']" fragment="faq">FAQ</a>
+                <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
             </nav>
         </div>
     </header>
 
-    <main id="top" appSeoKeywordHighlight>
-        @if (isMobileDevice) {
-            <div class="mobile-banner" role="alert">
-                <span class="mobile-banner-icon" aria-hidden="true">&#x1F4BB;</span>
-                <p class="mobile-banner-text">MiMiTrends is a desktop application. Open this page on your Mac to install the current build.</p>
-            </div>
-        }
+    <main id="top">
+        <aside class="prototype-notice" aria-label="Project status">
+            <strong>Prototype project.</strong> The earlier Kotlin version was built for faster experimentation and is now
+            <a [href]="archiveUrl" target="_blank" rel="noopener noreferrer">archived on GitHub</a>.
+            This page follows the SwiftUI <strong>mimiTrendsIOS</strong> project.
+        </aside>
 
         <section class="hero trends-hero">
             <div class="hero-copy">
-                <div class="section-kicker">Kotlin · JavaFX · local-first</div>
-                <h1>MiMiTrends</h1>
-                <p class="hero-lede">See live corridors and rapid price moves.</p>
-                <p class="hero-note">A local desktop radar for liquid US and European equities. Review confirmed corridors, rapid rises, and rapid crashes beside source activity, then inspect a selected event on its chart.</p>
+                <div class="section-kicker">SwiftUI · iPad · macOS 27+</div>
+                <h1>mimiTrendsIOS</h1>
+                <p class="hero-lede">A market radar built for iPad and Mac.</p>
+                <p class="hero-note">Inspect market signals, source activity and price charts in a native SwiftUI workspace. The mobile design targets iPad; an iPhone version is not planned for this prototype.</p>
                 <div class="hero-actions">
-                    @if (!isMobileDevice) {
-                        <a class="button button-primary dmg-download-button hero-dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer" aria-label="Download MiMiTrends DMG for macOS 26 or 27">
-                            <span class="download-platform-badge" aria-hidden="true"><span class="download-platform-icon">&#63743;</span><span class="download-platform-os">26–27</span></span>
-                            <span>Download DMG</span>
-                        </a>
-                    }
-                    <a class="button button-secondary" [routerLink]="['/trends']" fragment="preview">View screenshots</a>
+                    <a class="button button-primary dmg-download-button hero-dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer" aria-label="Download mimiTrendsIOS DMG for macOS 27 or newer">Download Mac DMG</a>
+                    <a class="button button-secondary" [routerLink]="['/mimitrendsios']" fragment="preview">View screenshots</a>
                 </div>
-                <p class="hero-download-note">Local SQLite storage · macOS build · Free and open source</p>
-                <div class="hero-highlights" aria-label="MiMiTrends at a glance">
-                    <section class="hero-highlight-group" aria-labelledby="trends-signals-title">
-                        <div class="hero-highlight-heading"><h2 id="trends-signals-title">Live signals</h2></div>
-                        <ul class="hero-proof">
-                            <li><span class="material-icons-outlined" aria-hidden="true">trending_up</span>Rapid rises</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">trending_down</span>Rapid crashes</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">show_chart</span>Two-hour corridors</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">radar</span>Up to 90 per cycle</li>
-                        </ul>
+                <p class="hero-download-note">Notarized Mac release · iPad App Store release in preparation</p>
+                <div class="hero-highlights" aria-label="mimiTrendsIOS at a glance">
+                    <section class="hero-highlight-group"><div class="hero-highlight-heading"><h2>Market workspace</h2></div>
+                        <ul class="hero-proof"><li>Live and saved radar signals</li><li>Source telemetry</li><li>Selected price charts</li></ul>
                     </section>
-                    <section class="hero-highlight-group" aria-labelledby="trends-product-title">
-                        <div class="hero-highlight-heading"><h2 id="trends-product-title">Product details</h2></div>
-                        <ul class="hero-proof">
-                            <li><span class="material-icons-outlined" aria-hidden="true">storage</span>Local SQLite data</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">tune</span>Adjustable rapid moves</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">code</span>Open source</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">desktop_mac</span>Desktop app</li>
-                        </ul>
+                    <section class="hero-highlight-group"><div class="hero-highlight-heading"><h2>Current platforms</h2></div>
+                        <ul class="hero-proof"><li>iPad-focused design</li><li>macOS 27+ DMG</li><li>Open SwiftUI source</li></ul>
                     </section>
                 </div>
             </div>
-            <button class="trends-hero-visual" type="button" (click)="openScreenshot(heroScreenshot)" aria-label="Enlarge MiMiTrends Rapid moves settings screenshot">
-                <img [src]="heroScreenshot.src" [alt]="heroScreenshot.alt" width="1180" height="1151" fetchpriority="high">
-                <span class="trends-hero-caption"><span>Rapid moves settings · 6 October 2026</span><span class="material-icons-outlined" aria-hidden="true">zoom_in</span></span>
+            <button class="trends-hero-visual" type="button" (click)="openScreenshot(heroScreenshot)" aria-label="Enlarge current iPad radar screenshot">
+                <img [src]="heroScreenshot.src" [alt]="heroScreenshot.alt" width="1640" height="2360" fetchpriority="high">
+                <span class="trends-hero-caption"><span>Current iPad radar · 3 November 2026</span><span class="material-icons-outlined" aria-hidden="true">zoom_in</span></span>
             </button>
         </section>
 
-        <section class="latest-improvements" aria-labelledby="trends-latest-title">
-            <div class="section-kicker">Recently improved</div>
-            <div class="section-heading-block">
-                <h2 id="trends-latest-title">Clearer signals, leaner local storage</h2>
-                <p>Recent releases tightened rapid-move confirmation and simplified storage. Version 1.3.058 keeps a rolling week of market history in SQLite and removes unused research analytics and DuckDB storage.</p>
-            </div>
+        <section class="latest-improvements" id="features" aria-labelledby="trends-features-title">
+            <div class="section-kicker">The SwiftUI prototype</div>
+            <div class="section-heading-block"><h2 id="trends-features-title">One workflow across iPad and Mac</h2>
+                <p>Radar signals remain visible while market symbols are checked. Review source status and open the selected instrument's chart in the same workspace.</p></div>
             <div class="improvement-grid">
-                <article><span class="material-icons-outlined" aria-hidden="true">verified</span><h3>Close-confirmed moves</h3><p>Rapid-move publication now requires a confirming close, reducing alerts triggered only by a momentary candle extreme.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">manage_search</span><h3>Instrument lookup fixed</h3><p>Search for an instrument to inspect it in the radar and chart workflow, alongside configurable rise and crash thresholds.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">storage</span><h3>One week of market history</h3><p>Market observations and scan history are compacted in local SQLite. Imported transactions and watchlists remain available.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">radar</span><h3>Radar</h3><p>Review live and saved signals, including rapid moves and sustained trends.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">monitor_heart</span><h3>Source telemetry</h3><p>See which data sources are responding and how many observations were accepted.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">show_chart</span><h3>Charts and settings</h3><p>Inspect price bars and configure the rapid-move rules and display currency.</p></article>
             </div>
         </section>
 
-        <section class="quick-strip" aria-label="MiMiTrends workflow summary">
-            <div class="quick-strip-item"><strong>Discover</strong><span>Add up to 40 balanced public leader candidates every 30 minutes instead of reopening external pages for every scan.</span></div>
-            <div class="quick-strip-item"><strong>Rotate</strong><span>Interleave liquid US and European symbols across regular cycles with capacity for up to 90 instruments.</span></div>
-            <div class="quick-strip-item"><strong>Detect</strong><span>Publish stable 120-minute corridors and quality-checked rapid rises or crashes using configurable thresholds.</span></div>
-            <div class="quick-strip-item"><strong>Inspect</strong><span>Open a signal chart, recent coverage, or linked news headlines without leaving the radar.</span></div>
-        </section>
-
-        <section class="feature-overview" id="features">
-            <div class="section-kicker">Features</div>
-            <div class="section-heading-block"><h2>A focused radar for the live trading session</h2><p>MiMiTrends turns a broad rotating universe into readable corridor, rapid-rise, and rapid-crash alerts. Each result is information for review, not a trading recommendation.</p></div>
-            <div class="feature-clusters trends-feature-clusters">
-                <article class="feature-cluster"><span class="cluster-icon material-icons-outlined" aria-hidden="true">trending_up</span><h3>Rapid rises</h3><p>Detect a rise against recent closes with a confirming candle close. The default is 1.5% within four minutes; price, volume, turnover, continuity, and a preceding-high check filter weak moves.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon material-icons-outlined" aria-hidden="true">trending_down</span><h3>Rapid crashes</h3><p>Detect a 0.30% four-minute or 0.60% sustained fifteen-minute decline with market-data quality checks. Active crashes receive independent priority checks.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon material-icons-outlined" aria-hidden="true">show_chart</span><h3>Two-hour corridors</h3><p>Find stable ranges with repeated edge touches, bounded drift, and remaining room to inspect. Alerts show measured movement, price, and age.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon material-icons-outlined" aria-hidden="true">radar</span><h3>Liquid market rotation</h3><p>Rank by turnover and feed freshness, scan up to 90 eligible instruments per regular cycle, and rotate US and European watchlists with bounded public discovery.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon material-icons-outlined" aria-hidden="true">sensors</span><h3>Source activity</h3><p>Inspect the latest operation, age, and valid item counts for each source. Optional Scalable and venue adapters remain separate from the default data path.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon material-icons-outlined" aria-hidden="true">candlestick_chart</span><h3>Signal charts</h3><p>Inspect minute candles and volume in focused or full-history views, with optional overlays for imported executions.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon material-icons-outlined" aria-hidden="true">upload_file</span><h3>Local CSV import</h3><p>Import completed broker transactions into local SQLite and match them to chart intervals without uploading portfolio data.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon material-icons-outlined" aria-hidden="true">article</span><h3>Coverage and headlines</h3><p>Open the activity-ranked universe and recent linked headlines on demand. Headlines are reading leads, not scanner-confirmed explanations.</p></article>
-            </div>
-        </section>
-
-        <section class="pricing trends-download" id="download" aria-labelledby="trends-release-section-title">
-            <div class="release-section-header">
-                <div class="section-kicker">Release center</div>
-                <h2 id="trends-release-section-title">Current build and recent development</h2>
-            </div>
-            <div class="release-panel">
-                <section class="commit-feed" aria-label="Recent MiMiTrends development activity">
-                    <div class="commit-feed-scroller">
-                        <h3 class="release-feed-title">Development activity</h3>
-                        <p class="release-feed-note">Recent commits may include changes beyond the downloadable release.</p>
-                        <div class="commit-list" role="list">
-                        @if (recentCommits.length) {
-                            <a *ngFor="let commit of recentCommits; trackBy: trackCommit" class="commit-item" [href]="commit.url" target="_blank" rel="noopener noreferrer"><span class="commit-time">{{ commit.time }}</span><span class="commit-message">{{ commit.message }}</span></a>
-                        } @else { <div class="commit-feed-empty">Recent commits are loading from GitHub.</div> }
-                        </div>
-                        <div class="release-notes-inline" aria-label="Recent release highlights">
-                            <h3 class="release-feed-title">Recent release highlights</h3>
-                            <ul><li>Rapid moves require a confirming close, and instrument lookup has been repaired.</li><li>Market and scan history is retained for seven days in SQLite; unused research analytics and DuckDB storage were removed.</li></ul>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="pricing-card-column"><div class="price-card">
-                <div class="download-release-heading"><h2>{{ latestVersion }}</h2><p>Current MiMiTrends desktop release</p></div>
-                <div class="price-meta">
-                    <p class="price-copy"><span class="price-label">Released</span> <span class="price-value"><span class="price-file-date">{{ latestReleaseDate }}</span><span class="price-release-age">{{ latestReleaseAge }}</span></span></p>
-                    <p class="price-copy"><span class="price-label">DMG updated</span> <span class="price-value"><span class="price-file-date">{{ latestDmgFileDate }}</span><span class="price-release-age">{{ latestDmgFileAge }}</span></span></p>
-                    <p class="price-copy price-copy-platform">Signed <strong>macOS DMG</strong>. Windows and Linux packaging exists but remains platform-test pending.</p>
-                </div>
-                <div class="download-direct-label">Download directly</div>
-                @if (!isMobileDevice) {
-                    <a class="button button-primary button-block dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer" aria-label="Download MiMiTrends DMG for macOS 26 or 27">
-                        <span class="download-platform-badge" aria-hidden="true"><span class="download-platform-icon">&#63743;</span><span class="download-platform-os">26–27</span></span>
-                        <span>Download DMG</span>
-                    </a>
-                } @else {
-                    <p class="mobile-download-hint">Open this page on a Mac to download.</p>
-                }
-                <div class="download-pitch"><h2>No cloud account. No subscription.</h2><p>Your scanner history and imported transaction context stay on your computer. MiMiTrends is informational software and does not place orders or provide investment advice.</p></div>
-                <p class="price-copy"><a [href]="releasesUrl" target="_blank" rel="noopener noreferrer">Browse all releases</a></p>
-            </div>
-                <aside class="feedback-card" aria-labelledby="trends-feedback-title">
-                    <div>
-                        <span class="feedback-kicker">Help improve MiMiTrends</span>
-                        <h2 id="trends-feedback-title">Found a bug or have a suggestion?</h2>
-                        <p>Please share it in the comments or send me an email. I read every report and idea with care, and appreciate your help.</p>
-                    </div>
-                    <div class="feedback-links">
-                        <a href="https://miminavi.blogspot.com/2026/05/blog-post.html#comments"
-                           target="_blank" rel="noopener noreferrer">Leave a comment</a>
-                        <a href="mailto:javaentwickler@gmail.com">javaentwickler@gmail.com</a>
-                    </div>
-                </aside>
-            </div>
-        </section>
-
-        <section class="details" id="preview">
-            <div class="details-copy"><div class="section-kicker">Screenshots</div><h2 class="section-heading-title">Explore the workspace in detail</h2><p class="hero-text">The first image shows the current radar, source panel and expanded chart. Select either screenshot for a full-resolution viewer with 100% zoom.</p></div>
-            <div class="preview-grid trends-preview-grid">
-                <article class="preview-card" *ngFor="let screenshot of screenshots">
-                    <button type="button" class="preview-card-trigger" (click)="openScreenshot(screenshot)" [attr.aria-label]="'Enlarge ' + screenshot.title">
-                        <span class="preview-card-image-shell"><img class="preview-image" [src]="screenshot.src" [alt]="screenshot.alt"><span class="preview-card-zoom material-icons-outlined" aria-hidden="true">zoom_in</span></span>
-                        <span class="preview-card-copy"><strong>{{ screenshot.title }}</strong><span>{{ screenshot.description }}</span></span>
-                    </button>
+        <section class="pricing trends-download" id="download" aria-labelledby="trends-release-title">
+            <div class="section-kicker">macOS download</div>
+            <div class="section-heading-block"><h2 id="trends-release-title">Current Mac release</h2>
+                <p>The notarized DMG is published in the <a [href]="releasesUrl" target="_blank" rel="noopener noreferrer">mimiTrendsIOS GitHub releases</a>. It requires macOS 27 or newer.</p></div>
+            <div class="trends-release-grid">
+                <article class="price-card">
+                    <h3>mimiTrendsIOS {{ latestVersion }}</h3>
+                    <p>Published {{ latestReleaseDate }}</p>
+                    <a class="button button-primary button-block dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer">Download Mac DMG</a>
+                    <p class="hero-download-note">The iPad build is still being prepared for the App Store.</p>
+                </article>
+                <article class="price-card"><h3>Recent development</h3>
+                    @if (recentCommits.length) {
+                        <ul class="trends-commit-list">
+                            @for (commit of recentCommits.slice(0, 5); track trackCommit($index, commit)) {
+                                <li><a [href]="commit.url" target="_blank" rel="noopener noreferrer">{{ commit.message }}</a><small>{{ commit.time }}</small></li>
+                            }
+                        </ul>
+                    } @else { <p>See the <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">source repository</a> for the latest changes.</p> }
                 </article>
             </div>
         </section>
 
-        <section class="roadmap-section" id="faq">
-            <div class="section-kicker">FAQ</div><div class="section-heading-block"><h2>Know what the scanner does—and what it does not</h2></div>
-            <div class="faq-grid">
-                <article class="faq-item"><h3>Is MiMiTrends a trading bot?</h3><p>No. It is informational software: it does not place orders, provide investment advice, or guarantee that a detected anomaly will continue.</p></article>
-                <article class="faq-item"><h3>Which markets are supported?</h3><p>The radar supports configurable US, European, or combined watchlists. It processes up to 90 eligible symbols per regular cycle, rotates through larger universes, and adds at most 40 public discovery candidates every 30 minutes.</p></article>
-                <article class="faq-item"><h3>What do rapid moves mean?</h3><p><strong>RAPID CRASH</strong> starts at a 0.30% four-minute or 0.60% sustained fifteen-minute decline by default. <strong>RAPID RISE</strong> starts at a 1.5% rise within four minutes by default. Both require market-data quality checks; thresholds are editable in Settings. These are alerts, not forecasts.</p></article>
-                <article class="faq-item"><h3>What else does the radar publish?</h3><p><strong>TRADABLE CORRIDOR</strong> marks a stable two-hour range with repeated edge interaction, limited drift, and usable remaining room. Deep trend, prediction, and long-horizon research models are outside the active radar.</p></article>
-                <article class="faq-item"><h3>Do I need an API key?</h3><p>No key is required for the default data path. Finnhub is an optional enhancement for supported US symbols.</p></article>
-                <article class="faq-item"><h3>Where is my data stored?</h3><p>Market observations, scan history, accepted events, preferences, and imported executions are stored locally in SQLite. Market and scan data are retained for seven days; imported transactions and watchlists remain available.</p></article>
-                <article class="faq-item"><h3>Which platforms are ready?</h3><p>The application is cross-platform by design. The current UI and builds have been tested on macOS; Windows and Linux packages are implemented but not yet platform-verified.</p></article>
-                <article class="faq-item"><h3>How is it built?</h3><p>MiMiTrends is a modular Kotlin/JVM application with a JavaFX desktop interface and Gradle-based native packaging.</p></article>
+        <section class="preview" id="preview" aria-labelledby="trends-preview-title">
+            <div class="section-kicker">Screenshots</div>
+            <div class="section-heading-block"><h2 id="trends-preview-title">Current SwiftUI screens</h2>
+                <p>Captured from the running iPad and macOS apps. Select an image to inspect it at full size.</p></div>
+            <div class="preview-grid trends-preview-grid">
+                @for (screenshot of screenshots; track screenshot.src) {
+                    <article class="preview-card">
+                        <button type="button" class="trends-screenshot-button" (click)="openScreenshot(screenshot)" [attr.aria-label]="'Enlarge ' + screenshot.title">
+                            <img class="preview-image" [src]="screenshot.src" [alt]="screenshot.alt" loading="lazy">
+                        </button>
+                        <div class="preview-card-copy"><h3>{{ screenshot.title }}</h3><p>{{ screenshot.description }}</p></div>
+                    </article>
+                }
             </div>
         </section>
 
-        <section class="trends-references" id="references" aria-labelledby="trends-references-title">
-            <div class="section-kicker">How it works</div>
-            <div class="section-heading-block"><h2 id="trends-references-title">Methods and local data</h2><p>Read the current project documentation for the radar rules, storage model, and latest changes. Alert thresholds are heuristics for review, not forecasts.</p></div>
+        <section class="trends-references" id="faq" aria-labelledby="trends-faq-title">
+            <div class="section-kicker">Availability</div>
+            <div class="section-heading-block"><h2 id="trends-faq-title">Questions about the prototype</h2></div>
             <div class="trends-reference-grid">
-                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">radar</span><div><h3>Radar rules</h3><p>The project README explains corridor detection, rapid moves, source quality, and alert thresholds.</p><a href="https://github.com/senatov/mimiTrends#what-the-application-does" target="_blank" rel="noopener noreferrer">Read the radar overview <span aria-hidden="true">↗</span></a></div></article>
-                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">storage</span><div><h3>Local storage</h3><p>See how SQLite retains market history, transactions, backups, and seven-day scan data.</p><a href="https://github.com/senatov/mimiTrends/blob/main/Doc/AnalyticsStorage.md" target="_blank" rel="noopener noreferrer">Read the storage guide <span aria-hidden="true">↗</span></a></div></article>
-                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">new_releases</span><div><h3>Release history</h3><p>Check published changes and download the latest tested macOS package.</p><a [href]="releasesUrl" target="_blank" rel="noopener noreferrer">View GitHub releases <span aria-hidden="true">↗</span></a></div></article>
+                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">tablet_mac</span><div><h3>Can I install it on iPad now?</h3><p>The iPad App Store release is pending while its design is refined. The current source and a Mac DMG are available on GitHub.</p></div></article>
+                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">phone_iphone</span><div><h3>What about iPhone?</h3><p>The mobile layout is designed for iPad. iPhone support is not planned for this prototype.</p></div></article>
+                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">code</span><div><h3>Where is the Kotlin edition?</h3><p>It remains available as an <a [href]="archiveUrl" target="_blank" rel="noopener noreferrer">archived reference project</a>. Active development is in the SwiftUI repository.</p></div></article>
+                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">menu_book</span><div><h3>How does it work?</h3><p>Read the <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">current README and source</a> for data sources, signal rules and build instructions.</p></div></article>
             </div>
         </section>
     </main>
-
-    <footer class="footer"><a class="brand footer-brand" [routerLink]="['/trends']" fragment="top"><span class="brand-logo-shell brand-logo-shell-footer trends-logo-shell"><img src="/images/trends/AppIcon-1024.png" alt="MiMiTrends logo"></span><span class="brand-text">MiMiTrends</span></a><div class="footer-links"><a [routerLink]="['/trends']" fragment="features">Features</a><a [routerLink]="['/trends']" fragment="preview">Screenshots</a><a [routerLink]="['/trends']" fragment="download">Download</a><a [routerLink]="['/trends']" fragment="faq">FAQ</a><a [routerLink]="['/trends']" fragment="references">How it works</a><a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">GitHub</a><a [href]="linkedInUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></footer>
+    <footer class="footer"><a class="brand footer-brand" [routerLink]="['/mimitrendsios']" fragment="top"><span class="brand-logo-shell brand-logo-shell-footer trends-logo-shell"><img src="/images/trends/AppIcon-1024.png" alt=""></span><span class="brand-text">mimiTrendsIOS</span></a><div class="footer-links"><a [routerLink]="['/mimitrendsios']" fragment="features">Features</a><a [routerLink]="['/mimitrendsios']" fragment="preview">Screenshots</a><a [routerLink]="['/mimitrendsios']" fragment="download">Download</a><a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">GitHub</a><a [href]="linkedInUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></footer>
 </div>

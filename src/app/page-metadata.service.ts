@@ -8,14 +8,23 @@ interface MetaSnapshot {
     content: string;
 }
 
+interface NavigatorSnapshot {
+    title: string;
+    canonical: string;
+    favicon: string;
+    meta: MetaSnapshot[];
+    structuredData: string[];
+}
+
 @Injectable({providedIn: 'root'})
 export class PageMetadataService {
     private readonly document = inject(DOCUMENT);
-    private readonly navigatorTitle = this.document.title;
-    private readonly navigatorCanonical = this.document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href ?? 'https://miminavi.tech/';
-    private readonly navigatorFavicon = this.document.querySelector<HTMLLinkElement>('link[rel="icon"]')?.getAttribute('href') ?? '/favicon.ico';
-    private readonly navigatorMeta = this.captureMeta();
-    private readonly navigatorStructuredData = Array.from(
+    private readonly embeddedNavigator = this.readEmbeddedNavigator();
+    private readonly navigatorTitle = this.embeddedNavigator?.title ?? this.document.title;
+    private readonly navigatorCanonical = this.embeddedNavigator?.canonical ?? this.document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href ?? 'https://miminavi.tech/';
+    private readonly navigatorFavicon = this.embeddedNavigator?.favicon ?? this.document.querySelector<HTMLLinkElement>('link[rel="icon"]')?.getAttribute('href') ?? '/favicon.ico';
+    private readonly navigatorMeta = this.embeddedNavigator?.meta ?? this.captureMeta();
+    private readonly navigatorStructuredData = this.embeddedNavigator?.structuredData ?? Array.from(
         this.document.querySelectorAll<HTMLScriptElement>('script[type="application/ld+json"]')
     ).map(element => element.text);
 
@@ -73,5 +82,15 @@ export class PageMetadataService {
             }
         }
         return snapshots;
+    }
+
+    private readEmbeddedNavigator(): NavigatorSnapshot | null {
+        const element = this.document.querySelector<HTMLScriptElement>('#navigator-metadata');
+        if (!element?.text) return null;
+        try {
+            return JSON.parse(element.text) as NavigatorSnapshot;
+        } catch {
+            return null;
+        }
     }
 }

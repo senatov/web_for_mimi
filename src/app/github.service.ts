@@ -38,7 +38,7 @@ export class GitHubService {
     private readonly daysPerMonth = 30;
     private readonly monthsPerYear = 12;
 
-    async loadLatestRelease(project: 'navigator' | 'trends' = 'navigator'): Promise<GitHubLatestRelease | null> {
+    async loadLatestRelease(project: 'navigator' | 'trendsios' = 'navigator'): Promise<GitHubLatestRelease | null> {
         try {
             const response = await fetch(this.resolveLatestReleaseUrl(project), {
                 headers: this.requestHeaders
@@ -54,7 +54,7 @@ export class GitHubService {
         }
     }
 
-    async loadRecentCommits(project: 'navigator' | 'trends' = 'navigator'): Promise<RecentCommitViewModel[]> {
+    async loadRecentCommits(project: 'navigator' | 'trendsios' = 'navigator'): Promise<RecentCommitViewModel[]> {
         try {
             const response = await fetch(`${this.recentCommitsUrl}?project=${project}`);
 
@@ -163,7 +163,7 @@ export class GitHubService {
         return `Released ${diffInYears} yr ago`;
     }
 
-    private resolveLatestReleaseUrl(project: 'navigator' | 'trends'): string {
+    private resolveLatestReleaseUrl(project: 'navigator' | 'trendsios'): string {
         if (typeof window === 'undefined') {
             return `${this.latestReleaseUrl}?project=${project}&channel=latest`;
         }
@@ -173,8 +173,8 @@ export class GitHubService {
             return `${this.latestReleaseUrl}?project=${project}&channel=latest`;
         }
 
-        return project === 'trends'
-            ? 'https://api.github.com/repos/senatov/mimiTrends/releases/latest'
+        return project === 'trendsios'
+            ? 'https://api.github.com/repos/senatov/mimiTrendsIOS/releases/latest'
             : this.publicLatestReleaseUrl;
     }
 

@@ -121,9 +121,30 @@
 .trends-hero-visual img {
   display: block;
   width: 100%;
-  height: auto;
+  height: min(66vw, 650px);
   border-radius: 13px;
+  object-fit: cover;
+  object-position: top;
 }
+
+.prototype-notice {
+  max-width: var(--gd-max-width);
+  margin: 24px auto 0;
+  padding: 16px 22px;
+  border: 1px solid #d7b776;
+  border-radius: 14px;
+  background: #fff4db;
+  color: #523d1d;
+  line-height: 1.55;
+}
+.prototype-notice a { color: #365c8d; font-weight: 700; }
+.trends-release-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.trends-commit-list { padding-left: 18px; }
+.trends-commit-list li { margin: 0 0 12px; }
+.trends-commit-list a { display: block; }
+.trends-commit-list small { color: var(--gd-ink-soft); }
+.trends-screenshot-button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.trends-preview-grid .preview-card:first-child { grid-column: 1 / -1; }
 
 .trends-hero-caption {
   display: flex;
@@ -141,7 +162,7 @@
 }
 
 .trends-preview-grid {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   max-width: 1120px;
   margin: 0 auto;
 }
@@ -155,7 +176,7 @@
   display: block;
   width: 100%;
   height: auto;
-  max-height: none;
+  max-height: 620px;
   padding: 0;
   object-fit: contain;
   background: #f5f7fa;
@@ -182,6 +203,9 @@
 
 @media (max-width: 700px) {
   .trends-reference-grid { grid-template-columns: 1fr; }
+  .trends-release-grid, .trends-preview-grid { grid-template-columns: 1fr; }
+  .trends-preview-grid .preview-card:first-child { grid-column: auto; }
+  .prototype-notice { margin: 16px var(--gd-gutter) 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,15 +1,16 @@
 import {mkdir, readFile, writeFile} from 'node:fs/promises';
 import {join} from 'node:path';
+import {load} from 'cheerio';
 
 const outputDirectory = join(process.cwd(), 'dist', 'web-for-mimi');
 const sourcePath = join(outputDirectory, 'index.html');
 const sitemapPath = join(outputDirectory, 'sitemap.xml');
-const trendsDirectory = join(outputDirectory, 'trends');
+const trendsDirectory = join(outputDirectory, 'mimitrendsios');
 const trendsPath = join(trendsDirectory, 'index.html');
 
 const repositories = {
     navigator: 'senatov/MiMiNavigator',
-    trends: 'senatov/mimiTrends'
+    trends: 'senatov/mimiTrendsIOS'
 };
 
 function replaceOnce(source, pattern, replacement, label) {
@@ -79,82 +80,77 @@ await writeFile(sourcePath, navigatorHtml);
 
 let sitemap = await readFile(sitemapPath, 'utf8');
 sitemap = updateSitemapDate(sitemap, 'https://miminavi.tech/', navigatorRelease.datePublished);
-sitemap = updateSitemapDate(sitemap, 'https://miminavi.tech/trends', trendsRelease.datePublished);
+sitemap = updateSitemapDate(sitemap, 'https://miminavi.tech/mimitrendsios', trendsRelease.datePublished);
 await writeFile(sitemapPath, sitemap);
 
 let trendsHtml = navigatorHtml;
-const title = 'MiMiTrends — Live Corridor and Rapid-Move Radar';
-const description = 'Local-first desktop radar for liquid US and European equities, with configurable rapid-rise and rapid-crash alerts, two-hour corridors, live source status, and signal charts.';
-const keywords = 'MiMiTrends, rapid rise alert, rapid crash alert, intraday corridor scanner, US and European stock radar, configurable rapid moves, local-first market scanner, Kotlin JavaFX desktop app';
+// A direct visit to this static route must still restore Navigator metadata
+// when the visitor switches projects without a full page reload.
+const $navigator = load(navigatorHtml);
+const navigatorSnapshot = {
+    title: $navigator('title').text(),
+    canonical: $navigator('link[rel="canonical"]').attr('href'),
+    favicon: $navigator('link[rel="icon"]').attr('href'),
+    meta: $navigator('meta[name], meta[property]').toArray().map(element => ({
+        attribute: element.attribs.name ? 'name' : 'property',
+        key: element.attribs.name || element.attribs.property,
+        content: element.attribs.content || ''
+    })),
+    structuredData: $navigator('script[type="application/ld+json"]').toArray().map(element => $navigator(element).html())
+};
+const navigatorSnapshotTag = `<script id="navigator-metadata" type="application/json">${JSON.stringify(navigatorSnapshot).replace(/</g, '\\u003c')}</script>`;
+const title = 'mimiTrendsIOS — SwiftUI market radar for iPad and Mac';
+const description = 'A SwiftUI prototype for iPad and macOS 27+: market radar, source telemetry, saved signals and price charts. Download the notarized Mac DMG; iPad App Store release is in preparation.';
+const keywords = 'mimiTrendsIOS, SwiftUI, iPad market radar, macOS market radar, stock charts';
 const imageUrl = 'https://miminavi.tech/images/trends/AppIcon-1024.png';
-const pageUrl = 'https://miminavi.tech/trends';
-
-trendsHtml = replaceOnce(trendsHtml, /<title>[^<]*<\/title>/, `<title>${title}</title>`, 'title');
-trendsHtml = replaceOnce(trendsHtml, /<meta name="description" content="[^"]*">/, `<meta name="description" content="${description}">`, 'description');
-trendsHtml = replaceOnce(trendsHtml, /<meta name="application-name" content="[^"]*">/, '<meta name="application-name" content="MiMiTrends">', 'application name');
-trendsHtml = replaceOnce(trendsHtml, /<meta name="keywords" content="[^"]*">/, `<meta name="keywords" content="${keywords}">`, 'keywords');
-trendsHtml = replaceOnce(trendsHtml, /<meta name="apple-mobile-web-app-title" content="[^"]*">/, '<meta name="apple-mobile-web-app-title" content="MiMiTrends">', 'mobile application title');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:site_name" content="[^"]*">/, '<meta property="og:site_name" content="MiMiTrends">', 'Open Graph site name');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${title}">`, 'Open Graph title');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${description}">`, 'Open Graph description');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${pageUrl}">`, 'Open Graph URL');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${imageUrl}">`, 'Open Graph image');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image:alt" content="[^"]*">/, '<meta property="og:image:alt" content="MiMiTrends application icon">', 'Open Graph image alt');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image:width" content="[^"]*">/, '<meta property="og:image:width" content="1024">', 'Open Graph image width');
-trendsHtml = replaceOnce(trendsHtml, /<meta property="og:image:height" content="[^"]*">/, '<meta property="og:image:height" content="1024">', 'Open Graph image height');
-trendsHtml = replaceOnce(trendsHtml, /<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${title}">`, 'Twitter title');
-trendsHtml = replaceOnce(trendsHtml, /<meta name="twitter:description" content="[^"]*">/, `<meta name="twitter:description" content="${description}">`, 'Twitter description');
-trendsHtml = replaceOnce(trendsHtml, /<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${imageUrl}">`, 'Twitter image');
-trendsHtml = replaceOnce(trendsHtml, /<meta name="twitter:image:alt" content="[^"]*">/, '<meta name="twitter:image:alt" content="MiMiTrends application icon">', 'Twitter image alt');
-trendsHtml = replaceOnce(trendsHtml, /<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${pageUrl}">`, 'canonical URL');
-trendsHtml = replaceOnce(trendsHtml, /(<link rel="icon"[^>]*href=")[^"]*("[^>]*>)/, '$1/images/trends/AppIcon-1024.png$2', 'favicon');
-
+const pageUrl = 'https://miminavi.tech/mimitrendsios';
+const metadata = [
+    [/<title>[^<]*<\/title>/, `<title>${title}</title>`, 'title'],
+    [/<meta name="description" content="[^"]*">/, `<meta name="description" content="${description}">`, 'description'],
+    [/<meta name="application-name" content="[^"]*">/, '<meta name="application-name" content="mimiTrendsIOS">', 'application name'],
+    [/<meta name="keywords" content="[^"]*">/, `<meta name="keywords" content="${keywords}">`, 'keywords'],
+    [/<meta name="apple-mobile-web-app-title" content="[^"]*">/, '<meta name="apple-mobile-web-app-title" content="mimiTrendsIOS">', 'mobile application title'],
+    [/<meta property="og:site_name" content="[^"]*">/, '<meta property="og:site_name" content="mimiTrendsIOS">', 'Open Graph site name'],
+    [/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${title}">`, 'Open Graph title'],
+    [/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${description}">`, 'Open Graph description'],
+    [/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${pageUrl}">`, 'Open Graph URL'],
+    [/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${imageUrl}">`, 'Open Graph image'],
+    [/<meta property="og:image:alt" content="[^"]*">/, '<meta property="og:image:alt" content="mimiTrendsIOS application icon">', 'Open Graph image alt'],
+    [/<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${title}">`, 'Twitter title'],
+    [/<meta name="twitter:description" content="[^"]*">/, `<meta name="twitter:description" content="${description}">`, 'Twitter description'],
+    [/<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${imageUrl}">`, 'Twitter image'],
+    [/<meta name="twitter:image:alt" content="[^"]*">/, '<meta name="twitter:image:alt" content="mimiTrendsIOS application icon">', 'Twitter image alt'],
+    [/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${pageUrl}">`, 'canonical URL'],
+    [/(<link rel="icon"[^>]*href=")[^"]*("[^>]*>)/, '$1/images/trends/AppIcon-1024.png$2', 'favicon']
+];
+for (const [pattern, replacement, label] of metadata) {
+    trendsHtml = replaceOnce(trendsHtml, pattern, replacement, label);
+}
 const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'MiMiTrends',
-    applicationCategory: 'FinanceApplication',
-    operatingSystem: 'macOS',
-    url: pageUrl,
-    image: imageUrl,
-    description,
-    softwareRequirements: 'macOS desktop',
+    '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+    name: 'mimiTrendsIOS', applicationCategory: 'FinanceApplication',
+    operatingSystem: ['iPadOS', 'macOS'],
+    softwareRequirements: 'macOS 27 or newer for the downloadable DMG',
     softwareVersion: trendsRelease.version,
     datePublished: trendsRelease.datePublished,
     downloadUrl: trendsRelease.downloadUrl,
-    featureList: [
-        'Stable two-hour intraday corridor detection',
-        'Configurable rapid-rise alerts, defaulting to 1.5% within four minutes with market-data quality checks',
-        'Rapid-crash alerts for 0.30% four-minute or 0.60% sustained fifteen-minute declines with market-data quality checks',
-        'Settings for rapid-move thresholds, time windows, minimum price, turnover, and rapid-rise row color',
-        'Rotating coverage of up to 90 liquid US and European equities per regular cycle',
-        'Independent one-minute priority checks for active rapid crashes',
-        'Bounded public discovery of up to 40 candidates every 30 minutes',
-        'Accepted US and European signal refresh through Scalable when an ISIN is known',
-        'Exchange-aware market calendars and observation timestamps',
-        'Focused local SQLite market history and accepted-event storage',
-        'Seven-day retention for market and scan history with local database compaction',
-        'Close-confirmed rapid moves and repaired instrument lookup',
-        'Local broker CSV transaction import and execution overlays on price charts',
-        'Live source activity beside the radar and on-demand recent coverage',
-        'On-demand linked headlines from public news sources'
+    url: pageUrl, codeRepository: 'https://github.com/senatov/mimiTrendsIOS',
+    image: imageUrl,
+    screenshot: [
+        'https://miminavi.tech/images/trends/mimitrendsios-ipad-radar.png',
+        'https://miminavi.tech/images/trends/mimitrendsios-macos-settings.jpg',
+        'https://miminavi.tech/images/trends/mimitrendsios-macos-currency.jpg'
     ],
+    programmingLanguage: 'Swift', description,
     offers: {'@type': 'Offer', price: '0', priceCurrency: 'EUR'},
-    author: {
-        '@type': 'Person',
-        name: 'Iakov Senatov',
-        url: 'https://www.linkedin.com/in/iakov-senatov-07060765/'
-    }
+    author: {'@type': 'Person', name: 'Iakov Senatov', url: 'https://www.linkedin.com/in/iakov-senatov-07060765/'}
 };
-
 trendsHtml = trendsHtml.replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
 const structuredDataTag = `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`;
-trendsHtml = replaceOnce(trendsHtml, /(<script src="\/analytics\.js" defer><\/script>)/, `${structuredDataTag}$1`, 'analytics script insertion point');
-
-const staticFallback = `<div class="seo-static-fallback"><h1>MiMiTrends</h1><p>${description}</p><p>Rotate through liquid US and European equities, publish quality-checked rapid rises, rapid crashes, and two-hour corridors, and keep scanner history and imported transaction context locally in SQLite.</p><a href="https://github.com/senatov/mimiTrends/releases">Download MiMiTrends from GitHub</a></div>`;
+trendsHtml = replaceOnce(trendsHtml, /(<script src="\/analytics\.js" defer><\/script>)/, `${navigatorSnapshotTag}${structuredDataTag}$1`, 'analytics script insertion point');
+const staticFallback = `<div class="seo-static-fallback"><h1>mimiTrendsIOS</h1><p>${description}</p><p>SwiftUI market radar for iPad and Mac. The previous Kotlin prototype is archived. The current notarized DMG requires macOS 27 or newer.</p><a href="${trendsRelease.downloadUrl}">Download the Mac release</a> · <a href="https://github.com/senatov/mimiTrendsIOS">Current source</a></div>`;
 trendsHtml = trendsHtml.replace(/<app-root>\s*<noscript>[\s\S]*?<\/noscript>/, '<app-root>');
 trendsHtml = replaceOnce(trendsHtml, /<app-root>/, `<app-root>${staticFallback}`, 'application root');
-
 await mkdir(trendsDirectory, {recursive: true});
 await writeFile(trendsPath, trendsHtml);
 console.log(`Rendered current release metadata: ${sourcePath}`);

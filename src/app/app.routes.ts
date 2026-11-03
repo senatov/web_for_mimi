@@ -8,9 +8,14 @@ export const routes: Routes = [
             .then(module => module.NavigatorPageComponent)
     },
     {
-        path: 'trends',
+        path: 'mimitrendsios',
         loadComponent: () => import('./pages/trends/trends-page.component')
             .then(module => module.TrendsPageComponent)
+    },
+    {
+        path: 'trends',
+        redirectTo: 'mimitrendsios',
+        pathMatch: 'full'
     },
     {
         path: '**',

@@ -13,11 +13,11 @@
 const PRODUCT_PAYLOAD = {
     name: 'MiMi software portal',
     tagline: 'Independent desktop applications by Iakov Senatov.',
-    description: 'The requested path does not exist on the MiMiNavigator and MiMiTrends presentation portal.',
+    description: 'The requested path does not exist on the MiMiNavigator and mimiTrendsIOS presentation portal.',
     website: 'https://miminavi.tech/',
     projects: {
         navigator: 'https://miminavi.tech/',
-        trends: 'https://miminavi.tech/trends'
+        trendsios: 'https://miminavi.tech/mimitrendsios'
     }
 };
 

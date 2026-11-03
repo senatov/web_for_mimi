@@ -14,7 +14,7 @@ const GITHUB_ACCEPT_HEADER = 'application/octet-stream';
 const ASSET_ID_PATTERN = /^\d+$/;
 const PROJECT_REPOSITORIES = {
   navigator: 'senatov/MiMiNavigator',
-  trends: 'senatov/mimiTrends'
+  trendsios: 'senatov/mimiTrendsIOS'
 };
 
 async function handler(req, res) {

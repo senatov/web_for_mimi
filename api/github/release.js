@@ -13,7 +13,7 @@
 const GITHUB_ACCEPT_HEADER = 'application/vnd.github+json';
 const PROJECT_REPOSITORIES = {
   navigator: 'senatov/MiMiNavigator',
-  trends: 'senatov/mimiTrends'
+  trendsios: 'senatov/mimiTrendsIOS'
 };
 const LAST_MACOS_26_RELEASE = 'v0.9.1.2';
 
