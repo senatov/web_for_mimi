@@ -37,9 +37,9 @@ export class TrendsPageComponent implements OnInit {
         {src: '/images/trends/mimitrendsios-macos-currency.jpg', alt: 'mimiTrendsIOS currency settings in the current macOS app', title: 'Display currency on Mac', description: 'Choose how market values are displayed in the current SwiftUI app.'}
     ];
     protected readonly heroScreenshot = this.screenshots[0];
-    protected latestVersion = '0.0.1.2';
-    protected latestReleaseDate = '3 November 2026';
-    protected latestDmgUrl = 'https://github.com/senatov/mimiTrendsIOS/releases/tag/0.0.1.2';
+    protected latestVersion = 'Latest release';
+    protected latestReleaseDate = 'See GitHub for the publication date';
+    protected latestDmgUrl = this.releasesUrl;
     protected recentCommits: RecentCommitViewModel[] = [];
 
     ngOnInit(): void {
@@ -102,7 +102,8 @@ export class TrendsPageComponent implements OnInit {
             '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'mimiTrendsIOS',
             applicationCategory: 'FinanceApplication', operatingSystem: ['iPadOS', 'macOS'],
             softwareRequirements: 'macOS 27 or newer for the downloadable DMG',
-            softwareVersion: this.latestVersion, url: pageUrl, downloadUrl: this.latestDmgUrl,
+            ...(this.latestVersion === 'Latest release' ? {} : {softwareVersion: this.latestVersion}),
+            url: pageUrl, downloadUrl: this.latestDmgUrl,
             codeRepository: repositoryUrl, image: iconUrl,
             screenshot: this.screenshots.map(screenshot => `https://miminavi.tech${screenshot.src}`),
             programmingLanguage: 'Swift', description

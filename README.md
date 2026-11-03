@@ -35,6 +35,8 @@ npm start
 npm run build
 ```
 
+The portal's `package.json` version is independent of the application release. Increment it with `npm version patch --no-git-tag-version` when publishing portal changes. The mimiTrendsIOS app version is advanced by its release script; the site reads the latest app version from GitHub at build time and in the browser.
+
 ## Product content and screenshots
 
 - Visible release, DMG, and commit timestamps use compact `DD.MM.YYYY HH:mm` formatting in the visitor’s browser time zone. The DMG release annotation uses smaller text; operation-feedback tags share equal dimensions.
