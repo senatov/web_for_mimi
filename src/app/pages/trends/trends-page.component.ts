@@ -7,6 +7,7 @@ import {GitHubLatestRelease} from '../../github.models';
 import {PreviewDialogComponent, PreviewDialogData} from '../../preview-dialog.component';
 
 interface ProductScreenshot { src: string; alt: string; title: string; description: string; }
+interface ReleaseCommit { hash: string; subject: string; details: string; }
 const pageUrl = 'https://miminavi.tech/mimitrendsios';
 const repositoryUrl = 'https://github.com/senatov/mimiTrendsIOS';
 const iconUrl = 'https://miminavi.tech/images/trends/AppIcon-1024.png';
@@ -40,7 +41,9 @@ export class TrendsPageComponent implements OnInit {
     protected latestVersion = 'Latest release';
     protected latestReleaseDate = 'See GitHub for the publication date';
     protected latestDmgUrl = this.releasesUrl;
+    protected latestReleaseUrl = this.releasesUrl;
     protected recentCommits: RecentCommitViewModel[] = [];
+    protected releaseCommits: ReleaseCommit[] = [];
 
     ngOnInit(): void {
         this.applySeoMetadata();
@@ -64,6 +67,8 @@ export class TrendsPageComponent implements OnInit {
             const dmg = release.assets.find(asset => asset.name.toLowerCase().endsWith('.dmg'));
             this.latestVersion = release.tag_name || this.latestVersion;
             this.latestDmgUrl = dmg?.browser_download_url || release.html_url || this.latestDmgUrl;
+            this.latestReleaseUrl = release.html_url || this.releasesUrl;
+            this.releaseCommits = this.parseReleaseCommits(release.body || '');
             const publishedAt = release.published_at || release.created_at;
             if (publishedAt) this.latestReleaseDate = this.gitHubService.formatReleaseDate(publishedAt);
             this.applySeoMetadata();
@@ -74,6 +79,20 @@ export class TrendsPageComponent implements OnInit {
     private async loadCommits(): Promise<void> {
         this.recentCommits = await this.gitHubService.loadRecentCommits('trendsios');
         this.cdr.markForCheck();
+    }
+
+    private parseReleaseCommits(body: string): ReleaseCommit[] {
+        const commits: ReleaseCommit[] = [];
+        for (const line of body.split(/\r?\n/)) {
+            const match = /^- \*\*(.+)\*\* \(\x60([0-9a-f]{8,40})\x60\)$/.exec(line);
+            if (match) {
+                commits.push({subject: match[1], hash: match[2], details: ''});
+            } else if (commits.length && line.startsWith('  >')) {
+                const text = line.slice(3).trim();
+                commits[commits.length - 1].details += text ? `${text} ` : '\n';
+            }
+        }
+        return commits.map(commit => ({...commit, details: commit.details.trim()}));
     }
 
     private applySeoMetadata(): void {

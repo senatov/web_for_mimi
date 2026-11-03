@@ -10,20 +10,23 @@
                 <a [routerLink]="['/mimitrendsios']" class="project-switcher-option active" aria-current="page"><img src="/images/trends/AppIcon-1024.png" alt="" width="20" height="20">mimiTrendsIOS</a>
             </div>
             <nav class="topnav" aria-label="Primary navigation">
-                <a [routerLink]="['/mimitrendsios']" fragment="features">Features</a>
-                <a [routerLink]="['/mimitrendsios']" fragment="preview">Screenshots</a>
-                <a [routerLink]="['/mimitrendsios']" fragment="download">Mac download</a>
-                <a [routerLink]="['/mimitrendsios']" fragment="faq">FAQ</a>
-                <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a [routerLink]="['/mimitrendsios']" fragment="features"><span class="material-icons-outlined" aria-hidden="true">widgets</span>Features</a>
+                <a [routerLink]="['/mimitrendsios']" fragment="preview"><span class="material-icons-outlined" aria-hidden="true">photo_library</span>Screenshots</a>
+                <a [routerLink]="['/mimitrendsios']" fragment="download"><span class="material-icons-outlined" aria-hidden="true">download</span>Download</a>
+                <a [routerLink]="['/mimitrendsios']" fragment="faq"><span class="material-icons-outlined" aria-hidden="true">help_outline</span>FAQ</a>
+                <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer"><span class="material-icons-outlined" aria-hidden="true">code</span>GitHub</a>
             </nav>
         </div>
     </header>
 
     <main id="top">
-        <aside class="prototype-notice" aria-label="Project status">
-            <strong>Prototype project.</strong> The earlier Kotlin version was built for faster experimentation and is now
-            <a [href]="archiveUrl" target="_blank" rel="noopener noreferrer">archived on GitHub</a>.
-            This page follows the SwiftUI <strong>mimiTrendsIOS</strong> project.
+        <aside class="development-update trends-prototype-notice" aria-label="Project status">
+            <div>
+                <span class="development-update-kicker">Project status</span>
+                <h3>SwiftUI prototype for iPad and Mac</h3>
+                <p>The earlier Kotlin version was made for faster experimentation and is archived. Active development is in mimiTrendsIOS.</p>
+            </div>
+            <a [href]="archiveUrl" target="_blank" rel="noopener noreferrer">View the Kotlin archive <span aria-hidden="true">↗</span></a>
         </aside>
 
         <section class="hero trends-hero">
@@ -39,10 +42,20 @@
                 <p class="hero-download-note">Notarized Mac release · iPad App Store release in preparation</p>
                 <div class="hero-highlights" aria-label="mimiTrendsIOS at a glance">
                     <section class="hero-highlight-group"><div class="hero-highlight-heading"><h2>Market workspace</h2></div>
-                        <ul class="hero-proof"><li>Live and saved radar signals</li><li>Source telemetry</li><li>Selected price charts</li></ul>
+                        <ul class="hero-proof">
+                            <li><span class="material-icons-outlined" aria-hidden="true">radar</span>Radar signals</li>
+                            <li><span class="material-icons-outlined" aria-hidden="true">monitor_heart</span>Source telemetry</li>
+                            <li><span class="material-icons-outlined" aria-hidden="true">show_chart</span>Price charts</li>
+                            <li><span class="material-icons-outlined" aria-hidden="true">history</span>Saved history</li>
+                        </ul>
                     </section>
                     <section class="hero-highlight-group"><div class="hero-highlight-heading"><h2>Current platforms</h2></div>
-                        <ul class="hero-proof"><li>iPad-focused design</li><li>macOS 27+ DMG</li><li>Open SwiftUI source</li></ul>
+                        <ul class="hero-proof">
+                            <li><span class="material-icons-outlined" aria-hidden="true">tablet_mac</span>iPad focused</li>
+                            <li><span class="material-icons-outlined" aria-hidden="true">desktop_mac</span>Mac DMG</li>
+                            <li><span class="material-icons-outlined" aria-hidden="true">verified</span>Notarized</li>
+                            <li><span class="material-icons-outlined" aria-hidden="true">code</span>Open source</li>
+                        </ul>
                     </section>
                 </div>
             </div>
@@ -52,9 +65,9 @@
             </button>
         </section>
 
-        <section class="latest-improvements" id="features" aria-labelledby="trends-features-title">
+        <section class="latest-improvements" aria-labelledby="trends-latest-title">
             <div class="section-kicker">The SwiftUI prototype</div>
-            <div class="section-heading-block"><h2 id="trends-features-title">One workflow across iPad and Mac</h2>
+            <div class="section-heading-block"><h2 id="trends-latest-title">One workflow across iPad and Mac</h2>
                 <p>Radar signals remain visible while market symbols are checked. Review source status and open the selected instrument's chart in the same workspace.</p></div>
             <div class="improvement-grid">
                 <article><span class="material-icons-outlined" aria-hidden="true">radar</span><h3>Radar</h3><p>Review live and saved signals, including rapid moves and sustained trends.</p></article>
@@ -63,26 +76,73 @@
             </div>
         </section>
 
+        <section class="feature-overview" id="features" aria-labelledby="trends-features-title">
+            <div class="section-kicker">Features</div>
+            <div class="section-heading-block"><h2 id="trends-features-title">Explore the current build</h2>
+                <p>Native panels keep the market context readable. The iPad and Mac builds share the Radar workflow, with platform-sized controls and device-local settings.</p></div>
+            <div class="feature-clusters">
+                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">01</span><h3>Signals in context</h3><p>Review live and saved Radar events with company identity, movement, price, and age together.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">02</span><h3>Source activity</h3><p>Watch provider status and counters while the app checks market symbols in the foreground.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">03</span><h3>Selected chart</h3><p>Inspect candle history and moving averages for the selected symbol, with longer ranges when provider access is configured.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">04</span><h3>Personal settings</h3><p>Adjust rapid-move thresholds, table appearance, watchlist symbols, and display currency.</p></article>
+            </div>
+        </section>
+
         <section class="pricing trends-download" id="download" aria-labelledby="trends-release-title">
-            <div class="section-kicker">macOS download</div>
-            <div class="section-heading-block"><h2 id="trends-release-title">Current Mac release</h2>
-                <p>The notarized DMG is published in the <a [href]="releasesUrl" target="_blank" rel="noopener noreferrer">mimiTrendsIOS GitHub releases</a>. It requires macOS 27 or newer.</p></div>
-            <div class="trends-release-grid">
+            <div class="release-section-header">
+                <div class="section-kicker">Release center</div>
+                <h2 id="trends-release-title">Download the Mac build and inspect its changes</h2>
+            </div>
+            <div class="release-panel">
+                <section class="commit-feed" aria-label="Recent development and generated release notes">
+                    <div class="commit-feed-scroller">
+                        <h3 class="release-feed-title">Development activity</h3>
+                        <p class="release-feed-note">These recent commits may be newer than the downloadable build.</p>
+                        <div class="commit-list" role="list" aria-label="Recent mimiTrendsIOS commits">
+                            @if (recentCommits.length) {
+                                @for (commit of recentCommits; track trackCommit($index, commit)) {
+                                    <a class="commit-item" [href]="commit.url" target="_blank" rel="noopener noreferrer" [attr.title]="commit.message">
+                                        <span class="commit-time">{{ commit.time }}</span>
+                                        <span class="commit-message">{{ commit.message }}</span>
+                                    </a>
+                                }
+                            } @else { <div class="commit-feed-empty">Recent commits are unavailable. <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">View GitHub</a>.</div> }
+                        </div>
+                        <div class="release-notes-inline" id="release-changes" aria-label="Complete generated release changes">
+                            <h3 class="release-feed-title">Release notes · {{ latestVersion }}</h3>
+                            @if (releaseCommits.length) {
+                                <p class="release-feed-note">All {{ releaseCommits.length }} commits included in this release, in chronological order. Select a commit to read its full description.</p>
+                                <ol class="trends-release-commits">
+                                    @for (commit of releaseCommits; track commit.hash) {
+                                        <li>
+                                            @if (commit.details) {
+                                                <details><summary><span class="trends-commit-subject">{{ commit.subject }}</span><code>{{ commit.hash }}</code></summary><p>{{ commit.details }}</p></details>
+                                            } @else {
+                                                <span class="trends-commit-subject">{{ commit.subject }}</span><code>{{ commit.hash }}</code>
+                                            }
+                                        </li>
+                                    }
+                                </ol>
+                            } @else { <p class="commit-feed-empty">The full release notes are available <a [href]="latestReleaseUrl" target="_blank" rel="noopener noreferrer">on GitHub</a>.</p> }
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="pricing-card-column">
                 <article class="price-card">
-                    <h3>mimiTrendsIOS {{ latestVersion }}</h3>
-                    <p>Published {{ latestReleaseDate }}</p>
-                    <a class="button button-primary button-block dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer">Download Mac DMG</a>
-                    <p class="hero-download-note">The iPad build is still being prepared for the App Store.</p>
+                    <div class="download-release-heading"><h2>mimiTrendsIOS {{ latestVersion }}</h2><p>Current Mac release</p></div>
+                    <div class="price-meta">
+                        <p class="price-copy"><span class="price-label">Version</span><strong>{{ latestVersion }}</strong></p>
+                        <p class="price-copy"><span class="price-label">Released</span><span class="price-value">{{ latestReleaseDate }}</span></p>
+                        <p class="price-copy price-copy-platform">Signed and notarized DMG for macOS 27 or newer.</p>
+                    </div>
+                    <div class="download-direct-label">Download directly</div>
+                    <a class="button button-primary button-block dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer" aria-label="Download mimiTrendsIOS DMG for macOS 27 or newer">Download Mac DMG</a>
+                    <div class="download-pitch"><h2>SwiftUI for iPad and Mac</h2><p>The Mac DMG is available now. The iPad App Store release is in preparation; the source is available on GitHub.</p></div>
+                    <p class="price-copy trends-release-link"><a [href]="latestReleaseUrl" target="_blank" rel="noopener noreferrer">Open this release on GitHub</a></p>
+                    <p class="price-copy trends-release-link"><a [href]="releasesUrl" target="_blank" rel="noopener noreferrer">Browse all releases</a></p>
                 </article>
-                <article class="price-card"><h3>Recent development</h3>
-                    @if (recentCommits.length) {
-                        <ul class="trends-commit-list">
-                            @for (commit of recentCommits.slice(0, 5); track trackCommit($index, commit)) {
-                                <li><a [href]="commit.url" target="_blank" rel="noopener noreferrer">{{ commit.message }}</a><small>{{ commit.time }}</small></li>
-                            }
-                        </ul>
-                    } @else { <p>See the <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">source repository</a> for the latest changes.</p> }
-                </article>
+                <aside class="development-update trends-ipad-note"><div><span class="development-update-kicker">iPad availability</span><h3>Designed for iPad</h3><p>The mobile layout is being refined before App Store publication. There is no iPhone release planned for this prototype.</p></div></aside>
             </div>
         </section>
 

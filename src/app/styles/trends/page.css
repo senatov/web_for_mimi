@@ -1,16 +1,5 @@
-.trends-page {
-  --gd-blue: #365c8d;
-  --gd-blue-dark: #203f68;
-}
-
 .trends-page .pricing {
   background: linear-gradient(180deg, rgba(247, 244, 238, 0.48), rgba(240, 235, 226, 0.52));
-}
-
-.trends-page .price-card {
-  background: rgba(255, 255, 255, 0.76);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
 }
 
 .trends-logo-shell {
@@ -29,10 +18,6 @@
   align-items: start;
 }
 
-.trends-hero .hero-copy {
-  padding-top: clamp(24px, 6vw, 90px);
-}
-
 .trends-page .hero-highlights { margin-top: 8px; }
 .trends-page .hero-highlight-heading h2 {
   margin: 0;
@@ -42,13 +27,11 @@
 }
 .trends-page .hero-proof { max-width: 560px; }
 .trends-page .hero-proof li { white-space: normal; }
-.trends-page .trends-feature-clusters { grid-auto-rows: 1fr; }
-.trends-page .trends-feature-clusters .cluster-icon.material-icons-outlined { font-size: 22px; font-weight: normal; }
 .trends-page #features,
 .trends-page #download,
 .trends-page #preview,
 .trends-page #faq,
-.trends-page #references { scroll-margin-top: var(--section-scroll-offset); }
+.trends-page #release-changes { scroll-margin-top: var(--section-scroll-offset); }
 
 .trends-references {
   max-width: var(--gd-max-width);
@@ -127,22 +110,50 @@
   object-position: top;
 }
 
-.prototype-notice {
-  max-width: var(--gd-max-width);
-  margin: 24px auto 0;
-  padding: 16px 22px;
-  border: 1px solid #d7b776;
-  border-radius: 14px;
-  background: #fff4db;
-  color: #523d1d;
-  line-height: 1.55;
+.trends-prototype-notice {
+  max-width: calc(var(--gd-max-width) - var(--gd-gutter) - var(--gd-gutter));
+  width: calc(100% - var(--gd-gutter) - var(--gd-gutter));
+  margin: 12px auto 20px;
 }
-.prototype-notice a { color: #365c8d; font-weight: 700; }
-.trends-release-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.trends-commit-list { padding-left: 18px; }
-.trends-commit-list li { margin: 0 0 12px; }
-.trends-commit-list a { display: block; }
-.trends-commit-list small { color: var(--gd-ink-soft); }
+
+.trends-page .release-panel { min-height: 0; }
+.trends-page .commit-feed { margin-top: 0; }
+.trends-page .commit-feed-scroller {
+  flex: 0 0 auto;
+  height: min(68vh, 680px);
+  min-height: 430px;
+}
+.trends-page .price-card .download-pitch h2 { font-size: 19px; }
+.trends-page .price-card .trends-release-link { display: block; }
+.trends-ipad-note { margin-top: 0; align-items: flex-start; }
+
+.trends-release-commits {
+  margin: 0 10px 12px;
+  padding-left: 26px;
+  color: var(--gd-ink-soft);
+  font-size: 13px;
+}
+.trends-release-commits li {
+  padding: 9px 6px;
+  border-bottom: 1px solid var(--gd-line-strong);
+  line-height: 1.45;
+}
+.trends-release-commits li:last-child { border-bottom: 0; }
+.trends-release-commits summary { cursor: pointer; }
+.trends-release-commits summary:focus-visible { outline: 2px solid var(--gd-blue); outline-offset: 3px; }
+.trends-release-commits details[open] { padding-bottom: 4px; }
+.trends-release-commits p {
+  margin: 8px 0 2px 16px;
+  color: var(--gd-ink-soft);
+  white-space: pre-line;
+}
+.trends-commit-subject { color: var(--gd-ink); font-weight: 600; }
+.trends-release-commits code {
+  margin-left: 8px;
+  color: var(--gd-grey-500);
+  font-size: 11px;
+  white-space: nowrap;
+}
 .trends-screenshot-button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
 .trends-preview-grid .preview-card:first-child { grid-column: 1 / -1; }
 
@@ -187,10 +198,6 @@
 }
 
 @media (max-width: 900px) {
-  .trends-hero .hero-copy {
-    padding-top: 0;
-  }
-
   .trends-hero-visual {
     padding: 6px;
     border-radius: 16px;
@@ -203,9 +210,10 @@
 
 @media (max-width: 700px) {
   .trends-reference-grid { grid-template-columns: 1fr; }
-  .trends-release-grid, .trends-preview-grid { grid-template-columns: 1fr; }
+  .trends-preview-grid { grid-template-columns: 1fr; }
   .trends-preview-grid .preview-card:first-child { grid-column: auto; }
-  .prototype-notice { margin: 16px var(--gd-gutter) 0; }
+  .trends-page .commit-feed-scroller { height: 420px; min-height: 0; }
+  .trends-prototype-notice { margin-top: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
