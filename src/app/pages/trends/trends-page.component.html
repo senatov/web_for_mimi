@@ -2,46 +2,99 @@
     <header class="site-header">
         <div class="topbar">
             <a class="brand brand-logo-link" [routerLink]="['/mimitrendsios']" fragment="top" aria-label="mimiTrendsIOS home">
-                <span class="brand-logo-shell trends-logo-shell"><img src="/images/trends/AppIcon-1024.png" alt="" width="1024" height="1024"></span>
-                <span class="brand-copy"><span class="brand-text">mimiTrendsIOS</span><span class="brand-subtitle">SwiftUI market radar</span></span>
+                <span class="brand-logo-shell trends-logo-shell"><img src="/images/trends/AppIcon-1024.png" alt="" width="1024"
+                                                                      height="1024"></span>
+                <span class="brand-copy"><span class="brand-text">mimiTrendsIOS</span><span
+                        class="brand-subtitle">SwiftUI market radar</span></span>
             </a>
             <div class="project-switcher" aria-label="Choose MiMi project">
-                <a [routerLink]="['/']" class="project-switcher-option"><img src="/images/navigator/appstore.png" alt="" width="20" height="20">Navigator</a>
-                <a [routerLink]="['/mimitrendsios']" class="project-switcher-option active" aria-current="page"><img src="/images/trends/AppIcon-1024.png" alt="" width="20" height="20">mimiTrendsIOS</a>
+                <a [routerLink]="['/']" class="project-switcher-option"><img src="/images/navigator/appstore.png" alt="" width="20"
+                                                                             height="20">Navigator</a>
+                <a [routerLink]="['/mimitrendsios']" class="project-switcher-option active" aria-current="page"><img
+                        src="/images/trends/AppIcon-1024.png" alt="" width="20" height="20">mimiTrendsIOS</a>
             </div>
             <nav class="topnav" aria-label="Primary navigation">
                 <a [routerLink]="['/mimitrendsios']" fragment="features"><span class="material-icons-outlined" aria-hidden="true">widgets</span>Features</a>
                 <a [routerLink]="['/mimitrendsios']" fragment="preview"><span class="material-icons-outlined" aria-hidden="true">photo_library</span>Screenshots</a>
                 <a [routerLink]="['/mimitrendsios']" fragment="download"><span class="material-icons-outlined" aria-hidden="true">download</span>Download</a>
                 <a [routerLink]="['/mimitrendsios']" fragment="faq"><span class="material-icons-outlined" aria-hidden="true">help_outline</span>FAQ</a>
-                <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer"><span class="material-icons-outlined" aria-hidden="true">code</span>GitHub</a>
+                <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer"><span class="material-icons-outlined"
+                                                                                          aria-hidden="true">code</span>GitHub</a>
             </nav>
         </div>
     </header>
+
 
     <main id="top">
         <aside class="development-update trends-prototype-notice" aria-label="Project status">
             <div>
                 <span class="development-update-kicker">Project status</span>
                 <h3>SwiftUI prototype for iPad and Mac</h3>
-                <p>The earlier Kotlin version was made for faster experimentation and is archived. Active development is in mimiTrendsIOS.</p>
+                <p>The earlier Kotlin version was made for faster experimentation and is archived. Active development is in
+                    mimiTrendsIOS.</p>
             </div>
             <a [href]="archiveUrl" target="_blank" rel="noopener noreferrer">View the Kotlin archive <span aria-hidden="true">↗</span></a>
         </aside>
+
+        <section class="preview" id="preview" aria-labelledby="trends-preview-title">
+            <div class="section-kicker">Screenshots</div>
+            <div class="section-heading-block"><h2 id="trends-preview-title">Current SwiftUI screens</h2>
+                <p>Captured from the running iPad and macOS apps. Scroll, swipe, or use the arrows to browse; select an image to
+                    inspect it at full size.</p></div>
+            <div class="trends-gallery" id="trends-gallery" aria-label="mimiTrendsIOS screenshot gallery">
+                <swiper-container #gallery init="false" class="trends-gallery-track" aria-label="Screenshots">
+                    @for (screenshot of screenshots; track screenshot.src) {
+                        <swiper-slide>
+                            <a class="trends-gallery-image" [href]="screenshot.src" [attr.data-pswp-width]="screenshot.width"
+                               [attr.data-pswp-height]="screenshot.height"
+                               [attr.aria-label]="'Open ' + screenshot.title + ' full size'" target="_blank">
+                                <img [src]="screenshot.src" [alt]="screenshot.alt" [attr.width]="screenshot.width"
+                                     [attr.height]="screenshot.height" loading="lazy">
+                                <span class="trends-gallery-zoom"><span class="material-icons-outlined"
+                                                                        aria-hidden="true">zoom_in</span> View full size</span>
+                            </a>
+                            <div class="trends-gallery-caption"><h3>{{ screenshot.title }}</h3>
+                                <p>{{ screenshot.description }}</p></div>
+                        </swiper-slide>
+                    }
+                </swiper-container>
+                <div class="trends-gallery-controls" aria-label="Gallery controls">
+                    <button type="button" (click)="previousScreenshot()" [disabled]="activeScreenshot === 0"
+                            aria-label="Previous screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_back</span>
+                    </button>
+                    <span class="trends-gallery-count" aria-live="polite">{{ activeScreenshot + 1 }} / {{ screenshots.length }}</span>
+                    <button type="button" (click)="nextScreenshot()" [disabled]="activeScreenshot === screenshots.length - 1"
+                            aria-label="Next screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_forward</span>
+                    </button>
+                </div>
+                <div class="trends-gallery-dots" aria-label="Choose screenshot">
+                    @for (screenshot of screenshots; track screenshot.src; let index = $index) {
+                        <button type="button" (click)="showScreenshot(index)" [attr.aria-label]="'Show ' + screenshot.title"
+                                [attr.aria-current]="activeScreenshot === index ? 'true' : null"
+                                [class.active]="activeScreenshot === index"></button>
+                    }
+                </div>
+            </div>
+        </section>
 
         <section class="hero trends-hero">
             <div class="hero-copy">
                 <div class="section-kicker">SwiftUI · iPad · macOS 27+</div>
                 <h1>mimiTrendsIOS</h1>
                 <p class="hero-lede">A market radar built for iPad and Mac.</p>
-                <p class="hero-note">Inspect market signals, source activity and price charts in a native SwiftUI workspace. The mobile design targets iPad; an iPhone version is not planned for this prototype.</p>
+                <p class="hero-note">Inspect market signals, source activity and price charts in a native SwiftUI workspace. The mobile
+                    design targets iPad; an iPhone version is not planned for this prototype.</p>
                 <div class="hero-actions">
-                    <a class="button button-primary dmg-download-button hero-dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer" aria-label="Download mimiTrendsIOS DMG for macOS 27 or newer">Download Mac DMG</a>
+                    <a class="button button-primary dmg-download-button hero-dmg-download-button" [href]="latestDmgUrl" target="_blank"
+                       rel="noopener noreferrer" aria-label="Download mimiTrendsIOS DMG for macOS 27 or newer">Download Mac DMG</a>
                     <a class="button button-secondary" [routerLink]="['/mimitrendsios']" fragment="preview">View screenshots</a>
                 </div>
+
+
                 <p class="hero-download-note">Notarized Mac release · iPad App Store release in preparation</p>
                 <div class="hero-highlights" aria-label="mimiTrendsIOS at a glance">
-                    <section class="hero-highlight-group"><div class="hero-highlight-heading"><h2>Market workspace</h2></div>
+                    <section class="hero-highlight-group">
+                        <div class="hero-highlight-heading"><h2>Market workspace</h2></div>
                         <ul class="hero-proof">
                             <li><span class="material-icons-outlined" aria-hidden="true">radar</span>Radar signals</li>
                             <li><span class="material-icons-outlined" aria-hidden="true">monitor_heart</span>Source telemetry</li>
@@ -49,7 +102,8 @@
                             <li><span class="material-icons-outlined" aria-hidden="true">history</span>Saved history</li>
                         </ul>
                     </section>
-                    <section class="hero-highlight-group"><div class="hero-highlight-heading"><h2>Current platforms</h2></div>
+                    <section class="hero-highlight-group">
+                        <div class="hero-highlight-heading"><h2>Current platforms</h2></div>
                         <ul class="hero-proof">
                             <li><span class="material-icons-outlined" aria-hidden="true">tablet_mac</span>iPad focused</li>
                             <li><span class="material-icons-outlined" aria-hidden="true">desktop_mac</span>Mac DMG</li>
@@ -64,23 +118,40 @@
         <section class="latest-improvements" aria-labelledby="trends-latest-title">
             <div class="section-kicker">The SwiftUI prototype</div>
             <div class="section-heading-block"><h2 id="trends-latest-title">One workflow across iPad and Mac</h2>
-                <p>Radar signals remain visible while market symbols are checked. Review source status and open the selected instrument's chart in the same workspace.</p></div>
+                <p>Radar signals remain visible while market symbols are checked. Review source status and open the selected
+                    instrument's chart in the same workspace.</p></div>
             <div class="improvement-grid">
-                <article><span class="material-icons-outlined" aria-hidden="true">radar</span><h3>Radar</h3><p>Review live and saved signals, including rapid moves and sustained trends.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">monitor_heart</span><h3>Source telemetry</h3><p>See which data sources are responding and how many observations were accepted.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">show_chart</span><h3>Charts and settings</h3><p>Inspect price bars and configure the rapid-move rules and display currency.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">radar</span>
+                    <h3>Radar</h3>
+                    <p>Review live and saved signals, including rapid moves and sustained trends.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">monitor_heart</span>
+                    <h3>Source telemetry</h3>
+                    <p>See which data sources are responding and how many observations were accepted.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">show_chart</span>
+                    <h3>Charts and settings</h3>
+                    <p>Inspect price bars and configure the rapid-move rules and display currency.</p></article>
             </div>
         </section>
 
         <section class="feature-overview" id="features" aria-labelledby="trends-features-title">
             <div class="section-kicker">Features</div>
             <div class="section-heading-block"><h2 id="trends-features-title">Explore the current build</h2>
-                <p>Native panels keep the market context readable. The iPad and Mac builds share the Radar workflow, with platform-sized controls and device-local settings.</p></div>
+                <p>Native panels keep the market context readable. The iPad and Mac builds share the Radar workflow, with
+                    platform-sized controls and device-local settings.</p></div>
             <div class="feature-clusters">
-                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">01</span><h3>Signals in context</h3><p>Review live and saved Radar events with company identity, movement, price, and age together.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">02</span><h3>Source activity</h3><p>Watch provider status and counters while the app checks market symbols in the foreground.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">03</span><h3>Selected chart</h3><p>Inspect candle history and moving averages for the selected symbol, with longer ranges when provider access is configured.</p></article>
-                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">04</span><h3>Personal settings</h3><p>Adjust rapid-move thresholds, table appearance, watchlist symbols, and display currency.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">01</span>
+                    <h3>Signals in context</h3>
+                    <p>Review live and saved Radar events with company identity, movement, price, and age together.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">02</span>
+                    <h3>Source activity</h3>
+                    <p>Watch provider status and counters while the app checks market symbols in the foreground.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">03</span>
+                    <h3>Selected chart</h3>
+                    <p>Inspect candle history and moving averages for the selected symbol, with longer ranges when provider access is
+                        configured.</p></article>
+                <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">04</span>
+                    <h3>Personal settings</h3>
+                    <p>Adjust rapid-move thresholds, table appearance, watchlist symbols, and display currency.</p></article>
             </div>
         </section>
 
@@ -97,90 +168,116 @@
                         <div class="commit-list" role="list" aria-label="Recent mimiTrendsIOS commits">
                             @if (recentCommits.length) {
                                 @for (commit of recentCommits; track trackCommit($index, commit)) {
-                                    <a class="commit-item" [href]="commit.url" target="_blank" rel="noopener noreferrer" [attr.title]="commit.message">
+                                    <a class="commit-item" [href]="commit.url" target="_blank" rel="noopener noreferrer"
+                                       [attr.title]="commit.message">
                                         <span class="commit-time">{{ commit.time }}</span>
                                         <span class="commit-message">{{ commit.message }}</span>
                                     </a>
                                 }
-                            } @else { <div class="commit-feed-empty">Recent commits are unavailable. <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">View GitHub</a>.</div> }
+                            } @else {
+                                <div class="commit-feed-empty">Recent commits are unavailable. <a [href]="repositoryUrl"
+                                                                                                  target="_blank"
+                                                                                                  rel="noopener noreferrer">View
+                                    GitHub</a>.
+                                </div>
+                            }
                         </div>
                         <div class="release-notes-inline" id="release-changes" aria-label="Complete generated release changes">
                             <h3 class="release-feed-title">Release notes · {{ latestVersion }}</h3>
                             @if (releaseCommits.length) {
-                                <p class="release-feed-note">All {{ releaseCommits.length }} commits included in this release, in chronological order. Select a commit to read its full description.</p>
+                                <p class="release-feed-note">All {{ releaseCommits.length }} commits included in this release, in
+                                    chronological order. Select a commit to read its full description.</p>
                                 <ol class="trends-release-commits">
                                     @for (commit of releaseCommits; track commit.hash) {
                                         <li>
                                             @if (commit.details) {
-                                                <details><summary><span class="trends-commit-subject">{{ commit.subject }}</span><code>{{ commit.hash }}</code></summary><p>{{ commit.details }}</p></details>
+                                                <details>
+                                                    <summary><span
+                                                            class="trends-commit-subject">{{ commit.subject }}</span><code>{{ commit.hash }}</code>
+                                                    </summary>
+                                                    <p>{{ commit.details }}</p></details>
                                             } @else {
-                                                <span class="trends-commit-subject">{{ commit.subject }}</span><code>{{ commit.hash }}</code>
+                                                <span class="trends-commit-subject">{{ commit.subject }}</span>
+                                                <code>{{ commit.hash }}</code>
                                             }
                                         </li>
                                     }
                                 </ol>
-                            } @else { <p class="commit-feed-empty">The full release notes are available <a [href]="latestReleaseUrl" target="_blank" rel="noopener noreferrer">on GitHub</a>.</p> }
+                            } @else {
+                                <p class="commit-feed-empty">The full release notes are available <a [href]="latestReleaseUrl"
+                                                                                                     target="_blank"
+                                                                                                     rel="noopener noreferrer">on
+                                    GitHub</a>.</p>
+                            }
                         </div>
                     </div>
                 </section>
             </div>
             <div class="pricing-card-column">
                 <article class="price-card">
-                    <div class="download-release-heading"><h2>mimiTrendsIOS {{ latestVersion }}</h2><p>Current Mac release</p></div>
+                    <div class="download-release-heading"><h2>mimiTrendsIOS {{ latestVersion }}</h2>
+                        <p>Current Mac release</p></div>
                     <div class="price-meta">
                         <p class="price-copy"><span class="price-label">Version</span><strong>{{ latestVersion }}</strong></p>
-                        <p class="price-copy"><span class="price-label">Released</span><span class="price-value">{{ latestReleaseDate }}</span></p>
+                        <p class="price-copy"><span class="price-label">Released</span><span
+                                class="price-value">{{ latestReleaseDate }}</span></p>
                         <p class="price-copy price-copy-platform">Signed and notarized DMG for macOS 27 or newer.</p>
                     </div>
                     <div class="download-direct-label">Download directly</div>
-                    <a class="button button-primary button-block dmg-download-button" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer" aria-label="Download mimiTrendsIOS DMG for macOS 27 or newer">Download Mac DMG</a>
-                    <div class="download-pitch"><h2>SwiftUI for iPad and Mac</h2><p>The Mac DMG is available now. The iPad App Store release is in preparation; the source is available on GitHub.</p></div>
-                    <p class="price-copy trends-release-link"><a [href]="latestReleaseUrl" target="_blank" rel="noopener noreferrer">Open this release on GitHub</a></p>
-                    <p class="price-copy trends-release-link"><a [href]="releasesUrl" target="_blank" rel="noopener noreferrer">Browse all releases</a></p>
+                    <a class="button button-primary button-block dmg-download-button" [href]="latestDmgUrl" target="_blank"
+                       rel="noopener noreferrer" aria-label="Download mimiTrendsIOS DMG for macOS 27 or newer">Download Mac DMG</a>
+                    <div class="download-pitch"><h2>SwiftUI for iPad and Mac</h2>
+                        <p>The Mac DMG is available now. The iPad App Store release is in preparation; the source is available on
+                            GitHub.</p></div>
+                    <p class="price-copy trends-release-link"><a [href]="latestReleaseUrl" target="_blank" rel="noopener noreferrer">Open
+                        this release on GitHub</a></p>
+                    <p class="price-copy trends-release-link"><a [href]="releasesUrl" target="_blank" rel="noopener noreferrer">Browse
+                        all releases</a></p>
                 </article>
-                <aside class="development-update trends-ipad-note"><div><span class="development-update-kicker">iPad availability</span><h3>Designed for iPad</h3><p>The mobile layout is being refined before App Store publication. There is no iPhone release planned for this prototype.</p></div></aside>
+                <aside class="development-update trends-ipad-note">
+                    <div><span class="development-update-kicker">iPad availability</span>
+                        <h3>Designed for iPad</h3>
+                        <p>The mobile layout is being refined before App Store publication. There is no iPhone release planned for this
+                            prototype.</p></div>
+                </aside>
             </div>
         </section>
 
-        <section class="preview" id="preview" aria-labelledby="trends-preview-title">
-            <div class="section-kicker">Screenshots</div>
-            <div class="section-heading-block"><h2 id="trends-preview-title">Current SwiftUI screens</h2>
-                <p>Captured from the running iPad and macOS apps. Scroll, swipe, or use the arrows to browse; select an image to inspect it at full size.</p></div>
-            <div class="trends-gallery" id="trends-gallery" aria-label="mimiTrendsIOS screenshot gallery">
-                <swiper-container #gallery init="false" class="trends-gallery-track" aria-label="Screenshots">
-                    @for (screenshot of screenshots; track screenshot.src) {
-                        <swiper-slide>
-                            <a class="trends-gallery-image" [href]="screenshot.src" [attr.data-pswp-width]="screenshot.width" [attr.data-pswp-height]="screenshot.height" [attr.aria-label]="'Open ' + screenshot.title + ' full size'" target="_blank">
-                                <img [src]="screenshot.src" [alt]="screenshot.alt" [attr.width]="screenshot.width" [attr.height]="screenshot.height" loading="lazy">
-                                <span class="trends-gallery-zoom"><span class="material-icons-outlined" aria-hidden="true">zoom_in</span> View full size</span>
-                            </a>
-                            <div class="trends-gallery-caption"><h3>{{ screenshot.title }}</h3><p>{{ screenshot.description }}</p></div>
-                        </swiper-slide>
-                    }
-                </swiper-container>
-                <div class="trends-gallery-controls" aria-label="Gallery controls">
-                    <button type="button" (click)="previousScreenshot()" [disabled]="activeScreenshot === 0" aria-label="Previous screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_back</span></button>
-                    <span class="trends-gallery-count" aria-live="polite">{{ activeScreenshot + 1 }} / {{ screenshots.length }}</span>
-                    <button type="button" (click)="nextScreenshot()" [disabled]="activeScreenshot === screenshots.length - 1" aria-label="Next screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_forward</span></button>
-                </div>
-                <div class="trends-gallery-dots" aria-label="Choose screenshot">
-                    @for (screenshot of screenshots; track screenshot.src; let index = $index) {
-                        <button type="button" (click)="showScreenshot(index)" [attr.aria-label]="'Show ' + screenshot.title" [attr.aria-current]="activeScreenshot === index ? 'true' : null" [class.active]="activeScreenshot === index"></button>
-                    }
-                </div>
-            </div>
-        </section>
 
         <section class="trends-references" id="faq" aria-labelledby="trends-faq-title">
             <div class="section-kicker">Availability</div>
             <div class="section-heading-block"><h2 id="trends-faq-title">Questions about the prototype</h2></div>
             <div class="trends-reference-grid">
-                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">tablet_mac</span><div><h3>Can I install it on iPad now?</h3><p>The iPad App Store release is pending while its design is refined. The current source and a Mac DMG are available on GitHub.</p></div></article>
-                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">phone_iphone</span><div><h3>What about iPhone?</h3><p>The mobile layout is designed for iPad. iPhone support is not planned for this prototype.</p></div></article>
-                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">code</span><div><h3>Where is the Kotlin edition?</h3><p>It remains available as an <a [href]="archiveUrl" target="_blank" rel="noopener noreferrer">archived reference project</a>. Active development is in the SwiftUI repository.</p></div></article>
-                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">menu_book</span><div><h3>How does it work?</h3><p>Read the <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">current README and source</a> for data sources, signal rules and build instructions.</p></div></article>
+                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">tablet_mac</span>
+                    <div><h3>Can I install it on iPad now?</h3>
+                        <p>The iPad App Store release is pending while its design is refined. The current source and a Mac DMG are
+                            available on GitHub.</p></div>
+                </article>
+                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">phone_iphone</span>
+                    <div><h3>What about iPhone?</h3>
+                        <p>The mobile layout is designed for iPad. iPhone support is not planned for this prototype.</p></div>
+                </article>
+                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">code</span>
+                    <div><h3>Where is the Kotlin edition?</h3>
+                        <p>It remains available as an <a [href]="archiveUrl" target="_blank" rel="noopener noreferrer">archived
+                            reference project</a>. Active development is in the SwiftUI repository.</p></div>
+                </article>
+                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">menu_book</span>
+                    <div><h3>How does it work?</h3>
+                        <p>Read the <a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">current README and source</a>
+                            for data sources, signal rules and build instructions.</p></div>
+                </article>
             </div>
         </section>
     </main>
-    <footer class="footer"><a class="brand footer-brand" [routerLink]="['/mimitrendsios']" fragment="top"><span class="brand-logo-shell brand-logo-shell-footer trends-logo-shell"><img src="/images/trends/AppIcon-1024.png" alt=""></span><span class="brand-text">mimiTrendsIOS</span></a><div class="footer-links"><a [routerLink]="['/mimitrendsios']" fragment="features">Features</a><a [routerLink]="['/mimitrendsios']" fragment="preview">Screenshots</a><a [routerLink]="['/mimitrendsios']" fragment="download">Download</a><a [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">GitHub</a><a [href]="linkedInUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></footer>
+    <footer class="footer"><a class="brand footer-brand" [routerLink]="['/mimitrendsios']" fragment="top"><span
+            class="brand-logo-shell brand-logo-shell-footer trends-logo-shell"><img src="/images/trends/AppIcon-1024.png"
+                                                                                    alt=""></span><span class="brand-text">mimiTrendsIOS</span></a>
+        <div class="footer-links"><a [routerLink]="['/mimitrendsios']" fragment="features">Features</a><a
+                [routerLink]="['/mimitrendsios']" fragment="preview">Screenshots</a><a [routerLink]="['/mimitrendsios']"
+                                                                                       fragment="download">Download</a><a
+                [href]="repositoryUrl" target="_blank" rel="noopener noreferrer">GitHub</a><a [href]="linkedInUrl" target="_blank"
+                                                                                              rel="noopener noreferrer">LinkedIn</a>
+        </div>
+    </footer>
 </div>

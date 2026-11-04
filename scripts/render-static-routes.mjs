@@ -137,9 +137,13 @@ const structuredData = {
     url: pageUrl, codeRepository: 'https://github.com/senatov/mimiTrendsIOS',
     image: imageUrl,
     screenshot: [
-        'https://miminavi.tech/images/trends/mimitrendsios-ipad-radar.png',
-        'https://miminavi.tech/images/trends/mimitrendsios-macos-settings.jpg',
-        'https://miminavi.tech/images/trends/mimitrendsios-macos-currency.jpg'
+        'https://miminavi.tech/images/trends/00.png',
+        'https://miminavi.tech/images/trends/01.png',
+        'https://miminavi.tech/images/trends/03.png',
+        'https://miminavi.tech/images/trends/04.png',
+        'https://miminavi.tech/images/trends/05.png',
+        'https://miminavi.tech/images/trends/06.jpg',
+        'https://miminavi.tech/images/trends/07.jpg',
     ],
     programmingLanguage: 'Swift', description,
     offers: {'@type': 'Offer', price: '0', priceCurrency: 'EUR'},
