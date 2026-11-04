@@ -9,7 +9,7 @@
 //  Route component for the MiMiNavigator landing page.
 //
 
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {PreviewDialogComponent, PreviewDialogData} from '../../preview-dialog.component';
@@ -32,6 +32,8 @@ interface GalleryImageItem {
         thumbnailImageSrc: string;
         alt: string;
         title: string;
+        width: number;
+        height: number;
 }
 
 
@@ -72,6 +74,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         private readonly cdr = inject(ChangeDetectorRef);
         private readonly gitHubService = inject(GitHubService);
         private readonly pageMetadata = inject(PageMetadataService);
+        @ViewChild('heroThumbnails') private heroThumbnails?: ElementRef<HTMLDivElement>;
 
         protected latestVersion = 'Loading...';
         protected latestReleaseDate = 'Loading...';
@@ -88,27 +91,27 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         protected readonly linkedInProfileUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
         private readonly previewImageBasePath = '/images';
         private readonly previewDialogHint = 'Press Esc or click outside to close';
-        private readonly heroGalleryImagePaths = [
-                'navigator/gallery/dual-panel-workspace.png',
-                'navigator/gallery/advanced-file-search.png',
-                'navigator/gallery/media-converter-video.png',
-                'navigator/gallery/server-connections.png',
-                'navigator/gallery/authorized-folders-dialog.png',
-                'navigator/gallery/cloud-share-settings.png',
-                'navigator/gallery/external-tools-diagnostics.png',
-                'navigator/gallery/permissions-settings.png',
-                'navigator/gallery/diff-tool-details.png',
-                'navigator/gallery/panel-settings.png',
-                'navigator/gallery/saved-server-editor.png',
-                'navigator/gallery/diff-tool-settings.png',
-                'navigator/gallery/path-completion.png',
-                'navigator/gallery/connections-menu.png',
-                'navigator/gallery/server-passwords.png',
-                'navigator/gallery/column-presets.png',
-                'navigator/gallery/cloud-share-menu.png',
-                'navigator/gallery/sidebar-and-favorites.png',
-                'navigator/gallery/file-preview-panel.png',
-                'navigator/gallery/media-converter-gif.png'
+        private readonly heroGalleryImageSpecs: Array<readonly [string, number, number]> = [
+                ['navigator/gallery/dual-panel-workspace.png', 1353, 1258],
+                ['navigator/gallery/advanced-file-search.png', 967, 900],
+                ['navigator/gallery/media-converter-video.png', 1109, 852],
+                ['navigator/gallery/server-connections.png', 817, 587],
+                ['navigator/gallery/authorized-folders-dialog.png', 1046, 448],
+                ['navigator/gallery/cloud-share-settings.png', 1054, 876],
+                ['navigator/gallery/external-tools-diagnostics.png', 1156, 836],
+                ['navigator/gallery/permissions-settings.png', 1156, 836],
+                ['navigator/gallery/diff-tool-details.png', 1156, 836],
+                ['navigator/gallery/panel-settings.png', 1156, 836],
+                ['navigator/gallery/saved-server-editor.png', 1133, 718],
+                ['navigator/gallery/diff-tool-settings.png', 1156, 836],
+                ['navigator/gallery/path-completion.png', 1353, 1258],
+                ['navigator/gallery/connections-menu.png', 1353, 1258],
+                ['navigator/gallery/server-passwords.png', 1156, 836],
+                ['navigator/gallery/column-presets.png', 1353, 1258],
+                ['navigator/gallery/cloud-share-menu.png', 1353, 1258],
+                ['navigator/gallery/sidebar-and-favorites.png', 1353, 1258],
+                ['navigator/gallery/file-preview-panel.png', 1353, 1258],
+                ['navigator/gallery/media-converter-gif.png', 1109, 852]
         ];
         private readonly heroCarouselTransitionMs = 920;
         private homebrewCopyTimerId: number | null = null;
@@ -249,6 +252,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 this.heroGalleryActiveIndex = index;
                 this.heroCarouselTransitioning = true;
                 this.cdr.markForCheck();
+                this.scrollActiveThumbnailIntoView(index);
 
                 this.heroCarouselTransitionTimerId = window.setTimeout(() => {
                         this.heroCarouselTransitioning = false;
@@ -310,7 +314,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
 
         protected getHeroGalleryThumbnailLabel(index: number): string {
-                return `Show screenshot ${index + 1} of ${this.heroGalleryImages.length}`;
+                return `Show ${this.heroGalleryImages[index].title}, screenshot ${index + 1} of ${this.heroGalleryImages.length}`;
         }
 
 
@@ -441,25 +445,40 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
 
         private buildHeroGalleryImages(): GalleryImageItem[] {
-                return this.heroGalleryImagePaths.map(relativePath => {
+                return this.heroGalleryImageSpecs.map(([relativePath, width, height]) => {
                         return this.createGalleryImageItem(
                             relativePath,
-                            this.createHeroGalleryImageTitle(relativePath)
+                            this.createHeroGalleryImageTitle(relativePath),
+                            width,
+                            height
                         );
                 });
         }
 
 
 
-        private createGalleryImageItem(relativePath: string, alt: string): GalleryImageItem {
+        private createGalleryImageItem(relativePath: string, alt: string, width: number, height: number): GalleryImageItem {
                 const imageUrl = `${this.previewImageBasePath}/${relativePath}`;
 
                 return {
                         itemImageSrc: imageUrl,
                         thumbnailImageSrc: imageUrl,
                         alt,
-                        title: alt
+                        title: alt,
+                        width,
+                        height
                 };
+        }
+
+
+
+        private scrollActiveThumbnailIntoView(index: number): void {
+                const strip = this.heroThumbnails?.nativeElement;
+                const thumbnail = strip?.children.item(index) as HTMLElement | null;
+                if (!strip || !thumbnail) return;
+                const left = thumbnail.offsetLeft - strip.offsetLeft - (strip.clientWidth - thumbnail.clientWidth) / 2;
+                const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                strip.scrollTo({left, behavior: reducedMotion ? 'instant' : 'smooth'});
         }
 
 

@@ -157,6 +157,8 @@
   line-height: 1;
 }
 
+.hero-gallery-open .material-icons-outlined { font-size: 18px; }
+
 .hero-gallery-nav:hover,
 .hero-gallery-open:hover,
 .hero-gallery-nav:focus-visible,
@@ -176,10 +178,37 @@
   transform: scale(1.05);
 }
 
+.hero-gallery-current {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 9px 13px;
+  border-top: 1px solid var(--gd-image-line-soft);
+  background: #fff;
+}
+
+.hero-gallery-current-title {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--gd-ink);
+  font-size: 13px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hero-gallery-current-size {
+  flex: 0 0 auto;
+  color: var(--gd-grey-500);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
 .hero-gallery-thumbnails {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(52px, 68px);
+  grid-auto-columns: minmax(66px, 86px);
   gap: 7px;
   padding: 8px 10px 10px;
   overflow-x: auto;
@@ -222,6 +251,11 @@
   border-color: rgba(24, 63, 111, 0.52);
   box-shadow: inset 0 0 0 1px rgba(24, 63, 111, 0.22), 0 4px 10px rgba(13, 31, 74, 0.08);
   opacity: 1;
+}
+
+.hero-gallery-thumbnail:focus-visible {
+  outline: 2px solid var(--gd-blue);
+  outline-offset: -2px;
 }
 
 /* ─── Gallery popup ─── */
@@ -279,7 +313,7 @@
   width: auto;
   height: auto;
   max-width: min(82vw, 1240px);
-  max-height: min(calc(100dvh - 280px), 860px);
+  max-height: min(calc(100dvh - 220px), 920px);
   object-fit: contain;
   margin: 0 auto;
   border-radius: 12px;
@@ -333,6 +367,13 @@
   font-weight: 400;
   line-height: 1.45;
   text-align: center;
+}
+
+.gallery-popup-dimensions {
+  color: var(--gd-grey-500);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .gallery-popup-thumbnail {
@@ -472,7 +513,7 @@
 
   .gallery-popup-image {
     max-width: min(94vw, 760px);
-    max-height: min(calc(100dvh - 330px), 620px);
+    max-height: min(calc(100dvh - 240px), 680px);
   }
 
   .gallery-popup-meta {

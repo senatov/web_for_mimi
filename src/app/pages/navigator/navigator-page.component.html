@@ -158,10 +158,14 @@
                              (click)="openHeroGallery($event)">
                             <img [src]="heroGalleryImages[previousHeroCarouselIndex].itemImageSrc"
                                  [alt]="heroGalleryImages[previousHeroCarouselIndex].alt"
+                                 [attr.width]="heroGalleryImages[previousHeroCarouselIndex].width"
+                                 [attr.height]="heroGalleryImages[previousHeroCarouselIndex].height"
                                  class="hero-carousel-image hero-carousel-image-previous"
                                  aria-hidden="true">
                             <img [src]="heroGalleryImages[heroCarouselIndex].itemImageSrc"
                                  [alt]="heroGalleryImages[heroCarouselIndex].alt"
+                                 [attr.width]="heroGalleryImages[heroCarouselIndex].width"
+                                 [attr.height]="heroGalleryImages[heroCarouselIndex].height"
                                  class="hero-carousel-image hero-carousel-image-current">
                             <button type="button"
                                     class="hero-gallery-nav hero-gallery-nav-previous"
@@ -177,12 +181,16 @@
                             </button>
                             <button type="button"
                                     class="hero-gallery-open"
-                                    aria-label="Open current screenshot in fullscreen gallery"
+                                    aria-label="Enlarge current screenshot"
                                     (click)="openHeroGallery($event)">
-                                <span aria-hidden="true">&#9974;</span>
+                                <span class="material-icons-outlined" aria-hidden="true">zoom_in</span>
                             </button>
                         </div>
-                        <div class="hero-gallery-thumbnails" aria-label="Choose screenshot">
+                        <div class="hero-gallery-current" aria-live="polite" data-seo-dynamic>
+                            <span class="hero-gallery-current-title">{{ heroGalleryCurrentItem.title }}</span>
+                            <span class="hero-gallery-current-size">{{ heroGalleryCurrentItem.width }} × {{ heroGalleryCurrentItem.height }} px</span>
+                        </div>
+                        <div #heroThumbnails class="hero-gallery-thumbnails" aria-label="Choose screenshot">
                             <button *ngFor="let img of heroGalleryImages; let i = index; trackBy: trackHeroGalleryImage"
                                     type="button"
                                     class="hero-gallery-thumbnail"
@@ -192,7 +200,7 @@
                                     (click)="selectHeroGalleryImage(i)"
                                     (dblclick)="openHeroGalleryAt(i, $event)"
                                     (keydown)="onHeroThumbnailKeydown($event, i)">
-                                <img [src]="img.thumbnailImageSrc" [alt]="img.alt">
+                                <img [src]="img.thumbnailImageSrc" alt="" [attr.width]="img.width" [attr.height]="img.height" loading="lazy">
                             </button>
                         </div>
                     </div>
@@ -221,17 +229,20 @@
                         <div class="gallery-popup-frame">
                             <img [src]="item.itemImageSrc"
                                  [alt]="item.alt"
+                                 [attr.width]="item.width"
+                                 [attr.height]="item.height"
                                  class="gallery-popup-image">
                             <div class="gallery-popup-meta">
                                 <span class="gallery-popup-counter">{{ heroGalleryDialogProgressLabel }}</span>
                                 <span class="gallery-popup-title">{{ item.title }}</span>
-                                <button type="button" class="button button-secondary" (click)="openGalleryDetail()">Inspect image</button>
+                                <span class="gallery-popup-dimensions">{{ item.width }} × {{ item.height }} px</span>
+                                <button type="button" class="button button-secondary" (click)="openGalleryDetail()">Zoom &amp; inspect</button>
                             </div>
                         </div>
                     </ng-template>
                     <ng-template #thumbnail let-item>
                         <img [src]="item.thumbnailImageSrc"
-                             [alt]="item.alt"
+                             alt="" [attr.width]="item.width" [attr.height]="item.height" loading="lazy"
                              class="gallery-popup-thumbnail">
                     </ng-template>
                 </p-galleria>
