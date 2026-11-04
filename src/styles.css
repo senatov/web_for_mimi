@@ -1,3 +1,5 @@
+@import 'photoswipe/style.css';
+
 :root {
     color-scheme: light;
     --gd-font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;

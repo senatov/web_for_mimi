@@ -59,10 +59,6 @@
                     </section>
                 </div>
             </div>
-            <button class="trends-hero-visual" type="button" (click)="openScreenshot(heroScreenshot)" aria-label="Enlarge current iPad radar screenshot">
-                <img [src]="heroScreenshot.src" [alt]="heroScreenshot.alt" width="1640" height="2360" fetchpriority="high">
-                <span class="trends-hero-caption"><span>Current iPad radar · 3 November 2026</span><span class="material-icons-outlined" aria-hidden="true">zoom_in</span></span>
-            </button>
         </section>
 
         <section class="latest-improvements" aria-labelledby="trends-latest-title">
@@ -149,16 +145,29 @@
         <section class="preview" id="preview" aria-labelledby="trends-preview-title">
             <div class="section-kicker">Screenshots</div>
             <div class="section-heading-block"><h2 id="trends-preview-title">Current SwiftUI screens</h2>
-                <p>Captured from the running iPad and macOS apps. Select an image to inspect it at full size.</p></div>
-            <div class="preview-grid trends-preview-grid">
-                @for (screenshot of screenshots; track screenshot.src) {
-                    <article class="preview-card">
-                        <button type="button" class="trends-screenshot-button" (click)="openScreenshot(screenshot)" [attr.aria-label]="'Enlarge ' + screenshot.title">
-                            <img class="preview-image" [src]="screenshot.src" [alt]="screenshot.alt" loading="lazy">
-                        </button>
-                        <div class="preview-card-copy"><h3>{{ screenshot.title }}</h3><p>{{ screenshot.description }}</p></div>
-                    </article>
-                }
+                <p>Captured from the running iPad and macOS apps. Scroll, swipe, or use the arrows to browse; select an image to inspect it at full size.</p></div>
+            <div class="trends-gallery" id="trends-gallery" aria-label="mimiTrendsIOS screenshot gallery">
+                <swiper-container #gallery init="false" class="trends-gallery-track" aria-label="Screenshots">
+                    @for (screenshot of screenshots; track screenshot.src) {
+                        <swiper-slide>
+                            <a class="trends-gallery-image" [href]="screenshot.src" [attr.data-pswp-width]="screenshot.width" [attr.data-pswp-height]="screenshot.height" [attr.aria-label]="'Open ' + screenshot.title + ' full size'" target="_blank">
+                                <img [src]="screenshot.src" [alt]="screenshot.alt" [attr.width]="screenshot.width" [attr.height]="screenshot.height" loading="lazy">
+                                <span class="trends-gallery-zoom"><span class="material-icons-outlined" aria-hidden="true">zoom_in</span> View full size</span>
+                            </a>
+                            <div class="trends-gallery-caption"><h3>{{ screenshot.title }}</h3><p>{{ screenshot.description }}</p></div>
+                        </swiper-slide>
+                    }
+                </swiper-container>
+                <div class="trends-gallery-controls" aria-label="Gallery controls">
+                    <button type="button" (click)="previousScreenshot()" [disabled]="activeScreenshot === 0" aria-label="Previous screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_back</span></button>
+                    <span class="trends-gallery-count" aria-live="polite">{{ activeScreenshot + 1 }} / {{ screenshots.length }}</span>
+                    <button type="button" (click)="nextScreenshot()" [disabled]="activeScreenshot === screenshots.length - 1" aria-label="Next screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_forward</span></button>
+                </div>
+                <div class="trends-gallery-dots" aria-label="Choose screenshot">
+                    @for (screenshot of screenshots; track screenshot.src; let index = $index) {
+                        <button type="button" (click)="showScreenshot(index)" [attr.aria-label]="'Show ' + screenshot.title" [attr.aria-current]="activeScreenshot === index ? 'true' : null" [class.active]="activeScreenshot === index"></button>
+                    }
+                </div>
             </div>
         </section>
 

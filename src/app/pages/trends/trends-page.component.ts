@@ -1,12 +1,14 @@
 import {CommonModule, DOCUMENT} from '@angular/common';
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {RouterLink} from '@angular/router';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
+import {register, SwiperContainer} from 'swiper/element/bundle';
 import {GitHubService, RecentCommitViewModel} from '../../github.service';
 import {GitHubLatestRelease} from '../../github.models';
-import {PreviewDialogComponent, PreviewDialogData} from '../../preview-dialog.component';
 
-interface ProductScreenshot { src: string; alt: string; title: string; description: string; }
+register();
+
+interface ProductScreenshot { src: string; alt: string; title: string; description: string; width: number; height: number; }
 interface ReleaseCommit { hash: string; subject: string; details: string; }
 const pageUrl = 'https://miminavi.tech/mimitrendsios';
 const repositoryUrl = 'https://github.com/senatov/mimiTrendsIOS';
@@ -17,27 +19,29 @@ const description = 'A SwiftUI prototype for iPad and macOS 27+: market radar, s
 @Component({
     selector: 'app-trends-page',
     standalone: true,
-    imports: [CommonModule, RouterLink, MatDialogModule],
+    imports: [CommonModule, RouterLink],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './trends-page.component.html',
     styleUrls: ['../../styles/app.css', '../../styles/trends/page.css'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TrendsPageComponent implements OnInit {
+export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly gitHubService = inject(GitHubService);
     private readonly cdr = inject(ChangeDetectorRef);
     private readonly document = inject(DOCUMENT);
-    private readonly dialog = inject(MatDialog);
+    @ViewChild('gallery') private gallery?: ElementRef<SwiperContainer>;
+    private lightbox?: PhotoSwipeLightbox;
     protected readonly repositoryUrl = repositoryUrl;
     protected readonly releasesUrl = `${repositoryUrl}/releases`;
     protected readonly archiveUrl = 'https://github.com/senatov/mimiTrends';
     protected readonly linkedInUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
     protected readonly screenshots: ProductScreenshot[] = [
-        {src: '/images/trends/mimitrendsios-ipad-radar.png', alt: 'mimiTrendsIOS on iPad with source telemetry, live radar signals and an Oracle price chart', title: 'Radar on iPad', description: 'The current iPad build shows source status, saved signals and a selected price chart in one scrollable workspace.'},
-        {src: '/images/trends/mimitrendsios-macos-settings.jpg', alt: 'mimiTrendsIOS Rapid moves settings in the current macOS app', title: 'Rapid moves on Mac', description: 'Adjust signal thresholds and time windows in the Mac build.'},
-        {src: '/images/trends/mimitrendsios-macos-currency.jpg', alt: 'mimiTrendsIOS currency settings in the current macOS app', title: 'Display currency on Mac', description: 'Choose how market values are displayed in the current SwiftUI app.'}
+        {src: '/images/trends/mimitrendsios-ipad-radar.png', alt: 'mimiTrendsIOS on iPad with source telemetry, live radar signals and an Oracle price chart', title: 'Radar on iPad', description: 'The current iPad build shows source status, saved signals and a selected price chart in one scrollable workspace.', width: 1640, height: 2360},
+        {src: '/images/trends/mimitrendsios-macos-settings.jpg', alt: 'mimiTrendsIOS Rapid moves settings in the current macOS app', title: 'Rapid moves on Mac', description: 'Adjust signal thresholds and time windows in the Mac build.', width: 1447, height: 1312},
+        {src: '/images/trends/mimitrendsios-macos-currency.jpg', alt: 'mimiTrendsIOS currency settings in the current macOS app', title: 'Display currency on Mac', description: 'Choose how market values are displayed in the current SwiftUI app.', width: 1447, height: 1312}
     ];
-    protected readonly heroScreenshot = this.screenshots[0];
+    protected activeScreenshot = 0;
     protected latestVersion = 'Latest release';
     protected latestReleaseDate = 'See GitHub for the publication date';
     protected latestDmgUrl = this.releasesUrl;
@@ -50,16 +54,42 @@ export class TrendsPageComponent implements OnInit {
         void Promise.all([this.loadRelease(), this.loadCommits()]);
     }
 
+    ngAfterViewInit(): void {
+        const gallery = this.gallery?.nativeElement;
+        if (!gallery) return;
+        const reducedMotion = this.document.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches ?? false;
+        Object.assign(gallery, {
+            slidesPerView: 'auto', centeredSlides: true, spaceBetween: 20, speed: reducedMotion ? 0 : 600,
+            grabCursor: true, watchOverflow: true,
+            mousewheel: {enabled: true, releaseOnEdges: true, thresholdDelta: 8},
+            keyboard: {enabled: true, onlyInViewport: true},
+            a11y: {enabled: true, prevSlideMessage: 'Previous screenshot', nextSlideMessage: 'Next screenshot'}
+        });
+        gallery.addEventListener('swiperslidechange', this.onSlideChange);
+        gallery.initialize();
+
+        this.lightbox = new PhotoSwipeLightbox({
+            gallery: '#trends-gallery', children: 'a.trends-gallery-image',
+            pswpModule: () => import('photoswipe'),
+            bgOpacity: 0.9, showHideAnimationType: reducedMotion ? 'none' : 'zoom', wheelToZoom: true
+        });
+        this.lightbox.init();
+    }
+
+    ngOnDestroy(): void {
+        this.gallery?.nativeElement.removeEventListener('swiperslidechange', this.onSlideChange);
+        this.lightbox?.destroy();
+    }
+
     protected trackCommit(_: number, commit: RecentCommitViewModel): string { return commit.hash; }
 
-    protected openScreenshot(screenshot: ProductScreenshot): void {
-        const data: PreviewDialogData = {imageUrl: screenshot.src, altText: screenshot.alt, title: screenshot.title, hint: 'Use Esc or the close control to return to the gallery'};
-        this.dialog.open(PreviewDialogComponent, {
-            data, width: 'min(1440px, 96vw)', height: 'min(920px, 94vh)',
-            maxWidth: '96vw', maxHeight: '94vh', panelClass: 'preview-dialog-panel',
-            backdropClass: 'preview-dialog-backdrop', autoFocus: 'first-tabbable', restoreFocus: true
-        });
-    }
+    protected showScreenshot(index: number): void { this.gallery?.nativeElement.swiper.slideTo(index); }
+    protected nextScreenshot(): void { this.gallery?.nativeElement.swiper.slideNext(); }
+    protected previousScreenshot(): void { this.gallery?.nativeElement.swiper.slidePrev(); }
+    private readonly onSlideChange = (event: Event): void => {
+        this.activeScreenshot = (event.target as SwiperContainer).swiper.activeIndex;
+        this.cdr.markForCheck();
+    };
 
     private async loadRelease(): Promise<void> {
         const release: GitHubLatestRelease | null = await this.gitHubService.loadLatestRelease('trendsios');
