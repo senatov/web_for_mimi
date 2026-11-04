@@ -73,62 +73,61 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
         protected readonly linkedInUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
         protected readonly screenshots: ProductScreenshot[] = [
                 {
-                        src: '/images/trends/00.png',
-                        alt: '00.png',
-                        title: '',
-                        description: '',
-                        width: 1640,
-                        height: 2360
-                },
-                {
-                        src: '/images/trends/01.png',
-                        alt: '01.png',
-                        title: '',
-                        description: '',
-                        width: 1640,
-                        height: 2360
+                        src: '/images/trends/05.png',
+                        alt: 'Mac Radar with market signals, source status, and a selected Apple price chart',
+                        title: 'Radar, sources, and chart',
+                        description: 'Keep live signals, provider status, and the selected price chart in one workspace.',
+                        width: 1353,
+                        height: 1048
                 },
                 {
                         src: '/images/trends/03.png',
-                        alt: '03.png',
-                        title: '',
-                        description: '',
-                        width: 1640,
-                        height: 2360
+                        alt: 'Radar table of rising and falling stocks above a Stanley Black and Decker candlestick chart',
+                        title: 'Signals in context',
+                        description: 'Compare moves and open a candle chart for the selected company.',
+                        width: 1336,
+                        height: 1049
                 },
                 {
                         src: '/images/trends/04.png',
-                        alt: '04.png',
-                        title: '',
-                        description: '',
-                        width: 1640,
-                        height: 2360
+                        alt: 'Radar table and Zimmer Biomet price chart with moving averages and volume bars',
+                        title: 'Price and volume',
+                        description: 'Inspect saved minute bars, moving averages, and trading volume.',
+                        width: 1336,
+                        height: 1049
                 },
                 {
-                        src: '/images/trends/05.png',
-                        alt: '05.png',
-                        title: '',
-                        description: '',
-                        width: 1640,
-                        height: 2360
+                        src: '/images/trends/00.png',
+                        alt: 'Expanded live Radar table showing company, event, move, window, price, and age columns',
+                        title: 'Expanded Radar',
+                        description: 'Sort the signal table and see each move with its event, price, and age.',
+                        width: 1336,
+                        height: 1049
+                },
+                {
+                        src: '/images/trends/01.png',
+                        alt: 'Split Radar and source telemetry panels above an empty selected alert chart',
+                        title: 'Source telemetry',
+                        description: 'Check provider availability and accepted observations alongside the Radar.',
+                        width: 1188,
+                        height: 1085
                 },
                 {
                         src: '/images/trends/06.jpg',
-                        alt: '06.jpg',
-                        title: '',
-                        description: '',
-                        width: 1640,
-                        height: 2360
+                        alt: 'Currency settings with euro selected as the display currency',
+                        title: 'Display currency',
+                        description: 'Choose a currency for displayed market prices and charts.',
+                        width: 1447,
+                        height: 1312
                 },
                 {
                         src: '/images/trends/07.jpg',
-                        alt: '07.jpg',
-                        title: '',
-                        description: '',
-                        width: 1640,
-                        height: 2360
-                },
-
+                        alt: 'Rapid moves settings with thresholds for crashes, rises, and sustained moves',
+                        title: 'Rapid move rules',
+                        description: 'Adjust signal thresholds and quality checks for your workflow.',
+                        width: 1447,
+                        height: 1312
+                }
         ];
         protected activeScreenshot = 0;
         protected latestVersion = 'Latest release';

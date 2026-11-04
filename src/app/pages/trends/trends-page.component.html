@@ -26,6 +26,61 @@
 
 
     <main id="top">
+        <section class="hero trends-hero">
+            <div class="hero-copy">
+                <div class="section-kicker">SwiftUI · iPad · macOS 27+</div>
+                <h1>mimiTrendsIOS</h1>
+                <p class="hero-lede">A market radar built for iPad and Mac.</p>
+                <p class="hero-note">Explore market signals, source activity, and price charts in a native SwiftUI workspace for iPad and Mac.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary dmg-download-button hero-dmg-download-button" [href]="latestDmgUrl" target="_blank"
+                       rel="noopener noreferrer" aria-label="Download mimiTrendsIOS DMG for macOS 27 or newer">Download Mac DMG</a>
+                </div>
+                <p class="hero-download-note">Notarized Mac release · iPad App Store release in preparation</p>
+            </div>
+            <div class="hero-visual">
+                <section class="trends-hero-gallery" id="preview" aria-labelledby="trends-preview-title">
+                    <div class="trends-gallery-intro"><span class="section-kicker">Screenshots</span>
+                        <h2 id="trends-preview-title">Explore the app</h2>
+                        <p>Swipe or use the arrows. Select a screenshot to view it full size.</p></div>
+                    <div class="trends-gallery" id="trends-gallery" aria-label="mimiTrendsIOS screenshot gallery">
+                        <swiper-container #gallery init="false" class="trends-gallery-track" aria-label="Screenshots">
+                            @for (screenshot of screenshots; track screenshot.src; let index = $index) {
+                                <swiper-slide>
+                                    <a class="trends-gallery-image" [href]="screenshot.src" [attr.data-pswp-width]="screenshot.width"
+                                       [attr.data-pswp-height]="screenshot.height"
+                                       [attr.aria-label]="'Open ' + screenshot.title + ' full size'" target="_blank">
+                                        <img [src]="screenshot.src" [alt]="screenshot.alt" [attr.width]="screenshot.width"
+                                             [attr.height]="screenshot.height" [attr.loading]="index === 0 ? 'eager' : 'lazy'">
+                                        <span class="trends-gallery-zoom"><span class="material-icons-outlined"
+                                                                                aria-hidden="true">zoom_in</span> View full size</span>
+                                    </a>
+                                    <div class="trends-gallery-caption"><h3>{{ screenshot.title }}</h3>
+                                        <p>{{ screenshot.description }}</p></div>
+                                </swiper-slide>
+                            }
+                        </swiper-container>
+                        <div class="trends-gallery-controls" aria-label="Gallery controls">
+                            <button type="button" (click)="previousScreenshot()" [disabled]="activeScreenshot === 0"
+                                    aria-label="Previous screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_back</span>
+                            </button>
+                            <span class="trends-gallery-count" aria-live="polite">{{ activeScreenshot + 1 }} / {{ screenshots.length }}</span>
+                            <button type="button" (click)="nextScreenshot()" [disabled]="activeScreenshot === screenshots.length - 1"
+                                    aria-label="Next screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_forward</span>
+                            </button>
+                        </div>
+                        <div class="trends-gallery-dots" aria-label="Choose screenshot">
+                            @for (screenshot of screenshots; track screenshot.src; let index = $index) {
+                                <button type="button" (click)="showScreenshot(index)" [attr.aria-label]="'Show ' + screenshot.title"
+                                        [attr.aria-current]="activeScreenshot === index ? 'true' : null"
+                                        [class.active]="activeScreenshot === index"></button>
+                            }
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
         <aside class="development-update trends-prototype-notice" aria-label="Project status">
             <div>
                 <span class="development-update-kicker">Project status</span>
@@ -35,85 +90,6 @@
             </div>
             <a [href]="archiveUrl" target="_blank" rel="noopener noreferrer">View the Kotlin archive <span aria-hidden="true">↗</span></a>
         </aside>
-
-        <section class="preview" id="preview" aria-labelledby="trends-preview-title">
-            <div class="section-kicker">Screenshots</div>
-            <div class="section-heading-block"><h2 id="trends-preview-title">Current SwiftUI screens</h2>
-                <p>Captured from the running iPad and macOS apps. Scroll, swipe, or use the arrows to browse; select an image to
-                    inspect it at full size.</p></div>
-            <div class="trends-gallery" id="trends-gallery" aria-label="mimiTrendsIOS screenshot gallery">
-                <swiper-container #gallery init="false" class="trends-gallery-track" aria-label="Screenshots">
-                    @for (screenshot of screenshots; track screenshot.src) {
-                        <swiper-slide>
-                            <a class="trends-gallery-image" [href]="screenshot.src" [attr.data-pswp-width]="screenshot.width"
-                               [attr.data-pswp-height]="screenshot.height"
-                               [attr.aria-label]="'Open ' + screenshot.title + ' full size'" target="_blank">
-                                <img [src]="screenshot.src" [alt]="screenshot.alt" [attr.width]="screenshot.width"
-                                     [attr.height]="screenshot.height" loading="lazy">
-                                <span class="trends-gallery-zoom"><span class="material-icons-outlined"
-                                                                        aria-hidden="true">zoom_in</span> View full size</span>
-                            </a>
-                            <div class="trends-gallery-caption"><h3>{{ screenshot.title }}</h3>
-                                <p>{{ screenshot.description }}</p></div>
-                        </swiper-slide>
-                    }
-                </swiper-container>
-                <div class="trends-gallery-controls" aria-label="Gallery controls">
-                    <button type="button" (click)="previousScreenshot()" [disabled]="activeScreenshot === 0"
-                            aria-label="Previous screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_back</span>
-                    </button>
-                    <span class="trends-gallery-count" aria-live="polite">{{ activeScreenshot + 1 }} / {{ screenshots.length }}</span>
-                    <button type="button" (click)="nextScreenshot()" [disabled]="activeScreenshot === screenshots.length - 1"
-                            aria-label="Next screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_forward</span>
-                    </button>
-                </div>
-                <div class="trends-gallery-dots" aria-label="Choose screenshot">
-                    @for (screenshot of screenshots; track screenshot.src; let index = $index) {
-                        <button type="button" (click)="showScreenshot(index)" [attr.aria-label]="'Show ' + screenshot.title"
-                                [attr.aria-current]="activeScreenshot === index ? 'true' : null"
-                                [class.active]="activeScreenshot === index"></button>
-                    }
-                </div>
-            </div>
-        </section>
-
-        <section class="hero trends-hero">
-            <div class="hero-copy">
-                <div class="section-kicker">SwiftUI · iPad · macOS 27+</div>
-                <h1>mimiTrendsIOS</h1>
-                <p class="hero-lede">A market radar built for iPad and Mac.</p>
-                <p class="hero-note">Inspect market signals, source activity and price charts in a native SwiftUI workspace. The mobile
-                    design targets iPad; an iPhone version is not planned for this prototype.</p>
-                <div class="hero-actions">
-                    <a class="button button-primary dmg-download-button hero-dmg-download-button" [href]="latestDmgUrl" target="_blank"
-                       rel="noopener noreferrer" aria-label="Download mimiTrendsIOS DMG for macOS 27 or newer">Download Mac DMG</a>
-                    <a class="button button-secondary" [routerLink]="['/mimitrendsios']" fragment="preview">View screenshots</a>
-                </div>
-
-
-                <p class="hero-download-note">Notarized Mac release · iPad App Store release in preparation</p>
-                <div class="hero-highlights" aria-label="mimiTrendsIOS at a glance">
-                    <section class="hero-highlight-group">
-                        <div class="hero-highlight-heading"><h2>Market workspace</h2></div>
-                        <ul class="hero-proof">
-                            <li><span class="material-icons-outlined" aria-hidden="true">radar</span>Radar signals</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">monitor_heart</span>Source telemetry</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">show_chart</span>Price charts</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">history</span>Saved history</li>
-                        </ul>
-                    </section>
-                    <section class="hero-highlight-group">
-                        <div class="hero-highlight-heading"><h2>Current platforms</h2></div>
-                        <ul class="hero-proof">
-                            <li><span class="material-icons-outlined" aria-hidden="true">tablet_mac</span>iPad focused</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">desktop_mac</span>Mac DMG</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">verified</span>Notarized</li>
-                            <li><span class="material-icons-outlined" aria-hidden="true">code</span>Open source</li>
-                        </ul>
-                    </section>
-                </div>
-            </div>
-        </section>
 
         <section class="latest-improvements" aria-labelledby="trends-latest-title">
             <div class="section-kicker">The SwiftUI prototype</div>
