@@ -80,6 +80,22 @@
       "destination": "/cleanup/index.html"
     },
     {
+      "source": "/media-converter",
+      "destination": "/media-converter/index.html"
+    },
+    {
+      "source": "/media-converter/",
+      "destination": "/media-converter/index.html"
+    },
+    {
+      "source": "/share-link",
+      "destination": "/share-link/index.html"
+    },
+    {
+      "source": "/share-link/",
+      "destination": "/share-link/index.html"
+    },
+    {
       "source": "/:path*",
       "destination": "/api/honeypot?path=/:path*"
     }

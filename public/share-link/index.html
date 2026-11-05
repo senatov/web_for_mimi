@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Drive &amp; Dropbox Share Links for Mac — MiMiNavigator</title>
+  <meta name="description" content="Upload a selected file from MiMiNavigator to Google Drive or Dropbox and copy a share link from the macOS context menu. Optional TinyURL shortening creates mimiNavi short links.">
+  <meta name="keywords" content="Google Drive share link Mac, Dropbox share link Mac, create short file link macOS, cloud sharing from Finder, MiMiNavigator Share Link">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Google Drive &amp; Dropbox Share Links for Mac — MiMiNavigator">
+  <meta property="og:description" content="Share a selected file from the macOS file manager: upload to Google Drive or Dropbox and copy its view link. Optional TinyURL shortening is available.">
+  <meta property="og:url" content="https://miminavi.tech/share-link">
+  <meta property="og:image" content="https://miminavi.tech/images/navigator/gallery/cloud-share-menu.png">
+  <link rel="canonical" href="https://miminavi.tech/share-link">
+  <link rel="icon" type="image/png" href="/images/navigator/appstore.png">
+  <link rel="stylesheet" href="/cleanup/guide.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebPage","name":"Google Drive and Dropbox Share Links for Mac — MiMiNavigator","url":"https://miminavi.tech/share-link","about":{"@type":"SoftwareApplication","name":"MiMiNavigator","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS","url":"https://miminavi.tech/","featureList":["Upload selected items to Google Drive and copy a view link","Copy selected items to Dropbox Public and copy a shared link","Optional TinyURL shortening"]},"primaryImageOfPage":"https://miminavi.tech/images/navigator/gallery/cloud-share-menu.png"}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><img src="/images/navigator/appstore.png" alt="" width="42" height="42"><span><strong>MiMiNavigator</strong><small>Dual-panel file manager for macOS</small></span></a>
+    <nav aria-label="Site navigation"><a href="/">Overview</a><a href="/cleanup">Cleanup</a><a href="/media-converter">Media converter</a><a href="/share-link" aria-current="page">Share+Link</a></nav>
+  </header>
+  <main>
+    <div class="intro">
+      <p class="eyebrow">Cloud sharing for Mac</p>
+      <h1>Create a Google Drive or Dropbox link from your file manager</h1>
+      <p class="lead">Select a local item in MiMiNavigator and choose Share+Link from its context menu. The app uploads or copies it to your configured cloud account, creates a view link, and copies that link to the clipboard.</p>
+      <div class="actions"><a class="primary" href="/#download">Get MiMiNavigator</a><a href="/images/navigator/gallery/cloud-share-menu.png">View Share+Link screenshot ↗</a></div>
+    </div>
+    <section aria-labelledby="providers-heading">
+      <p class="eyebrow">Choose a provider</p><h2 id="providers-heading">Google Drive and Dropbox</h2>
+      <div class="cards">
+        <article><span class="number">01</span><h3>Google Drive</h3><p>MiMiNavigator uploads the selected item to a personal Google Drive public folder, applies view permission, and copies the resulting share link. Google Desktop OAuth credentials and Drive API access must be configured first.</p></article>
+        <article><span class="number">02</span><h3>Dropbox</h3><p>MiMiNavigator copies the selected item into the Dropbox Public folder and creates a shared view link. A Dropbox API app with the required sharing permissions and a refresh token must be configured.</p></article>
+      </div>
+    </section>
+    <section aria-labelledby="short-heading">
+      <p class="eyebrow">Copied to the clipboard</p><h2 id="short-heading">Short link when configured</h2>
+      <p>If you configure an optional TinyURL API token, MiMiNavigator creates a mimiNavi short link. If shortening is unavailable or fails, it copies the original Google Drive or Dropbox link instead. The shortener is optional and uses the provider link as its destination.</p>
+      <figure style="margin:28px 0"><img src="/images/navigator/gallery/cloud-share-menu.png" alt="MiMiNavigator file context menu with Google Drive and Dropbox Share+Link actions" style="display:block;width:100%;max-width:900px;height:auto;border-radius:16px;box-shadow:0 10px 28px #1a466b1a"><figcaption style="margin-top:10px;color:#52677d">Share+Link actions are available from the selected file's context menu.</figcaption></figure>
+    </section>
+    <section aria-labelledby="setup-heading">
+      <p class="eyebrow">Setup and access</p><h2 id="setup-heading">Your provider account and credentials are required</h2>
+      <p>Share+Link uses your own Google Drive or Dropbox account. Configure the provider's OAuth credentials in Settings → Cloud Share+Link before using it. The feature uploads or copies the selected item into your cloud account so the provider can serve it; review the account's sharing and access settings before distributing a link.</p>
+      <div class="cards">
+        <article><h3>Does it work in one click?</h3><p>Once configured, start Share+Link from the file context menu. MiMiNavigator handles upload or copy, link creation, and clipboard copying. First-time provider setup and authentication are required.</p></article>
+        <article><h3>Is a short link guaranteed?</h3><p>No. TinyURL shortening is optional. If it is not configured or cannot create a short link, MiMiNavigator copies the original provider link.</p></article>
+        <article><h3>Can I set edit permissions?</h3><p>The documented Google Drive workflow applies view permission, and Dropbox creates a shared link. Check the provider link settings if you need different access behavior.</p></article>
+        <article><h3>What other tools are included?</h3><p>MiMiNavigator also includes a <a href="/media-converter">Mac media converter</a> and review-first <a href="/cleanup">local Cleanup scans with optional on-device AI review</a>.</p></article>
+      </div>
+      <div class="actions"><a class="primary" href="/#download">Download the free Mac app</a><a href="https://github.com/senatov/MiMiNavigator">View source on GitHub ↗</a></div>
+    </section>
+  </main>
+  <footer><span>MiMiNavigator · Free and open source</span><a href="/">Back to overview</a></footer>
+</body>
+</html>

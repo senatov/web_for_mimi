@@ -22,6 +22,9 @@
                 <a [routerLink]="['/']" fragment="preview"><span class="material-icons-outlined" aria-hidden="true">photo_library</span>Screenshots</a>
                 <a [routerLink]="['/']" fragment="download"><span class="material-icons-outlined" aria-hidden="true">download</span>Download</a>
                 <a [routerLink]="['/']" fragment="faq"><span class="material-icons-outlined" aria-hidden="true">help_outline</span>FAQ</a>
+                <a href="/cleanup">Cleanup guide</a>
+                <a href="/media-converter">Media converter</a>
+                <a href="/share-link">Share+Link</a>
                 <a class="feedback-nav-link"
                    href="https://miminavi.blogspot.com/2026/05/blog-post.html#comments"
                    target="_blank" rel="noopener noreferrer"
@@ -272,7 +275,7 @@
                     <p-tag value="Reusable profiles" severity="warn"></p-tag>
                 </p-card>
                 <p-card header="Share" subheader="Links without leaving the panels">
-                    <p>Create Google Drive view or edit links and Dropbox view links directly from the file context menu.</p>
+                    <p>Upload to Google Drive or Dropbox and copy a view link from the file context menu. Optional TinyURL shortening creates mimiNavi short links.</p>
                     <p-tag value="Provider-scoped OAuth" severity="info"></p-tag>
                 </p-card>
             </div>
@@ -290,6 +293,18 @@
                 <article><span class="material-icons-outlined" aria-hidden="true">delete_outline</span><h3>You choose what moves to Trash</h3><p>Nothing is removed automatically. Select items or duplicate groups, keep at least one copy, and let the app recheck candidates before moving them to Trash.</p></article>
             </div>
             <p>For scan timing, coverage, on-device AI review, and result handling, read the <a href="/cleanup">Cleanup guide</a>.</p>
+            <div class="development-update" aria-label="Feature guides">
+                <div>
+                    <span class="development-update-kicker">Feature guides</span>
+                    <h3>Explore Cleanup, media conversion, and cloud sharing</h3>
+                    <p>See how local cleanup suggestions work, which media workflows are available, and how Google Drive and Dropbox links are created.</p>
+                </div>
+                <nav aria-label="MiMiNavigator feature guides">
+                    <a href="/cleanup">Mac Cleanup and Apple Intelligence ↗</a>
+                    <a href="/media-converter">Media converter for macOS ↗</a>
+                    <a href="/share-link">Google Drive and Dropbox Share+Link ↗</a>
+                </nav>
+            </div>
             <div class="development-update" aria-label="Recent development changes">
                 <div>
                     <span class="development-update-kicker">Also improved</span>
@@ -569,6 +584,7 @@
                     </a>
                     <h3>Media details and conversion</h3>
                     <p>Inspect metadata, preview the selected file, and convert video, audio, images, or GIFs inside the same workflow.</p>
+                    <a href="/media-converter">Learn about the Mac media converter ↗</a>
                 </article>
 
                 <article class="preview-card">
@@ -625,7 +641,7 @@
 
                 <article class="faq-item">
                     <h3>Which remote and cloud connections are supported?</h3>
-                    <p>SFTP and FTP servers open inside the panels with saved Keychain-backed connections. The network neighborhood discovers and mounts SMB and AFP shares. Mounted cloud storage works as part of the file workflow, with dedicated Google Drive and Dropbox Share+Link support.</p>
+                    <p>SFTP and FTP servers open inside the panels with saved Keychain-backed connections. The network neighborhood discovers and mounts SMB and AFP shares. Mounted cloud storage works as part of the file workflow, with dedicated Google Drive and Dropbox Share+Link support. <a href="/share-link">See how Share+Link works</a>.</p>
                 </article>
 
                 <article class="faq-item faq-item-installation">
