@@ -19,7 +19,6 @@ import {PopoverModule} from 'primeng/popover';
 import {CardModule} from 'primeng/card';
 import {DividerModule} from 'primeng/divider';
 import {TagModule} from 'primeng/tag';
-import {TooltipModule} from 'primeng/tooltip';
 import {RouterLink} from '@angular/router';
 import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 import {PageMetadataService} from '../../page-metadata.service';
@@ -43,6 +42,14 @@ interface ReleaseNoteSection {
         items: string[];
 }
 
+interface HighlightCard {
+        title: string;
+        icon: string;
+        emoji: string;
+        description: string;
+        commitUrl: string;
+}
+
 
 
 declare global {
@@ -64,7 +71,7 @@ type AnalyticsEventName =
 @Component({
         selector: 'app-navigator-page',
         standalone: true,
-        imports: [SeoKeywordHighlightDirective, CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, TooltipModule, RouterLink],
+        imports: [SeoKeywordHighlightDirective, CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, RouterLink],
         templateUrl: './navigator-page.component.html',
         styleUrls: ['../../styles/app.css', '../../styles/navigator/prime.css', '../../styles/navigator/gallery.css'],
         changeDetection: ChangeDetectionStrategy.OnPush
@@ -121,6 +128,23 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         private heroCarouselTransitionTimerId: number | null = null;
 
         protected recentCommits: RecentCommitViewModel[] = [];
+        protected selectedHighlight: HighlightCard | null = null;
+        private readonly navigatorCommit = 'https://github.com/senatov/MiMiNavigator/commits/main/';
+        private readonly portalCommit = 'https://github.com/senatov/web_for_mimi/commit/da7d83b';
+        protected readonly productDetailCards: HighlightCard[] = [
+                {title: 'Free', icon: 'check_circle', emoji: '🎈', description: 'No purchase, subscription, or feature paywall. The portal presents the app as a free download and links directly to its current release.', commitUrl: this.portalCommit},
+                {title: 'Signed & notarized', icon: 'verified_user', emoji: '🛡️', description: 'The downloadable DMG is Developer ID signed and notarized by Apple. macOS can verify the publisher and the notarization before you open it.', commitUrl: this.navigatorCommit},
+                {title: 'Native macOS', icon: 'desktop_mac', emoji: '🍎', description: 'MiMiNavigator is a SwiftUI and AppKit desktop app. The current release requires macOS 27 or newer; v0.9.1.2 is the final macOS 26 version.', commitUrl: this.portalCommit},
+                {title: 'Open source', icon: 'code', emoji: '🔎', description: 'The app source is public on GitHub. You can inspect implementation and release history, while the portal keeps published release information linked to GitHub.', commitUrl: this.portalCommit}
+        ];
+        protected readonly coreToolCards: HighlightCard[] = [
+                {title: 'Dual panels', icon: 'view_column', emoji: '🧭', description: 'Keep two locations visible at once. Move or compare files while each panel retains its own tabs and browsing context.', commitUrl: this.navigatorCommit},
+                {title: 'Find & clean', icon: 'manage_search', emoji: '🕵️', description: 'Find files by name or document content, then review large, empty, or leftover items. Cleanup guides explain scan scope, saved progress, and review before action.', commitUrl: this.portalCommit},
+                {title: 'Multi-Rename', icon: 'drive_file_rename_outline', emoji: '✏️', description: 'Build structured filename changes for a group of files and inspect the proposed names before applying them.', commitUrl: this.navigatorCommit},
+                {title: 'Remote servers', icon: 'dns', emoji: '🛰️', description: 'Save FTP and SFTP connections and browse remote locations alongside local folders. Connection details can be revisited from the app.', commitUrl: this.navigatorCommit},
+                {title: 'Archives', icon: 'folder_zip', emoji: '📦', description: 'Open supported archives as folder-like locations, so you can inspect and work with their contents without first extracting everything.', commitUrl: this.navigatorCommit},
+                {title: 'Media tools', icon: 'perm_media', emoji: '🎞️', description: 'Convert images, audio, and video in a focused workflow. The portal’s media guide describes supported formats and the practical steps.', commitUrl: this.portalCommit}
+        ];
         protected releaseNoteSections: ReleaseNoteSection[] = [];
         protected heroGalleryVisible = false;
         protected heroGalleryActiveIndex = 0;
@@ -146,6 +170,19 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                         this.loadLatestRelease(),
                         this.loadRecentCommits()
                 ]);
+        }
+
+
+        protected toggleHighlight(item: HighlightCard): void {
+                this.selectedHighlight = this.selectedHighlight === item ? null : item;
+        }
+
+
+        protected onHighlightKeydown(event: KeyboardEvent, item: HighlightCard): void {
+                if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        this.toggleHighlight(item);
+                }
         }
 
 
