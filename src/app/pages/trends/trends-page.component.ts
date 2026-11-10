@@ -121,7 +121,7 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
                         height: 1312
                 },
                 {
-                        src: '/images/trends/07.jpg',
+                        src: '/images/trends/07.png',
                         alt: 'Rapid moves settings with thresholds for crashes, rises, and sustained moves',
                         title: 'Rapid move rules',
                         description: 'Adjust signal thresholds and quality checks for your workflow.',

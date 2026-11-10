@@ -143,7 +143,7 @@ const structuredData = {
         'https://miminavi.tech/images/trends/04.png',
         'https://miminavi.tech/images/trends/05.png',
         'https://miminavi.tech/images/trends/06.jpg',
-        'https://miminavi.tech/images/trends/07.jpg',
+        'https://miminavi.tech/images/trends/07.png',
     ],
     programmingLanguage: 'Swift', description,
     offers: {'@type': 'Offer', price: '0', priceCurrency: 'EUR'},
