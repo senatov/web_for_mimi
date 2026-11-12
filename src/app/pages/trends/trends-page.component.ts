@@ -47,7 +47,7 @@ const pageUrl = 'https://miminavi.tech/mimitrendsios';
 const repositoryUrl = 'https://github.com/senatov/mimiTrendsIOS';
 const iconUrl = 'https://miminavi.tech/images/trends/AppIcon-1024.png';
 const title = 'mimiTrendsIOS — SwiftUI market radar for iPad and Mac';
-const description = 'A SwiftUI prototype for iPad and macOS 27+: market radar, source telemetry, saved signals and price charts. Download the notarized Mac DMG; iPad App Store release is in preparation.';
+const description = 'A SwiftUI market radar for iPad and macOS 27+: Yahoo candle signals, source status, a local watchlist and price charts. The notarized Mac DMG is available; iPad App Store release is in preparation.';
 
 
 
@@ -74,59 +74,51 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
         protected readonly screenshots: ProductScreenshot[] = [
                 {
                         src: '/images/trends/05.png',
-                        alt: 'Mac Radar with market signals, source status, and a selected Apple price chart',
-                        title: 'Radar, sources, and chart',
-                        description: 'Keep live signals, provider status, and the selected price chart in one workspace.',
-                        width: 1353,
-                        height: 1048
-                },
-                {
-                        src: '/images/trends/03.png',
-                        alt: 'Radar table of rising and falling stocks above a Stanley Black and Decker candlestick chart',
-                        title: 'Signals in context',
-                        description: 'Compare moves and open a candle chart for the selected company.',
-                        width: 1336,
-                        height: 1049
-                },
-                {
-                        src: '/images/trends/04.png',
-                        alt: 'Radar table and Zimmer Biomet price chart with moving averages and volume bars',
-                        title: 'Price and volume',
-                        description: 'Inspect saved minute bars, moving averages, and trading volume.',
-                        width: 1336,
-                        height: 1049
+                        alt: 'Mac Radar with recent signals, source status, market candidates, and an Endeavour Silver candle chart',
+                        title: 'Radar and sources',
+                        description: 'Review confirmed candle signals, source status, candidates, and a selected chart together.',
+                        width: 1239,
+                        height: 1129
                 },
                 {
                         src: '/images/trends/00.png',
-                        alt: 'Expanded live Radar table showing company, event, move, window, price, and age columns',
-                        title: 'Expanded Radar',
-                        description: 'Sort the signal table and see each move with its event, price, and age.',
-                        width: 1336,
-                        height: 1049
-                },
-                {
-                        src: '/images/trends/01.png',
-                        alt: 'Split Radar and source telemetry panels above an empty selected alert chart',
-                        title: 'Source telemetry',
-                        description: 'Check provider availability and accepted observations alongside the Radar.',
-                        width: 1188,
-                        height: 1085
-                },
-                {
-                        src: '/images/trends/06.png',
-                        alt: 'Currency settings with euro selected as the display currency',
-                        title: 'Display currency',
-                        description: 'Choose a currency for displayed market prices and charts.',
-                        width: 1447,
-                        height: 1312
+                        alt: 'Mac Radar table of recent price moves above a selected candlestick chart and volume bars',
+                        title: 'Signals and price history',
+                        description: 'Sort recent moves and inspect the selected symbol’s candles, moving averages, and volume.',
+                        width: 1241,
+                        height: 1160
                 },
                 {
                         src: '/images/trends/07.png',
-                        alt: 'Rapid moves settings with thresholds for crashes, rises, and sustained moves',
-                        title: 'Rapid move rules',
-                        description: 'Adjust signal thresholds and quality checks for your workflow.',
-                        width: 1447,
-                        height: 1312
+                        alt: 'Expanded Mac Radar table showing recent drops, reversals, and sustained rises above a candle chart',
+                        title: 'Expanded Radar',
+                        description: 'Compare company, event, move, time window, price, and signal age in the sortable table.',
+                        width: 1239,
+                        height: 1129
+                },
+                {
+                        src: '/images/trends/06.png',
+                        alt: 'Watchlist editor over Radar with saved ticker symbols and add, edit, and delete controls',
+                        title: 'Local watchlist',
+                        description: 'Add, correct, or remove symbols without leaving the Radar workspace.',
+                        width: 1355,
+                        height: 1218
+                },
+                {
+                        src: '/images/trends/03.png',
+                        alt: 'Rapid moves settings with short-window, confirmed reversal, smooth rise, and volume thresholds',
+                        title: 'Signal rules',
+                        description: 'Adjust move thresholds, confirmation, and volume checks in Settings.',
+                        width: 1355,
+                        height: 1218
+                },
+                {
+                        src: '/images/trends/04.png',
+                        alt: 'Market data provider settings with Yahoo, wallstreetONLINE, Lang and Schwarz, TraderFox, and boerse.de sources',
+                        title: 'Market data sources',
+                        description: 'Inspect source addresses and configure ranking inputs and scan priority.',
+                        width: 1355,
+                        height: 1218
                 }
         ];
         protected activeScreenshot = 0;

@@ -31,7 +31,7 @@
                 <div class="section-kicker">SwiftUI · iPad · macOS 27+</div>
                 <h1>mimiTrendsIOS</h1>
                 <p class="hero-lede">A market radar built for iPad and Mac.</p>
-                <p class="hero-note">Explore market signals, source activity, and price charts in a native SwiftUI workspace for iPad and Mac.</p>
+                <p class="hero-note">Scan recent price moves from completed Yahoo minute candles, check source activity, and inspect charts in one native SwiftUI workspace.</p>
                 <div class="hero-actions">
                     <a class="button button-primary dmg-download-button hero-dmg-download-button" [href]="latestDmgUrl" target="_blank"
                        rel="noopener noreferrer" aria-label="Download mimiTrendsIOS DMG for macOS 27 or newer">Download Mac DMG</a>
@@ -94,18 +94,18 @@
         <section class="latest-improvements" aria-labelledby="trends-latest-title">
             <div class="section-kicker">The SwiftUI prototype</div>
             <div class="section-heading-block"><h2 id="trends-latest-title">One workflow across iPad and Mac</h2>
-                <p>Radar signals remain visible while market symbols are checked. Review source status and open the selected
-                    instrument's chart in the same workspace.</p></div>
+                <p>Radar scans up to 200 US and German shares while the app is active. Its signals, source status, market candidates,
+                    and the selected instrument's chart stay in the same workspace.</p></div>
             <div class="improvement-grid">
                 <article><span class="material-icons-outlined" aria-hidden="true">radar</span>
                     <h3>Radar</h3>
-                    <p>Review live and saved signals, including rapid moves and sustained trends.</p></article>
+                    <p>Review recent and saved rapid drops, confirmed reversals, and sustained rises with measured move windows.</p></article>
                 <article><span class="material-icons-outlined" aria-hidden="true">monitor_heart</span>
                     <h3>Source telemetry</h3>
-                    <p>See which data sources are responding and how many observations were accepted.</p></article>
+                    <p>Check source status, candidate progress, and which Yahoo candles have usable volume data.</p></article>
                 <article><span class="material-icons-outlined" aria-hidden="true">show_chart</span>
                     <h3>Charts and settings</h3>
-                    <p>Inspect price bars and configure the rapid-move rules and display currency.</p></article>
+                    <p>Inspect candles, volume, and moving averages; adjust signal rules and the display currency.</p></article>
             </div>
         </section>
 
@@ -117,17 +117,16 @@
             <div class="feature-clusters">
                 <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">01</span>
                     <h3>Signals in context</h3>
-                    <p>Review live and saved Radar events with company identity, price movement, and its time window together, with clear context for people new to market terminology.</p></article>
+                    <p>Review recent and saved events with company identity, measured price move, time window, and age. Signals describe past moves, not forecasts.</p></article>
                 <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">02</span>
                     <h3>Source activity</h3>
-                    <p>Watch provider status and counters while the app checks market symbols in the foreground.</p></article>
+                    <p>Open Sources to see Yahoo, ranking, and quote-source status plus searchable scanner candidates without leaving Radar.</p></article>
                 <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">03</span>
                     <h3>Selected chart</h3>
-                    <p>Inspect candle history and moving averages for the selected symbol, with longer ranges when provider access is
-                        configured.</p></article>
+                    <p>Inspect saved Yahoo minute candles, volume, and moving averages for the selected symbol. Longer ranges summarize saved bars.</p></article>
                 <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">04</span>
                     <h3>Personal settings</h3>
-                    <p>Adjust rapid-move thresholds, table appearance, watchlist symbols, and display currency.</p></article>
+                    <p>Adjust rapid-move thresholds, table appearance, a device-local watchlist, and display currency.</p></article>
             </div>
         </section>
 
@@ -224,11 +223,10 @@
             <div class="section-kicker">Availability</div>
             <div class="section-heading-block"><h2 id="trends-faq-title">Questions about the prototype</h2></div>
             <div class="trends-reference-grid">
-                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">vpn_key</span>
-                    <div><h3>How do I get provider API keys?</h3>
-                        <p>For Finnhub live trades, <a href="https://finnhub.io/register" target="_blank" rel="noopener noreferrer">create a free Finnhub account</a>, copy its key from the <a href="https://finnhub.io/dashboard" target="_blank" rel="noopener noreferrer">dashboard</a>, then save it in Settings → Market data providers → Finnhub. Enter a supported symbol in Radar and select Start feed.</p>
-                        <p>For optional additional candidates, company profiles and daily history, <a href="https://site.financialmodelingprep.com/developer/docs" target="_blank" rel="noopener noreferrer">create a free Financial Modeling Prep account</a>, verify your email and copy the key from its <a href="https://site.financialmodelingprep.com/developer/docs/dashboard" target="_blank" rel="noopener noreferrer">dashboard</a>. Save it under FMP in the same Settings page.</p>
-                        <p>Provider limits, market hours and account access apply; keys do not guarantee live prices or signals. Other sources can work without keys. The optional Finnhub webhook secret can be left empty.</p></div>
+                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">radar</span>
+                    <div><h3>Do I need a provider API key?</h3>
+                        <p>No. Open Radar while the app is active to scan completed Yahoo minute candles with reported volume. Sources shows scan progress and the status of ranking and quote providers.</p>
+                        <p>Market hours, provider availability, and candle quality affect coverage. A completed scan does not mean every candidate had usable candle data; detected moves are historical observations, not trading advice.</p></div>
                 </article>
                 <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">tablet_mac</span>
                     <div><h3>Can I install it on iPad now?</h3>
