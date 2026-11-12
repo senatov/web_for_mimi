@@ -113,7 +113,7 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
                         height: 1085
                 },
                 {
-                        src: '/images/trends/06.jpg',
+                        src: '/images/trends/06.png',
                         alt: 'Currency settings with euro selected as the display currency',
                         title: 'Display currency',
                         description: 'Choose a currency for displayed market prices and charts.',
