@@ -80,6 +80,7 @@ await writeFile(sourcePath, navigatorHtml);
 
 let sitemap = await readFile(sitemapPath, 'utf8');
 sitemap = updateSitemapDate(sitemap, 'https://miminavi.tech/', navigatorRelease.datePublished);
+sitemap = updateSitemapDate(sitemap, 'https://miminavi.tech/media-converter', navigatorRelease.datePublished);
 sitemap = updateSitemapDate(sitemap, 'https://miminavi.tech/mimitrendsios', trendsRelease.datePublished);
 await writeFile(sitemapPath, sitemap);
 

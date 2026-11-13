@@ -25,7 +25,7 @@
       <p class="eyebrow">Mac Cleanup utility</p>
       <h1>Find Mac clutter and review app leftovers safely</h1>
       <p class="lead">MiMiNavigator automatically scans eligible local locations for duplicates, old installers, temporary files, empty folders, and other candidates. Optional on-device Apple Intelligence can help review possible leftovers from uninstalled apps. You choose what goes to Trash.</p>
-      <div class="release-note" role="note"><strong>Feature availability:</strong> Automatic scanning is in v0.9.1.5. The sortable table and in-app folder links described below are in the development source after v0.9.1.5; they are not in the published v0.9.1.5 DMG.</div>
+      <div class="release-note" role="note"><strong>In v0.9.1.8:</strong> Cleanup includes a sortable review table, folder links back to the active panel, and cautious suggestions for large, inactive developer caches. Nothing moves to Trash without your selection.</div>
     </div>
 
     <section aria-labelledby="scan-heading">
@@ -36,6 +36,7 @@
         <article><span class="number">02</span><h3>Uses spare capacity</h3><p>The scan waits while MiMiNavigator is in the foreground, system load is high, or thermal conditions are unsuitable. It resumes when those conditions improve.</p></article>
         <article><span class="number">03</span><h3>Remembers progress</h3><p>SQLite stores completed directory checkpoints and candidate snapshots. After a restart, traversal resumes at the last committed directory. Interrupted hashing can repeat, using cached hashes when valid.</p></article>
         <article><span class="number">04</span><h3>Stays within a safe scope</h3><p>Cleanup visits the home directory and writable local volumes it can access. It does not scan all of macOS: system, cloud, Time Machine, and development locations are excluded.</p></article>
+        <article><span class="number">05</span><h3>Checks developer caches carefully</h3><p>Known Xcode and package-manager caches appear only after 180 inactive days and above 100 MB. The app checks whether selected paths are open before moving anything to Trash.</p></article>
       </div>
     </section>
 
@@ -45,7 +46,7 @@
       <p>Results accumulate in the Cleanup tab during a scan and remain available across sessions. The standard checks suggest exact file and leaf-folder duplicates, old installers, temporary files, old empty folders, and stale PID files. A suggestion is a reason to inspect an item, not a verdict that it is disposable.</p>
       <div class="table-wrap">
         <table>
-          <caption>Cleanup results table in the development build</caption>
+          <caption>Cleanup results table in the current release</caption>
           <thead><tr><th scope="col">Column or control</th><th scope="col">What it does</th></tr></thead>
           <tbody>
             <tr><th scope="row">Date Mod.</th><td>Sort candidates by modification date.</td></tr>

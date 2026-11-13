@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Media Converter for Mac — MiMiNavigator</title>
-  <meta name="description" content="Convert video, audio, images, and GIFs on Mac with MiMiNavigator. Inspect media details, choose a format preset, and work from the same dual-panel file manager.">
-  <meta name="keywords" content="Mac media converter, macOS video converter, convert audio on Mac, image converter for Mac, GIF converter, MiMiNavigator">
+  <meta name="description" content="Convert video, audio, images, GIFs, and Telegram TGS stickers on Mac with MiMiNavigator. Animated stickers render with bundled rlottie and FFmpeg encodes the output.">
+  <meta name="keywords" content="Mac media converter, Telegram TGS to GIF, TGS to MP4, Lottie JSON converter, WebP sticker, VP9 WebM sticker, MiMiNavigator">
   <meta name="robots" content="index, follow">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Media Converter for Mac — MiMiNavigator">
-  <meta property="og:description" content="A built-in media workflow for video, audio, images, and GIFs, with previews and format presets.">
+  <meta property="og:description" content="A native Mac media workflow for video, audio, images, GIFs, and Telegram stickers. Bundled rlottie renders TGS animations.">
   <meta property="og:url" content="https://miminavi.tech/media-converter">
   <meta property="og:image" content="https://miminavi.tech/images/navigator/gallery/media-converter-video.png">
   <link rel="canonical" href="https://miminavi.tech/media-converter">
   <link rel="icon" type="image/png" href="/images/navigator/appstore.png">
   <link rel="stylesheet" href="/cleanup/guide.css">
   <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebPage","name":"Media Converter for Mac — MiMiNavigator","url":"https://miminavi.tech/media-converter","about":{"@type":"SoftwareApplication","name":"MiMiNavigator","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS","url":"https://miminavi.tech/","featureList":["Video conversion","Audio conversion","Image conversion","GIF conversion","Media previews and details"]},"primaryImageOfPage":"https://miminavi.tech/images/navigator/gallery/media-converter-video.png"}
+    {"@context":"https://schema.org","@type":"WebPage","name":"Media Converter for Mac — MiMiNavigator","url":"https://miminavi.tech/media-converter","about":{"@type":"SoftwareApplication","name":"MiMiNavigator","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS","url":"https://miminavi.tech/","featureList":["Video conversion","Audio conversion","Image conversion","GIF conversion","Telegram TGS and Lottie JSON rendering","Media previews and details"]},"primaryImageOfPage":"https://miminavi.tech/images/navigator/gallery/media-converter-video.png"}
   </script>
 </head>
 <body>
@@ -26,11 +26,23 @@
   </header>
   <main>
     <div class="intro">
-      <p class="eyebrow">Media tools for Mac</p>
-      <h1>Convert media without leaving your file manager</h1>
-      <p class="lead">MiMiNavigator brings media inspection and conversion into a native macOS file workflow. Select a file, review its details and preview, choose an available output preset, then save the converted result alongside your files.</p>
+      <p class="eyebrow">Native media tools · Telegram stickers</p>
+      <h1>Convert media where your files already live</h1>
+      <p class="lead">Select a file, inspect its details, choose an output preset, and save the result from the same two-panel workspace. Telegram animated stickers now render through a bundled native engine.</p>
       <div class="actions"><a class="primary" href="/#download">Get MiMiNavigator</a><a href="/images/navigator/gallery/media-converter-video.png">View converter screenshot ↗</a></div>
+      <div class="format-strip" aria-label="Example media workflows"><span>Video → MP4</span><span>Image → WebP</span><span>TGS → GIF</span><span>Lottie JSON → PNG</span></div>
     </div>
+    <section class="telegram-section" aria-labelledby="telegram-heading">
+      <p class="eyebrow">Telegram media</p>
+      <h2 id="telegram-heading">Sticker formats, with a native TGS renderer</h2>
+      <p>MiMiNavigator includes <a href="https://github.com/TelegramMessenger/rlottie" target="_blank" rel="noopener noreferrer">TelegramMessenger/rlottie</a> for reading animated <code>.tgs</code> stickers and Lottie JSON. The bundled renderer creates frames; FFmpeg encodes the selected output. Python and python-lottie are no longer part of this workflow.</p>
+      <div class="telegram-flow" role="list">
+        <article role="listitem"><span class="flow-tag">Animated</span><h3>TGS or Lottie JSON</h3><p>Export an animated GIF or MP4, or save the first frame as PNG. FFmpeg is needed for output encoding.</p></article>
+        <article role="listitem"><span class="flow-tag">Static</span><h3>WebP stickers</h3><p>Create a transparent WebP still image with the Telegram sticker option. This path uses the separately installed cwebp encoder.</p></article>
+        <article role="listitem"><span class="flow-tag">Video</span><h3>VP9 in WebM</h3><p>Use the Telegram video sticker option to prepare a silent, size-limited WebM from video or GIF input.</p></article>
+      </div>
+      <p class="format-note">The app currently reads TGS; it does not create new TGS files. Available output presets depend on the input file.</p>
+    </section>
     <section aria-labelledby="formats-heading">
       <p class="eyebrow">One workflow, common media types</p>
       <h2 id="formats-heading">Video, audio, images, and GIFs</h2>
@@ -53,6 +65,7 @@
       <div class="cards">
         <article><h3>Does MiMiNavigator convert only video?</h3><p>No. Its media workflow includes video, audio, image, and GIF conversion, with available presets determined by the selected file.</p></article>
         <article><h3>Do I need a separate converter app?</h3><p>MiMiNavigator provides the conversion workflow within its file manager. Some conversions rely on optional external media tools, which the app can help diagnose.</p></article>
+        <article><h3>Can I open a Telegram TGS sticker?</h3><p>Yes. Choose a TGS file in the converter and export GIF, MP4, or a PNG of its first frame. The renderer is bundled; FFmpeg handles the output.</p></article>
         <article><h3>Where can I learn about cleanup and sharing?</h3><p>Read the <a href="/cleanup">Mac Cleanup guide</a> or learn about <a href="/share-link">Google Drive and Dropbox Share+Link</a>.</p></article>
       </div>
       <div class="actions"><a class="primary" href="/#download">Download the free Mac app</a><a href="https://github.com/senatov/MiMiNavigator">View source on GitHub ↗</a></div>
