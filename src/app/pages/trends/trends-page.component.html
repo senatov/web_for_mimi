@@ -26,7 +26,7 @@
 
 
     <main id="top">
-        <section class="hero trends-hero">
+        <section class="hero trends-hero gallery-hero">
             <div class="hero-copy">
                 <div class="section-kicker">SwiftUI · iPad · macOS 27+</div>
                 <h1>mimiTrendsIOS</h1>
@@ -42,11 +42,11 @@
                 <section class="trends-hero-gallery" id="preview" aria-labelledby="trends-preview-title">
                     <div class="trends-gallery-intro"><span class="section-kicker">Screenshots</span>
                         <h2 id="trends-preview-title">Explore the app</h2>
-                        <p>Swipe or use the arrows. Select a screenshot to view it full size.</p></div>
+                        <p>Swipe or use the arrows. Open a screenshot, then click or pinch to zoom into its details.</p></div>
                     <div class="trends-gallery" id="trends-gallery" aria-label="mimiTrendsIOS screenshot gallery">
                         <swiper-container #gallery init="false" class="trends-gallery-track" aria-label="Screenshots">
                             @for (screenshot of screenshots; track screenshot.src; let index = $index) {
-                                <swiper-slide [style.--native-width.px]="screenshot.width / displayPixelRatio">
+                                <swiper-slide [style.--native-width.px]="screenshot.width">
                                     <a class="trends-gallery-image" [href]="screenshot.src" [attr.data-pswp-width]="screenshot.width"
                                        [attr.data-pswp-height]="screenshot.height"
                                        [attr.aria-label]="'Open ' + screenshot.title + ' full size'" target="_blank">

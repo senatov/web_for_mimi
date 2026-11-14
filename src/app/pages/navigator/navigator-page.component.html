@@ -37,7 +37,7 @@
             <a href="https://github.com/senatov/MiMiNavigator/releases/tag/v0.9.1.2" target="_blank" rel="noopener noreferrer">Get the macOS 26 release</a>
         </aside>
 
-        <section class="hero">
+        <section class="hero gallery-hero">
             <div class="hero-copy">
                 <h1>MiMiNavigator</h1>
                 <p class="hero-lede">Two panels. One focused workspace.</p>
@@ -137,12 +137,12 @@
                     <div class="trends-gallery-intro">
                         <span class="section-kicker">Screenshots</span>
                         <h2>Explore the app</h2>
-                        <p>Swipe or use the arrows. Select a screenshot to view it full size.</p>
+                        <p>Swipe or use the arrows. Open a screenshot and use Zoom &amp; inspect to read its text at 100%.</p>
                     </div>
                     <div class="trends-gallery navigator-gallery" aria-label="MiMiNavigator screenshot gallery">
                         <swiper-container #gallery init="false" class="trends-gallery-track" aria-label="Screenshots">
                             @for (img of heroGalleryImages; track img.itemImageSrc; let index = $index) {
-                                <swiper-slide [style.--native-width.px]="img.width / displayPixelRatio">
+                                <swiper-slide [style.--native-width.px]="img.width">
                                     <a class="trends-gallery-image" [href]="img.itemImageSrc"
                                        [attr.aria-label]="'Open ' + img.title + ' full size'"
                                        (click)="openHeroGalleryAt(index, $event)">
@@ -201,7 +201,7 @@
                                  [attr.width]="item.width"
                                  [attr.height]="item.height"
                                  class="gallery-popup-image"
-                                 [style.max-width]="'min(94vw, ' + (item.width / displayPixelRatio) + 'px)'">
+                                 [style.max-width]="'min(94vw, ' + item.width + 'px)'">
                             <div class="gallery-popup-meta">
                                 <span class="gallery-popup-counter">{{ heroGalleryDialogProgressLabel }}</span>
                                 <span class="gallery-popup-title">{{ item.title }}</span>
@@ -523,7 +523,6 @@
                         <img class="preview-image" src="/images/navigator/gallery/001.png"
                              width="1353"
                              height="1258"
-                             [style.max-width.px]="1353 / displayPixelRatio"
                              alt="MiMiNavigator file manager macOS - dual-panel workspace for file browsing">
                     </a>
                     <h3>Dual-panel workspace</h3>
@@ -536,7 +535,6 @@
                         <img class="preview-image" src="/images/navigator/gallery/002.png"
                              width="967"
                              height="900"
-                             [style.max-width.px]="967 / displayPixelRatio"
                              alt="MiMiNavigator advanced Find Files interface showing filtered image results">
                     </a>
                     <h3>Find Files with advanced filters</h3>
@@ -549,7 +547,6 @@
                         <img class="preview-image" src="/images/navigator/gallery/003.png"
                              width="1528"
                              height="1394"
-                             [style.max-width.px]="1528 / displayPixelRatio"
                              alt="MiMiNavigator media details, preview, and conversion presets">
                     </a>
                     <h3>Media details and conversion</h3>
@@ -563,7 +560,6 @@
                         <img class="preview-image" src="/images/navigator/gallery/004.png"
                              width="817"
                              height="587"
-                             [style.max-width.px]="817 / displayPixelRatio"
                              alt="MiMiNavigator server connection editor with SMB, SFTP, FTP, and AFP options">
                     </a>
                     <h3>Server connections</h3>

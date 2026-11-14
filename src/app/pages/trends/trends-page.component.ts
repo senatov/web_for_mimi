@@ -67,7 +67,6 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
         private readonly document = inject(DOCUMENT);
         @ViewChild('gallery') private gallery?: ElementRef<SwiperContainer>;
         private lightbox?: PhotoSwipeLightbox;
-        protected readonly displayPixelRatio = Math.max(1, this.document.defaultView?.devicePixelRatio || 1);
         protected readonly repositoryUrl = repositoryUrl;
         protected readonly releasesUrl = `${repositoryUrl}/releases`;
         protected readonly archiveUrl = 'https://github.com/senatov/mimiTrends';

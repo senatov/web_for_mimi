@@ -107,7 +107,7 @@ export class NavigatorPageComponent implements OnInit, AfterViewInit, OnDestroy 
                 ['navigator/gallery/002.png', 'MiMiNavigator Advanced File Search', 967, 900],
                 ['navigator/gallery/003.png', 'MiMiNavigator Media Converter Video', 1528, 1394],
                 ['navigator/gallery/004.png', 'MiMiNavigator Server Connections', 817, 587],
-                ['navigator/gallery/005.png', 'MiMiNavigator Authorized Folders Dialog', 1046, 448],
+                ['navigator/gallery/005.png', 'MiMiNavigator Panel Settings', 1456, 1253],
                 ['navigator/gallery/006.png', 'MiMiNavigator Cloud Share Settings', 1054, 876],
                 ['navigator/gallery/007.png', 'MiMiNavigator External Tools Diagnostics', 1156, 836],
                 ['navigator/gallery/008.png', 'MiMiNavigator Permissions Settings', 1156, 836],
@@ -158,7 +158,6 @@ export class NavigatorPageComponent implements OnInit, AfterViewInit, OnDestroy 
                 {breakpoint: '600px', numVisible: 2}
         ];
         protected readonly heroGalleryImages: GalleryImageItem[] = this.buildHeroGalleryImages();
-        protected readonly displayPixelRatio = Math.max(1, window.devicePixelRatio || 1);
         protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         protected readonly homebrewInstallCommand = 'brew tap senatov/tap >/dev/null && "$(brew --repo senatov/tap)/scripts/install-miminavigator"';
         protected readonly downloadPitchText = 'Work in two persistent panels with exact active-panel mirroring, TC-style hotkeys, document content search, read-only Git status, List, Preview, and Tree views, remote servers, archive folders, media conversion, and cloud sharing. The native SwiftUI + AppKit app is free, open source, and distributed as a signed, notarized DMG.';
