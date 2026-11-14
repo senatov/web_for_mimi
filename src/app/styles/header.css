@@ -19,6 +19,10 @@
   padding: 10px var(--gd-gutter);
 }
 
+.navigator-page .topbar {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;

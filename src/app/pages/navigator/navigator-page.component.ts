@@ -9,7 +9,7 @@
 //  Route component for the MiMiNavigator landing page.
 //
 
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {PreviewDialogComponent, PreviewDialogData} from '../../preview-dialog.component';
@@ -23,6 +23,9 @@ import {RouterLink} from '@angular/router';
 import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 import {PageMetadataService} from '../../page-metadata.service';
 import {navigatorMinimumMacOS} from '../../navigator-platform';
+import {register, SwiperContainer} from 'swiper/element/bundle';
+
+register();
 
 
 
@@ -72,16 +75,17 @@ type AnalyticsEventName =
         selector: 'app-navigator-page',
         standalone: true,
         imports: [SeoKeywordHighlightDirective, CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, RouterLink],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
         templateUrl: './navigator-page.component.html',
-        styleUrls: ['../../styles/app.css', '../../styles/navigator/prime.css', '../../styles/navigator/gallery.css'],
+        styleUrls: ['../../styles/app.css', '../../styles/trends/page.css', '../../styles/navigator/prime.css', '../../styles/navigator/gallery.css'],
         changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavigatorPageComponent implements OnInit, OnDestroy {
+export class NavigatorPageComponent implements OnInit, AfterViewInit, OnDestroy {
         private readonly dialog = inject(MatDialog);
         private readonly cdr = inject(ChangeDetectorRef);
         private readonly gitHubService = inject(GitHubService);
         private readonly pageMetadata = inject(PageMetadataService);
-        @ViewChild('heroThumbnails') private heroThumbnails?: ElementRef<HTMLDivElement>;
+        @ViewChild('gallery') private gallery?: ElementRef<SwiperContainer>;
 
         protected latestVersion = 'Loading...';
         protected latestReleaseDate = 'Loading...';
@@ -98,34 +102,32 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         protected readonly linkedInProfileUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
         private readonly previewImageBasePath = '/images';
         private readonly previewDialogHint = 'Press Esc or click outside to close';
-        private readonly heroGalleryImageSpecs: Array<readonly [string, number, number]> = [
-                ['navigator/gallery/dual-panel-workspace.png', 1353, 1258],
-                ['navigator/gallery/advanced-file-search.png', 967, 900],
-                ['navigator/gallery/media-converter-video.png', 1109, 852],
-                ['navigator/gallery/server-connections.png', 817, 587],
-                ['navigator/gallery/authorized-folders-dialog.png', 1046, 448],
-                ['navigator/gallery/cloud-share-settings.png', 1054, 876],
-                ['navigator/gallery/external-tools-diagnostics.png', 1156, 836],
-                ['navigator/gallery/permissions-settings.png', 1156, 836],
-                ['navigator/gallery/diff-tool-details.png', 1156, 836],
-                ['navigator/gallery/panel-settings.png', 1156, 836],
-                ['navigator/gallery/saved-server-editor.png', 1133, 718],
-                ['navigator/gallery/diff-tool-settings.png', 1156, 836],
-                ['navigator/gallery/path-completion.png', 1353, 1258],
-                ['navigator/gallery/connections-menu.png', 1353, 1258],
-                ['navigator/gallery/server-passwords.png', 1156, 836],
-                ['navigator/gallery/column-presets.png', 1353, 1258],
-                ['navigator/gallery/cloud-share-menu.png', 1353, 1258],
-                ['navigator/gallery/sidebar-and-favorites.png', 1353, 1258],
-                ['navigator/gallery/file-preview-panel.png', 1353, 1258],
-                ['navigator/gallery/media-converter-gif.png', 1109, 852]
+        private readonly heroGalleryImageSpecs: Array<readonly [string, string, number, number]> = [
+                ['navigator/gallery/001.png', 'MiMiNavigator Dual Panel Workspace', 1353, 1258],
+                ['navigator/gallery/002.png', 'MiMiNavigator Advanced File Search', 967, 900],
+                ['navigator/gallery/003.png', 'MiMiNavigator Media Converter Video', 1528, 1394],
+                ['navigator/gallery/004.png', 'MiMiNavigator Server Connections', 817, 587],
+                ['navigator/gallery/005.png', 'MiMiNavigator Authorized Folders Dialog', 1046, 448],
+                ['navigator/gallery/006.png', 'MiMiNavigator Cloud Share Settings', 1054, 876],
+                ['navigator/gallery/007.png', 'MiMiNavigator External Tools Diagnostics', 1156, 836],
+                ['navigator/gallery/008.png', 'MiMiNavigator Permissions Settings', 1156, 836],
+                ['navigator/gallery/009.png', 'MiMiNavigator Diff Tool Details', 1156, 836],
+                ['navigator/gallery/010.png', 'MiMiNavigator Panel Settings', 1156, 836],
+                ['navigator/gallery/011.png', 'MiMiNavigator Saved Server Editor', 1133, 718],
+                ['navigator/gallery/012.png', 'MiMiNavigator Diff Tool Settings', 1156, 836],
+                ['navigator/gallery/013.png', 'MiMiNavigator Path Completion', 1353, 1258],
+                ['navigator/gallery/014.png', 'MiMiNavigator Connections Menu', 1544, 1415],
+                ['navigator/gallery/015.png', 'MiMiNavigator Server Passwords', 1156, 836],
+                ['navigator/gallery/016.png', 'MiMiNavigator Column Presets', 1353, 1258],
+                ['navigator/gallery/017.png', 'MiMiNavigator Sidebar And Favorites', 1353, 1258],
+                ['navigator/gallery/018.png', 'MiMiNavigator File Preview Panel', 1353, 1258],
+                ['navigator/gallery/019.png', 'MiMiNavigator Media Converter Gif', 1528, 1394],
+                ['navigator/gallery/020.png', 'MiMiNavigator Media Converter', 1528, 1394]
         ];
-        private readonly heroCarouselTransitionMs = 920;
         private homebrewCopyTimerId: number | null = null;
         private latestReleaseIsoDate: string | null = null;
         private latestDmgIsoDate: string | null = null;
         private releaseAgeTimerId: number | null = null;
-        private heroCarouselTransitionTimerId: number | null = null;
 
         protected recentCommits: RecentCommitViewModel[] = [];
         protected selectedHighlight: HighlightCard | null = null;
@@ -149,8 +151,6 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
         protected heroGalleryVisible = false;
         protected heroGalleryActiveIndex = 0;
         protected heroCarouselIndex = 0;
-        protected previousHeroCarouselIndex = 0;
-        protected heroCarouselTransitioning = false;
         protected homebrewCopied = false;
         protected homebrewCopyStatus = '';
         protected readonly galleryResponsiveOptions = [
@@ -158,6 +158,7 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                 {breakpoint: '600px', numVisible: 2}
         ];
         protected readonly heroGalleryImages: GalleryImageItem[] = this.buildHeroGalleryImages();
+        protected readonly displayPixelRatio = Math.max(1, window.devicePixelRatio || 1);
         protected readonly isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         protected readonly homebrewInstallCommand = 'brew tap senatov/tap >/dev/null && "$(brew --repo senatov/tap)/scripts/install-miminavigator"';
         protected readonly downloadPitchText = 'Work in two persistent panels with exact active-panel mirroring, TC-style hotkeys, document content search, read-only Git status, List, Preview, and Tree views, remote servers, archive folders, media conversion, and cloud sharing. The native SwiftUI + AppKit app is free, open source, and distributed as a signed, notarized DMG.';
@@ -187,9 +188,30 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
 
 
+        ngAfterViewInit(): void {
+                const gallery = this.gallery?.nativeElement;
+                if (!gallery) return;
+                const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                Object.assign(gallery, {
+                        slidesPerView: 'auto', centeredSlides: true, spaceBetween: 20,
+                        speed: reducedMotion ? 0 : 500, grabCursor: true, watchOverflow: true,
+                        keyboard: {enabled: true, onlyInViewport: true},
+                        a11y: {enabled: true, prevSlideMessage: 'Previous screenshot', nextSlideMessage: 'Next screenshot'}
+                });
+                gallery.addEventListener('swiperslidechange', this.onSlideChange);
+                gallery.initialize();
+        }
+
+        private readonly onSlideChange = () => {
+                const index = this.gallery?.nativeElement.swiper?.activeIndex ?? 0;
+                this.heroCarouselIndex = index;
+                this.heroGalleryActiveIndex = index;
+                this.cdr.markForCheck();
+        };
+
         ngOnDestroy(): void {
+                this.gallery?.nativeElement.removeEventListener('swiperslidechange', this.onSlideChange);
                 this.stopReleaseAgeTimer();
-                this.stopHeroCarouselTransition();
                 this.stopHomebrewCopyTimer();
         }
 
@@ -278,25 +300,11 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
 
         protected selectHeroGalleryImage(index: number): void {
-                if (index < 0 || index >= this.heroGalleryImages.length || index === this.heroCarouselIndex) {
-                        return;
-                }
-
-                this.stopHeroCarouselTransition();
-
-                this.previousHeroCarouselIndex = this.heroCarouselIndex;
+                if (index < 0 || index >= this.heroGalleryImages.length) return;
                 this.heroCarouselIndex = index;
                 this.heroGalleryActiveIndex = index;
-                this.heroCarouselTransitioning = true;
+                this.gallery?.nativeElement.swiper?.slideTo(index);
                 this.cdr.markForCheck();
-                this.scrollActiveThumbnailIntoView(index);
-
-                this.heroCarouselTransitionTimerId = window.setTimeout(() => {
-                        this.heroCarouselTransitioning = false;
-                        this.previousHeroCarouselIndex = this.heroCarouselIndex;
-                        this.heroCarouselTransitionTimerId = null;
-                        this.cdr.markForCheck();
-                }, this.heroCarouselTransitionMs);
         }
 
 
@@ -350,18 +358,6 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
 
 
-        protected getHeroGalleryThumbnailLabel(index: number): string {
-                return `Show ${this.heroGalleryImages[index].title}, screenshot ${index + 1} of ${this.heroGalleryImages.length}`;
-        }
-
-
-
-        protected trackHeroGalleryImage(_: number, image: GalleryImageItem): string {
-                return image.itemImageSrc;
-        }
-
-
-
         protected trackRecentCommit(_: number, commit: RecentCommitViewModel): string {
                 return commit.hash;
         }
@@ -404,23 +400,10 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
 
 
-        protected onHeroThumbnailKeydown(event: KeyboardEvent, index: number): void {
-                if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        this.selectHeroGalleryImage(index);
-                }
-        }
-
-
-
         protected onHeroGalleryVisibleChange(visible: boolean): void {
                 this.heroGalleryVisible = visible;
 
-                if (!visible) {
-                        this.heroCarouselIndex = this.heroGalleryActiveIndex;
-                        this.previousHeroCarouselIndex = this.heroGalleryActiveIndex;
-                        this.heroCarouselTransitioning = false;
-                }
+                if (!visible) this.selectHeroGalleryImage(this.heroGalleryActiveIndex);
 
                 this.cdr.markForCheck();
         }
@@ -460,21 +443,8 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
 
 
-        private stopHeroCarouselTransition(): void {
-                if (this.heroCarouselTransitionTimerId !== null) {
-                        window.clearTimeout(this.heroCarouselTransitionTimerId);
-                        this.heroCarouselTransitionTimerId = null;
-                }
-
-                this.heroCarouselTransitioning = false;
-        }
-
-
-
         private stopHomebrewCopyTimer(): void {
-                if (this.homebrewCopyTimerId === null) {
-                        return;
-                }
+                if (this.homebrewCopyTimerId === null) return;
                 window.clearTimeout(this.homebrewCopyTimerId);
                 this.homebrewCopyTimerId = null;
         }
@@ -482,10 +452,10 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
 
 
         private buildHeroGalleryImages(): GalleryImageItem[] {
-                return this.heroGalleryImageSpecs.map(([relativePath, width, height]) => {
+                return this.heroGalleryImageSpecs.map(([relativePath, title, width, height]) => {
                         return this.createGalleryImageItem(
                             relativePath,
-                            this.createHeroGalleryImageTitle(relativePath),
+                            title,
                             width,
                             height
                         );
@@ -505,30 +475,6 @@ export class NavigatorPageComponent implements OnInit, OnDestroy {
                         width,
                         height
                 };
-        }
-
-
-
-        private scrollActiveThumbnailIntoView(index: number): void {
-                const strip = this.heroThumbnails?.nativeElement;
-                const thumbnail = strip?.children.item(index) as HTMLElement | null;
-                if (!strip || !thumbnail) return;
-                const left = thumbnail.offsetLeft - strip.offsetLeft - (strip.clientWidth - thumbnail.clientWidth) / 2;
-                const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                strip.scrollTo({left, behavior: reducedMotion ? 'instant' : 'smooth'});
-        }
-
-
-
-        private createHeroGalleryImageTitle(relativePath: string): string {
-                const fileName = relativePath.split('/').pop() ?? relativePath;
-                const title = fileName
-                        .replace(/\.[^.]+$/, '')
-                        .split('-')
-                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                        .join(' ');
-
-                return `MiMiNavigator ${title}`;
         }
 
 

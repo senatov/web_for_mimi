@@ -48,6 +48,141 @@
       "permanent": true
     },
     {
+      "source": "/images/navigator/gallery/dual-panel-workspace.png",
+      "destination": "/images/navigator/gallery/001.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/advanced-file-search.png",
+      "destination": "/images/navigator/gallery/002.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/media-converter-video.png",
+      "destination": "/images/navigator/gallery/003.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/server-connections.png",
+      "destination": "/images/navigator/gallery/004.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/authorized-folders-dialog.png",
+      "destination": "/images/navigator/gallery/005.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/cloud-share-settings.png",
+      "destination": "/images/navigator/gallery/006.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/external-tools-diagnostics.png",
+      "destination": "/images/navigator/gallery/007.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/permissions-settings.png",
+      "destination": "/images/navigator/gallery/008.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/diff-tool-details.png",
+      "destination": "/images/navigator/gallery/009.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/panel-settings.png",
+      "destination": "/images/navigator/gallery/010.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/saved-server-editor.png",
+      "destination": "/images/navigator/gallery/011.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/diff-tool-settings.png",
+      "destination": "/images/navigator/gallery/012.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/path-completion.png",
+      "destination": "/images/navigator/gallery/013.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/connections-menu.png",
+      "destination": "/images/navigator/gallery/014.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/server-passwords.png",
+      "destination": "/images/navigator/gallery/015.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/column-presets.png",
+      "destination": "/images/navigator/gallery/016.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/sidebar-and-favorites.png",
+      "destination": "/images/navigator/gallery/017.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/file-preview-panel.png",
+      "destination": "/images/navigator/gallery/018.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/media-converter-gif.png",
+      "destination": "/images/navigator/gallery/019.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/navigator/gallery/media-converter.png",
+      "destination": "/images/navigator/gallery/020.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/trends/05.png",
+      "destination": "/images/trends/001.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/trends/00.png",
+      "destination": "/images/trends/002.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/trends/07.png",
+      "destination": "/images/trends/003.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/trends/06.png",
+      "destination": "/images/trends/004.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/trends/03.png",
+      "destination": "/images/trends/005.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/trends/04.png",
+      "destination": "/images/trends/006.png",
+      "permanent": true
+    },
+    {
+      "source": "/images/trends/01.png",
+      "destination": "/images/trends/007.png",
+      "permanent": true
+    },
+    {
       "source": "/trends",
       "destination": "/mimitrendsios",
       "permanent": true

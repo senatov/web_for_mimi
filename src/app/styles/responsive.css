@@ -228,19 +228,6 @@
     white-space: normal;
   }
 
-  .hero-carousel-stage {
-    min-height: 260px;
-    aspect-ratio: 4 / 3;
-  }
-
-  .hero-gallery-thumbnails {
-    display: none;
-  }
-
-  .window-title {
-    display: none;
-  }
-
   .quick-strip,
   .feature-overview,
   .roadmap-section,

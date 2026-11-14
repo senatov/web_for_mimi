@@ -1,4 +1,4 @@
-<div class="page-shell">
+<div class="page-shell navigator-page">
     <header class="site-header">
         <div class="topbar">
             <a class="brand brand-logo-link" [routerLink]="['/']" fragment="top" aria-label="MiMiNavigator home">
@@ -17,19 +17,6 @@
                 <a [routerLink]="['/mimitrendsios']" class="project-switcher-option"><img src="/images/trends/AppIcon-1024.png" alt="" width="20" height="20">mimiTrendsIOS</a>
             </div>
 
-            <nav class="topnav" aria-label="Primary navigation">
-                <a [routerLink]="['/']" fragment="features"><span class="material-icons-outlined" aria-hidden="true">widgets</span>Features</a>
-                <a [routerLink]="['/']" fragment="preview"><span class="material-icons-outlined" aria-hidden="true">photo_library</span>Screenshots</a>
-                <a [routerLink]="['/']" fragment="download"><span class="material-icons-outlined" aria-hidden="true">download</span>Download</a>
-                <a [routerLink]="['/']" fragment="faq"><span class="material-icons-outlined" aria-hidden="true">help_outline</span>FAQ</a>
-                <a href="/cleanup">Cleanup guide</a>
-                <a href="/media-converter">Media converter</a>
-                <a href="/share-link">Share+Link</a>
-                <a class="feedback-nav-link"
-                   href="https://miminavi.blogspot.com/2026/05/blog-post.html#comments"
-                   target="_blank" rel="noopener noreferrer"
-                   aria-label="Report a bug or suggest an improvement"><span class="material-icons-outlined" aria-hidden="true">rate_review</span>Feedback</a>
-            </nav>
         </div>
     </header>
 
@@ -146,74 +133,47 @@
             </div>
 
             <div class="hero-visual" aria-label="MiMiNavigator screenshot gallery">
-                <div class="hero-preview-link"
-                     role="group"
-                     tabindex="0"
-                     aria-label="MiMiNavigator screenshot gallery. Use left and right arrow keys to change screenshots."
-                     (keydown)="onHeroGalleryKeydown($event)">
-                    <div class="app-window">
-                        <div class="window-chrome">
-                            <span class="window-dot red"></span>
-                            <span class="window-dot yellow"></span>
-                            <span class="window-dot green"></span>
-                            <span class="window-title">MiMiNavigator workspace</span>
-                            <span class="hero-gallery-counter">{{ heroGalleryProgressLabel }}</span>
+                <section class="trends-hero-gallery" id="preview" aria-label="MiMiNavigator screenshots">
+                    <div class="trends-gallery-intro">
+                        <span class="section-kicker">Screenshots</span>
+                        <h2>Explore the app</h2>
+                        <p>Swipe or use the arrows. Select a screenshot to view it full size.</p>
+                    </div>
+                    <div class="trends-gallery navigator-gallery" aria-label="MiMiNavigator screenshot gallery">
+                        <swiper-container #gallery init="false" class="trends-gallery-track" aria-label="Screenshots">
+                            @for (img of heroGalleryImages; track img.itemImageSrc; let index = $index) {
+                                <swiper-slide [style.--native-width.px]="img.width / displayPixelRatio">
+                                    <a class="trends-gallery-image" [href]="img.itemImageSrc"
+                                       [attr.aria-label]="'Open ' + img.title + ' full size'"
+                                       (click)="openHeroGalleryAt(index, $event)">
+                                        <img [src]="img.itemImageSrc" [alt]="img.alt" [attr.width]="img.width"
+                                             [attr.height]="img.height" [attr.loading]="index === 0 ? 'eager' : 'lazy'">
+                                        <span class="trends-gallery-zoom"><span class="material-icons-outlined" aria-hidden="true">zoom_in</span> View full size</span>
+                                    </a>
+                                    <div class="trends-gallery-caption">
+                                        <h3>{{ img.title }}</h3>
+                                        <p>{{ img.width }} × {{ img.height }} px</p>
+                                    </div>
+                                </swiper-slide>
+                            }
+                        </swiper-container>
+                        <div class="trends-gallery-controls" aria-label="Gallery controls">
+                            <button type="button" (click)="showPreviousHeroGalleryImage($event)" [disabled]="heroCarouselIndex === 0"
+                                    aria-label="Previous screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_back</span></button>
+                            <span class="trends-gallery-count" aria-live="polite">{{ heroGalleryProgressLabel }}</span>
+                            <button type="button" (click)="showNextHeroGalleryImage($event)" [disabled]="heroCarouselIndex === heroGalleryImages.length - 1"
+                                    aria-label="Next screenshot"><span class="material-icons-outlined" aria-hidden="true">arrow_forward</span></button>
                         </div>
-                        <div class="hero-carousel-stage"
-                             [class.hero-carousel-stage-transitioning]="heroCarouselTransitioning"
-                             role="button"
-                             tabindex="-1"
-                             aria-label="Open current screenshot in fullscreen gallery"
-                             (click)="openHeroGallery($event)">
-                            <img [src]="heroGalleryImages[previousHeroCarouselIndex].itemImageSrc"
-                                 [alt]="heroGalleryImages[previousHeroCarouselIndex].alt"
-                                 [attr.width]="heroGalleryImages[previousHeroCarouselIndex].width"
-                                 [attr.height]="heroGalleryImages[previousHeroCarouselIndex].height"
-                                 class="hero-carousel-image hero-carousel-image-previous"
-                                 aria-hidden="true">
-                            <img [src]="heroGalleryImages[heroCarouselIndex].itemImageSrc"
-                                 [alt]="heroGalleryImages[heroCarouselIndex].alt"
-                                 [attr.width]="heroGalleryImages[heroCarouselIndex].width"
-                                 [attr.height]="heroGalleryImages[heroCarouselIndex].height"
-                                 class="hero-carousel-image hero-carousel-image-current">
-                            <button type="button"
-                                    class="hero-gallery-nav hero-gallery-nav-previous"
-                                    aria-label="Previous screenshot"
-                                    (click)="showPreviousHeroGalleryImage($event)">
-                                <span aria-hidden="true">&#8249;</span>
-                            </button>
-                            <button type="button"
-                                    class="hero-gallery-nav hero-gallery-nav-next"
-                                    aria-label="Next screenshot"
-                                    (click)="showNextHeroGalleryImage($event)">
-                                <span aria-hidden="true">&#8250;</span>
-                            </button>
-                            <button type="button"
-                                    class="hero-gallery-open"
-                                    aria-label="Enlarge current screenshot"
-                                    (click)="openHeroGallery($event)">
-                                <span class="material-icons-outlined" aria-hidden="true">zoom_in</span>
-                            </button>
-                        </div>
-                        <div class="hero-gallery-current" aria-live="polite" data-seo-dynamic>
-                            <span class="hero-gallery-current-title">{{ heroGalleryCurrentItem.title }}</span>
-                            <span class="hero-gallery-current-size">{{ heroGalleryCurrentItem.width }} × {{ heroGalleryCurrentItem.height }} px</span>
-                        </div>
-                        <div #heroThumbnails class="hero-gallery-thumbnails" aria-label="Choose screenshot">
-                            <button *ngFor="let img of heroGalleryImages; let i = index; trackBy: trackHeroGalleryImage"
-                                    type="button"
-                                    class="hero-gallery-thumbnail"
-                                    [class.active]="i === heroCarouselIndex"
-                                    [attr.aria-label]="getHeroGalleryThumbnailLabel(i)"
-                                    [attr.aria-current]="i === heroCarouselIndex ? 'true' : null"
-                                    (click)="selectHeroGalleryImage(i)"
-                                    (dblclick)="openHeroGalleryAt(i, $event)"
-                                    (keydown)="onHeroThumbnailKeydown($event, i)">
-                                <img [src]="img.thumbnailImageSrc" alt="" [attr.width]="img.width" [attr.height]="img.height" loading="lazy">
-                            </button>
+                        <div class="trends-gallery-dots" aria-label="Choose screenshot">
+                            @for (img of heroGalleryImages; track img.itemImageSrc; let index = $index) {
+                                <button type="button" (click)="selectHeroGalleryImage(index)"
+                                        [attr.aria-label]="'Show ' + img.title"
+                                        [attr.aria-current]="heroCarouselIndex === index ? 'true' : null"
+                                        [class.active]="heroCarouselIndex === index"></button>
+                            }
                         </div>
                     </div>
-                </div>
+                </section>
 
                 <!--suppress HtmlUnknownTag -->
                 <p-galleria
@@ -240,7 +200,8 @@
                                  [alt]="item.alt"
                                  [attr.width]="item.width"
                                  [attr.height]="item.height"
-                                 class="gallery-popup-image">
+                                 class="gallery-popup-image"
+                                 [style.max-width]="'min(94vw, ' + (item.width / displayPixelRatio) + 'px)'">
                             <div class="gallery-popup-meta">
                                 <span class="gallery-popup-counter">{{ heroGalleryDialogProgressLabel }}</span>
                                 <span class="gallery-popup-title">{{ item.title }}</span>
@@ -545,7 +506,7 @@
             </div>
         </section>
 
-        <section class="details" id="preview">
+        <section class="details" id="gallery-details">
             <div class="details-copy">
                 <div class="section-kicker">Screenshots</div>
                 <h2 class="section-heading-title">Explore the workspace in detail</h2>
@@ -557,11 +518,12 @@
 
             <div class="preview-grid preview-grid-large">
                 <article class="preview-card">
-                    <a href="/images/navigator/gallery/dual-panel-workspace.png" (click)="openPreview('navigator/gallery/dual-panel-workspace.png', 'Dual-panel workspace'); $event.preventDefault()"
+                    <a href="/images/navigator/gallery/001.png" (click)="openPreview('navigator/gallery/001.png', 'Dual-panel workspace'); $event.preventDefault()"
                        aria-label="Open dual-panel workspace screenshot in dialog">
-                        <img class="preview-image" src="/images/navigator/gallery/dual-panel-workspace.png"
+                        <img class="preview-image" src="/images/navigator/gallery/001.png"
                              width="1353"
                              height="1258"
+                             [style.max-width.px]="1353 / displayPixelRatio"
                              alt="MiMiNavigator file manager macOS - dual-panel workspace for file browsing">
                     </a>
                     <h3>Dual-panel workspace</h3>
@@ -569,11 +531,12 @@
                 </article>
 
                 <article class="preview-card">
-                    <a href="/images/navigator/gallery/advanced-file-search.png" (click)="openPreview('navigator/gallery/advanced-file-search.png', 'Advanced file search'); $event.preventDefault()"
+                    <a href="/images/navigator/gallery/002.png" (click)="openPreview('navigator/gallery/002.png', 'Advanced file search'); $event.preventDefault()"
                        aria-label="Open Find Files screenshot in dialog">
-                        <img class="preview-image" src="/images/navigator/gallery/advanced-file-search.png"
+                        <img class="preview-image" src="/images/navigator/gallery/002.png"
                              width="967"
                              height="900"
+                             [style.max-width.px]="967 / displayPixelRatio"
                              alt="MiMiNavigator advanced Find Files interface showing filtered image results">
                     </a>
                     <h3>Find Files with advanced filters</h3>
@@ -581,11 +544,12 @@
                 </article>
 
                 <article class="preview-card">
-                    <a href="/images/navigator/gallery/media-converter-video.png" (click)="openPreview('navigator/gallery/media-converter-video.png', 'Media details and conversion'); $event.preventDefault()"
+                    <a href="/images/navigator/gallery/003.png" (click)="openPreview('navigator/gallery/003.png', 'Media details and conversion'); $event.preventDefault()"
                        aria-label="Open media conversion screenshot in dialog">
-                        <img class="preview-image" src="/images/navigator/gallery/media-converter-video.png"
-                             width="1109"
-                             height="852"
+                        <img class="preview-image" src="/images/navigator/gallery/003.png"
+                             width="1528"
+                             height="1394"
+                             [style.max-width.px]="1528 / displayPixelRatio"
                              alt="MiMiNavigator media details, preview, and conversion presets">
                     </a>
                     <h3>Media details and conversion</h3>
@@ -594,11 +558,12 @@
                 </article>
 
                 <article class="preview-card">
-                    <a href="/images/navigator/gallery/server-connections.png" (click)="openPreview('navigator/gallery/server-connections.png', 'Server connections'); $event.preventDefault()"
+                    <a href="/images/navigator/gallery/004.png" (click)="openPreview('navigator/gallery/004.png', 'Server connections'); $event.preventDefault()"
                        aria-label="Open server connections screenshot in dialog">
-                        <img class="preview-image" src="/images/navigator/gallery/server-connections.png"
+                        <img class="preview-image" src="/images/navigator/gallery/004.png"
                              width="817"
                              height="587"
+                             [style.max-width.px]="817 / displayPixelRatio"
                              alt="MiMiNavigator server connection editor with SMB, SFTP, FTP, and AFP options">
                     </a>
                     <h3>Server connections</h3>
