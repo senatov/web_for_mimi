@@ -26,7 +26,7 @@
 
 
     <main id="top">
-        <section class="hero trends-hero gallery-hero">
+        <section class="hero trends-hero">
             <div class="hero-copy">
                 <div class="section-kicker">SwiftUI · iPad · macOS 27+</div>
                 <h1>mimiTrendsIOS</h1>
@@ -46,7 +46,7 @@
                     <div class="trends-gallery" id="trends-gallery" aria-label="mimiTrendsIOS screenshot gallery">
                         <swiper-container #gallery init="false" class="trends-gallery-track" aria-label="Screenshots">
                             @for (screenshot of screenshots; track screenshot.src; let index = $index) {
-                                <swiper-slide [style.--native-width.px]="screenshot.width">
+                                <swiper-slide [style.--native-width.px]="screenshot.width / displayPixelRatio">
                                     <a class="trends-gallery-image" [href]="screenshot.src" [attr.data-pswp-width]="screenshot.width"
                                        [attr.data-pswp-height]="screenshot.height"
                                        [attr.aria-label]="'Open ' + screenshot.title + ' full size'" target="_blank">

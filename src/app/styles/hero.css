@@ -8,16 +8,6 @@
   gap: 42px;
 }
 
-/* Full-width screenshots preserve readable UI text in both product galleries. */
-.hero.gallery-hero {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 28px;
-}
-
-.hero.gallery-hero .hero-visual {
-  grid-column: 1;
-}
-
 .hero-copy {
   display: flex;
   flex-direction: column;
