@@ -165,6 +165,13 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
                         pswpModule: () => import('photoswipe'),
                         bgOpacity: 0.9, showHideAnimationType: reducedMotion ? 'none' : 'zoom', wheelToZoom: true
                 });
+                this.lightbox.on('change', () => {
+                        const index = this.lightbox?.pswp?.currIndex;
+                        if (index === undefined) return;
+                        this.gallery?.nativeElement.swiper?.slideTo(index, 0);
+                        this.activeScreenshot = index;
+                        this.cdr.markForCheck();
+                });
                 this.lightbox.init();
         }
 
