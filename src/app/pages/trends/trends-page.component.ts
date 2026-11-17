@@ -47,7 +47,7 @@ const pageUrl = 'https://miminavi.tech/mimitrendsios';
 const repositoryUrl = 'https://github.com/senatov/mimiTrendsIOS';
 const iconUrl = 'https://miminavi.tech/images/trends/AppIcon-1024.png';
 const title = 'mimiTrendsIOS — SwiftUI market radar for iPad and Mac';
-const description = 'A SwiftUI market radar for iPad and macOS 27+: Yahoo candle signals, source status, a local watchlist and price charts. The notarized Mac DMG is available; iPad App Store release is in preparation.';
+const description = 'A SwiftUI market radar for iPad and macOS 27+: TradingView candidates checked against EIX observations, Yahoo candle signals, a local watchlist and charts. Mac DMG available; iPad App Store release in preparation.';
 
 
 

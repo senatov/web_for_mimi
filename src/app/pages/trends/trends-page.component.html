@@ -31,7 +31,7 @@
                 <div class="section-kicker">SwiftUI · iPad · macOS 27+</div>
                 <h1>mimiTrendsIOS</h1>
                 <p class="hero-lede">A market radar built for iPad and Mac.</p>
-                <p class="hero-note">Scan recent price moves from completed Yahoo minute candles, check source activity, and inspect charts in one native SwiftUI workspace.</p>
+                <p class="hero-note">The development source follows recent moves in EIX-observed shares using completed Yahoo minute candles. Check source activity and inspect charts in one native SwiftUI workspace.</p>
                 <div class="hero-actions">
                     <a class="button button-primary dmg-download-button hero-dmg-download-button" [href]="latestDmgUrl" target="_blank"
                        rel="noopener noreferrer" aria-label="Download mimiTrendsIOS DMG for macOS 27 or newer">Download Mac DMG</a>
@@ -42,7 +42,7 @@
                 <section class="trends-hero-gallery" id="preview" aria-labelledby="trends-preview-title">
                     <div class="trends-gallery-intro"><span class="section-kicker">Screenshots</span>
                         <h2 id="trends-preview-title">Explore the app</h2>
-                        <p>Swipe or use the arrows. Open a screenshot, then click or pinch to zoom into its details.</p></div>
+                        <p>Swipe or use the arrows. Open a screenshot, then click or pinch to zoom into its details. The screenshots show an earlier build; current source labels the filtered list EIX candidates.</p></div>
                     <div class="trends-gallery" id="trends-gallery" aria-label="mimiTrendsIOS screenshot gallery">
                         <swiper-container #gallery init="false" class="trends-gallery-track" aria-label="Screenshots">
                             @for (screenshot of screenshots; track screenshot.src; let index = $index) {
@@ -94,15 +94,14 @@
         <section class="latest-improvements" aria-labelledby="trends-latest-title">
             <div class="section-kicker">The SwiftUI prototype</div>
             <div class="section-heading-block"><h2 id="trends-latest-title">One workflow across iPad and Mac</h2>
-                <p>Radar scans up to 200 US and German shares while the app is active. Its signals, source status, market candidates,
-                    and the selected instrument's chart stay in the same workspace.</p></div>
+                <p>In the current development source, Radar scans up to 255 US and German shares while the app is active. TradingView supplies candidates; only those with ISINs observed in EIX pre-trade data enter the scan pool. Signals, source status, candidates, and the selected chart stay in one workspace.</p></div>
             <div class="improvement-grid">
                 <article><span class="material-icons-outlined" aria-hidden="true">radar</span>
                     <h3>Radar</h3>
                     <p>Review recent and saved rapid drops, confirmed reversals, and sustained rises with measured move windows.</p></article>
                 <article><span class="material-icons-outlined" aria-hidden="true">monitor_heart</span>
                     <h3>Source telemetry</h3>
-                    <p>Check source status, candidate progress, and which Yahoo candles have usable volume data.</p></article>
+                    <p>Check source status, the EIX-filtered candidate pool, scan progress, and which Yahoo candles have usable volume data.</p></article>
                 <article><span class="material-icons-outlined" aria-hidden="true">show_chart</span>
                     <h3>Charts and settings</h3>
                     <p>Inspect candles, volume, and moving averages; adjust signal rules and the display currency.</p></article>
@@ -111,7 +110,7 @@
 
         <section class="feature-overview" id="features" aria-labelledby="trends-features-title">
             <div class="section-kicker">Features</div>
-            <div class="section-heading-block"><h2 id="trends-features-title">Explore the current build</h2>
+            <div class="section-heading-block"><h2 id="trends-features-title">Explore the development source</h2>
                 <p>Native panels keep the market context readable. The iPad and Mac builds share the Radar workflow, with
                     platform-sized controls and device-local settings.</p></div>
             <div class="feature-clusters">
@@ -120,7 +119,7 @@
                     <p>Review recent and saved events with company identity, measured price move, time window, and age. Signals describe past moves, not forecasts.</p></article>
                 <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">02</span>
                     <h3>Source activity</h3>
-                    <p>Open Sources to see Yahoo, ranking, and quote-source status plus searchable scanner candidates without leaving Radar.</p></article>
+                    <p>Open Sources to see Yahoo, ranking, and quote-source status plus searchable EIX candidates without leaving Radar.</p></article>
                 <article class="feature-cluster"><span class="cluster-icon" aria-hidden="true">03</span>
                     <h3>Selected chart</h3>
                     <p>Inspect saved Yahoo minute candles, volume, and moving averages for the selected symbol. Longer ranges summarize saved bars.</p></article>
@@ -226,7 +225,12 @@
                 <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">radar</span>
                     <div><h3>Do I need a provider API key?</h3>
                         <p>No. Open Radar while the app is active to scan completed Yahoo minute candles with reported volume. Sources shows scan progress and the status of ranking and quote providers.</p>
-                        <p>Market hours, provider availability, and candle quality affect coverage. A completed scan does not mean every candidate had usable candle data; detected moves are historical observations, not trading advice.</p></div>
+                        <p>Market hours, provider availability, EIX data, and candle quality affect coverage. A completed scan does not mean every candidate had usable candle data; detected moves are historical observations, not trading advice.</p></div>
+                </article>
+                <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">account_balance</span>
+                    <div><h3>Does an EIX candidate mean I can buy it through Scalable?</h3>
+                        <p>No. The current source matches TradingView candidates by ISIN against public EIX pre-trade observations before filling up to 255 scan slots. Shares missing from that file are skipped and the next eligible candidates take their places. Saved signals are shown only for currently verified candidates.</p>
+                        <p>The <a href="https://european-investor-exchange.com/de/pretrade" target="_blank" rel="noopener noreferrer">public EIX file</a> is not a complete broker catalogue. A match does not guarantee a live quote or order access in Scalable, and an absent ISIN does not prove the share is unavailable at every venue. The app does not connect to a Scalable account. Check the release notes to see whether this development change is included in the downloadable Mac build.</p></div>
                 </article>
                 <article class="trends-reference-card"><span class="material-icons-outlined" aria-hidden="true">tablet_mac</span>
                     <div><h3>Can I install it on iPad now?</h3>
