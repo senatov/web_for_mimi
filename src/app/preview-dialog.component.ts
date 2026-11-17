@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild, ChangeDetectionStrategy} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 
@@ -36,6 +36,7 @@ export interface PreviewDialogData {
             <footer>Fit preserves the complete image. Use 100% for pixel detail; scroll to pan. Esc closes the viewer.</footer>
         </section>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     styles: [`
         :host { display: block; height: 100%; color: #e7edf6; }
         .screenshot-viewer { display: flex; flex-direction: column; height: 100%; background: #111b2a; }

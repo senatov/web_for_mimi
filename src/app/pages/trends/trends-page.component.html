@@ -51,7 +51,8 @@
                                        [attr.data-pswp-height]="screenshot.height"
                                        [attr.aria-label]="'Open ' + screenshot.title + ' full size'" target="_blank">
                                         <img [src]="screenshot.src" [alt]="screenshot.alt" [attr.width]="screenshot.width"
-                                             [attr.height]="screenshot.height" [attr.loading]="index === 0 ? 'eager' : 'lazy'">
+                                             [attr.height]="screenshot.height" [attr.loading]="index === 0 ? 'eager' : 'lazy'"
+                                             [attr.fetchpriority]="index === 0 ? 'high' : 'auto'" decoding="async">
                                         <span class="trends-gallery-zoom"><span class="material-icons-outlined"
                                                                                 aria-hidden="true">zoom_in</span> View full size</span>
                                     </a>

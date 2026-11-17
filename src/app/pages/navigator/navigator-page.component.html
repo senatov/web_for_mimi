@@ -147,7 +147,8 @@
                                        [attr.aria-label]="'Open ' + img.title + ' full size'"
                                        (click)="openHeroGalleryAt(index, $event)">
                                         <img [src]="img.itemImageSrc" [alt]="img.alt" [attr.width]="img.width"
-                                             [attr.height]="img.height" [attr.loading]="index === 0 ? 'eager' : 'lazy'">
+                                             [attr.height]="img.height" [attr.loading]="index === 0 ? 'eager' : 'lazy'"
+                                             [attr.fetchpriority]="index === 0 ? 'high' : 'auto'" decoding="async">
                                         <span class="trends-gallery-zoom"><span class="material-icons-outlined" aria-hidden="true">zoom_in</span> View full size</span>
                                     </a>
                                     <div class="trends-gallery-caption">
@@ -520,7 +521,7 @@
                 <article class="preview-card">
                     <a href="/images/navigator/gallery/001.png" (click)="openPreview('navigator/gallery/001.png', 'Dual-panel workspace'); $event.preventDefault()"
                        aria-label="Open dual-panel workspace screenshot in dialog">
-                        <img class="preview-image" src="/images/navigator/gallery/001.png"
+                        <img class="preview-image" loading="lazy" decoding="async" src="/images/navigator/gallery/001.png"
                              width="1353"
                              height="1258"
                              [style.max-width.px]="1353 / displayPixelRatio"
@@ -533,7 +534,7 @@
                 <article class="preview-card">
                     <a href="/images/navigator/gallery/002.png" (click)="openPreview('navigator/gallery/002.png', 'Advanced file search'); $event.preventDefault()"
                        aria-label="Open Find Files screenshot in dialog">
-                        <img class="preview-image" src="/images/navigator/gallery/002.png"
+                        <img class="preview-image" loading="lazy" decoding="async" src="/images/navigator/gallery/002.png"
                              width="967"
                              height="900"
                              [style.max-width.px]="967 / displayPixelRatio"
@@ -546,7 +547,7 @@
                 <article class="preview-card">
                     <a href="/images/navigator/gallery/003.png" (click)="openPreview('navigator/gallery/003.png', 'Media details and conversion'); $event.preventDefault()"
                        aria-label="Open media conversion screenshot in dialog">
-                        <img class="preview-image" src="/images/navigator/gallery/003.png"
+                        <img class="preview-image" loading="lazy" decoding="async" src="/images/navigator/gallery/003.png"
                              width="1528"
                              height="1394"
                              [style.max-width.px]="1528 / displayPixelRatio"
@@ -560,7 +561,7 @@
                 <article class="preview-card">
                     <a href="/images/navigator/gallery/004.png" (click)="openPreview('navigator/gallery/004.png', 'Server connections'); $event.preventDefault()"
                        aria-label="Open server connections screenshot in dialog">
-                        <img class="preview-image" src="/images/navigator/gallery/004.png"
+                        <img class="preview-image" loading="lazy" decoding="async" src="/images/navigator/gallery/004.png"
                              width="817"
                              height="587"
                              [style.max-width.px]="817 / displayPixelRatio"
