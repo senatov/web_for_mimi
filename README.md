@@ -2,7 +2,7 @@
 
 ## Site https://miminavi.tech
 
-Angular 21 presentation site for MiMiNavigator and the SwiftUI mimiTrendsIOS prototype.
+Angular 22 presentation site for MiMiNavigator and the SwiftUI mimiTrendsIOS prototype.
 
 ## MiMiNavigator platform policy
 
@@ -41,7 +41,9 @@ The portal's `package.json` version is independent of the application release. I
 
 - Visible release, DMG, and commit timestamps use compact `DD.MM.YYYY HH:mm` formatting in the visitor’s browser time zone. The DMG release annotation uses smaller text; operation-feedback tags share equal dimensions.
 - Release metadata comes from GitHub. Development commits are labelled separately because they may not be part of the downloadable release. The Navigator download card links directly to the current published release, and its DMG timestamp remains bound to the GitHub asset date while keyword highlighting runs.
-- The Navigator page's "Recently improved" section describes the published Cleanup release. Keep static product copy aligned with the latest published release; release notes and download data load dynamically from GitHub.
+- The Navigator page's "Recently improved" section describes v0.9.2.0 navigation and Cloudflare R2 sharing. Keep static product copy aligned with the latest published release; release notes and download data load dynamically from GitHub.
+- The first Navigator screen links directly to the latest published DMG on Mac, while the release card supplies version and compatibility details.
+- Share+Link uses Google Drive and Dropbox for provider view links. Optional Cloudflare R2 uploads image, video, and audio files to a user-owned public bucket and copies the direct URL without TinyURL shortening.
 - The `/cleanup` guide distinguishes the published v0.9.1.5 scan from the sortable table and in-app folder links still in development. Update its availability note when those UI changes ship.
 - The mimiTrendsIOS page presents the active SwiftUI project in the same card-based design as the Navigator page. Its release center shows recent development commits separately from the complete, script-generated commit list in the published release notes. The previous Kotlin prototype is linked only as an archived reference. The current notarized Mac DMG requires macOS 27+, the mobile design targets iPad, and an iPad App Store release is pending.
 - Current source filters TradingView Radar candidates by ISIN against public EIX pre-trade observations before filling a pool of up to 255 shares. Present this as a conservative exchange observation, not Scalable order eligibility or a complete EIX catalogue. The published DMG may lag source changes; keep the release-center distinction clear.

@@ -44,11 +44,13 @@
                 <p class="hero-note">
                     A native macOS file manager inspired by Total Commander and Norton Commander, with persistent
                     dual panels, tabs, List/Preview/Tree views, Find Files, Multi-Rename, SFTP/FTP, network discovery,
-                    Archive VFS, media conversion, and Share+Link for Google Drive and Dropbox.
+                    Archive VFS, media conversion, and Share+Link for Google Drive, Dropbox, and Cloudflare R2 media.
                 </p>
 
                 <div class="hero-actions">
                     @if (!isMobileDevice) {
+                        <a class="button button-primary" [href]="latestDmgUrl" target="_blank" rel="noopener noreferrer"
+                           (click)="trackDownloadClick('hero')">Download for Mac</a>
                         <button type="button"
                                 class="button button-secondary"
                                 aria-label="Show what changed in the latest release"
@@ -243,8 +245,8 @@
                     <p-tag value="Reusable profiles" severity="warn"></p-tag>
                 </p-card>
                 <p-card header="Share" subheader="Links without leaving the panels">
-                    <p>Upload to Google Drive or Dropbox and copy a view link from the file context menu. Optional TinyURL shortening creates mimiNavi short links.</p>
-                    <p-tag value="Provider-scoped OAuth" severity="info"></p-tag>
+                    <p>Create Google Drive or Dropbox view links, or upload media to your own public Cloudflare R2 bucket for a direct link.</p>
+                    <p-tag value="Choose each provider" severity="info"></p-tag>
                 </p-card>
             </div>
         </section>
@@ -252,34 +254,33 @@
         <section class="latest-improvements" aria-labelledby="navigator-latest-title">
             <div class="section-kicker">Recently improved</div>
             <div class="section-heading-block">
-                <h2 id="navigator-latest-title">Cleanup suggestions you review before acting</h2>
-                <p>Cleanup scans eligible local locations during quiet periods, saves directory checkpoints, and leaves every removal decision to you. The latest media update adds a bundled renderer for Telegram animated stickers.</p>
+                <h2 id="navigator-latest-title">Faster navigation and more ways to share</h2>
+                <p>Recent releases keep both panels responsive during tab changes, strengthen SFTP transfers, and add optional direct links for media uploaded to your own Cloudflare R2 bucket.</p>
             </div>
             <div class="improvement-grid">
-                <article><span class="material-icons-outlined" aria-hidden="true">manage_search</span><h3>Useful candidates</h3><p>Review exact duplicates, old installers, temporary files, empty folders, and stale PID files found in your home directory and writable local volumes. System, cloud, development, and Time Machine locations are excluded.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">pause_circle</span><h3>Automatic, resumable scans</h3><p>Scanning starts with the app; no switch is needed. It waits while MiMiNavigator is active or the Mac is busy, resumes from saved directory checkpoints after a restart, and revisits eligible locations later.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">delete_outline</span><h3>You choose what moves to Trash</h3><p>Nothing is removed automatically. Select items or duplicate groups, keep at least one copy, and let the app recheck candidates before moving them to Trash.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">tab</span><h3>Clearer, quicker tabs</h3><p>The selected tab stands out in the focused panel. Cached tab changes avoid needless immediate rescans, and unchanged columns skip repeat sizing work.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">sync_alt</span><h3>Safer SFTP transfers</h3><p>Each panel uses its own SFTP connection. Uploads are published after verification, and a failed transfer keeps an existing destination intact.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">cloud_upload</span><h3>Direct media links</h3><p>Enable Cloudflare R2 with your own public bucket to upload image, video, or audio files and copy a direct URL after transfer.</p></article>
             </div>
-            <p>For scan timing, coverage, on-device AI review, and result handling, read the <a href="/cleanup">Cleanup guide</a>.</p>
             <div class="development-update" aria-label="Feature guides">
                 <div>
                     <span class="development-update-kicker">Feature guides</span>
                     <h3>Explore Cleanup, media conversion, and cloud sharing</h3>
-                    <p>See how local cleanup suggestions work, which media workflows are available, and how Google Drive and Dropbox links are created.</p>
+                    <p>See how local cleanup suggestions work, which media workflows are available, and how cloud links are created.</p>
                 </div>
                 <nav aria-label="MiMiNavigator feature guides">
                     <a href="/cleanup">Mac Cleanup and Apple Intelligence ↗</a>
                     <a href="/media-converter">Media converter for macOS ↗</a>
-                    <a href="/share-link">Google Drive and Dropbox Share+Link ↗</a>
+                    <a href="/share-link">Cloud Share+Link ↗</a>
                 </nav>
             </div>
             <div class="development-update" aria-label="Recent development changes">
                 <div>
-                    <span class="development-update-kicker">New in v0.9.1.8</span>
-                    <h3>Telegram TGS conversion without Python</h3>
-                    <p>Bundled TelegramMessenger/rlottie renders animated stickers and Lottie JSON for GIF, MP4, and first-frame PNG export. About now lists the renderer and uses a clearer, more colorful system-font layout.</p>
+                    <span class="development-update-kicker">New in v0.9.2.0</span>
+                    <h3>Direct Cloudflare R2 links for media</h3>
+                    <p>Enable R2 in Cloud Share+Link, add your own public bucket and S3 credentials, then upload an image, video, or audio file from its context menu. The direct URL is copied after a successful upload.</p>
                 </div>
-                <a href="/media-converter">Explore the media converter <span aria-hidden="true">↗</span></a>
+                <a href="/share-link">Explore Share+Link <span aria-hidden="true">↗</span></a>
             </div>
         </section>
 
@@ -613,7 +614,7 @@
 
                 <article class="faq-item">
                     <h3>Which remote and cloud connections are supported?</h3>
-                    <p>SFTP and FTP servers open inside the panels with saved Keychain-backed connections. The network neighborhood discovers and mounts SMB and AFP shares. Mounted cloud storage works as part of the file workflow, with dedicated Google Drive and Dropbox Share+Link support. <a href="/share-link">See how Share+Link works</a>.</p>
+                    <p>SFTP and FTP servers open inside the panels with saved connections. The network neighborhood discovers and mounts SMB and AFP shares. Mounted cloud storage works as part of the file workflow. Share+Link supports Google Drive, Dropbox, and optional Cloudflare R2 media uploads. <a href="/share-link">See how Share+Link works</a>.</p>
                 </article>
 
                 <article class="faq-item faq-item-installation">
