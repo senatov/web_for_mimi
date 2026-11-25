@@ -53,9 +53,14 @@ test('static screenshot metadata and guide dimensions match their PNG files', ()
     assert.deepEqual(pngSize(screenshot[1]), [Number(screenshot[2]), Number(screenshot[3])]);
 });
 
-test('mimiTrends gallery and PhotoSwipe dimensions match the PNG files', () => {
-    const source = fs.readFileSync(path.join(root, 'src/app/pages/trends/trends-page.component.ts'), 'utf8');
-    const images = [...source.matchAll(/src:\s*'\/images\/(trends\/[^']+\.png)',[\s\S]*?width:\s*(\d+),\s*height:\s*(\d+)/g)]
-        .map(([, file, width, height]) => [file, width, height]);
+test('mimiTrends gallery includes every numbered PNG in order and uses its actual dimensions', () => {
+    const screenshots = require('../src/app/pages/trends/trends-screenshots.json');
+    const images = screenshots.map(({src, width, height}) => [src.replace('/images/', ''), width, height]);
     checkImages(images);
+
+    const galleryFiles = fs.readdirSync(path.join(root, 'public/images/trends'))
+        .filter(file => /^\d+\.png$/.test(file))
+        .sort();
+    assert.deepEqual(images.map(([file]) => file), galleryFiles.map(file => `trends/${file}`));
+    assert.deepEqual(galleryFiles, galleryFiles.map((_, index) => `${String(index + 1).padStart(3, '0')}.png`));
 });

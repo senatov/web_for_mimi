@@ -1,0 +1,66 @@
+[
+    {
+        "src": "/images/trends/001.png",
+        "alt": "Radar with recent signals, a sources sidebar, and a Hewlett Packard Enterprise candlestick chart",
+        "title": "Radar and sources",
+        "description": "Review recent signals, source status, and the selected price chart together.",
+        "width": 1376,
+        "height": 1313
+    },
+    {
+        "src": "/images/trends/002.png",
+        "alt": "Scanner settings with maximum result count, maximum signal age, and current scan scope",
+        "title": "Scanner settings",
+        "description": "Set how many saved signals are shown and how old they can be.",
+        "width": 1376,
+        "height": 1313
+    },
+    {
+        "src": "/images/trends/003.png",
+        "alt": "Expanded Radar table with signal sparklines above a CoreWeave candlestick chart",
+        "title": "Expanded Radar",
+        "description": "Compare events, price moves, time windows, and signal age in the expanded table.",
+        "width": 1376,
+        "height": 1313
+    },
+    {
+        "src": "/images/trends/004.png",
+        "alt": "Radar table and CoreWeave candlestick chart alongside source status and EIX candidates",
+        "title": "Radar with source details",
+        "description": "Inspect the selected chart while keeping source status and candidates in view.",
+        "width": 1376,
+        "height": 1313
+    },
+    {
+        "src": "/images/trends/005.png",
+        "alt": "Rapid moves settings with thresholds for drops, reversals, rising prices, and trading volume",
+        "title": "Rapid moves settings",
+        "description": "Adjust the thresholds and confirmation rules that determine which moves appear in Radar.",
+        "width": 1376,
+        "height": 1313
+    },
+    {
+        "src": "/images/trends/006.png",
+        "alt": "Market data providers settings with a trade history CSV import and provider setup",
+        "title": "Market data providers",
+        "description": "Import trade history or review the source addresses used by the app.",
+        "width": 1376,
+        "height": 1313
+    },
+    {
+        "src": "/images/trends/007.png",
+        "alt": "Provider settings for TradingView, Yahoo Finance, and Lang & Schwarz with connection check buttons",
+        "title": "Provider checks",
+        "description": "Run a check for a configured market data provider.",
+        "width": 1376,
+        "height": 1313
+    },
+    {
+        "src": "/images/trends/008.png",
+        "alt": "Watchlist editor over Radar with saved symbols and controls to add, edit, or remove them",
+        "title": "Local watchlist",
+        "description": "Manage saved symbols without leaving the Radar workspace.",
+        "width": 1376,
+        "height": 1313
+    }
+]

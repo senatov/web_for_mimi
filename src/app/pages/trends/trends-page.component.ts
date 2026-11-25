@@ -18,21 +18,11 @@ import {register, SwiperContainer} from 'swiper/element/bundle';
 import {GitHubService, RecentCommitViewModel} from '../../github.service';
 import {GitHubLatestRelease} from '../../github.models';
 import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
+import screenshots from './trends-screenshots.json';
 
 
 
 register();
-
-
-
-interface ProductScreenshot {
-        src: string;
-        alt: string;
-        title: string;
-        description: string;
-        width: number;
-        height: number;
-}
 
 
 
@@ -73,64 +63,7 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
         protected readonly releasesUrl = `${repositoryUrl}/releases`;
         protected readonly archiveUrl = 'https://github.com/senatov/mimiTrends';
         protected readonly linkedInUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
-        protected readonly screenshots: ProductScreenshot[] = [
-                {
-                        src: '/images/trends/001.png',
-                        alt: 'Mac Radar with recent signals, source status, market candidates, and an Endeavour Silver candle chart',
-                        title: 'Radar and sources',
-                        description: 'Review confirmed candle signals, source status, candidates, and a selected chart together.',
-                        width: 1239,
-                        height: 1129
-                },
-                {
-                        src: '/images/trends/002.png',
-                        alt: 'Mac Radar table of recent price moves above a selected candlestick chart and volume bars',
-                        title: 'Signals and price history',
-                        description: 'Sort recent moves and inspect the selected symbol’s candles, moving averages, and volume.',
-                        width: 1241,
-                        height: 1160
-                },
-                {
-                        src: '/images/trends/003.png',
-                        alt: 'Expanded Mac Radar table showing recent drops, reversals, and sustained rises above a candle chart',
-                        title: 'Expanded Radar',
-                        description: 'Compare company, event, move, time window, price, and signal age in the sortable table.',
-                        width: 1239,
-                        height: 1129
-                },
-                {
-                        src: '/images/trends/004.png',
-                        alt: 'Watchlist editor over Radar with saved ticker symbols and add, edit, and delete controls',
-                        title: 'Local watchlist',
-                        description: 'Add, correct, or remove symbols without leaving the Radar workspace.',
-                        width: 1355,
-                        height: 1218
-                },
-                {
-                        src: '/images/trends/005.png',
-                        alt: 'Rapid moves settings with short-window, confirmed reversal, smooth rise, and volume thresholds',
-                        title: 'Signal rules',
-                        description: 'Adjust move thresholds, confirmation, and volume checks in Settings.',
-                        width: 1355,
-                        height: 1218
-                },
-                {
-                        src: '/images/trends/006.png',
-                        alt: 'Market data provider settings with Yahoo, wallstreetONLINE, Lang and Schwarz, TraderFox, and boerse.de sources',
-                        title: 'Market data sources',
-                        description: 'Inspect source addresses and configure ranking inputs and scan priority.',
-                        width: 1355,
-                        height: 1218
-                },
-                {
-                        src: '/images/trends/007.png',
-                        alt: 'Market data provider settings with source addresses, ranking inputs, and scan priority',
-                        title: 'Provider configuration',
-                        description: 'Review source addresses and choose which ranking inputs feed the Radar.',
-                        width: 1355,
-                        height: 1218
-                }
-        ];
+        protected readonly screenshots = screenshots;
         protected activeScreenshot = 0;
         protected latestVersion = 'Latest release';
         protected latestReleaseDate = 'See GitHub for the publication date';

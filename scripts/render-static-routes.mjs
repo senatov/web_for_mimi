@@ -1,6 +1,7 @@
 import {mkdir, readFile, writeFile} from 'node:fs/promises';
 import {join} from 'node:path';
 import {load} from 'cheerio';
+import trendsScreenshots from '../src/app/pages/trends/trends-screenshots.json' with {type: 'json'};
 
 const outputDirectory = join(process.cwd(), 'dist', 'web-for-mimi');
 const sourcePath = join(outputDirectory, 'index.html');
@@ -117,6 +118,8 @@ const metadata = [
     [/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${pageUrl}">`, 'Open Graph URL'],
     [/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${imageUrl}">`, 'Open Graph image'],
     [/<meta property="og:image:alt" content="[^"]*">/, '<meta property="og:image:alt" content="mimiTrendsIOS application icon">', 'Open Graph image alt'],
+    [/<meta property="og:image:width" content="[^"]*">/, '<meta property="og:image:width" content="1024">', 'Open Graph image width'],
+    [/<meta property="og:image:height" content="[^"]*">/, '<meta property="og:image:height" content="1024">', 'Open Graph image height'],
     [/<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${title}">`, 'Twitter title'],
     [/<meta name="twitter:description" content="[^"]*">/, `<meta name="twitter:description" content="${description}">`, 'Twitter description'],
     [/<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${imageUrl}">`, 'Twitter image'],
@@ -137,15 +140,7 @@ const structuredData = {
     downloadUrl: trendsRelease.downloadUrl,
     url: pageUrl, codeRepository: 'https://github.com/senatov/mimiTrendsIOS',
     image: imageUrl,
-    screenshot: [
-        'https://miminavi.tech/images/trends/001.png',
-        'https://miminavi.tech/images/trends/002.png',
-        'https://miminavi.tech/images/trends/003.png',
-        'https://miminavi.tech/images/trends/004.png',
-        'https://miminavi.tech/images/trends/005.png',
-        'https://miminavi.tech/images/trends/006.png',
-        'https://miminavi.tech/images/trends/007.png',
-    ],
+    screenshot: trendsScreenshots.map(({src}) => new URL(src, pageUrl).href),
     programmingLanguage: 'Swift', description,
     offers: {'@type': 'Offer', price: '0', priceCurrency: 'EUR'},
     author: {'@type': 'Person', name: 'Iakov Senatov', url: 'https://www.linkedin.com/in/iakov-senatov-07060765/'}
