@@ -20,7 +20,7 @@ import {CardModule} from 'primeng/card';
 import {DividerModule} from 'primeng/divider';
 import {TagModule} from 'primeng/tag';
 import {RouterLink} from '@angular/router';
-import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
+import {highlightKeywordsHtml, SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 import {PageMetadataService} from '../../page-metadata.service';
 import {navigatorMinimumMacOS} from '../../navigator-platform';
 import {register, SwiperContainer} from 'swiper/element/bundle';
@@ -81,6 +81,7 @@ type AnalyticsEventName =
         changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavigatorPageComponent implements OnInit, AfterViewInit, OnDestroy {
+        protected readonly highlightKeywordsHtml = highlightKeywordsHtml;
         private readonly dialog = inject(MatDialog);
         private readonly cdr = inject(ChangeDetectorRef);
         private readonly gitHubService = inject(GitHubService);

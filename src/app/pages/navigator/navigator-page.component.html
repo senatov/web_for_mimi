@@ -77,7 +77,7 @@
                             <strong>{{ latestVersion }}</strong>
                         </div>
 
-                        <p data-seo-dynamic>{{ latestReleaseSummary }}</p>
+                        <p [innerHTML]="highlightKeywordsHtml(latestReleaseSummary)"></p>
 
                         @if (releaseNoteSections.length > 0) {
                             <div class="release-popover-sections">
@@ -254,13 +254,13 @@
         <section class="latest-improvements" aria-labelledby="navigator-latest-title">
             <div class="section-kicker">Recently improved</div>
             <div class="section-heading-block">
-                <h2 id="navigator-latest-title">Faster navigation and more ways to share</h2>
-                <p>Recent releases keep both panels responsive during tab changes, strengthen SFTP transfers, and add optional direct links for media uploaded to your own Cloudflare R2 bucket.</p>
+                <h2 id="navigator-latest-title">Reliable navigation and remote file work</h2>
+                <p>The current release improves SFTP transfers and drag-and-drop, keeps familiar folders visible when dotfiles are hidden, and makes navigation and menus easier to use.</p>
             </div>
             <div class="improvement-grid">
-                <article><span class="material-icons-outlined" aria-hidden="true">tab</span><h3>Clearer, quicker tabs</h3><p>The selected tab stands out in the focused panel. Cached tab changes avoid needless immediate rescans, and unchanged columns skip repeat sizing work.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">sync_alt</span><h3>Safer SFTP transfers</h3><p>Each panel uses its own SFTP connection. Uploads are published after verification, and a failed transfer keeps an existing destination intact.</p></article>
-                <article><span class="material-icons-outlined" aria-hidden="true">cloud_upload</span><h3>Direct media links</h3><p>Enable Cloudflare R2 with your own public bucket to upload image, video, or audio files and copy a direct URL after transfer.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">tab</span><h3>Predictable navigation</h3><p>Back and Forward follow panel history. Cached tab changes and unchanged columns avoid unnecessary work.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">sync_alt</span><h3>Remote files that travel</h3><p>Copy or move between SFTP locations. Drag a remote file to Finder to receive its contents rather than a server path.</p></article>
+                <article><span class="material-icons-outlined" aria-hidden="true">visibility</span><h3>Useful folders stay visible</h3><p>Hide dotfiles without losing normal named folders that Finder marks as hidden.</p></article>
             </div>
             <div class="development-update" aria-label="Feature guides">
                 <div>
@@ -276,11 +276,11 @@
             </div>
             <div class="development-update" aria-label="Recent development changes">
                 <div>
-                    <span class="development-update-kicker">New in v0.9.2.0</span>
-                    <h3>Direct Cloudflare R2 links for media</h3>
-                    <p>Enable R2 in Cloud Share+Link, add your own public bucket and S3 credentials, then upload an image, video, or audio file from its context menu. The direct URL is copied after a successful upload.</p>
+                    <span class="development-update-kicker">New in v0.9.2.1</span>
+                    <h3>Remote file drag-and-drop</h3>
+                    <p>Drag SFTP files and folders to Finder or another file destination. MiMiNavigator downloads their contents when the destination accepts the drop.</p>
                 </div>
-                <a href="/share-link">Explore Share+Link <span aria-hidden="true">↗</span></a>
+                <a [routerLink]="['/']" fragment="faq">Read the FAQ <span aria-hidden="true">↗</span></a>
             </div>
         </section>
 
@@ -399,8 +399,8 @@
             <div class="pricing-card-column">
                 <div class="price-card">
                     <div class="download-release-heading">
-                        <h2 data-seo-dynamic>{{ latestReleaseHeadline }}</h2>
-                        <p data-seo-dynamic>{{ latestReleaseSummary }}</p>
+                        <h2 [innerHTML]="highlightKeywordsHtml(latestReleaseHeadline)"></h2>
+                        <p [innerHTML]="highlightKeywordsHtml(latestReleaseSummary)"></p>
                     </div>
                     <div class="price-meta">
                         <p class="price-copy"><span class="price-label">Version</span> <strong>{{ latestVersion }}</strong></p>

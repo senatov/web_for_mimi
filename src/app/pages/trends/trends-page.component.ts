@@ -17,6 +17,7 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import {register, SwiperContainer} from 'swiper/element/bundle';
 import {GitHubService, RecentCommitViewModel} from '../../github.service';
 import {GitHubLatestRelease} from '../../github.models';
+import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 
 
 
@@ -54,7 +55,7 @@ const description = 'A SwiftUI market radar for iPad and macOS 27+: TradingView 
 @Component({
         selector: 'app-trends-page',
         standalone: true,
-        imports: [CommonModule, RouterLink],
+        imports: [CommonModule, RouterLink, SeoKeywordHighlightDirective],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
         templateUrl: './trends-page.component.html',
         styleUrls: ['../../styles/app.css', '../../styles/trends/page.css'],
