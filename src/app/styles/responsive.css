@@ -146,12 +146,8 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    padding: 12px var(--gd-gutter);
+    padding: 12px min(16px, var(--gd-gutter));
     gap: 10px;
-  }
-
-  .project-switcher {
-    align-self: center;
   }
 
   .brand-subtitle {

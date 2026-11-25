@@ -13,6 +13,7 @@ import {
         ViewEncapsulation
 } from '@angular/core';
 import {RouterLink} from '@angular/router';
+import {ProjectSwitcherComponent} from '../../project-switcher.component';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import {register, SwiperContainer} from 'swiper/element/bundle';
 import {GitHubService, RecentCommitViewModel} from '../../github.service';
@@ -45,7 +46,7 @@ const description = 'A SwiftUI market radar for iPad and macOS 27+: TradingView 
 @Component({
         selector: 'app-trends-page',
         standalone: true,
-        imports: [CommonModule, RouterLink, SeoKeywordHighlightDirective],
+        imports: [CommonModule, RouterLink, SeoKeywordHighlightDirective, ProjectSwitcherComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
         templateUrl: './trends-page.component.html',
         styleUrls: ['../../styles/app.css', '../../styles/trends/page.css'],

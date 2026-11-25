@@ -13,14 +13,10 @@
   max-width: var(--gd-max-width);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.55fr);
   align-items: center;
   gap: 18px;
   padding: 10px var(--gd-gutter);
-}
-
-.navigator-page .topbar {
-  grid-template-columns: minmax(0, 1fr) auto;
 }
 
 .brand {
@@ -97,59 +93,6 @@
   gap: 6px;
 }
 
-.project-switcher {
-  position: relative;
-  display: inline-flex;
-  justify-self: center;
-  padding: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  border-radius: 999px;
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.95), rgba(186, 211, 235, 0.67));
-  box-shadow: 0 9px 20px rgba(13, 48, 88, 0.2), inset 0 2px 2px #fff, inset 0 -2px 4px rgba(38, 75, 112, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.project-switcher-option {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  min-height: 38px;
-  padding: 7px 13px;
-  border-radius: 999px;
-  color: #26435f;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
-}
-
-.project-switcher-option img {
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  object-fit: cover;
-  box-shadow: 0 1px 3px rgba(13, 31, 74, 0.25);
-}
-
-.project-switcher-option.active {
-  color: #fff;
-  background: linear-gradient(155deg, #6e9bcc 0%, #365f95 45%, #1d416f 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.58), inset 0 -2px 3px rgba(8, 25, 54, 0.28), 0 5px 11px rgba(21, 58, 101, 0.36);
-  text-shadow: 0 1px 2px rgba(10, 30, 62, 0.4);
-}
-
-.project-switcher-option:not(.active):hover {
-  background: rgba(255, 255, 255, 0.62);
-  transform: translateY(-1px);
-}
-
-.project-switcher-option:focus-visible {
-  outline: 2px solid var(--gd-blue);
-  outline-offset: 3px;
-}
-
 .topnav a {
   display: inline-flex;
   align-items: center;
@@ -224,7 +167,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-switcher-option,
   .topnav a {
     transition: none;
   }

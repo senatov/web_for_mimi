@@ -330,3 +330,42 @@ h3 .seo-keyword-highlight {
 body.p-overflow-hidden .site-header {
     z-index: 0;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        --project-transition-offset: -22px;
+        --project-transition-ease: cubic-bezier(.22, .75, .24, 1);
+    }
+
+    :root:has(.trends-page) {
+        --project-transition-offset: 22px;
+    }
+
+    ::view-transition-group(root),
+    ::view-transition-group(mi-mi-active-project) {
+        animation-duration: 360ms;
+        animation-timing-function: var(--project-transition-ease);
+    }
+
+    ::view-transition-old(root) {
+        animation: project-exit 220ms ease-out both;
+    }
+
+    ::view-transition-new(root) {
+        animation: project-enter 340ms var(--project-transition-ease) both;
+    }
+}
+
+@keyframes project-exit {
+    to {
+        opacity: 0;
+        transform: translateX(calc(var(--project-transition-offset) * -.65));
+    }
+}
+
+@keyframes project-enter {
+    from {
+        opacity: 0;
+        transform: translateX(var(--project-transition-offset));
+    }
+}

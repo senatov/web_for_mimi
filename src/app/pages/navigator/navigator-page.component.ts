@@ -20,6 +20,7 @@ import {CardModule} from 'primeng/card';
 import {DividerModule} from 'primeng/divider';
 import {TagModule} from 'primeng/tag';
 import {RouterLink} from '@angular/router';
+import {ProjectSwitcherComponent} from '../../project-switcher.component';
 import {highlightKeywordsHtml, SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
 import {PageMetadataService} from '../../page-metadata.service';
 import {navigatorMinimumMacOS} from '../../navigator-platform';
@@ -74,7 +75,7 @@ type AnalyticsEventName =
 @Component({
         selector: 'app-navigator-page',
         standalone: true,
-        imports: [SeoKeywordHighlightDirective, CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, RouterLink],
+        imports: [SeoKeywordHighlightDirective, CommonModule, MatDialogModule, GalleriaModule, PopoverModule, CardModule, DividerModule, TagModule, RouterLink, ProjectSwitcherComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
         templateUrl: './navigator-page.component.html',
         styleUrls: ['../../styles/app.css', '../../styles/trends/page.css', '../../styles/navigator/prime.css', '../../styles/navigator/gallery.css'],

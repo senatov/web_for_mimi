@@ -1,0 +1,113 @@
+:host {
+    display: block;
+    justify-self: center;
+    max-width: 100%;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid #a5bad2;
+    border-radius: 19px;
+    background: linear-gradient(155deg, #f3f8ff, #dce8f5);
+    box-shadow: inset 0 1px 0 #fff, 0 5px 16px #203e6826;
+}
+
+a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 5px clamp(6px, 1vw, 14px);
+    border-radius: 14px;
+    color: #173754;
+    text-decoration: none;
+    transition: background-color 160ms ease, box-shadow 160ms ease, scale 160ms ease;
+}
+
+a:not(.active):hover {
+    background-color: #fff;
+    box-shadow: 0 2px 8px #203e6826;
+}
+
+a:active {
+    scale: .97;
+}
+
+a:focus-visible {
+    outline: 2px solid #0a497f;
+    outline-offset: 2px;
+}
+
+a.active {
+    color: #fff;
+    background: linear-gradient(130deg, #245fa5, #153a70);
+    box-shadow: inset 0 1px 0 #ffffff40, 0 3px 8px #183f6f55;
+    view-transition-name: mi-mi-active-project;
+}
+
+a.trends.active {
+    background: linear-gradient(130deg, #14756c, #124d5c);
+    box-shadow: inset 0 1px 0 #ffffff40, 0 3px 8px #124d5c55;
+}
+
+img {
+    flex: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px #102d4840;
+}
+
+.project-copy {
+    display: grid;
+    gap: 3px;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+strong {
+    font-size: .875rem;
+    font-weight: 750;
+}
+
+.project-copy span {
+    font-size: .75rem;
+}
+
+.active .project-copy span {
+    color: #e3f0ff;
+}
+
+@media (max-width: 760px) {
+    :host {
+        align-self: center;
+    }
+}
+
+@media (max-width: 420px) {
+    img {
+        width: 24px;
+        height: 24px;
+    }
+
+    a {
+        gap: 5px;
+        padding-inline: 4px;
+    }
+
+    strong {
+        font-size: .8125rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    a {
+        transition: none;
+    }
+
+    a:active {
+        scale: none;
+    }
+}

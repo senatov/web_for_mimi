@@ -7,12 +7,7 @@
                 <span class="brand-copy"><span class="brand-text">mimiTrendsIOS</span><span
                         class="brand-subtitle">SwiftUI market radar</span></span>
             </a>
-            <div class="project-switcher" aria-label="Choose MiMi project">
-                <a [routerLink]="['/']" class="project-switcher-option"><img src="/images/navigator/appstore.png" alt="" width="20"
-                                                                             height="20">Navigator</a>
-                <a [routerLink]="['/mimitrendsios']" class="project-switcher-option active" aria-current="page"><img
-                        src="/images/trends/AppIcon-1024.png" alt="" width="20" height="20">mimiTrendsIOS</a>
-            </div>
+            <app-project-switcher />
             <nav class="topnav" aria-label="Primary navigation">
                 <a [routerLink]="['/mimitrendsios']" fragment="features"><span class="material-icons-outlined" aria-hidden="true">widgets</span>Features</a>
                 <a [routerLink]="['/mimitrendsios']" fragment="preview"><span class="material-icons-outlined" aria-hidden="true">photo_library</span>Screenshots</a>
