@@ -1,23 +1,20 @@
 import {AfterViewInit, Directive, ElementRef, inject, OnDestroy} from '@angular/core';
 
 const VERSION_PATTERN = String.raw`macOS\s+\d+(?:\.\d+)*|v?\d+(?:\.\d+){1,4}`;
-const KEYWORD_PATTERN = String.raw`Google\s+Drive|Total\s+Commander|App\s+Store|Cloudflare\s+R2|Apple\s+Intelligence|MiMiNavigator|mimiTrendsIOS|CloudStorage|Dropbox|Finder|WebDAV|SwiftUI|Homebrew|Cleanup|Yahoo|EIX|⌘-Click|⇧-Click|Cmd\+Click|Shift\+Click|macOS|DMG|GPS|S3|SMB|EXIF|GitHub|SFTP|FTP|ZIP|RAR|7Z|TAR|GZIP|BZIP2|XZ|ISO|CAB|XAR|LZH|ARJ|CPIO|MP4|AVI|MKV|MOV|WEBM|FLV|WMV|MP3|WAV|FLAC|AAC|OGG|WMA|M4A|AIFF|PNG|JPEG|TIFF|BMP|WEBP|GIF|HEIC|SVG|F2|F5|F6|F7|AGPL-3\.0`;
+const KEYWORD_PATTERN = String.raw`Google\s+Drive|Total\s+Commander|Norton\s+Commander|App\s+Store|Cloudflare\s+R2|Apple\s+Intelligence|Network\s+Neighborhood|External\s+Tool\s+Doctor|Archive\s+VFS|Share\+Link|Multi-Rename|Find\s+Files|dual[ -]panel|file\s+manager|market\s+radar|minute\s+candles|source\s+telemetry|app\s+leftovers|media\s+conversion|network\s+discovery|MiMiNavigator|mimiTrendsIOS|CloudStorage|Dropbox|Finder|WebDAV|SwiftUI|AppKit|Homebrew|Cleanup|Yahoo|TradingView|Scalable|Telegram|Lottie|TinyURL|Keychain|OAuth|SQLite|FFmpeg|Radar|ISIN|EIX|⌘-Click|⇧-Click|Cmd\+Click|Shift\+Click|macOS|DMG|GPS|S3|SMB|AFP|EXIF|GitHub|SFTP|FTP|ZIP|RAR|7Z|TAR|GZIP|BZIP2|XZ|ISO|CAB|XAR|LZH|ARJ|CPIO|MP4|AVI|MKV|MOV|WEBM|FLV|WMV|MP3|WAV|FLAC|AAC|OGG|WMA|M4A|AIFF|PNG|JPEG|TIFF|BMP|WEBP|GIF|HEIC|SVG|F2|F5|F6|F7|AGPL-3\.0`;
 const HIGHLIGHT_PATTERN = new RegExp(String.raw`(?<![\p{L}\p{N}_])(?:${VERSION_PATTERN}|${KEYWORD_PATTERN})(?![\p{L}\p{N}_])`, 'giu');
 export function highlightKeywordsHtml(text: string): string {
     const escaped = text.replace(/[&<>"']/g, character => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[character] || character));
-    return escaped.replace(HIGHLIGHT_PATTERN, '<span class="seo-keyword-highlight">$&</span>');
+    return escaped.replace(HIGHLIGHT_PATTERN, '<strong class="seo-keyword-highlight">$&</strong>');
 }
 const SKIPPED_SELECTOR = [
     'a',
     'button',
     'script',
     'style',
+    'strong',
     '.material-icons-outlined',
     '.seo-keyword-highlight',
-    '.hero-proof',
-    '.hero-capabilities',
-    '.hero-highlights',
-    '.brand-copy',
     '.commit-feed',
     '[data-seo-dynamic]'
 ].join(',');
@@ -112,7 +109,7 @@ export class SeoKeywordHighlightDirective implements AfterViewInit, OnDestroy {
                 fragment.append(document.createTextNode(text.slice(currentIndex, matchIndex)));
             }
 
-            const highlight = document.createElement('span');
+            const highlight = document.createElement('strong');
             highlight.className = 'seo-keyword-highlight';
             highlight.textContent = matchText;
             fragment.append(highlight);

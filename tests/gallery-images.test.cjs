@@ -33,6 +33,24 @@ test('Navigator gallery dimensions match the PNG files', () => {
     const images = [...source.matchAll(/\['(navigator\/gallery\/\d+\.png)',\s*'[^']+',\s*(\d+),\s*(\d+)\]/g)]
         .map(([, file, width, height]) => [file, width, height]);
     checkImages(images);
+    const galleryFiles = fs.readdirSync(path.join(root, 'public/images/navigator/gallery'))
+        .filter(file => /^\d+\.png$/.test(file) && file !== '000.png')
+        .map(file => `navigator/gallery/${file}`).sort();
+    assert.deepEqual(images.map(([file]) => file).sort(), galleryFiles, 'all published Navigator screenshots appear in the gallery');
+});
+
+test('static screenshot metadata and guide dimensions match their PNG files', () => {
+    const index = fs.readFileSync(path.join(root, 'src/index.html'), 'utf8');
+    const image = index.match(/<meta property="og:image" content="https:\/\/miminavi\.tech\/images\/([^"]+)">/);
+    const width = index.match(/<meta property="og:image:width" content="(\d+)">/);
+    const height = index.match(/<meta property="og:image:height" content="(\d+)">/);
+    assert.ok(image && width && height, 'homepage image metadata is present');
+    assert.deepEqual(pngSize(image[1]), [Number(width[1]), Number(height[1])]);
+
+    const guide = fs.readFileSync(path.join(root, 'public/share-link/index.html'), 'utf8');
+    const screenshot = guide.match(/<img src="\/images\/([^"]+\.png)" alt="[^"]+" width="(\d+)" height="(\d+)"/);
+    assert.ok(screenshot, 'Share+Link guide screenshot is present');
+    assert.deepEqual(pngSize(screenshot[1]), [Number(screenshot[2]), Number(screenshot[3])]);
 });
 
 test('mimiTrends gallery and PhotoSwipe dimensions match the PNG files', () => {
