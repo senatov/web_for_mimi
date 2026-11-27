@@ -19,29 +19,11 @@ import {register, SwiperContainer} from 'swiper/element/bundle';
 import {GitHubService, RecentCommitViewModel} from '../../github.service';
 import {GitHubLatestRelease} from '../../github.models';
 import {SeoKeywordHighlightDirective} from '../../seo-keyword-highlight.directive';
+import {applyTrendsMetadata, trendsRepositoryUrl} from './trends-metadata';
+import {parseReleaseCommits, ReleaseCommit} from './trends-release-commits';
 import screenshots from './trends-screenshots.json';
 
-
-
 register();
-
-
-
-interface ReleaseCommit {
-        hash: string;
-        subject: string;
-        details: string;
-}
-
-
-
-const pageUrl = 'https://miminavi.tech/mimitrendsios';
-const repositoryUrl = 'https://github.com/senatov/mimiTrendsIOS';
-const iconUrl = 'https://miminavi.tech/images/trends/AppIcon-1024.png';
-const title = 'mimiTrendsIOS — SwiftUI market radar for iPad and Mac';
-const description = 'A SwiftUI market radar for iPad and macOS 27+: TradingView candidates checked against EIX observations, Yahoo candle signals, a local watchlist and charts. Mac DMG available; iPad App Store release in preparation.';
-
-
 
 @Component({
         selector: 'app-trends-page',
@@ -59,9 +41,9 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
         private readonly document = inject(DOCUMENT);
         @ViewChild('gallery') private gallery?: ElementRef<SwiperContainer>;
         private lightbox?: PhotoSwipeLightbox;
-        protected readonly repositoryUrl = repositoryUrl;
+        protected readonly repositoryUrl = trendsRepositoryUrl;
         protected readonly displayPixelRatio = Math.max(1, this.document.defaultView?.devicePixelRatio || 1);
-        protected readonly releasesUrl = `${repositoryUrl}/releases`;
+        protected readonly releasesUrl = `${trendsRepositoryUrl}/releases`;
         protected readonly archiveUrl = 'https://github.com/senatov/mimiTrends';
         protected readonly linkedInUrl = 'https://www.linkedin.com/in/iakov-senatov-07060765/';
         protected readonly screenshots = screenshots;
@@ -73,14 +55,10 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
         protected recentCommits: RecentCommitViewModel[] = [];
         protected releaseCommits: ReleaseCommit[] = [];
 
-
-
         ngOnInit(): void {
-                this.applySeoMetadata();
+                applyTrendsMetadata(this.document, this.latestVersion, this.latestDmgUrl);
                 void Promise.all([this.loadRelease(), this.loadCommits()]);
         }
-
-
 
         ngAfterViewInit(): void {
                 const gallery = this.gallery?.nativeElement;
@@ -111,45 +89,31 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.lightbox.init();
         }
 
-
-
         ngOnDestroy(): void {
                 this.gallery?.nativeElement.removeEventListener('swiperslidechange', this.onSlideChange);
                 this.lightbox?.destroy();
         }
 
-
-
         protected trackCommit(_: number, commit: RecentCommitViewModel): string {
                 return commit.hash;
         }
-
-
 
         protected showScreenshot(index: number): void {
                 this.gallery?.nativeElement.swiper.slideTo(index);
         }
 
-
-
         protected nextScreenshot(): void {
                 this.gallery?.nativeElement.swiper.slideNext();
         }
-
-
 
         protected previousScreenshot(): void {
                 this.gallery?.nativeElement.swiper.slidePrev();
         }
 
-
-
         private readonly onSlideChange = (event: Event): void => {
                 this.activeScreenshot = (event.target as SwiperContainer).swiper.activeIndex;
                 this.cdr.markForCheck();
         };
-
-
 
         private async loadRelease(): Promise<void> {
                 const release: GitHubLatestRelease | null = await this.gitHubService.loadLatestRelease('trendsios');
@@ -158,71 +122,16 @@ export class TrendsPageComponent implements OnInit, AfterViewInit, OnDestroy {
                         this.latestVersion = release.tag_name || this.latestVersion;
                         this.latestDmgUrl = dmg?.browser_download_url || release.html_url || this.latestDmgUrl;
                         this.latestReleaseUrl = release.html_url || this.releasesUrl;
-                        this.releaseCommits = this.parseReleaseCommits(release.body || '');
+                        this.releaseCommits = parseReleaseCommits(release.body || '');
                         const publishedAt = release.published_at || release.created_at;
                         if (publishedAt) this.latestReleaseDate = this.gitHubService.formatReleaseDate(publishedAt);
-                        this.applySeoMetadata();
+                        applyTrendsMetadata(this.document, this.latestVersion, this.latestDmgUrl);
                 }
                 this.cdr.markForCheck();
         }
-
-
 
         private async loadCommits(): Promise<void> {
                 this.recentCommits = await this.gitHubService.loadRecentCommits('trendsios');
                 this.cdr.markForCheck();
-        }
-
-
-
-        private parseReleaseCommits(body: string): ReleaseCommit[] {
-                const commits: ReleaseCommit[] = [];
-                for (const line of body.split(/\r?\n/)) {
-                        const match = /^- \*\*(.+)\*\* \(\x60([0-9a-f]{8,40})\x60\)$/.exec(line);
-                        if (match) {
-                                commits.push({subject: match[1], hash: match[2], details: ''});
-                        } else if (commits.length && line.startsWith('  >')) {
-                                const text = line.slice(3).trim();
-                                commits[commits.length - 1].details += text ? `${text} ` : '\n';
-                        }
-                }
-                return commits.map(commit => ({...commit, details: commit.details.trim()}));
-        }
-
-
-
-        private applySeoMetadata(): void {
-                this.document.title = title;
-                const metas: Array<['name' | 'property', string, string]> = [
-                        ['name', 'description', description], ['name', 'application-name', 'mimiTrendsIOS'],
-                        ['name', 'keywords', 'mimiTrendsIOS, SwiftUI, iPad market radar, macOS market radar, stock charts'],
-                        ['name', 'apple-mobile-web-app-title', 'mimiTrendsIOS'], ['property', 'og:site_name', 'mimiTrendsIOS'],
-                        ['property', 'og:title', title], ['property', 'og:description', description],
-                        ['property', 'og:url', pageUrl], ['property', 'og:image', iconUrl],
-                        ['property', 'og:image:alt', 'mimiTrendsIOS application icon'],
-                        ['property', 'og:image:width', '1024'], ['property', 'og:image:height', '1024'],
-                        ['property', 'og:image:type', 'image/png'], ['name', 'twitter:title', title],
-                        ['name', 'twitter:description', description], ['name', 'twitter:image', iconUrl],
-                        ['name', 'twitter:image:alt', 'mimiTrendsIOS application icon']
-                ];
-                for (const [attribute, key, content] of metas) {
-                        this.document.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`)?.setAttribute('content', content);
-                }
-                this.document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute('href', pageUrl);
-                this.document.querySelector<HTMLLinkElement>('link[rel="icon"]')?.setAttribute('href', '/images/trends/AppIcon-1024.png');
-                this.document.querySelectorAll('script[type="application/ld+json"]').forEach(element => element.remove());
-                const structuredData = this.document.createElement('script');
-                structuredData.type = 'application/ld+json';
-                structuredData.text = JSON.stringify({
-                        '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'mimiTrendsIOS',
-                        applicationCategory: 'FinanceApplication', operatingSystem: ['iPadOS', 'macOS'],
-                        softwareRequirements: 'macOS 27 or newer for the downloadable DMG',
-                        ...(this.latestVersion === 'Latest release' ? {} : {softwareVersion: this.latestVersion}),
-                        url: pageUrl, downloadUrl: this.latestDmgUrl,
-                        codeRepository: repositoryUrl, image: iconUrl,
-                        screenshot: this.screenshots.map(screenshot => `https://miminavi.tech${screenshot.src}`),
-                        programmingLanguage: 'Swift', description
-                });
-                this.document.head.appendChild(structuredData);
         }
 }

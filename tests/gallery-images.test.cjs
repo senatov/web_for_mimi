@@ -29,7 +29,7 @@ function checkImages(images) {
 }
 
 test('Navigator gallery dimensions match the PNG files', () => {
-    const source = fs.readFileSync(path.join(root, 'src/app/pages/navigator/navigator-page.component.ts'), 'utf8');
+    const source = fs.readFileSync(path.join(root, 'src/app/pages/navigator/navigator-gallery.ts'), 'utf8');
     const images = [...source.matchAll(/\['(navigator\/gallery\/\d+\.png)',\s*'[^']+',\s*(\d+),\s*(\d+)\]/g)]
         .map(([, file, width, height]) => [file, width, height]);
     checkImages(images);
