@@ -150,6 +150,7 @@ export class NavigatorPageComponent implements OnInit, AfterViewInit, OnDestroy 
                 {title: 'Archives', icon: 'folder_zip', emoji: '📦', description: 'Open supported archives as folder-like locations, so you can inspect and work with their contents without first extracting everything.', commitUrl: this.navigatorCommit},
                 {title: 'Media tools', icon: 'perm_media', emoji: '🎞️', description: 'Convert images, audio, and video in a focused workflow. The portal’s media guide describes supported formats and the practical steps.', commitUrl: this.portalCommit}
         ];
+        protected releaseNotesLoading = true;
         protected releaseNoteSections: ReleaseNoteSection[] = [];
         protected heroGalleryVisible = false;
         protected heroGalleryActiveIndex = 0;
@@ -490,6 +491,7 @@ export class NavigatorPageComponent implements OnInit, AfterViewInit, OnDestroy 
 
         private async loadLatestRelease(): Promise<void> {
                 const release = await this.gitHubService.loadLatestRelease();
+                this.releaseNotesLoading = false;
 
                 if (!release) {
                         this.applyReleaseFallback();
@@ -536,6 +538,7 @@ export class NavigatorPageComponent implements OnInit, AfterViewInit, OnDestroy 
                 const sections: ReleaseNoteSection[] = [];
                 let currentSection: ReleaseNoteSection | null = null;
                 let sawReleaseTitle = false;
+                let sawSectionHeading = false;
 
                 for (const rawLine of (body || '').split('\n')) {
                         if (rawLine.trim() === '---') {
@@ -551,6 +554,7 @@ export class NavigatorPageComponent implements OnInit, AfterViewInit, OnDestroy 
                         const headingMatch = rawLine.match(/^##\s+(.+?)\s*$/);
 
                         if (headingMatch) {
+                                sawSectionHeading = true;
                                 const title = headingMatch[1].trim();
                                 const isChangeSection = /^(highlights|added|changed|fixed|improvements(?: since .+)?)$/i.test(title);
                                 currentSection = isChangeSection ? {title, items: []} : null;
@@ -562,14 +566,16 @@ export class NavigatorPageComponent implements OnInit, AfterViewInit, OnDestroy 
                                 continue;
                         }
 
-                        if (!currentSection) {
+                        const itemMatch = rawLine.match(/^-\s+(.+?)\s*$/);
+                        if (!itemMatch) {
                                 continue;
                         }
 
-                        const itemMatch = rawLine.match(/^-\s+(.+?)\s*$/);
-                        if (itemMatch) {
-                                currentSection.items.push(this.cleanReleaseNoteMarkdown(itemMatch[1]));
+                        if (!currentSection && !sawSectionHeading) {
+                                currentSection = {title: 'Changes', items: []};
+                                sections.push(currentSection);
                         }
+                        currentSection?.items.push(this.cleanReleaseNoteMarkdown(itemMatch[1]));
                 }
 
                 return sections.filter(section => section.items.length > 0);

@@ -386,7 +386,12 @@
                             </div>
                         } @else {
                             <div class="commit-feed-empty">
-                                Release changes are loading.
+                                @if (releaseNotesLoading) {
+                                    Release changes are loading.
+                                } @else {
+                                    Release notes are unavailable here.
+                                    <a [href]="latestReleaseUrl" target="_blank" rel="noopener noreferrer">See releases on GitHub</a>.
+                                }
                             </div>
                         }
                     </div>
