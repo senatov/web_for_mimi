@@ -41,7 +41,7 @@ The portal's `package.json` version is independent of the application release. I
 
 - Visible release, DMG, and commit timestamps use compact `DD.MM.YYYY HH:mm` formatting in the visitor’s browser time zone. The DMG release annotation uses smaller text; operation-feedback tags share equal dimensions.
 - Release metadata comes from GitHub. Development commits are labelled separately because they may not be part of the downloadable release. The Navigator download card links directly to the current published release, and its DMG timestamp remains bound to the GitHub asset date while keyword highlighting runs.
-- The Navigator page's "Recently improved" section describes v0.9.2.1 remote file drag-and-drop, navigation, and dotfile visibility. Keep static product copy aligned with the latest published release; release notes and download data load dynamically from GitHub.
+- The Navigator page's "Recently improved" section describes v0.9.2.2 archive support, tab controls, volume details, and file-operation confirmations. Keep static product copy aligned with the latest published release; release notes and download data load dynamically from GitHub.
 - The first Navigator screen links directly to the latest published DMG on Mac, while the release card supplies version and compatibility details.
 - Share+Link uses Google Drive and Dropbox for provider view links. Optional Cloudflare R2 uploads image, video, and audio files to a user-owned public bucket and copies the direct URL without TinyURL shortening.
 - The `/cleanup` guide describes the published review table and in-app folder links. Cleanup never moves a candidate to Trash without a user selection.
